@@ -24,7 +24,7 @@
             android:layout_marginLeft="@dimen/fifteen"
             android:layout_height="wrap_content"
             android:textColor="@drawable/textview_selector"
-            android:textSize="@dimen/fifteen"
+            android:textSize="@dimen/mid_fond"
             android:textStyle="bold" />
     </LinearLayout>
 

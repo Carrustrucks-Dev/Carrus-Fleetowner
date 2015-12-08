@@ -61,4 +61,12 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
+    <!-- Login Screen Text-->
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="submit">SUBMIT</string>
+    <string name="forgotpasswd">FORGOT PASSWORD ?</string>
+    <string name="send">SEND</string>
+    <string name="forgotpasswdlable">Forgot Password</string>
+
 </resources>
