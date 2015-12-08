@@ -109,7 +109,7 @@ public class LoginActivity extends BaseActivity {
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
 
                         JSONObject mDataobject = mObject.getJSONObject("data");
-                        mSessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getString("userType"), mDataobject.getString("email"), mDataobject.getString("fullName"), mDataobject.getString("companyName"), mDataobject.getJSONObject("addressDetails").getString("address"),"", mDataobject.getString("phoneNumber"),mDataobject.getString("rating"));
+                        mSessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getString("userType"), mDataobject.getString("email"), mDataobject.getString("fullName"), mDataobject.getString("companyName"), mDataobject.getJSONObject("addressDetails").getString("address"),"", mDataobject.getString("phoneNumber"));
                         Toast.makeText(LoginActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                         startActivityForResult(new Intent(LoginActivity.this, MainActivity.class), 500);
                         finish();

@@ -69,7 +69,7 @@ public class SessionManager {
 //        mobileNumber.setText(sharedPreferences.getString(DRIVER_PHONENO, ""));
 //        driverRating.setRating(Float.valueOf(sharedPreferences.getString(RATING, "0")));
 
-    public void saveUserInfo(String accesstoken, String usertype, String email, String name, String comapnyName, String address, String companyType, String phone, String rating) {
+    public void saveUserInfo(String accesstoken, String usertype, String email, String name, String comapnyName, String address, String companyType, String phone) {
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
 
@@ -80,7 +80,7 @@ public class SessionManager {
         editor.putString(KEY_NAME, name);
         editor.putString(KEY_COMPANY_NAME, comapnyName);
         editor.putString(KEY_PHONE, phone);
-        editor.putString(KEY_RATING, rating);
+//        editor.putString(KEY_RATING, rating);
         editor.putString(KEY_ADDRESS, address);
         editor.putString(KEY_COMPANY_TYPE, companyType);
 
