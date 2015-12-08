@@ -9,13 +9,25 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.carrus.fleetowner.retrofit.RestClient;
+import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.SessionManager;
+import com.carrus.fleetowner.utils.Utils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class MainActivity extends BaseActivity implements FragmentDrawer.FragmentDrawerListener{
 
@@ -157,8 +169,8 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //Stop the activity
-//                                MainActivity.this.finish();
-//                                logout();
+                                MainActivity.this.finish();
+                                logout();
                             }
 
                         })
@@ -185,5 +197,45 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
 //            getSupportActionBar().setTitle(title);
             mHeaderTextView.setText(title);
         }
+    }
+
+    private void logout() {
+        Utils.loading_box(MainActivity.this);
+        RestClient.getApiService().logout(mSessionManager.getAccessToken(), new Callback<String>() {
+            @Override
+            public void success(String s, Response response) {
+                Log.v("" + getClass().getSimpleName(), "Response> " + s);
+
+                try {
+                    JSONObject mObject = new JSONObject(s);
+
+                    int status = mObject.getInt("statusCode");
+
+                    if (ApiResponseFlags.OK.getOrdinal() == status) {
+                        new SessionManager(MainActivity.this).logoutUser();
+                    } else {
+                        Toast.makeText(MainActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                Utils.loading_box_stop();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                try {
+                    Utils.loading_box_stop();
+                    if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
+                        Toast.makeText(MainActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
+                        Utils.shopAlterDialog(MainActivity.this, Utils.getErrorMsg(error), true);
+                    }
+                } catch (Exception ex) {
+                    Toast.makeText(MainActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

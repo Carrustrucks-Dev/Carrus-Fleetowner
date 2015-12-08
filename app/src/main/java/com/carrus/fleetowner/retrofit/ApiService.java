@@ -14,8 +14,8 @@ import retrofit.http.Query;
  * Created by Sunny on 11/3/15.
  */
 public interface ApiService {
-    String LOGOUT_URL = "/api/v1/shipper/logout";
-    String FORGETPASSWORD_URL = "/api/v1/shipper/forgotPassword";
+    String LOGOUT_URL = "/api/v1/fleetOwner/logout";
+    String FORGETPASSWORD_URL = "/api/v1/fleetOwner/forgotPassword";
 
     String AUTHORIZATION = "authorization";
     @GET("/maps/api/directions/xml")
@@ -29,7 +29,7 @@ public interface ApiService {
      * @param deviceToken
      */
     @FormUrlEncoded
-    @POST("/api/v1/shipper/login")
+    @POST("/api/v1/fleetOwner/login")
     public void login(@Field("email") String email, @Field("password") String password, @Field("deviceType") String deviceType, @Field("deviceName") String deviceName, @Field("deviceToken") String deviceToken, Callback<String> callback);
 
     @GET("/api/v1/shipper/getUpComingApp")

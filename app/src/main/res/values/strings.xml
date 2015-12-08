@@ -63,6 +63,7 @@
 
     <!-- Login Screen Text-->
     <string name="email">E-mail</string>
+    <string name="driver_id">Driver ID</string>
     <string name="password">Password</string>
     <string name="submit">SUBMIT</string>
     <string name="forgotpasswd">FORGOT PASSWORD ?</string>

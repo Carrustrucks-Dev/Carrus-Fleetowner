@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:background="@mipmap/register_bg"
     android:weightSum="1"
+
     android:orientation="vertical"
     android:layout_height="match_parent">
 
@@ -31,10 +32,10 @@
             android:layout_height="wrap_content"
             android:background="@color/windowBackground"
             android:drawableLeft="@mipmap/icon_driver"
-            android:drawablePadding="@dimen/ten"
+            android:drawablePadding="@dimen/five"
             android:inputType="textEmailAddress"
             android:gravity="center_vertical"
-            android:hint="@string/email"
+            android:hint="@string/driver_id"
             android:paddingLeft="@dimen/three"
             android:paddingTop="@dimen/ten"
             android:paddingBottom="@dimen/ten"

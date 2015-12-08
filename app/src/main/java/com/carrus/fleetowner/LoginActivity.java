@@ -59,21 +59,21 @@ public class LoginActivity extends BaseActivity {
                 if (mSessionManager.getDeviceToken().isEmpty()) {
                     getDeviceToken();
                 }
-//                if (mEmailidEdtTxt.getText().toString().trim().isEmpty()) {
-//                    mEmailidEdtTxt.setError(getResources().getString(R.string.email_required));
-//                    mEmailidEdtTxt.requestFocus();
-//                } else if (mPasswordEdtTxt.getText().toString().trim().isEmpty()) {
-//                    mPasswordEdtTxt.setError(getResources().getString(R.string.passwd_required));
-//                    mPasswordEdtTxt.requestFocus();
-//                } else if (!Utils.isValidEmail(mEmailidEdtTxt.getText().toString().trim())) {
-//                    mEmailidEdtTxt.setError(getResources().getString(R.string.validemail_required));
-//                    mEmailidEdtTxt.requestFocus();
-//                } else {
-//                    if (mConnectionDetector.isConnectingToInternet())
+                if (mEmailidEdtTxt.getText().toString().trim().isEmpty()) {
+                    mEmailidEdtTxt.setError(getResources().getString(R.string.email_required));
+                    mEmailidEdtTxt.requestFocus();
+                } else if (mPasswordEdtTxt.getText().toString().trim().isEmpty()) {
+                    mPasswordEdtTxt.setError(getResources().getString(R.string.passwd_required));
+                    mPasswordEdtTxt.requestFocus();
+                } else if (!Utils.isValidEmail(mEmailidEdtTxt.getText().toString().trim())) {
+                    mEmailidEdtTxt.setError(getResources().getString(R.string.validemail_required));
+                    mEmailidEdtTxt.requestFocus();
+                } else {
+                    if (mConnectionDetector.isConnectingToInternet())
                         verifyLoggedIn();
-//                    else
-//                        Utils.shopAlterDialog(LoginActivity.this, getResources().getString(R.string.nointernetconnection), false);
-//                }
+                    else
+                        Utils.shopAlterDialog(LoginActivity.this, getResources().getString(R.string.nointernetconnection), false);
+                }
             }
         });
 
@@ -97,53 +97,53 @@ public class LoginActivity extends BaseActivity {
 
     private void verifyLoggedIn() {
         Utils.loading_box(LoginActivity.this);
-//        RestClient.getApiService().login(mEmailidEdtTxt.getText().toString().trim(), mPasswordEdtTxt.getText().toString().trim(), DEVICE_TYPE, Utils.getDeviceName(), mSessionManager.getDeviceToken(), new Callback<String>() {
-//            @Override
-//            public void success(String s, Response response) {
-//                Log.v("" + getClass().getSimpleName(), "Response> " + s);
-//                try {
-//                    JSONObject mObject = new JSONObject(s);
-//
-//                    int status = mObject.getInt("statusCode");
-//
-//                    if (ApiResponseFlags.OK.getOrdinal() == status) {
-//
-//                        JSONObject mDataobject = mObject.getJSONObject("data");
-//                        mSessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getString("userType"), mDataobject.getString("email"), mDataobject.getString("firstName") + " " + mDataobject.getString("lastName"), mDataobject.getString("companyName"), mDataobject.getJSONObject("addressDetails").getString("address"),"", mDataobject.getString("phoneNumber"),mDataobject.getString("rating"));
-//                        Toast.makeText(LoginActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
-//                        startActivityForResult(new Intent(LoginActivity.this, MainActivity.class), 500);
+        RestClient.getApiService().login(mEmailidEdtTxt.getText().toString().trim(), mPasswordEdtTxt.getText().toString().trim(), DEVICE_TYPE, Utils.getDeviceName(), mSessionManager.getDeviceToken(), new Callback<String>() {
+            @Override
+            public void success(String s, Response response) {
+                Log.v("" + getClass().getSimpleName(), "Response> " + s);
+                try {
+                    JSONObject mObject = new JSONObject(s);
+
+                    int status = mObject.getInt("statusCode");
+
+                    if (ApiResponseFlags.OK.getOrdinal() == status) {
+
+                        JSONObject mDataobject = mObject.getJSONObject("data");
+                        mSessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getString("userType"), mDataobject.getString("email"), mDataobject.getString("fullName"), mDataobject.getString("companyName"), mDataobject.getJSONObject("addressDetails").getString("address"),"", mDataobject.getString("phoneNumber"),mDataobject.getString("rating"));
+                        Toast.makeText(LoginActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        startActivityForResult(new Intent(LoginActivity.this, MainActivity.class), 500);
                         finish();
 
-//                    } else {
-//                        Toast.makeText(LoginActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
-//                    }
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
+                    } else {
+                        Toast.makeText(LoginActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
                 Utils.loading_box_stop();
 
-//            }
-//
-//            @Override
-//            public void failure(RetrofitError error) {
-//                Utils.loading_box_stop();
-//                try {
-//                    Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getReason());
-//
-//                    if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-//                        Toast.makeText(LoginActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
-//                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
-//                        Utils.shopAlterDialog(LoginActivity.this, Utils.getErrorMsg(error), false);
-//                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
-//                        Toast.makeText(LoginActivity.this, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
-//                    }
-//                } catch (Exception ex) {
-//                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Utils.loading_box_stop();
+                try {
+                    Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getReason());
+
+                    if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
+                        Toast.makeText(LoginActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
+                        Utils.shopAlterDialog(LoginActivity.this, Utils.getErrorMsg(error), false);
+                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
+                        Toast.makeText(LoginActivity.this, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception ex) {
+                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
 }

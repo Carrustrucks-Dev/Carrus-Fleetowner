@@ -1,9 +1,13 @@
 package com.carrus.fleetowner.utils;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+
+import com.carrus.fleetowner.LoginActivity;
 
 
 public class SessionManager {
@@ -94,16 +98,16 @@ public class SessionManager {
         editor.commit();
 
         // After logout redirect user to Loing Activity
-//        Intent i = new Intent(_context, LoginActivity.class);
-//        // Closing all the Activities
-//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//
-//        // Add new Flag to start new Activity
-//        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//
-//        // Staring Login Activity
-//        _context.startActivity(i);
-//        ((Activity) _context).finish();
+        Intent i = new Intent(_context, LoginActivity.class);
+        // Closing all the Activities
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        // Add new Flag to start new Activity
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        // Staring Login Activity
+        _context.startActivity(i);
+        ((Activity) _context).finish();
     }
 
     /**
