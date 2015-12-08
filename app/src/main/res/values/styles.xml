@@ -1,0 +1,38 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionOverflowButtonStyle">@style/OverFlow</item>
+    </style>
+    <style name="OverFlow" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@mipmap/icon_menu</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--Custom text appearance-->
+    <style name="CustomTextAppearance" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/Helvetica/Helvetica.ttf</item>
+    </style>
+
+    <!--Custom bold text appearance-->
+    <style name="CustomTextAppearance.Bold" parent="CustomTextAppearance">
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/Helvetica_Neue/HelveticaNeue-Medium.otf</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+</resources>

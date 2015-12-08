@@ -1,0 +1,189 @@
+package com.carrus.fleetowner;
+
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.carrus.fleetowner.utils.Constants;
+import com.carrus.fleetowner.utils.SessionManager;
+
+public class MainActivity extends BaseActivity implements FragmentDrawer.FragmentDrawerListener{
+
+    private static String TAG = MainActivity.class.getSimpleName();
+
+    private FragmentDrawer drawerFragment;
+    private DrawerLayout mDrawerLayout;
+    private TextView mHeaderTextView;
+    private ImageView mMenuButton, mBackButton;
+    private int selectedPos = -1;
+    private SessionManager mSessionManager;
+    private Bundle bundle = null;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        mSessionManager = new SessionManager(this);
+        drawerFragment = (FragmentDrawer)
+                getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerFragment.setUp(R.id.fragment_navigation_drawer, mDrawerLayout);
+        drawerFragment.setDrawerListener(this);
+
+        initializeView();
+        initializeClickListners();
+    }
+
+    private void initializeView() {
+        mHeaderTextView = (TextView) findViewById(R.id.headerTxtView);
+        mMenuButton = (ImageView) findViewById(R.id.menu_drawer_btn);
+        mMenuButton.setVisibility(View.VISIBLE);
+        mBackButton = (ImageView) findViewById(R.id.menu_back_btn);
+    }
+
+    private void initializeClickListners() {
+        mMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                } else {
+                    mDrawerLayout.openDrawer(Gravity.LEFT);
+                }
+            }
+        });
+
+        mBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+    }
+
+    @Override
+    public void onDrawerItemSelected(View view, int position) {
+        displayView(position);
+    }
+
+    @Override
+    public void onHeaderSelected() {
+        selectedPos = -1;
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.container_body, new ProfileFragment());
+//        fragmentTransaction.commit();
+
+        // set the toolbar title
+//            getSupportActionBar().setTitle(title);
+        mHeaderTextView.setText(getString(R.string.myprofile));
+    }
+
+    private void displayView(int position) {
+        Fragment fragment = null;
+        String title = getString(R.string.app_name);
+        switch (position) {
+            case 0:
+                if (selectedPos != 0) {
+                    selectedPos = 0;
+//                    fragment = new HomeFragment();
+                    title = getString(R.string.mybooking);
+                }
+                break;
+            case 1:
+                if (selectedPos != 1) {
+                    selectedPos = 1;
+//                    fragment = new MyBookingFragment();
+//                    if (bundle != null)
+//                        fragment.setArguments(bundle);
+                    title = getString(R.string.notifications);
+                }
+                break;
+            case 2:
+                if (selectedPos != 0) {
+                    selectedPos = 0;
+//                    fragment = new HomeFragment();
+                    title = getString(R.string.trucks);
+                }
+                break;
+
+            case 3:
+                if (selectedPos != 0) {
+                    selectedPos = 0;
+//                    fragment = new HomeFragment();
+                    title = getString(R.string.drivers);
+                }
+                break;
+
+            case 4:
+                if (selectedPos != 0) {
+                    selectedPos = 0;
+//                    fragment = new HomeFragment();
+                    title = getString(R.string.aboutus);
+                }
+                break;
+
+
+            case 5:
+                if (selectedPos != 2) {
+//                    selectedPos = 2;
+                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    callIntent.setData(Uri.parse("tel:" + Constants.CONTACT_CARRUS));
+                    startActivity(callIntent);
+                }
+                break;
+
+//            case 3:
+//                if (selectedPos != 3) {
+//                    selectedPos = 3;
+//
+//                }
+//                break;
+            case 6:
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.quit)
+                        .setMessage(R.string.really_quit)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //Stop the activity
+//                                MainActivity.this.finish();
+//                                logout();
+                            }
+
+                        })
+                        .setNegativeButton(R.string.no, null)
+                        .show();
+
+                break;
+
+
+            default:
+                selectedPos = 0;
+//                fragment = new HomeFragment();
+                title = getString(R.string.mybooking);
+                break;
+        }
+
+        if (fragment != null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_body, fragment);
+            fragmentTransaction.commit();
+
+            // set the toolbar title
+//            getSupportActionBar().setTitle(title);
+            mHeaderTextView.setText(title);
+        }
+    }
+}
