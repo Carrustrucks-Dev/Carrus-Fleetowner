@@ -15,7 +15,9 @@ import android.widget.TextView;
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.interfaces.OnLoadMoreListener;
 import com.carrus.fleetowner.models.Datum;
+import com.carrus.fleetowner.utils.CircleTransform;
 import com.carrus.fleetowner.utils.Utils;
+import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.util.List;
@@ -137,7 +139,7 @@ public class DriverListAdapter extends RecyclerView.Adapter {
                 e.printStackTrace();
             }
 
-            ((ViewHolder) holder).mRatingBar.setRating((float)myList.get(position).getRating());
+            ((ViewHolder) holder).mRatingBar.setRating((float) myList.get(position).getRating());
             ((ViewHolder) holder).mRatingBar.setFocusable(false);
 
             ((ViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
@@ -151,6 +153,10 @@ public class DriverListAdapter extends RecyclerView.Adapter {
 
                 }
             });
+            if(myList.get(position).getProfilePicture()!=null){
+                Picasso.with(mActivity).load(myList.get(position).getProfilePicture().getThumb()).transform(new CircleTransform()).into(((ViewHolder) holder).mProfileIV);
+            }
+
         }else{
             ((ProgressViewHolder) holder).progressBar.setIndeterminate(true);
         }

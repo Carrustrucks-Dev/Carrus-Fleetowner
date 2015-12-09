@@ -110,7 +110,7 @@ public class TruckFragment extends Fragment {
 
         selectedFlag = 1;
         mNewRequestTV.setBackgroundResource(R.drawable.tab_upcming_background_white);
-        mPendingAssignTV.setBackgroundResource(R.drawable.tab_upcming_background_white);
+        mPendingAssignTV.setBackgroundResource(R.drawable.tab_past_background_white);
         mPendingQuotesTV.setBackgroundResource(R.drawable.tab_background);
         mNewRequestTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
         mPendingAssignTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
@@ -123,7 +123,7 @@ public class TruckFragment extends Fragment {
 
         selectedFlag = 2;
         mNewRequestTV.setBackgroundResource(R.drawable.tab_upcming_background_white);
-        mPendingQuotesTV.setBackgroundResource(R.drawable.tab_upcming_background_white);
+        mPendingQuotesTV.setBackgroundResource(R.drawable.tab_square_background_white);
         mPendingAssignTV.setBackgroundResource(R.drawable.tab_background);
         mNewRequestTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
         mPendingQuotesTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
