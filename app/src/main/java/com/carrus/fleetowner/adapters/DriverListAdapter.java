@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.interfaces.OnLoadMoreListener;
 import com.carrus.fleetowner.models.Datum;
-import com.carrus.fleetowner.models.MyBookingDataModel;
 import com.carrus.fleetowner.utils.Utils;
 
 import java.text.ParseException;
