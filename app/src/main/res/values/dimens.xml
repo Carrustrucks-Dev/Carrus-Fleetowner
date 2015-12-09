@@ -24,6 +24,7 @@
     <dimen name="hundred">100dp</dimen>
     <dimen name="largehieght">150dp</dimen>
     <dimen name="ratingBarHeight">28dip</dimen>
+    <dimen name="ratingBarHeight_s">18dip</dimen>
 
     <!--Text Sizes-->
     <dimen name="low_font">12sp</dimen>

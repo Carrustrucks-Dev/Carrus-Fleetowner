@@ -84,10 +84,9 @@
             android:id="@+id/driverRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:isIndicator="true"
             android:layout_marginBottom="@dimen/ten"
-            style="@style/ratingBar"/>
+            android:isIndicator="true"
+            style="@style/ratingBar_small"/>
 
         <ImageView
             android:id="@+id/callBtnIV"

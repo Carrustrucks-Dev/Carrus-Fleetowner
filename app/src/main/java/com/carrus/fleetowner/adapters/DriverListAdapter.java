@@ -138,7 +138,7 @@ public class DriverListAdapter extends RecyclerView.Adapter {
             }
 
             ((ViewHolder) holder).mRatingBar.setRating((float)myList.get(position).getRating());
-
+            ((ViewHolder) holder).mRatingBar.setFocusable(false);
 
             ((ViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
