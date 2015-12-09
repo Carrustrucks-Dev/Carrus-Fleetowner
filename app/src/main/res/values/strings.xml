@@ -88,4 +88,9 @@
     <string name="searchdriver">Search Drivers</string>
     <string name="licenseexp">License Exp. </string>
 
+    <!--truck screen text-->
+    <string name="newrequests">New\nrequests</string>
+    <string name="pendingquotes">Pending\nquotes</string>
+    <string name="pendingassign">Pending\nassignments</string>
+
 </resources>

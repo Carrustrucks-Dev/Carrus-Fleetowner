@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.carrus.fleetowner.fragments.DriverFragment;
 import com.carrus.fleetowner.fragments.MyBookingFragment;
+import com.carrus.fleetowner.fragments.TruckFragment;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.Constants;
@@ -132,7 +133,7 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
             case 2:
                 if (selectedPos != 2) {
                     selectedPos = 2;
-//                    fragment = new HomeFragment();
+                    fragment = new TruckFragment();
                     title = getString(R.string.trucks);
                 }
                 break;
