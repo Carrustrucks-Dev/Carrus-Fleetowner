@@ -34,5 +34,16 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="ratingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingbar_custom</item>
+        <item name="android:minHeight">@dimen/ratingBarHeight</item>
+        <item name="android:maxHeight">@dimen/ratingBarHeight</item>
+    </style>
+
+    <style name="ratingBar_small" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingbar_custom</item>
+        <item name="android:minHeight">@dimen/twenty</item>
+        <item name="android:maxHeight">@dimen/twenty</item>
+    </style>
 
 </resources>

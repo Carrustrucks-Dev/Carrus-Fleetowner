@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:paddingTop="@dimen/ten"
+    android:paddingBottom="@dimen/ten"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.24">
+
+    <RelativeLayout
+        android:layout_width="@dimen/mediumhieght"
+        android:layout_height="@dimen/mediumhieght"
+        android:layout_centerInParent="true"
+        android:background="@drawable/circle"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dateTxtView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="05"
+                android:layout_marginBottom="-12dp"
+                android:textColor="@color/windowBackground"
+                android:textSize="@dimen/toolarge_font"
+                />
+
+            <TextView
+                android:id="@+id/monthTxtView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OCT"
+                android:textColor="@color/windowBackground"
+                android:textSize="@dimen/mid_fond"
+                />
+
+        </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/five"
+        android:paddingRight="@dimen/five"
+        android:layout_weight="0.38">
+        <com.carrus.fleetowner.utils.CapitalizedTextView
+            android:id="@+id/addressTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/low_font"
+
+            />
+
+        <com.carrus.fleetowner.utils.CapitalizedTextView
+            android:id="@+id/nameTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="@color/tabcolor_dark"
+            android:textSize="@dimen/low_font"
+            />
+
+        <TextView
+            android:id="@+id/codeTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Code"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/low_font"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:gravity="right"
+        android:paddingLeft="@dimen/five"
+        android:paddingRight="@dimen/five"
+        android:layout_weight="0.38">
+
+        <TextView
+            android:id="@+id/timeTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/low_font"
+            />
+
+        <TextView
+            android:id="@+id/statusTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="Status"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/low_font"
+            />
+    </LinearLayout>
+
+</LinearLayout>

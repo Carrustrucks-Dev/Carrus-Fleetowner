@@ -18,6 +18,7 @@ public interface ApiService {
     String FORGETPASSWORD_URL = "/api/v1/fleetOwner/forgotPassword";
 
     String AUTHORIZATION = "authorization";
+
     @GET("/maps/api/directions/xml")
     public void getDriections(@Query("origin") String origin, @Query("destination") String destination, @Query("sensor") String sensor, @Query("units") String units, @Query("mode") String mode, Callback<String> callback);
 
@@ -32,10 +33,13 @@ public interface ApiService {
     @POST("/api/v1/fleetOwner/login")
     public void login(@Field("email") String email, @Field("password") String password, @Field("deviceType") String deviceType, @Field("deviceName") String deviceName, @Field("deviceToken") String deviceToken, Callback<String> callback);
 
-    @GET("/api/v1/shipper/getUpComingApp")
+    @GET("/api/v1/fleetOwner/getUpComing")
     public void getOnGoing(@Header(AUTHORIZATION) String authorization, @Query("limit") String limit, @Query("skip") String skip, @Query("sort") String sort, Callback<String> callback);
 
-    @GET("/api/v1/shipper/getPast")
+    @GET("/api/v1/fleetOwner/allTrucker")
+    public void getallTrucker(@Header(AUTHORIZATION) String authorization, @Query("limit") String limit, @Query("skip") String skip, @Query("sort") String sort,@Query("driverStatus") String driverStatus, Callback<String> callback);
+
+    @GET("/api/v1/fleetOwner/getPast")
     public void getPast(@Header(AUTHORIZATION) String authorization, @Query("limit") String limit, @Query("skip") String skip, @Query("sort") String sort, Callback<String> callback);
 
     @PUT(LOGOUT_URL)

@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.carrus.fleetowner.fragments.DriverFragment;
+import com.carrus.fleetowner.fragments.MyBookingFragment;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.Constants;
@@ -29,7 +31,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class MainActivity extends BaseActivity implements FragmentDrawer.FragmentDrawerListener{
+public class MainActivity extends BaseActivity implements FragmentDrawer.FragmentDrawerListener {
 
     private static String TAG = MainActivity.class.getSimpleName();
 
@@ -54,6 +56,13 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
 
         initializeView();
         initializeClickListners();
+        // display the first navigation drawer view on app launch
+        if (getIntent().getBooleanExtra("fromNotification", false)) {
+            bundle = new Bundle();
+            bundle.putString("id", getIntent().getStringExtra("id"));
+            displayView(1);
+        } else
+            displayView(0);
     }
 
     private void initializeView() {
@@ -107,38 +116,38 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
             case 0:
                 if (selectedPos != 0) {
                     selectedPos = 0;
-//                    fragment = new HomeFragment();
+                    fragment = new MyBookingFragment();
+                    if (bundle != null)
+                        fragment.setArguments(bundle);
                     title = getString(R.string.mybooking);
                 }
                 break;
             case 1:
                 if (selectedPos != 1) {
                     selectedPos = 1;
-//                    fragment = new MyBookingFragment();
-//                    if (bundle != null)
-//                        fragment.setArguments(bundle);
+
                     title = getString(R.string.notifications);
                 }
                 break;
             case 2:
-                if (selectedPos != 0) {
-                    selectedPos = 0;
+                if (selectedPos != 2) {
+                    selectedPos = 2;
 //                    fragment = new HomeFragment();
                     title = getString(R.string.trucks);
                 }
                 break;
 
             case 3:
-                if (selectedPos != 0) {
-                    selectedPos = 0;
-//                    fragment = new HomeFragment();
+                if (selectedPos != 3) {
+                    selectedPos = 3;
+                    fragment = new DriverFragment();
                     title = getString(R.string.drivers);
                 }
                 break;
 
             case 4:
-                if (selectedPos != 0) {
-                    selectedPos = 0;
+                if (selectedPos != 4) {
+                    selectedPos = 4;
 //                    fragment = new HomeFragment();
                     title = getString(R.string.aboutus);
                 }
@@ -146,7 +155,7 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
 
 
             case 5:
-                if (selectedPos != 2) {
+                if (selectedPos != 5) {
 //                    selectedPos = 2;
                     Intent callIntent = new Intent(Intent.ACTION_CALL);
                     callIntent.setData(Uri.parse("tel:" + Constants.CONTACT_CARRUS));
@@ -169,7 +178,7 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //Stop the activity
-                                MainActivity.this.finish();
+                                // MainActivity.this.finish();
                                 logout();
                             }
 
@@ -182,7 +191,7 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
 
             default:
                 selectedPos = 0;
-//                fragment = new HomeFragment();
+                fragment = new MyBookingFragment();
                 title = getString(R.string.mybooking);
                 break;
         }
