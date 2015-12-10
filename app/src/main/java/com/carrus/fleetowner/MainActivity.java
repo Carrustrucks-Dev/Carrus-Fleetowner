@@ -19,7 +19,8 @@ import android.widget.Toast;
 import com.carrus.fleetowner.fragments.DriverFragment;
 import com.carrus.fleetowner.fragments.MyBookingFragment;
 import com.carrus.fleetowner.fragments.ProfileFragment;
-import com.carrus.fleetowner.fragments.TruckFragment;
+import com.carrus.fleetowner.fragments.TruckReguestsFragment;
+import com.carrus.fleetowner.fragments.TrucksFragment;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.Constants;
@@ -33,7 +34,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class MainActivity extends BaseActivity implements FragmentDrawer.FragmentDrawerListener {
+public class MainActivity extends BaseActivity implements FragmentDrawer.FragmentDrawerListener, TrucksFragment.onSwiperListenerChange {
 
     private static String TAG = MainActivity.class.getSimpleName();
 
@@ -127,15 +128,15 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
             case 1:
                 if (selectedPos != 1) {
                     selectedPos = 1;
-
-                    title = getString(R.string.notifications);
+                    fragment = new TruckReguestsFragment();
+                    title = getString(R.string.trucksrequest);
                 }
                 break;
             case 2:
                 if (selectedPos != 2) {
                     selectedPos = 2;
-                    fragment = new TruckFragment();
-                    title = getString(R.string.truckslabel);
+                    fragment = new TrucksFragment();
+                    title = getString(R.string.trucks);
                 }
                 break;
 
@@ -208,6 +209,25 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
 //            getSupportActionBar().setTitle(title);
             mHeaderTextView.setText(title);
         }
+    }
+
+    @Override
+    public void onStopDrawerSwip() {
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        mMenuButton.setVisibility(View.GONE);
+        mBackButton.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onStartDrawerSwipe() {
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        mMenuButton.setVisibility(View.VISIBLE);
+        mBackButton.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void stopService() {
+
     }
 
     private void logout() {

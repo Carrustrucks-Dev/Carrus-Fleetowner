@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by Sunny on 12/9/15.
  */
-public class TruckFragment extends Fragment {
+public class TruckReguestsFragment extends Fragment {
 
     private TextView mNewRequestTV, mPendingQuotesTV, mPendingAssignTV;
     private int selectedFlag = 0;
@@ -40,7 +40,7 @@ public class TruckFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        myFragmentList.add(TruckReqFragment.newInstance(0));
+        myFragmentList.add(TruckPendingReqFragment.newInstance(0));
         myFragmentList.add(TruckQuotesFragment.newInstance(1));
         myFragmentList.add(TruckAssignFragment.newInstance(2));
 
@@ -137,7 +137,7 @@ public class TruckFragment extends Fragment {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         // If fragment doesn't exist yet, create one
         if (fragment.isAdded()) {
-            if (fragment instanceof TruckReqFragment) {
+            if (fragment instanceof TruckPendingReqFragment) {
                 fragmentTransaction.hide(myFragmentList.get(1));
                 fragmentTransaction.hide(myFragmentList.get(2));
             } else if (fragment instanceof TruckQuotesFragment) {

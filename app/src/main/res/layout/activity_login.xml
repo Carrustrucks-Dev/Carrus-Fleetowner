@@ -35,7 +35,7 @@
             android:drawablePadding="@dimen/five"
             android:inputType="textEmailAddress"
             android:gravity="center_vertical"
-            android:hint="@string/driver_id"
+            android:hint="@string/user_id"
             android:paddingLeft="@dimen/three"
             android:paddingTop="@dimen/ten"
             android:paddingBottom="@dimen/ten"

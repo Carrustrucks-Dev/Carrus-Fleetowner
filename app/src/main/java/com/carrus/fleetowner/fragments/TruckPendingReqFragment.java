@@ -43,7 +43,7 @@ import static com.carrus.fleetowner.utils.Constants.SORT;
 /**
  * Created by Sunny on 12/10/15.
  */
-public class TruckReqFragment extends Fragment{
+public class TruckPendingReqFragment extends Fragment{
 
     private final String TAG = getClass().getSimpleName();
     private RecyclerView mRecyclerView;
@@ -63,8 +63,8 @@ public class TruckReqFragment extends Fragment{
      * initializes the fragment's arguments, and returns the
      * new fragment to the client.
      */
-    public static TruckReqFragment newInstance(int index) {
-        TruckReqFragment f = new TruckReqFragment();
+    public static TruckPendingReqFragment newInstance(int index) {
+        TruckPendingReqFragment f = new TruckPendingReqFragment();
         Bundle args = new Bundle();
         args.putInt("index", index);
         f.setArguments(args);

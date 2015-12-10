@@ -9,7 +9,7 @@
     <string name="mybooking">My Bookings</string>
     <string name="notifications">Notifications</string>
     <string name="trucks">Trucks</string>
-    <string name="truckslabel">Truck Requests</string>
+    <string name="trucksrequest">Truck Requests</string>
     <string name="drivers">Drivers</string>
     <string name="aboutus">About us</string>
     <string name="callcarrus">Call Carrus</string>
@@ -20,7 +20,7 @@
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
         <item>@string/mybooking</item>
-        <item>@string/notifications</item>
+        <item>@string/trucksrequest</item>
         <item>@string/trucks</item>
         <item>@string/drivers</item>
         <item>@string/aboutus</item>
@@ -55,6 +55,7 @@
 
     <!--text-->
     <string name="forgetpasswddetails">Enter email address and link would be sent to you to reset your password</string>
+    <string name="searchtruck">Search Truck Number</string>
 
     <!-- Signout Dialog-->
     <string name="quit">Sign Out!</string>
@@ -64,7 +65,7 @@
 
     <!-- Login Screen Text-->
     <string name="email">E-mail</string>
-    <string name="driver_id">Driver ID</string>
+    <string name="user_id">User ID</string>
     <string name="password">Password</string>
     <string name="submit">SUBMIT</string>
     <string name="forgotpasswd">FORGOT PASSWORD ?</string>
