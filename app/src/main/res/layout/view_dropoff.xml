@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/ten"
+        android:text="@string/dropoff"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/large_font" />
+
+    <TextView
+        android:id="@+id/timeDropTxtView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/icon_clock"
+        android:drawablePadding="@dimen/ten"
+        android:paddingLeft="@dimen/ten"
+        android:paddingRight="@dimen/ten"
+        android:text="Time"
+        android:textColor="@color/gray_text"
+        android:textSize="@dimen/mid_fond" />
+
+    <TextView
+        android:id="@+id/addressDropTxtView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/icon_shipment_detail"
+        android:drawablePadding="@dimen/ten"
+        android:paddingLeft="@dimen/ten"
+        android:paddingRight="@dimen/ten"
+        android:paddingTop="@dimen/ten"
+        android:text="Address"
+        android:textColor="@color/gray_text"
+        android:textSize="@dimen/mid_fond" />
+
+    <TextView
+        android:id="@+id/dateDropTxtview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/icon_calender"
+        android:drawablePadding="@dimen/ten"
+        android:paddingLeft="@dimen/ten"
+        android:paddingRight="@dimen/ten"
+        android:paddingTop="@dimen/ten"
+        android:text="Date"
+        android:textColor="@color/gray_text"
+        android:textSize="@dimen/mid_fond" />
+
+
+    <RelativeLayout
+        android:id="@+id/userdetailsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/ten"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/phoneDropTxtView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/phone"
+            android:drawablePadding="@dimen/ten"
+            android:paddingLeft="@dimen/ten"
+            android:paddingRight="@dimen/ten"
+            android:paddingTop="@dimen/ten"
+            android:text="phone"
+            android:textColor="@color/gray_text"
+            android:textSize="@dimen/mid_fond" />
+
+        <ImageView
+            android:id="@+id/callBtnIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/call_fill_btn_selector" />
+    </RelativeLayout>
+
+</LinearLayout>

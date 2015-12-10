@@ -564,7 +564,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
 //                } catch (JSONException e) {
 //                    e.printStackTrace();
 //                }
-//                Utils.loading_box_stop();
+                Utils.loading_box_stop();
 //            }
 //
 //            @Override

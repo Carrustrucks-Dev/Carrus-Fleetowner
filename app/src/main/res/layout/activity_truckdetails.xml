@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/container_toolbar"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/trucknameTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:text="Tata Ace - 2"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/extralarge_font"
+        android:padding="@dimen/ten"
+        />
+    <include
+        layout="@layout/view_pickup" />
+
+    <include
+        layout="@layout/view_dropoff" />
+
+    <ExpandableListView
+        android:id="@+id/recyclerview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:groupIndicator="@null" />
+
+</LinearLayout>
