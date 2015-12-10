@@ -105,11 +105,14 @@
     <!--truck details screen text-->
     <string name="newRequest">New Requests</string>
     <string name="cargodetails">CARGO DETAILS</string>
-    <string name="notes">NOTES</string>
+    <string name="notesCaps">NOTES</string>
     <string name="fleetownernotes">FLEET OWNER NOTES</string>
     <string name="shippernotes">SHIPPER\'S NOTES</string>
     <string name="typeofcargo">Type of Cargo</string>
     <string name="quote">QUOTE</string>
     <string name="ignore">IGNORE</string>
+
+    <string name="typeoftruck">Type of Truck</string>
+    <string name="notes">Notes...</string>
 
 </resources>

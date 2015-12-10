@@ -18,10 +18,28 @@
         android:layout_width="fill_parent"
         android:background="@drawable/square_edit_text"
         android:padding="@dimen/ten"
-        android:hint="addfeedback"
+        android:hint="@string/offrdbid"
         android:layout_margin="@dimen/fifteen"
         android:gravity="left|top"
         android:layout_height="wrap_content" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:background="@drawable/square_edit_text"
+        android:padding="@dimen/ten"
+        android:hint="@string/typeoftruck"
+        android:layout_margin="@dimen/fifteen"
+        android:gravity="left|top"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:background="@drawable/square_edit_text"
+        android:padding="@dimen/ten"
+        android:hint="@string/notes"
+        android:layout_margin="@dimen/fifteen"
+        android:gravity="left|top"
+        android:layout_height="@dimen/mediumhieght" />
 
 
     <Button
