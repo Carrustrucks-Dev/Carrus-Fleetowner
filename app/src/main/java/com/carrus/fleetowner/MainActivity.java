@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.carrus.fleetowner.fragments.DriverFragment;
 import com.carrus.fleetowner.fragments.MyBookingFragment;
+import com.carrus.fleetowner.fragments.ProfileFragment;
 import com.carrus.fleetowner.fragments.TruckFragment;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
@@ -100,10 +101,10 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
     @Override
     public void onHeaderSelected() {
         selectedPos = -1;
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.container_body, new ProfileFragment());
-//        fragmentTransaction.commit();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container_body, new ProfileFragment());
+        fragmentTransaction.commit();
 
         // set the toolbar title
 //            getSupportActionBar().setTitle(title);

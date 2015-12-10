@@ -16,9 +16,12 @@ import android.widget.Toast;
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.adapters.DividerItemDecoration;
 import com.carrus.fleetowner.adapters.DriverListAdapter;
+import com.carrus.fleetowner.adapters.TruckAssignListAdapter;
 import com.carrus.fleetowner.interfaces.OnLoadMoreListener;
 import com.carrus.fleetowner.models.Datum;
 import com.carrus.fleetowner.models.DriverModel;
+import com.carrus.fleetowner.models.TruckAssignDetails;
+import com.carrus.fleetowner.models.TruckAssignModel;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.ConnectionDetector;
@@ -47,7 +50,7 @@ public class TruckAssignFragment extends Fragment {
 
     private final String TAG = getClass().getSimpleName();
     private RecyclerView mRecyclerView;
-    private DriverListAdapter mAdapter;
+    private TruckAssignListAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private SessionManager mSessionManager;
     private int skip = 0;
@@ -55,8 +58,8 @@ public class TruckAssignFragment extends Fragment {
     private boolean isRefreshView = false;
     private ConnectionDetector mConnectionDetector;
     private TextView mErrorTxtView;
-    private List<Datum> bookingList;
-    private DriverModel mDriverModel;
+    private List<TruckAssignDetails> bookingList;
+    private TruckAssignModel mTruckAssignModel;
 
     /**
      * Static factory method that takes an int parameter,
@@ -171,12 +174,12 @@ public class TruckAssignFragment extends Fragment {
                     int status = mObject.getInt("statusCode");
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
                         Gson gson = new Gson();
-                        mDriverModel = gson.fromJson(s, DriverModel.class);
+                        mTruckAssignModel = gson.fromJson(s, TruckAssignModel.class);
                         // specify an adapter (see also next example)
                         if (bookingList == null) {
-                            bookingList = new ArrayList<Datum>();
-                            bookingList.addAll(mDriverModel.getData());
-                            mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView);
+                            bookingList = new ArrayList<>();
+                            bookingList.addAll(mTruckAssignModel.getData());
+                            mAdapter = new TruckAssignListAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);
                             setonScrollListener();
                         } else {
@@ -184,10 +187,10 @@ public class TruckAssignFragment extends Fragment {
                             mAdapter.notifyItemRemoved(bookingList.size());
                             //add items one by one
                             int start = bookingList.size();
-                            int end = start + mDriverModel.getData().size();
+                            int end = start + mTruckAssignModel.getData().size();
                             int j = 0;
                             for (int i = start + 1; i <= end; i++) {
-                                bookingList.add(mDriverModel.getData().get(j));
+                                bookingList.add(mTruckAssignModel.getData().get(j));
                                 mAdapter.notifyItemInserted(bookingList.size());
                                 j++;
                             }

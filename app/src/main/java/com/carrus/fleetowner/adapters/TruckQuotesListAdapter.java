@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.interfaces.OnLoadMoreListener;
 import com.carrus.fleetowner.models.TruckQuotesDetails;
-import com.carrus.fleetowner.models.TrucksDetailsModel;
 import com.carrus.fleetowner.utils.Utils;
 
 import java.text.ParseException;

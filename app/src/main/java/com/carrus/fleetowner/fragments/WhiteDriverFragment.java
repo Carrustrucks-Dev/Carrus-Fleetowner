@@ -19,8 +19,6 @@ import com.carrus.fleetowner.adapters.DriverListAdapter;
 import com.carrus.fleetowner.interfaces.OnLoadMoreListener;
 import com.carrus.fleetowner.models.Datum;
 import com.carrus.fleetowner.models.DriverModel;
-import com.carrus.fleetowner.models.MyBookingDataModel;
-import com.carrus.fleetowner.models.MyBookingModel;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.ConnectionDetector;

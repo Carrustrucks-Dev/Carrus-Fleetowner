@@ -96,6 +96,7 @@
     <string name="typecargo">Type of cargo</string>
     <string name="weight">Weight</string>
     <string name="budget">Budget</string>
+    <string name="finalbid">Final Bid</string>
     <string name="offrdbid">Offered Bid</string>
 
 </resources>

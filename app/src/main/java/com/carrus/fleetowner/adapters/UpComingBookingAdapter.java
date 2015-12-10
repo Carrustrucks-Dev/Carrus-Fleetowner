@@ -1,7 +1,6 @@
 package com.carrus.fleetowner.adapters;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.interfaces.OnLoadMoreListener;

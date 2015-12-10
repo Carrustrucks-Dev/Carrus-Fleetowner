@@ -15,12 +15,8 @@ import android.widget.Toast;
 
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.adapters.DividerItemDecoration;
-import com.carrus.fleetowner.adapters.DriverListAdapter;
-import com.carrus.fleetowner.adapters.TruckListAdapter;
 import com.carrus.fleetowner.adapters.TruckQuotesListAdapter;
 import com.carrus.fleetowner.interfaces.OnLoadMoreListener;
-import com.carrus.fleetowner.models.Datum;
-import com.carrus.fleetowner.models.DriverModel;
 import com.carrus.fleetowner.models.TruckQuotesDetails;
 import com.carrus.fleetowner.models.TruckQuotesModel;
 import com.carrus.fleetowner.retrofit.RestClient;

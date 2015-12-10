@@ -53,10 +53,10 @@ public class TrucksDetailsModel implements Serializable {
     private Cargo cargo;
     @SerializedName("dropOff")
     @Expose
-    public DropOffModel dropOff;
+    public DropOff dropOff;
     @SerializedName("pickUp")
     @Expose
-    public PickUpModel pickUp;
+    public PickUp pickUp;
     @SerializedName("booking")
     @Expose
     private List<Object> booking = new ArrayList<Object>();

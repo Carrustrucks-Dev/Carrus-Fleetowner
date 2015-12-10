@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.interfaces.OnLoadMoreListener;
-import com.carrus.fleetowner.models.TrucksDetailsModel;
+import com.carrus.fleetowner.models.TruckAssignDetails;
 import com.carrus.fleetowner.utils.Utils;
 
 import java.text.ParseException;
@@ -21,10 +21,10 @@ import java.util.List;
 /**
  * Created by Sunny on 12/9/15.
  */
-public class TruckListAdapter extends RecyclerView.Adapter {
+public class TruckAssignListAdapter extends RecyclerView.Adapter {
     //    private String[] mDataset;
     private Activity mActivity;
-    private List<TrucksDetailsModel> myList;
+    private List<TruckAssignDetails> myList;
 
     private final int VIEW_ITEM = 1;
     private final int VIEW_PROG = 0;
@@ -41,7 +41,7 @@ public class TruckListAdapter extends RecyclerView.Adapter {
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView mAddressTxtView, mTypeCargoTxtView, mWeightTxtView, mBudgetTxtView, mDatetxtView, mMonthTxtView;
+        public TextView mAddressTxtView, mTypeCargoTxtView, mWeightTxtView, mBudgetTxtView, mDatetxtView, mMonthTxtView, mLabelTxtView;
 
         public ViewHolder(View v) {
             super(v);
@@ -51,16 +51,18 @@ public class TruckListAdapter extends RecyclerView.Adapter {
             mTypeCargoTxtView = (TextView) v.findViewById(R.id.typeCargoTxtView);
             mWeightTxtView = (TextView) v.findViewById(R.id.weightTxtView);
             mBudgetTxtView = (TextView) v.findViewById(R.id.budgetTxtView);
+            mLabelTxtView = (TextView) v.findViewById(R.id.budgetTVlabel);
+
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public TruckListAdapter(Activity mActivity) {
+    public TruckAssignListAdapter(Activity mActivity) {
         this.mActivity = mActivity;
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public TruckListAdapter(Activity mActivity, List<TrucksDetailsModel> myList, RecyclerView recyclerView) {
+    public TruckAssignListAdapter(Activity mActivity, List<TruckAssignDetails> myList, RecyclerView recyclerView) {
         this.mActivity = mActivity;
         this.myList = myList;
 
@@ -119,29 +121,29 @@ public class TruckListAdapter extends RecyclerView.Adapter {
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder,final int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 //        holder.mTextView.setText(mDataset[position
         if (holder instanceof ViewHolder) {
-
             try {
-                ((ViewHolder) holder).mDatetxtView.setText(Utils.getDate(myList.get(position).getCreatedAt()));
+                ((ViewHolder) holder).mDatetxtView.setText(Utils.getDate(myList.get(position).getBookingCreatedAt()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
 
             try {
-                ((ViewHolder) holder).mMonthTxtView.setText(Utils.getMonth(myList.get(position).getCreatedAt()));
+                ((ViewHolder) holder).mMonthTxtView.setText(Utils.getMonth(myList.get(position).getBookingCreatedAt()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
 
 //            ((ViewHolder) holder).mNameTxtView.setText(myList.get(position).getDriverName());
-            ((ViewHolder) holder).mAddressTxtView.setText(myList.get(position).pickUp.getLocation() + " to " + myList.get(position).dropOff.getLocation());
+            ((ViewHolder) holder).mAddressTxtView.setText(myList.get(position).getPickUp().city + " to " + myList.get(position).getDropOff().city);
             ((ViewHolder) holder).mTypeCargoTxtView.setText(myList.get(position).getCargo().cargoType.typeCargoName);
             ((ViewHolder) holder).mWeightTxtView.setText(myList.get(position).getCargo().weight + " Ton");
-            ((ViewHolder) holder).mBudgetTxtView.setText("Rs " + myList.get(position).getBudget());
+            ((ViewHolder) holder).mBudgetTxtView.setText("Rs " + myList.get(position).getAcceptPrice());
+            ((ViewHolder) holder).mLabelTxtView.setText(mActivity.getResources().getString(R.string.finalbid));
 
             ((ViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -155,7 +157,7 @@ public class TruckListAdapter extends RecyclerView.Adapter {
                 }
             });
 
-        }else{
+        } else {
             ((ProgressViewHolder) holder).progressBar.setIndeterminate(true);
         }
 
