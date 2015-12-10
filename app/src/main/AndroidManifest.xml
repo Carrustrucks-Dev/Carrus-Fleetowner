@@ -66,6 +66,10 @@
             android:name=".ForgotPasswordActivity"
             android:label="@string/app_name"></activity>
 
+        <activity
+            android:name=".TruckDeatisActivity"
+            android:label="@string/app_name"></activity>
+
         <receiver
             android:name=".gcm.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">

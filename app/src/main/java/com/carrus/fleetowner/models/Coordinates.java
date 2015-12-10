@@ -3,10 +3,11 @@ package com.carrus.fleetowner.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Coordinates {
+public class Coordinates implements Serializable{
 
 @SerializedName("coordinates")
 @Expose

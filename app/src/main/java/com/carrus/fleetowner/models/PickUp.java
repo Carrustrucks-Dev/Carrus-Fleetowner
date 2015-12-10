@@ -3,7 +3,9 @@ package com.carrus.fleetowner.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PickUp {
+import java.io.Serializable;
+
+public class PickUp implements Serializable{
 
 @SerializedName("location")
 @Expose
