@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.carrus.fleetowner.R;
@@ -41,8 +40,9 @@ public class TruckFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        myFragmentList.add(WhiteDriverFragment.newInstance(0));
-        myFragmentList.add(BlackDriverFragment.newInstance(1));
+        myFragmentList.add(TruckReqFragment.newInstance(0));
+        myFragmentList.add(TruckQuotesFragment.newInstance(1));
+        myFragmentList.add(TruckAssignFragment.newInstance(2));
 
         setSelectionNewReuest(0);
     }
@@ -128,7 +128,7 @@ public class TruckFragment extends Fragment {
         mNewRequestTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
         mPendingQuotesTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
         mPendingAssignTV.setTextColor(getResources().getColor(R.color.windowBackground));
-        setFragment(myFragmentList.get(1), button_id);
+        setFragment(myFragmentList.get(2), button_id);
 
     }
 
@@ -137,15 +137,26 @@ public class TruckFragment extends Fragment {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         // If fragment doesn't exist yet, create one
         if (fragment.isAdded()) {
-            if (fragment instanceof WhiteDriverFragment) {
+            if (fragment instanceof TruckReqFragment) {
                 fragmentTransaction.hide(myFragmentList.get(1));
-            } else if (fragment instanceof BlackDriverFragment) {
+                fragmentTransaction.hide(myFragmentList.get(2));
+            } else if (fragment instanceof TruckQuotesFragment) {
                 fragmentTransaction.hide(myFragmentList.get(0));
+                fragmentTransaction.hide(myFragmentList.get(2));
+            } else if (fragment instanceof TruckAssignFragment) {
+                fragmentTransaction.hide(myFragmentList.get(0));
+                fragmentTransaction.hide(myFragmentList.get(1));
             }
             fragmentTransaction.show(fragment);
         } else { // re-use the old fragment
-            if (fragment instanceof BlackDriverFragment) {
+            if (fragment instanceof TruckQuotesFragment) {
                 fragmentTransaction.hide(myFragmentList.get(0));
+                if (myFragmentList.get(2).isAdded())
+                    fragmentTransaction.hide(myFragmentList.get(2));
+            } else if (fragment instanceof TruckAssignFragment) {
+                fragmentTransaction.hide(myFragmentList.get(0));
+                if (myFragmentList.get(1).isAdded())
+                    fragmentTransaction.hide(myFragmentList.get(1));
             }
             fragmentTransaction.add(R.id.bookingcontainer_body, fragment, button_id + "stack_item");
         }

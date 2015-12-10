@@ -9,6 +9,7 @@
     <string name="mybooking">My Bookings</string>
     <string name="notifications">Notifications</string>
     <string name="trucks">Trucks</string>
+    <string name="truckslabel">Truck Requests</string>
     <string name="drivers">Drivers</string>
     <string name="aboutus">About us</string>
     <string name="callcarrus">Call Carrus</string>
@@ -92,5 +93,9 @@
     <string name="newrequests">New\nrequests</string>
     <string name="pendingquotes">Pending\nquotes</string>
     <string name="pendingassign">Pending\nassignments</string>
+    <string name="typecargo">Type of cargo</string>
+    <string name="weight">Weight</string>
+    <string name="budget">Budget</string>
+    <string name="offrdbid">Offered Bid</string>
 
 </resources>

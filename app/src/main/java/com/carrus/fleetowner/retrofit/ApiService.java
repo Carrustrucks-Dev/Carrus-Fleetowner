@@ -49,19 +49,13 @@ public interface ApiService {
     @PUT(FORGETPASSWORD_URL)
     public void forgotPassword(@Field("email") String body, Callback<String> callback);
 
-    @GET("/api/v1/shipper/getOnGoingBookingTrack")
-    public void getAllOnGoingBookingTrack(@Header(AUTHORIZATION) String authorization, @Query("limit") Integer limit, @Query("skip") Integer skip, @Query("sort") String sort, Callback<String> callback);
+    @GET("/api/v1/fleetOwner/pendingRequest")
+    public void getPendingRequest(@Header(AUTHORIZATION) String authorization, @Query("limit") String limit, @Query("skip") String skip, @Query("sort") String sort, Callback<String> callback);
 
+    @GET("/api/v1/fleetOwner/pendingQuotes")
+    public void getPendingQuotes(@Header(AUTHORIZATION) String authorization, @Query("limit") String limit, @Query("skip") String skip, @Query("sort") String sort, Callback<String> callback);
 
-    @GET("/api/v1/shipper/getOnGoingBookingTrack")
-    public void getSingleOnGoingBookingTrack(@Header(AUTHORIZATION) String authorization, @Query("bookingId") String bookingId, @Query("limit") Integer limit, @Query("skip") Integer skip, @Query("sort") String sort, Callback<String> callback);
-
-    @FormUrlEncoded
-    @PUT("/api/v1/shipper/addRating")
-    public void setRating(@Header(AUTHORIZATION) String authorization, @Field("bookingId") String bookingId, @Field("rating") String rating, @Field("comment") String comment, Callback<String> callback);
-
-    @FormUrlEncoded
-    @PUT("/api/v1/shipper/cancelBooking/{bookingId}")
-    public void cancelBooking(@Header(AUTHORIZATION) String authorization, @Field("bookingStatus") String bookingStatus, @Path("bookingId") String bookingId, Callback<String> callback);
+    @GET("/api/v1/fleetOwner/pendingAssignment")
+    public void getPendingAssignment(@Header(AUTHORIZATION) String authorization, @Query("limit") String limit, @Query("skip") String skip, @Query("sort") String sort, Callback<String> callback);
 
 }

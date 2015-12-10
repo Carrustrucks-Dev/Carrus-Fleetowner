@@ -134,7 +134,7 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
                 if (selectedPos != 2) {
                     selectedPos = 2;
                     fragment = new TruckFragment();
-                    title = getString(R.string.trucks);
+                    title = getString(R.string.truckslabel);
                 }
                 break;
 
