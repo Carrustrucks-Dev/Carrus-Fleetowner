@@ -117,5 +117,6 @@
 
     <string name="typeoftruck">Type of Truck</string>
     <string name="notes">Notes...</string>
+    <string name="trackingavail">Tracking Available</string>
 
 </resources>
