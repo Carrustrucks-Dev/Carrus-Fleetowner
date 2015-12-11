@@ -19,6 +19,8 @@ import com.carrus.fleetowner.utils.Utils;
 
 import java.text.ParseException;
 import java.util.List;
+import static com.carrus.fleetowner.utils.Constants.TYPE;
+import static com.carrus.fleetowner.utils.Constants.VALUE;
 
 /**
  * Created by Sunny on 12/9/15.
@@ -149,10 +151,10 @@ public class TruckListAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("value", myList.get(position));
+                    bundle.putSerializable(VALUE, myList.get(position));
                     Intent intent = new Intent(mActivity, TruckDeatisActivity.class);
                     intent.putExtras(bundle);
-                    intent.putExtra("type", "new request");
+                    intent.putExtra(TYPE, "new request");
                     mActivity.startActivityForResult(intent, 500);
 
                 }

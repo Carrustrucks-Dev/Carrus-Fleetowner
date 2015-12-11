@@ -95,7 +95,9 @@
     <!--truck screen text-->
     <string name="newrequests">New\nrequests</string>
     <string name="pendingquotes">Pending\nquotes</string>
+    <string name="pendingquotes_head">Pending Quotes</string>
     <string name="pendingassign">Pending\nassignments</string>
+    <string name="pendingassign_head">Pending Assignments</string>
     <string name="typecargo">Type of cargo</string>
     <string name="weight">Weight</string>
     <string name="budget">Budget</string>
@@ -110,6 +112,7 @@
     <string name="shippernotes">SHIPPER\'S NOTES</string>
     <string name="typeofcargo">Type of Cargo</string>
     <string name="quote">QUOTE</string>
+    <string name="modify">MODIFY</string>
     <string name="ignore">IGNORE</string>
 
     <string name="typeoftruck">Type of Truck</string>

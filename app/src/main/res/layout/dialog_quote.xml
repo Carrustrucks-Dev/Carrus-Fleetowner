@@ -14,16 +14,18 @@
         android:src="@mipmap/icon_cross"/>
 
     <EditText
-        android:id="@+id/feedbackEdtxt"
+        android:id="@+id/offrbidEdtxt"
         android:layout_width="fill_parent"
         android:background="@drawable/square_edit_text"
         android:padding="@dimen/ten"
         android:hint="@string/offrdbid"
         android:layout_margin="@dimen/fifteen"
+        android:inputType="number"
         android:gravity="left|top"
         android:layout_height="wrap_content" />
 
     <EditText
+        android:id="@+id/trucktypeEdtxt"
         android:layout_width="fill_parent"
         android:background="@drawable/square_edit_text"
         android:padding="@dimen/ten"
@@ -33,6 +35,7 @@
         android:layout_height="wrap_content" />
 
     <EditText
+        android:id="@+id/notesEdtxt"
         android:layout_width="fill_parent"
         android:background="@drawable/square_edit_text"
         android:padding="@dimen/ten"
@@ -43,10 +46,11 @@
 
 
     <Button
-        android:id="@+id/ratingSubmitBtn"
+        android:id="@+id/submitBtn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/submit"
+        android:text="@string/quote"
+        style="@style/CustomTextAppearance.Bold"
         android:textColor="@color/windowBackground"
         android:padding="@dimen/ten"
         android:textSize="@dimen/mid_fond"
