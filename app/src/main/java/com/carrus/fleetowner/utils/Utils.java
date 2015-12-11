@@ -32,7 +32,8 @@ import retrofit.mime.TypedByteArray;
  */
 public class Utils {
 
-    private static ProgressDialog progressDialog;
+    private static ProgressDialog progressDialog = null;
+    private static AlertDialog mAlertDialog = null;
 
     /*
 measures height of recyclerview when placed inside scrollview
@@ -190,24 +191,27 @@ measures height of recyclerview when placed inside scrollview
     }
 
     public static void shopAlterDialog(final Context myContext, String msg, final boolean isAuthroized) {
-        new AlertDialog.Builder(myContext)
-                // Set Dialog Icon
+        if (mAlertDialog == null)
+            mAlertDialog = new AlertDialog.Builder(myContext)
+                    // Set Dialog Icon
 //                .setIcon(R.drawable.androidhappy)
-                // Set Dialog Title
-                .setTitle("")
-                        // Set Dialog Message
-                .setMessage(msg)
-                .setCancelable(false)
+                    // Set Dialog Title
+                    .setTitle("")
+                            // Set Dialog Message
+                    .setMessage(msg)
+                    .setCancelable(false)
 
-                        // Positive button
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Do something else
-                        dialog.dismiss();
-                        if (isAuthroized)
-                            new SessionManager(myContext).logoutUser();
-                    }
-                }).create().show();
+                            // Positive button
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do something else
+                            dialog.dismiss();
+                            if (isAuthroized)
+                                new SessionManager(myContext).logoutUser();
+                            mAlertDialog = null;
+                        }
+                    }).create();
+        mAlertDialog.show();
 
     }
 

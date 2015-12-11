@@ -1,10 +1,13 @@
 package com.carrus.fleetowner.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +27,8 @@ public class DriverFragment extends Fragment {
     private TextView mWhiteTextView, mBlackTextView;
     private int selectedFlag = 0;
     private List<Fragment> myFragmentList = new ArrayList<>();
-    private Bundle bundle = null;
-
+    private ViewPager vpPager;
+    private MyPagerAdapter adapterViewPager;
 
     @Nullable
     @Override
@@ -33,7 +36,6 @@ public class DriverFragment extends Fragment {
 
 
         View convertView = inflater.inflate(R.layout.fragment_mybooking, container, false);
-        bundle = this.getArguments();
         init(convertView);
         initializeClickListners();
 
@@ -41,12 +43,15 @@ public class DriverFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        adapterViewPager = new MyPagerAdapter(getChildFragmentManager()); //here used child fragment manager
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        myFragmentList.add(WhiteDriverFragment.newInstance(0));
-        myFragmentList.add(BlackDriverFragment.newInstance(1));
-
-        setSelectionUpcoming(0);
+        setSelectionWhite(0);
     }
 
     private void init(View view) {
@@ -56,22 +61,47 @@ public class DriverFragment extends Fragment {
         mBlackTextView.setText(getResources().getString(R.string.black));
         final LinearLayout mSearchLayout = (LinearLayout) view.findViewById(R.id.searchLayout);
         mSearchLayout.setVisibility(View.VISIBLE);
-        if (bundle != null) {
-//            Intent i = new Intent(getActivity(), RatingDialogActivity.class);
-//            i.putExtra("bookingid", bundle.getString("id"));
-//            startActivity(i);
-        }
+        vpPager = (ViewPager) view.findViewById(R.id.vpPager);
+        vpPager.setAdapter(adapterViewPager);
+
     }
 
     private void initializeClickListners() {
 
+        vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case 0:
+                        setSelectionWhite(0);
+                        break;
+
+                    case 1:
+                        setSeclectionBlack(1);
+                        break;
+                    default:
+                        setSelectionWhite(0);
+
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         mWhiteTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (selectedFlag != 0) {
-                    setSelectionUpcoming(0);
+                    setSelectionWhite(0);
                 }
 
             }
@@ -81,55 +111,66 @@ public class DriverFragment extends Fragment {
             public void onClick(View v) {
 
                 if (selectedFlag != 1) {
-                    setSeclectionPast(1);
+                    setSeclectionBlack(1);
                 }
 
             }
         });
     }
 
-    private void setSelectionUpcoming(int button_id) {
+    private void setSelectionWhite(int button_id) {
         selectedFlag = 0;
         mWhiteTextView.setBackgroundResource(R.drawable.tab_background);
         mBlackTextView.setBackgroundResource(R.drawable.tab_past_background_white);
         mWhiteTextView.setTextColor(getResources().getColor(R.color.windowBackground));
         mBlackTextView.setTextColor(getResources().getColor(R.color.tabcolor_dark));
-        setFragment(myFragmentList.get(0), button_id);
+        vpPager.setCurrentItem(button_id);
 
     }
 
-    private void setSeclectionPast(int button_id) {
+    private void setSeclectionBlack(int button_id) {
 
         selectedFlag = 1;
         mWhiteTextView.setBackgroundResource(R.drawable.tab_upcming_background_white);
         mBlackTextView.setBackgroundResource(R.drawable.tab_background);
         mWhiteTextView.setTextColor(getResources().getColor(R.color.tabcolor_dark));
         mBlackTextView.setTextColor(getResources().getColor(R.color.windowBackground));
-        setFragment(myFragmentList.get(1), button_id);
+        vpPager.setCurrentItem(button_id);
 
     }
 
 
-    private void setFragment(Fragment fragment, int button_id) {
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        // If fragment doesn't exist yet, create one
-        if (fragment.isAdded()) {
-            if (fragment instanceof WhiteDriverFragment) {
-                fragmentTransaction.hide(myFragmentList.get(1));
-            } else if (fragment instanceof BlackDriverFragment) {
-                fragmentTransaction.hide(myFragmentList.get(0));
-            }
-            fragmentTransaction.show(fragment);
-        } else { // re-use the old fragment
-            if (fragment instanceof BlackDriverFragment) {
-                fragmentTransaction.hide(myFragmentList.get(0));
-            }
-            fragmentTransaction.add(R.id.bookingcontainer_body, fragment, button_id + "stack_item");
+    public class MyPagerAdapter extends FragmentPagerAdapter {
+        private int NUM_ITEMS = 2;
+
+        public MyPagerAdapter(FragmentManager fragmentManager) {
+            super(fragmentManager);
         }
 
-        fragmentTransaction.commit();
+        // Returns total number of pages
+        @Override
+        public int getCount() {
+            return NUM_ITEMS;
+        }
+
+        // Returns the fragment to display for that page
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0: // Fragment # 0 - This will show FirstFragment
+                    return WhiteDriverFragment.newInstance(0);
+                case 1: // Fragment # 0 - This will show FirstFragment different title
+                    return BlackDriverFragment.newInstance(1);
+                default:
+                    return WhiteDriverFragment.newInstance(0);
+            }
+        }
+
+        // Returns the page title for the top indicator
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return "Page " + position;
+        }
 
     }
-
 }

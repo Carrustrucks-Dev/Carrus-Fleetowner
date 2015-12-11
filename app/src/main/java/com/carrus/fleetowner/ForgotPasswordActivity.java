@@ -123,4 +123,5 @@ public class ForgotPasswordActivity extends BaseActivity{
             }
         });
     }
+
 }

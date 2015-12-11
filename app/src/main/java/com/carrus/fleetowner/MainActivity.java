@@ -202,7 +202,7 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_body, fragment);
+            fragmentTransaction.replace(R.id.container_body, fragment,title);
             fragmentTransaction.commit();
 
             // set the toolbar title

@@ -32,7 +32,6 @@ import com.carrus.fleetowner.models.MyBookingModel;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.ConnectionDetector;
-import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.GMapV2GetRouteDirection;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
@@ -46,10 +45,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.google.gson.Gson;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -112,7 +108,6 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
         super.onActivityCreated(savedInstanceState);
         v2GetRouteDirection = new GMapV2GetRouteDirection();
         mSessionManager = new SessionManager(getActivity());
-        mConnectionDetector = new ConnectionDetector(getActivity());
         mIntentFilter = new IntentFilter();
         mIntentFilter.addAction(mBroadcastUiAction);
         mIntentFilter.addAction(mBroadcastAction);
@@ -123,6 +118,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         mBottomView = (RelativeLayout) rootView.findViewById(R.id.bottomview);
+        mConnectionDetector = new ConnectionDetector(getActivity());
         hideProfile();
         try {
             // Loading map

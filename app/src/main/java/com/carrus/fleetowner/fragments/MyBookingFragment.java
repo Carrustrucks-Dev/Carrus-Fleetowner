@@ -1,19 +1,18 @@
 package com.carrus.fleetowner.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.carrus.fleetowner.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Sunny on 10/30/15.
@@ -22,8 +21,8 @@ public class MyBookingFragment extends Fragment {
 
     private TextView mUpComingTextView, mPastTextView;
     private int selectedFlag = 0;
-    private List<Fragment> myFragmentList = new ArrayList<>();
-    private Bundle bundle = null;
+    private ViewPager vpPager;
+    private MyPagerAdapter adapterViewPager;
 
     @Nullable
     @Override
@@ -31,7 +30,6 @@ public class MyBookingFragment extends Fragment {
 
 
         View convertView = inflater.inflate(R.layout.fragment_mybooking, container, false);
-        bundle = this.getArguments();
         init(convertView);
         initializeClickListners();
 
@@ -39,26 +37,55 @@ public class MyBookingFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        adapterViewPager = new MyPagerAdapter(getChildFragmentManager()); //here used child fragment manager
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        myFragmentList.add(UpComingFragment.newInstance(0));
-        myFragmentList.add(PastFragment.newInstance(1));
-
         setSelectionUpcoming(0);
     }
 
     private void init(View view) {
         mUpComingTextView = (TextView) view.findViewById(R.id.upcomingTextView);
         mPastTextView = (TextView) view.findViewById(R.id.pastTextView);
-        if (bundle != null) {
-//            Intent i = new Intent(getActivity(), RatingDialogActivity.class);
-//            i.putExtra("bookingid", bundle.getString("id"));
-//            startActivity(i);
-        }
+        vpPager = (ViewPager) view.findViewById(R.id.vpPager);
+//         adapterViewPager = new MyPagerAdapter(getChildFragmentManager());
+        vpPager.setAdapter(adapterViewPager);
     }
+
 
     private void initializeClickListners() {
 
+        vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case 0:
+                        setSelectionUpcoming(0);
+                        break;
+
+                    case 1:
+                        setSeclectionPast(1);
+                        break;
+                    default:
+                        setSelectionUpcoming(0);
+
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         mUpComingTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,8 +115,7 @@ public class MyBookingFragment extends Fragment {
         mPastTextView.setBackgroundResource(R.drawable.tab_past_background_white);
         mUpComingTextView.setTextColor(getResources().getColor(R.color.windowBackground));
         mPastTextView.setTextColor(getResources().getColor(R.color.tabcolor_dark));
-        setFragment(myFragmentList.get(0), button_id);
-
+        vpPager.setCurrentItem(button_id);
     }
 
     private void setSeclectionPast(int button_id) {
@@ -99,31 +125,63 @@ public class MyBookingFragment extends Fragment {
         mPastTextView.setBackgroundResource(R.drawable.tab_background);
         mUpComingTextView.setTextColor(getResources().getColor(R.color.tabcolor_dark));
         mPastTextView.setTextColor(getResources().getColor(R.color.windowBackground));
-        setFragment(myFragmentList.get(1), button_id);
-
+        vpPager.setCurrentItem(button_id);
     }
 
+    public class MyPagerAdapter extends FragmentPagerAdapter {
+        private int NUM_ITEMS = 2;
 
-    private void setFragment(Fragment fragment, int button_id) {
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        // If fragment doesn't exist yet, create one
-        if (fragment.isAdded()) {
-            if (fragment instanceof UpComingFragment) {
-                fragmentTransaction.hide(myFragmentList.get(1));
-            } else if (fragment instanceof PastFragment) {
-                fragmentTransaction.hide(myFragmentList.get(0));
-            }
-            fragmentTransaction.show(fragment);
-        } else { // re-use the old fragment
-            if (fragment instanceof PastFragment) {
-                fragmentTransaction.hide(myFragmentList.get(0));
-            }
-            fragmentTransaction.add(R.id.bookingcontainer_body, fragment, button_id + "stack_item");
+        public MyPagerAdapter(FragmentManager fragmentManager) {
+            super(fragmentManager);
         }
 
-        fragmentTransaction.commit();
+        // Returns total number of pages
+        @Override
+        public int getCount() {
+            return NUM_ITEMS;
+        }
+
+        // Returns the fragment to display for that page
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0: // Fragment # 0 - This will show FirstFragment
+                    return UpComingFragment.newInstance(0);
+                case 1: // Fragment # 0 - This will show FirstFragment different title
+                    return PastFragment.newInstance(1);
+                default:
+                    return UpComingFragment.newInstance(0);
+            }
+        }
+
+        // Returns the page title for the top indicator
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return "Page " + position;
+        }
 
     }
+
+//    private void setFragment(Fragment fragment, int button_id) {
+//        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        // If fragment doesn't exist yet, create one
+//        if (fragment.isAdded()) {
+//            if (fragment instanceof UpComingFragment) {
+//                fragmentTransaction.hide(myFragmentList.get(1));
+//            } else if (fragment instanceof PastFragment) {
+//                fragmentTransaction.hide(myFragmentList.get(0));
+//            }
+//            fragmentTransaction.show(fragment);
+//        } else { // re-use the old fragment
+//            if (fragment instanceof PastFragment) {
+//                fragmentTransaction.hide(myFragmentList.get(0));
+//            }
+//            fragmentTransaction.add(R.id.bookingcontainer_body, fragment, button_id + "stack_item");
+//        }
+//
+//        fragmentTransaction.commit();
+//
+//    }
 
 }

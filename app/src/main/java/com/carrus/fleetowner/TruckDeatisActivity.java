@@ -11,6 +11,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.carrus.fleetowner.adapters.ExpandableListAdapter;
 import com.carrus.fleetowner.models.ExpandableChildItem;
@@ -24,11 +25,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.carrus.fleetowner.utils.Constants.BIDID;
 import static com.carrus.fleetowner.utils.Constants.BIDVALUE;
+import static com.carrus.fleetowner.utils.Constants.CHILDACTIVITY;
 import static com.carrus.fleetowner.utils.Constants.NOTES;
 import static com.carrus.fleetowner.utils.Constants.TRUCKTYPE;
 import static com.carrus.fleetowner.utils.Constants.TYPE;
 import static com.carrus.fleetowner.utils.Constants.VALUE;
+
 
 /**
  * Created by Sunny on 12/10/15.
@@ -148,16 +152,18 @@ public class TruckDeatisActivity extends BaseActivity {
         mQuoteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mQuoteBtn.getText().toString().equalsIgnoreCase(getResources().getString(R.string.quote)))
-                    startActivity(new Intent(TruckDeatisActivity.this, QuoteDialogActivity.class));
-                else if (mQuoteBtn.getText().toString().equalsIgnoreCase(getResources().getString(R.string.modify))) {
-                    Intent intent = new Intent(TruckDeatisActivity.this, QuoteDialogActivity.class);
+                Intent intent = new Intent(TruckDeatisActivity.this, QuoteDialogActivity.class);
+                if (mQuoteBtn.getText().toString().equalsIgnoreCase(getResources().getString(R.string.quote))) {
+                    intent.putExtra(TYPE, false);
+                    intent.putExtra(BIDID, mTrucksDetailsModel.getId());
+                } else if (mQuoteBtn.getText().toString().equalsIgnoreCase(getResources().getString(R.string.modify))) {
                     intent.putExtra(TYPE, true);
                     intent.putExtra(BIDVALUE, mTruckQuotesDetails.getOfferCost());
                     intent.putExtra(TRUCKTYPE, mTruckQuotesDetails.getTruck().truckType.typeTruckName);
                     intent.putExtra(NOTES, mTruckQuotesDetails.getQuoteNote());
-                    startActivity(intent);
+                    intent.putExtra(BIDID, mTruckQuotesDetails.getId());
                 }
+                startActivityForResult(intent, CHILDACTIVITY);
             }
         });
 
@@ -168,6 +174,15 @@ public class TruckDeatisActivity extends BaseActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CHILDACTIVITY && resultCode == RESULT_OK && data != null) {
+            Toast.makeText(TruckDeatisActivity.this, "Successfully bid", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(TruckDeatisActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void setQuoteValuesonViews() {

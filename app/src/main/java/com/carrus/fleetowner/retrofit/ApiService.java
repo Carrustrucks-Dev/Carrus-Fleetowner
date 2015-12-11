@@ -57,4 +57,8 @@ public interface ApiService {
     @GET("/api/v1/fleetOwner/pendingAssignment")
     public void getPendingAssignment(@Header(AUTHORIZATION) String authorization, @Query("limit") String limit, @Query("skip") String skip, @Query("sort") String sort, Callback<String> callback);
 
+    @FormUrlEncoded
+    @POST("/api/v1/fleetOwner/quote")
+    public void addQuotes(@Header(AUTHORIZATION) String authorization,@Field("bidId") String bidId, @Field("tracking") String tracking, @Field("offerCost") String offerCost, @Field("note") String note, Callback<String> callback);
+
 }

@@ -52,6 +52,7 @@
     <string name="podnotfound">No POD found</string>
     <string name="invoicenotfound">No invoice found</string>
     <string name="consignmntnotfound">No consignment note found</string>
+    <string name="quotesamountrequired">Bid amount required</string>
 
     <!--text-->
     <string name="forgetpasswddetails">Enter email address and link would be sent to you to reset your password</string>
