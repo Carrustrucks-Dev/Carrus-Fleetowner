@@ -119,6 +119,7 @@
     <string name="quote">QUOTE</string>
     <string name="modify">MODIFY</string>
     <string name="ignore">IGNORE</string>
+    <string name="assign_driver">ASSIGN DRIVER</string>
 
     <string name="typeoftruck">Type of Truck</string>
     <string name="notes">Notes...</string>

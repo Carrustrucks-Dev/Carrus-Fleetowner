@@ -1,6 +1,7 @@
 package com.carrus.fleetowner.adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,12 +12,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.carrus.fleetowner.R;
+import com.carrus.fleetowner.TruckDeatisActivity;
 import com.carrus.fleetowner.interfaces.OnLoadMoreListener;
 import com.carrus.fleetowner.models.TruckAssignDetails;
 import com.carrus.fleetowner.utils.Utils;
 
 import java.text.ParseException;
 import java.util.List;
+
+import static com.carrus.fleetowner.utils.Constants.TYPE;
+import static com.carrus.fleetowner.utils.Constants.VALUE;
 
 /**
  * Created by Sunny on 12/9/15.
@@ -149,10 +154,11 @@ public class TruckAssignListAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("value", myList.get(position));
-//                    Intent intent = new Intent(mActivity, BookingDetailsActivity.class);
-//                    intent.putExtras(bundle);
-//                    mActivity.startActivityForResult(intent, 500);
+                    bundle.putSerializable(VALUE, myList.get(position));
+                    Intent intent = new Intent(mActivity, TruckDeatisActivity.class);
+                    intent.putExtras(bundle);
+                    intent.putExtra(TYPE, "assigment");
+                    mActivity.startActivityForResult(intent, 500);
 
                 }
             });

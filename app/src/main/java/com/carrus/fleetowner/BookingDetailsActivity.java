@@ -8,7 +8,6 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -25,24 +24,13 @@ import com.carrus.fleetowner.adapters.ExpandableListAdapter;
 import com.carrus.fleetowner.models.ExpandableChildItem;
 import com.carrus.fleetowner.models.Header;
 import com.carrus.fleetowner.models.MyBookingDataModel;
-import com.carrus.fleetowner.retrofit.RestClient;
-import com.carrus.fleetowner.utils.ApiResponseFlags;
-import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
-import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 /**
  * Created by Sunny on 11/6/15.

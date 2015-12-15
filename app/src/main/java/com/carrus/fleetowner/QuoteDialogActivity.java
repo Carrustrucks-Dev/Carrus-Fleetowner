@@ -24,11 +24,11 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-import static com.carrus.fleetowner.utils.Constants.ID;
 import static com.carrus.fleetowner.utils.Constants.BIDVALUE;
+import static com.carrus.fleetowner.utils.Constants.ID;
 import static com.carrus.fleetowner.utils.Constants.NOTES;
-import static com.carrus.fleetowner.utils.Constants.TYPE;
 import static com.carrus.fleetowner.utils.Constants.QUOTEID;
+import static com.carrus.fleetowner.utils.Constants.TYPE;
 
 /**
  * Created by Sunny on 11/19/15.

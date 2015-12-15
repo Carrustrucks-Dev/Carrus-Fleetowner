@@ -1,19 +1,17 @@
-package com.carrus.fleetowner.fragments;
+package com.carrus.fleetowner;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.adapters.DividerItemDecoration;
 import com.carrus.fleetowner.adapters.DriverListAdapter;
 import com.carrus.fleetowner.interfaces.OnLoadMoreListener;
@@ -41,123 +39,87 @@ import static com.carrus.fleetowner.utils.Constants.LIMIT;
 import static com.carrus.fleetowner.utils.Constants.SORT;
 
 /**
- * Created by Sunny on 12/9/15.
+ * Created by Sunny on 12/15/15.
  */
-public class WhiteDriverFragment extends Fragment {
+public class DriverActivity extends BaseActivity {
 
+    private ImageView mBackBtn;
     private final String TAG = getClass().getSimpleName();
     private RecyclerView mRecyclerView;
     private DriverListAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     private SessionManager mSessionManager;
     private int skip = 0;
     private SwipeRefreshLayout swipeRefreshLayout;
     private boolean isRefreshView = false;
     private ConnectionDetector mConnectionDetector;
-    private TextView mErrorTxtView;
     private List<Datum> bookingList;
     private DriverModel mDriverModel;
-
-    /**
-     * Static factory method that takes an int parameter,
-     * initializes the fragment's arguments, and returns the
-     * new fragment to the client.
-     */
-    public static WhiteDriverFragment newInstance(int index) {
-        WhiteDriverFragment f = new WhiteDriverFragment();
-        Bundle args = new Bundle();
-        args.putInt("index", index);
-        f.setArguments(args);
-        return f;
-    }
-
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View convertView = inflater.inflate(R.layout.fragment_bookinglist, container, false);
-        init(convertView);
-        intializeListners();
-        return convertView;
-    }
+    private Context mContext;
 
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mSessionManager = new SessionManager(getActivity());
-        mConnectionDetector = new ConnectionDetector(getActivity());
-        if (mConnectionDetector.isConnectingToInternet())
-            getMyBooking();
-        else {
-            mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-            mErrorTxtView.setVisibility(View.VISIBLE);
-            Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
-        }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_driver);
+        mContext=this;
+        init();
+        initializeClickListner();
     }
 
-    private void intializeListners() {
-        mErrorTxtView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mErrorTxtView.setVisibility(View.GONE);
-                if (mConnectionDetector.isConnectingToInternet())
-                    getMyBooking();
-                else {
-                    mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-                    mErrorTxtView.setVisibility(View.VISIBLE);
-                    Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
-                }
-            }
-        });
-    }
-
-    private void init(View view) {
-        mErrorTxtView = (TextView) view.findViewById(R.id.errorTxtView);
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
+    private void init() {
+        TextView headerTxtView = (TextView) findViewById(R.id.headerTxtView);
+        headerTxtView.setText(getResources().getString(R.string.drivers));
+        mBackBtn = (ImageView) findViewById(R.id.menu_back_btn);
+        mBackBtn.setVisibility(View.VISIBLE);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 //        swipeRefreshLayout.setColorSchemeColors(
 //                Color.RED, Color.GREEN, Color.BLUE, Color.CYAN);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(
-                new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+                new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 isRefreshView = true;
-                getMyBooking();
+                getDrivers();
             }
         });
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(Constants.isUpComingUpdate){
-            Constants.isUpComingUpdate=false;
-            isRefreshView = true;
-            getMyBooking();
+        mSessionManager = new SessionManager(mContext);
+        mConnectionDetector = new ConnectionDetector(mContext);
+        if (mConnectionDetector.isConnectingToInternet())
+            getDrivers();
+        else {
+            Utils.shopAlterDialog(mContext, getResources().getString(R.string.nointernetconnection), false);
         }
     }
 
-    private void getMyBooking() {
+    private void initializeClickListner() {
+        mBackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+    }
+
+    private void getDrivers() {
         if (isRefreshView) {
             swipeRefreshLayout.setRefreshing(true);
             skip=0;
             bookingList=null;
         } else {
             if(bookingList==null || bookingList.size()==0)
-                Utils.loading_box(getActivity());
+                Utils.loading_box(mContext);
         }
 
         RestClient.getApiService().getallTrucker(mSessionManager.getAccessToken(), LIMIT + "", skip + "", SORT, Constants.DRIVERWHITE, new Callback<String>() {
@@ -176,7 +138,7 @@ public class WhiteDriverFragment extends Fragment {
                         if (bookingList == null) {
                             bookingList = new ArrayList<Datum>();
                             bookingList.addAll(mDriverModel.getData());
-                            mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
+                            mAdapter = new DriverListAdapter((Activity)mContext, bookingList, mRecyclerView, true);
                             mRecyclerView.setAdapter(mAdapter);
                             setonScrollListener();
                         } else {
@@ -199,11 +161,11 @@ public class WhiteDriverFragment extends Fragment {
                             bookingList.remove(bookingList.size() - 1);
                             mAdapter.notifyItemRemoved(bookingList.size());
                         } else {
-                            mErrorTxtView.setText(mObject.getString("message"));
-                            mErrorTxtView.setVisibility(View.VISIBLE);
+//                            mErrorTxtView.setText(mObject.getString("message"));
+//                            mErrorTxtView.setVisibility(View.VISIBLE);
                         }
 
-                        Toast.makeText(getActivity(), mObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, mObject.getString("message"), Toast.LENGTH_SHORT).show();
 
                     }
                 } catch (JSONException e) {
@@ -223,16 +185,16 @@ public class WhiteDriverFragment extends Fragment {
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Toast.makeText(getActivity(), getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
-                        mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-                        mErrorTxtView.setVisibility(View.VISIBLE);
+                        Toast.makeText(mContext, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+//                        mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
+//                        mErrorTxtView.setVisibility(View.VISIBLE);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
-                        Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
+                        Utils.shopAlterDialog(mContext, Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
-                        Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
 
                     }else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
-                        Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         try {
                             bookingList.remove(bookingList.size() - 1);
                             mAdapter.notifyItemRemoved(bookingList.size());
@@ -243,9 +205,9 @@ public class WhiteDriverFragment extends Fragment {
                     }
 
                 } catch (Exception ex) {
-                    Toast.makeText(getActivity(), getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
-                    mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-                    mErrorTxtView.setVisibility(View.VISIBLE);
+                    Toast.makeText(mContext, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+//                    mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
+//                    mErrorTxtView.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -261,7 +223,7 @@ public class WhiteDriverFragment extends Fragment {
                 try {
                     bookingList.add(null);
                     mAdapter.notifyItemInserted(bookingList.size() - 1);
-                    getMyBooking();
+                    getDrivers();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

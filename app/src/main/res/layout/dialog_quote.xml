@@ -52,16 +52,24 @@
 
     </RelativeLayout>
 
-    <EditText
-        android:id="@+id/offrbidEdtxt"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/ten"
-        android:background="@drawable/square_edit_text"
-        android:gravity="left|top"
-        android:hint="@string/offrdbid"
-        android:inputType="number"
-        android:padding="@dimen/ten" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <EditText
+            android:id="@+id/offrbidEdtxt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ten"
+            android:background="@drawable/square_edit_text"
+            android:gravity="left|top"
+            android:hint="@string/offrdbid"
+            android:inputType="number"
+            android:padding="@dimen/ten" />
+
+    </RelativeLayout>
 
 
     <EditText
@@ -82,7 +90,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/ten"
         android:background="@drawable/background_bottomrounded"
-        android:padding="@dimen/ten"
+        android:paddingTop="@dimen/twenty"
+        android:paddingBottom="@dimen/twenty"
         android:text="@string/quote"
         android:textColor="@color/windowBackground"
         android:textSize="@dimen/mid_fond" />

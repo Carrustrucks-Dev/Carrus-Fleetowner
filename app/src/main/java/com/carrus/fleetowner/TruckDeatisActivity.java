@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.carrus.fleetowner.adapters.ExpandableListAdapter;
 import com.carrus.fleetowner.models.ExpandableChildItem;
 import com.carrus.fleetowner.models.Header;
+import com.carrus.fleetowner.models.TruckAssignDetails;
 import com.carrus.fleetowner.models.TruckQuotesDetails;
 import com.carrus.fleetowner.models.TrucksDetailsModel;
 import com.carrus.fleetowner.utils.Utils;
@@ -25,14 +26,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.carrus.fleetowner.utils.Constants.ID;
 import static com.carrus.fleetowner.utils.Constants.BIDVALUE;
 import static com.carrus.fleetowner.utils.Constants.CHILDACTIVITY;
+import static com.carrus.fleetowner.utils.Constants.ID;
 import static com.carrus.fleetowner.utils.Constants.NOTES;
+import static com.carrus.fleetowner.utils.Constants.QUOTEID;
 import static com.carrus.fleetowner.utils.Constants.TRUCKTYPE;
 import static com.carrus.fleetowner.utils.Constants.TYPE;
 import static com.carrus.fleetowner.utils.Constants.VALUE;
-import static com.carrus.fleetowner.utils.Constants.QUOTEID;
 
 
 /**
@@ -44,6 +45,7 @@ public class TruckDeatisActivity extends BaseActivity {
     private ImageView mBackBtn;
     private TrucksDetailsModel mTrucksDetailsModel;
     private TruckQuotesDetails mTruckQuotesDetails;
+    private TruckAssignDetails mTruckAssignDetails;
     private ExpandableListView mExpandableListView;
     private List<Header> listDataHeader;
     private HashMap<Header, List<ExpandableChildItem>> listDataChild;
@@ -119,8 +121,8 @@ public class TruckDeatisActivity extends BaseActivity {
 
         // Adding child data
         listDataHeader.add(new Header(getResources().getString(R.string.cargodetails), false));
+        listDataHeader.add(new Header(getResources().getString(R.string.notes_cap), false));
         listDataHeader.add(new Header(getResources().getString(R.string.shippernotes), false));
-        listDataHeader.add(new Header(getResources().getString(R.string.fleetownernotes), false));
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
@@ -138,6 +140,13 @@ public class TruckDeatisActivity extends BaseActivity {
             mTruckQuotesDetails =
                     (TruckQuotesDetails) bundle.getSerializable(VALUE);
             setQuoteValuesonViews();
+        }else if (intent.getStringExtra(TYPE).equalsIgnoreCase("assigment")) {
+            headerTxtView.setText(getResources().getString(R.string.pendingassign_head));
+            mQuoteBtn.setText(getResources().getString(R.string.assign_driver));
+            mIgnoreBtn.setVisibility(View.GONE);
+            mTruckAssignDetails =
+                    (TruckAssignDetails) bundle.getSerializable(VALUE);
+            setAssignValuesonViews();
         }
 
     }
@@ -157,6 +166,7 @@ public class TruckDeatisActivity extends BaseActivity {
                 if (mQuoteBtn.getText().toString().equalsIgnoreCase(getResources().getString(R.string.quote))) {
                     intent.putExtra(TYPE, false);
                     intent.putExtra(ID, mTrucksDetailsModel.getId());
+                    startActivityForResult(intent, CHILDACTIVITY);
                 } else if (mQuoteBtn.getText().toString().equalsIgnoreCase(getResources().getString(R.string.modify))) {
                     intent.putExtra(TYPE, true);
                     intent.putExtra(BIDVALUE, mTruckQuotesDetails.getOfferCost());
@@ -164,8 +174,12 @@ public class TruckDeatisActivity extends BaseActivity {
                     intent.putExtra(NOTES, mTruckQuotesDetails.getQuoteNote());
                     intent.putExtra(ID, mTruckQuotesDetails.getId());
                     intent.putExtra(QUOTEID, mTruckQuotesDetails.getQuoteId());
+                    startActivityForResult(intent, CHILDACTIVITY);
+                }else if(mQuoteBtn.getText().toString().equalsIgnoreCase(getResources().getString(R.string.assign_driver))){
+                    Intent mIntent = new Intent(TruckDeatisActivity.this, DriverActivity.class);
+                    startActivityForResult(mIntent, CHILDACTIVITY);
                 }
-                startActivityForResult(intent, CHILDACTIVITY);
+
             }
         });
 
@@ -181,9 +195,9 @@ public class TruckDeatisActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CHILDACTIVITY && resultCode == RESULT_OK && data != null) {
-            Toast.makeText(TruckDeatisActivity.this, "Successfully bid", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(TruckDeatisActivity.this, "Successfully bid", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(TruckDeatisActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(TruckDeatisActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -283,6 +297,58 @@ public class TruckDeatisActivity extends BaseActivity {
 //        chnageHieghtListView();
         final ScrollView scrollview = (ScrollView) findViewById(R.id.mainscrollview);
 
+        scrollview.post(new Runnable() {
+            public void run() {
+                scrollview.scrollTo(0, 0);
+            }
+        });
+
+    }
+
+    private void setAssignValuesonViews() {
+
+        mTruckNameTV.setText(mTruckAssignDetails.getTruck().truckType.typeTruckName);
+        addresPickupTxtView.setText(mTruckAssignDetails.getPickUp().city + ", " + mTruckAssignDetails.getPickUp().state);
+
+        try {
+            datePickupTxtView.setText(Utils.getFullDateTime(mTruckAssignDetails.getPickUp().date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        timePickupTxtView.setText(mTruckAssignDetails.getPickUp().time);
+        addressDropTxtView.setText(mTruckAssignDetails.getDropOff().city + ", " + mTruckAssignDetails.getDropOff().state);
+
+        try {
+            dateDropTxtview.setText(Utils.getFullDateTime(mTruckAssignDetails.getDropOff().date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        timeDropTxtView.setText(mTruckAssignDetails.getDropOff().time);
+
+        // Adding child data
+        ArrayList<ExpandableChildItem> cargoDetails = new ArrayList<ExpandableChildItem>();
+        cargoDetails.add(new ExpandableChildItem(mTruckAssignDetails.getCargo().cargoType.typeCargoName, mTruckAssignDetails.getCargo().weight + "", 0));
+
+        // Adding child data
+        ArrayList<ExpandableChildItem> notes = new ArrayList<ExpandableChildItem>();
+        if(mTruckAssignDetails.getTruckerNote()!=null)
+        notes.add(new ExpandableChildItem("", mTruckAssignDetails.getTruckerNote().toString(), 1));
+
+        // Adding child data
+        ArrayList<ExpandableChildItem> fleetowner = new ArrayList<ExpandableChildItem>();
+        fleetowner.add(new ExpandableChildItem("", mTruckAssignDetails.getShipper().firstName, 1));
+
+        listDataChild.put(listDataHeader.get(0), cargoDetails); // Header, Child data
+        listDataChild.put(listDataHeader.get(1), notes);
+        listDataChild.put(listDataHeader.get(2), fleetowner);
+
+        ExpandableListAdapter listAdapter = new ExpandableListAdapter(TruckDeatisActivity.this, listDataHeader, listDataChild);
+        mExpandableListView.setAdapter(listAdapter);
+        setListViewHeight(mExpandableListView);
+//        chnageHieghtListView();
+        final ScrollView scrollview = (ScrollView) findViewById(R.id.mainscrollview);
         scrollview.post(new Runnable() {
             public void run() {
                 scrollview.scrollTo(0, 0);

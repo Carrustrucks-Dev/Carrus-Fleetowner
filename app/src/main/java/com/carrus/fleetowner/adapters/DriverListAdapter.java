@@ -1,6 +1,8 @@
 package com.carrus.fleetowner.adapters;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -39,6 +42,8 @@ public class DriverListAdapter extends RecyclerView.Adapter {
     private int lastVisibleItem, totalItemCount;
     private boolean loading;
     private OnLoadMoreListener onLoadMoreListener;
+    private boolean isTouchable = false;
+    private int selectedPos=-1;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -48,15 +53,17 @@ public class DriverListAdapter extends RecyclerView.Adapter {
         public TextView mNameTxtView, vehiclenoTxtView, licenseexpTxtView;
         public ImageView mProfileIV, mCallBtnIV;
         public RatingBar mRatingBar;
+        public LinearLayout mMainLayout;
 
         public ViewHolder(View v) {
             super(v);
             mNameTxtView = (TextView) v.findViewById(R.id.nameTxtView);
             vehiclenoTxtView = (TextView) v.findViewById(R.id.vehiclenoTxtView);
             licenseexpTxtView = (TextView) v.findViewById(R.id.licenseexpTxtView);
-            mProfileIV=(ImageView) v.findViewById(R.id.profileIV);
-            mCallBtnIV=(ImageView) v.findViewById(R.id.callBtnIV);
-            mRatingBar=(RatingBar) v.findViewById(R.id.driverRating);
+            mProfileIV = (ImageView) v.findViewById(R.id.profileIV);
+            mCallBtnIV = (ImageView) v.findViewById(R.id.callBtnIV);
+            mRatingBar = (RatingBar) v.findViewById(R.id.driverRating);
+            mMainLayout=(LinearLayout) v.findViewById(R.id.mainLayout);
         }
     }
 
@@ -66,10 +73,10 @@ public class DriverListAdapter extends RecyclerView.Adapter {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public DriverListAdapter(Activity mActivity, List<Datum> myList, RecyclerView recyclerView) {
+    public DriverListAdapter(Activity mActivity, List<Datum> myList, RecyclerView recyclerView, boolean isTouchable) {
         this.mActivity = mActivity;
         this.myList = myList;
-
+        this.isTouchable = isTouchable;
         if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
 
             final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView
@@ -96,6 +103,7 @@ public class DriverListAdapter extends RecyclerView.Adapter {
             });
         }
     }
+
 
     // Create new views (invoked by the layout manager)
     @Override
@@ -125,11 +133,17 @@ public class DriverListAdapter extends RecyclerView.Adapter {
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder,final int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 //        holder.mTextView.setText(mDataset[position
         if (holder instanceof ViewHolder) {
+
+            if(selectedPos!=-1 && selectedPos==position){
+                ((ViewHolder) holder).mMainLayout.setBackgroundColor(mActivity.getResources().getColor(R.color.list_selected));
+            }else{
+                ((ViewHolder) holder).mMainLayout.setBackgroundColor(mActivity.getResources().getColor(R.color.windowBackground));
+            }
 
             ((ViewHolder) holder).mNameTxtView.setText(myList.get(position).getDriverName());
 //            ((ViewHolder) holder).vehiclenoTxtView.setText();
@@ -142,22 +156,32 @@ public class DriverListAdapter extends RecyclerView.Adapter {
             ((ViewHolder) holder).mRatingBar.setRating((float) myList.get(position).getRating());
             ((ViewHolder) holder).mRatingBar.setFocusable(false);
 
-            ((ViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
+            ((ViewHolder) holder).mCallBtnIV.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("value", myList.get(position));
-//                    Intent intent = new Intent(mActivity, BookingDetailsActivity.class);
-//                    intent.putExtras(bundle);
-//                    mActivity.startActivityForResult(intent, 500);
-
+                    try {
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        callIntent.setData(Uri.parse("tel:" + myList.get(position).getPhoneNumber()));
+                        mActivity.startActivity(callIntent);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             });
-            if(myList.get(position).getProfilePicture()!=null){
+
+            if (isTouchable)
+                ((ViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        selectedPos=position;
+                        notifyDataSetChanged();
+                    }
+                });
+            if (myList.get(position).getProfilePicture() != null) {
                 Picasso.with(mActivity).load(myList.get(position).getProfilePicture().getThumb()).transform(new CircleTransform()).into(((ViewHolder) holder).mProfileIV);
             }
 
-        }else{
+        } else {
             ((ProgressViewHolder) holder).progressBar.setIndeterminate(true);
         }
 

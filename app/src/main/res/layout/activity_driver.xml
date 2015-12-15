@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/container_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/searchLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/container_toolbar"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/searchEdtTxt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/windowBackground"
+            android:drawableLeft="@mipmap/icon_search"
+            android:drawablePadding="@dimen/five"
+            android:hint="@string/searchdriver"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:padding="@dimen/ten"
+            android:textSize="@dimen/mid_fond" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/point_five"
+            android:background="@color/gray_text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/listlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/assigndriverBtn"
+        android:layout_below="@+id/searchLayout"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/fragment_bookinglist" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/assigndriverBtn"
+        style="@style/CustomTextAppearance.Bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/tabcolor_dark"
+        android:padding="@dimen/ten"
+        android:text="@string/assign_driver"
+        android:textColor="@color/windowBackground" />
+
+</RelativeLayout>

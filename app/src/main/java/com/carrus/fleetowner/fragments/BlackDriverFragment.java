@@ -176,7 +176,7 @@ public class BlackDriverFragment extends Fragment {
                         if (bookingList == null) {
                             bookingList = new ArrayList<Datum>();
                             bookingList.addAll(mDriverModel.getData());
-                            mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView);
+                            mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
                             mRecyclerView.setAdapter(mAdapter);
                             setonScrollListener();
                         } else {
