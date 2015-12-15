@@ -22,7 +22,8 @@ public class Constants {
     public static final String BIDVALUE="bidvalue";
     public static final String TRUCKTYPE="trucktype";
     public static final String NOTES="note";
-    public static final String BIDID="bidid";
+    public static final String ID="id";
+    public static final String QUOTEID="quoteid";
 //    public static final String SORT="DESC";
     public static boolean isPastUpdate=false;
     public static boolean isUpComingUpdate=false;

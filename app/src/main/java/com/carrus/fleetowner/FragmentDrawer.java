@@ -17,12 +17,15 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.carrus.fleetowner.adapters.NavigationDrawerAdapter;
 import com.carrus.fleetowner.models.NavDrawerItem;
+import com.carrus.fleetowner.utils.CircleTransform;
 import com.carrus.fleetowner.utils.SessionManager;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,12 +35,12 @@ public class FragmentDrawer extends Fragment {
     private static String TAG = FragmentDrawer.class.getSimpleName();
 
     private RecyclerView recyclerView;
-//    private ActionBarDrawerToggle mDrawerToggle;
+    //    private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private NavigationDrawerAdapter adapter;
     private View containerView;
     private static String[] titles = null;
-    private TypedArray icons=null;
+    private TypedArray icons = null;
     private FragmentDrawerListener drawerListener;
     private SessionManager mSessionManager;
 
@@ -80,11 +83,13 @@ public class FragmentDrawer extends Fragment {
                              Bundle savedInstanceState) {
         // Inflating view layout
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
-        mSessionManager=new SessionManager(getActivity());
+        final ImageView mProfileIV = (ImageView) layout.findViewById(R.id.profileIV);
+        Picasso.with(getActivity()).load(R.mipmap.ic_launcher).transform(new CircleTransform()).into(mProfileIV);
+        mSessionManager = new SessionManager(getActivity());
         recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
-        final TextView mCompanyTxtView=(TextView) layout.findViewById(R.id.companyTxtView);
+        final TextView mCompanyTxtView = (TextView) layout.findViewById(R.id.companyTxtView);
         mCompanyTxtView.setText(mSessionManager.getCompanyName());
-        final TextView mUserNameTxtView=(TextView) layout.findViewById(R.id.usernameTxtView);
+        final TextView mUserNameTxtView = (TextView) layout.findViewById(R.id.usernameTxtView);
         mUserNameTxtView.setText(mSessionManager.getName());
         adapter = new NavigationDrawerAdapter(getActivity(), getData());
         recyclerView.setAdapter(adapter);
@@ -102,7 +107,7 @@ public class FragmentDrawer extends Fragment {
             }
         }));
 
-        LinearLayout mHeaderLayout=(LinearLayout) layout.findViewById(R.id.nav_header_container);
+        LinearLayout mHeaderLayout = (LinearLayout) layout.findViewById(R.id.nav_header_container);
 
         mHeaderLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,8 +116,6 @@ public class FragmentDrawer extends Fragment {
                 mDrawerLayout.closeDrawer(containerView);
             }
         });
-
-
 
 
         return layout;
@@ -196,11 +199,11 @@ public class FragmentDrawer extends Fragment {
         }
 
 
-
     }
 
     public interface FragmentDrawerListener {
         public void onDrawerItemSelected(View view, int position);
+
         public void onHeaderSelected();
     }
 }

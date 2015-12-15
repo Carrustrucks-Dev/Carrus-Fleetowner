@@ -25,13 +25,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.carrus.fleetowner.utils.Constants.BIDID;
+import static com.carrus.fleetowner.utils.Constants.ID;
 import static com.carrus.fleetowner.utils.Constants.BIDVALUE;
 import static com.carrus.fleetowner.utils.Constants.CHILDACTIVITY;
 import static com.carrus.fleetowner.utils.Constants.NOTES;
 import static com.carrus.fleetowner.utils.Constants.TRUCKTYPE;
 import static com.carrus.fleetowner.utils.Constants.TYPE;
 import static com.carrus.fleetowner.utils.Constants.VALUE;
+import static com.carrus.fleetowner.utils.Constants.QUOTEID;
 
 
 /**
@@ -155,13 +156,14 @@ public class TruckDeatisActivity extends BaseActivity {
                 Intent intent = new Intent(TruckDeatisActivity.this, QuoteDialogActivity.class);
                 if (mQuoteBtn.getText().toString().equalsIgnoreCase(getResources().getString(R.string.quote))) {
                     intent.putExtra(TYPE, false);
-                    intent.putExtra(BIDID, mTrucksDetailsModel.getId());
+                    intent.putExtra(ID, mTrucksDetailsModel.getId());
                 } else if (mQuoteBtn.getText().toString().equalsIgnoreCase(getResources().getString(R.string.modify))) {
                     intent.putExtra(TYPE, true);
                     intent.putExtra(BIDVALUE, mTruckQuotesDetails.getOfferCost());
                     intent.putExtra(TRUCKTYPE, mTruckQuotesDetails.getTruck().truckType.typeTruckName);
                     intent.putExtra(NOTES, mTruckQuotesDetails.getQuoteNote());
-                    intent.putExtra(BIDID, mTruckQuotesDetails.getId());
+                    intent.putExtra(ID, mTruckQuotesDetails.getId());
+                    intent.putExtra(QUOTEID, mTruckQuotesDetails.getQuoteId());
                 }
                 startActivityForResult(intent, CHILDACTIVITY);
             }

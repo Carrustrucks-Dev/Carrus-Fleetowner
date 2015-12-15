@@ -16,6 +16,9 @@
     <string name="signout">Sign Out</string>
     <string name="myprofile">My Profile</string>
     <string name="term_privacy">Terms | Privacy Policy</string>
+    <string name="bookingdetails">Booking Details</string>
+    <string name="crnsubject">CRN Number</string>
+    <string name="share_chooser_text">Share using...</string>
 
 
     <!-- navigation drawer item labels  -->
@@ -121,4 +124,13 @@
     <string name="notes">Notes...</string>
     <string name="trackingavail">Tracking Available</string>
 
+    <!--Booking details Text-->
+    <string name="paymentmode">PAYMENT MODE</string>
+    <string name="totalcost">TOTAL COST</string>
+    <string name="done">DONE</string>
+    <string name="cancel">CANCEL</string>
+    <string name="viewpod">VIEW POD</string>
+    <string name="viewinvoice">VIEW INVOICE</string>
+    <string name="viewconsignment">VIEW CONSIGNMENT NOTE</string>
+    <string name="notes_cap">NOTES</string>
 </resources>

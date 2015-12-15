@@ -11,7 +11,9 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.carrus.fleetowner.R;
+import com.carrus.fleetowner.utils.CircleTransform;
 import com.carrus.fleetowner.utils.SessionManager;
+import com.squareup.picasso.Picasso;
 
 
 /**
@@ -50,6 +52,7 @@ public class ProfileFragment extends Fragment {
     private void init(View v) {
 
         driverImage = (ImageView) v.findViewById(R.id.driverImage);
+        Picasso.with(getActivity()).load(R.mipmap.notification_icon).transform(new CircleTransform()).into(driverImage);
         driverName = (TextView) v.findViewById(R.id.driverName);
         driverRating = (RatingBar) v.findViewById(R.id.driverRating);
         cmpanyNameTxtView = (TextView) v.findViewById(R.id.cmpanyNameTxtView);
