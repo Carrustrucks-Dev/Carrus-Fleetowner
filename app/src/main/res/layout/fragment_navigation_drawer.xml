@@ -52,7 +52,20 @@
         android:paddingLeft="@dimen/fifteen"
         android:layout_height="wrap_content"
         android:layout_below="@id/nav_header_container"
-        android:layout_marginTop="15dp" />
+        android:layout_above="@+id/termsTxtView"
+         />
 
 
+    <com.carrus.fleetowner.utils.CapitalizedTextView
+        android:id="@+id/termsTxtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray_text"
+        android:paddingRight="@dimen/ten"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/five"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="@dimen/ten"
+        android:textSize="@dimen/big_font"
+        android:text="@string/term_privacy"/>
 </RelativeLayout>
