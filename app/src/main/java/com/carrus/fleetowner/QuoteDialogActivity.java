@@ -92,8 +92,8 @@ public class QuoteDialogActivity extends BaseActivity {
                 // find the radiobutton by returned id
                 radioButton = (RadioButton) findViewById(selectedId);
 
-                Toast.makeText(QuoteDialogActivity.this,
-                        radioButton.getText(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(QuoteDialogActivity.this,
+//                        radioButton.getText(), Toast.LENGTH_SHORT).show();
                 // Close dialog
                 if (mSubmitBtn.getText().toString().equalsIgnoreCase(getResources().getString(R.string.quote))) {
                     if (isCostEmpty())
@@ -132,7 +132,7 @@ public class QuoteDialogActivity extends BaseActivity {
                     int status = mObject.getInt("statusCode");
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
                         Constants.isTruckQuotesUpdated=true;
-                        Constants.isTruckAssignUpdate=true;
+                        Constants.isTruckPendingUpdate=true;
 
                         Toast.makeText(QuoteDialogActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                         Intent output = new Intent();
@@ -188,7 +188,7 @@ public class QuoteDialogActivity extends BaseActivity {
                             JSONObject mObject = new JSONObject(s);
                             int status = mObject.getInt("statusCode");
                             if (ApiResponseFlags.OK.getOrdinal() == status) {
-                                Constants.isTruckAssignUpdate=true;
+                                Constants.isTruckQuotesUpdated=true;
                                 Toast.makeText(QuoteDialogActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                                 Intent output = new Intent();
                                 setResult(RESULT_OK, output);

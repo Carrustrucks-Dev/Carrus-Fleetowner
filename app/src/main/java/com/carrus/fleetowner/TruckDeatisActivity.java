@@ -434,7 +434,7 @@ public class TruckDeatisActivity extends BaseActivity {
                     int status = mObject.getInt("statusCode");
 
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
-                        Constants.isTruckQuotesUpdated=true;
+                        Constants.isTruckPendingUpdate=true;
                         Toast.makeText(TruckDeatisActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                         finish();
 

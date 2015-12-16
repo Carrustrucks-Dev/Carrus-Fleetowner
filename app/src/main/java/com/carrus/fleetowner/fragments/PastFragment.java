@@ -1,5 +1,6 @@
 package com.carrus.fleetowner.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -142,8 +143,8 @@ public class PastFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(Constants.isPastUpdate){
-            Constants.isPastUpdate=false;
+        if (Constants.isPastUpdate) {
+            Constants.isPastUpdate = false;
             isRefreshView = true;
             getPastBookings();
         }
@@ -152,11 +153,11 @@ public class PastFragment extends Fragment {
     private void getPastBookings() {
         if (isRefreshView) {
             swipeRefreshLayout.setRefreshing(true);
-            skip=0;
-            bookingList=null;
+            skip = 0;
+            bookingList = null;
         } else {
-            if(bookingList==null || bookingList.size()==0)
-            Utils.loading_box(getActivity());
+            if (bookingList == null || bookingList.size() == 0)
+                Utils.loading_box(getActivity());
         }
 
         RestClient.getApiService().getPast(mSessionManager.getAccessToken(), LIMIT + "", skip + "", SORT, new Callback<String>() {
@@ -178,14 +179,15 @@ public class PastFragment extends Fragment {
                             bookingList.addAll(mMyBookingModel.mData);
                             mAdapter = new PastBookingAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);
-                            setonScrollListener();
-                        }else{
+                            if (mMyBookingModel.mData.size() == LIMIT)
+                                setonScrollListener();
+                        } else {
                             bookingList.remove(bookingList.size() - 1);
                             mAdapter.notifyItemRemoved(bookingList.size());
                             //add items one by one
                             int start = bookingList.size();
                             int end = start + mMyBookingModel.mData.size();
-                            int j=0;
+                            int j = 0;
                             for (int i = start + 1; i <= end; i++) {
                                 bookingList.add(mMyBookingModel.mData.get(j));
                                 mAdapter.notifyItemInserted(bookingList.size());
@@ -193,12 +195,12 @@ public class PastFragment extends Fragment {
                             }
                             mAdapter.setLoaded();
                         }
-                        skip=skip+LIMIT;
+                        skip = skip + mMyBookingModel.mData.size();
                     } else {
-                        if(ApiResponseFlags.Not_Found.getOrdinal() == status){
+                        if (ApiResponseFlags.Not_Found.getOrdinal() == status) {
                             bookingList.remove(bookingList.size() - 1);
                             mAdapter.notifyItemRemoved(bookingList.size());
-                        }else{
+                        } else {
                             mErrorTxtView.setText(mObject.getString("message"));
                             mErrorTxtView.setVisibility(View.VISIBLE);
                         }
@@ -210,7 +212,7 @@ public class PastFragment extends Fragment {
                 }
 
                 Utils.loading_box_stop();
-                isRefreshView=false;
+                isRefreshView = false;
                 swipeRefreshLayout.setRefreshing(false);
             }
 
@@ -229,7 +231,7 @@ public class PastFragment extends Fragment {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
                         Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
-                    }else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
+                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
                         Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         try {
                             bookingList.remove(bookingList.size() - 1);
@@ -239,9 +241,12 @@ public class PastFragment extends Fragment {
                         }
                     }
                 } catch (Exception ex) {
-                    Toast.makeText(getActivity(), getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
-                    mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-                    mErrorTxtView.setVisibility(View.VISIBLE);
+                    Activity activity = getActivity();
+                    if (activity != null && isAdded()) {
+                        Toast.makeText(getActivity(), getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                        mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
+                        mErrorTxtView.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         });

@@ -161,6 +161,7 @@ public class TruckAssignFragment extends Fragment {
                             bookingList.addAll(mTruckAssignModel.getData());
                             mAdapter = new TruckAssignListAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);
+                            if(mTruckAssignModel.getData().size()==LIMIT)
                             setonScrollListener();
                         } else {
                             bookingList.remove(bookingList.size() - 1);
@@ -176,7 +177,7 @@ public class TruckAssignFragment extends Fragment {
                             }
                             mAdapter.setLoaded();
                         }
-                        skip = skip + LIMIT;
+                        skip = skip + mTruckAssignModel.getData().size();
                     } else {
                         if (ApiResponseFlags.Not_Found.getOrdinal() == status) {
                             bookingList.remove(bookingList.size() - 1);

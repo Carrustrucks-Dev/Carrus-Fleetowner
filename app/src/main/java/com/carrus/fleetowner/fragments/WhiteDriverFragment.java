@@ -178,6 +178,7 @@ public class WhiteDriverFragment extends Fragment {
                             bookingList.addAll(mDriverModel.getData());
                             mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
                             mRecyclerView.setAdapter(mAdapter);
+                            if(mDriverModel.getData().size()==LIMIT)
                             setonScrollListener();
                         } else {
                             bookingList.remove(bookingList.size() - 1);
@@ -193,7 +194,7 @@ public class WhiteDriverFragment extends Fragment {
                             }
                             mAdapter.setLoaded();
                         }
-                        skip = skip + LIMIT;
+                        skip = skip + mDriverModel.getData().size();
                     } else {
                         if (ApiResponseFlags.Not_Found.getOrdinal() == status) {
                             bookingList.remove(bookingList.size() - 1);

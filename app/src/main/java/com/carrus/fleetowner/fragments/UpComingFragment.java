@@ -178,6 +178,7 @@ public class UpComingFragment extends Fragment {
                             bookingList.addAll(mMyBookingModel.mData);
                             mAdapter = new UpComingBookingAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);
+                            if(mMyBookingModel.mData.size()==LIMIT)
                             setonScrollListener();
                         } else {
                             bookingList.remove(bookingList.size() - 1);
@@ -193,7 +194,7 @@ public class UpComingFragment extends Fragment {
                             }
                             mAdapter.setLoaded();
                         }
-                        skip = skip + LIMIT;
+                        skip = skip + mMyBookingModel.mData.size();
                     } else {
                         if (ApiResponseFlags.Not_Found.getOrdinal() == status) {
                             bookingList.remove(bookingList.size() - 1);

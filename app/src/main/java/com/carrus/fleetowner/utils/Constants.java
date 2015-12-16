@@ -28,7 +28,7 @@ public class Constants {
     public static boolean isPastUpdate=false;
     public static boolean isUpComingUpdate=false;
     public static boolean isTruckQuotesUpdated=false;
-    public static boolean isTruckPendinfUpdate=false;
+    public static boolean isTruckPendingUpdate=false;
     public static boolean isTruckAssignUpdate=false;
 
 

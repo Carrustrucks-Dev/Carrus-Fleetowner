@@ -161,6 +161,7 @@ public class TruckQuotesFragment extends Fragment {
                             bookingList.addAll(mTruckQuotesModel.getData());
                             mAdapter = new TruckQuotesListAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);
+                            if(mTruckQuotesModel.getData().size()==LIMIT)
                             setonScrollListener();
                         } else {
                             bookingList.remove(bookingList.size() - 1);
@@ -176,7 +177,7 @@ public class TruckQuotesFragment extends Fragment {
                             }
                             mAdapter.setLoaded();
                         }
-                        skip = skip + LIMIT;
+                        skip = skip + mTruckQuotesModel.getData().size();
                     } else {
                         if (ApiResponseFlags.Not_Found.getOrdinal() == status) {
                             bookingList.remove(bookingList.size() - 1);

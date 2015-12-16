@@ -126,8 +126,8 @@ public class TruckPendingReqFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-        if(Constants.isTruckPendinfUpdate){
-            Constants.isTruckPendinfUpdate=false;
+        if(Constants.isTruckPendingUpdate){
+            Constants.isTruckPendingUpdate=false;
             isRefreshView = true;
             getMyBooking();
         }
@@ -161,6 +161,7 @@ public class TruckPendingReqFragment extends Fragment{
                             bookingList.addAll(mTruckModel.getData());
                             mAdapter = new TruckListAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);
+                            if(mTruckModel.getData().size()==LIMIT)
                             setonScrollListener();
                         } else {
                             bookingList.remove(bookingList.size() - 1);
@@ -176,7 +177,7 @@ public class TruckPendingReqFragment extends Fragment{
                             }
                             mAdapter.setLoaded();
                         }
-                        skip = skip + LIMIT;
+                        skip = skip + mTruckModel.getData().size();
                     } else {
                         if (ApiResponseFlags.Not_Found.getOrdinal() == status) {
                             bookingList.remove(bookingList.size() - 1);

@@ -200,6 +200,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
 
 
     private boolean searchTrackingId() {
+        if(mOnGoingShipper!=null)
         for (int i = 0; i < mOnGoingShipper.mData.size(); i++) {
 
             if (mOnGoingShipper.mData.get(i).tracking.equalsIgnoreCase("yes")) {
