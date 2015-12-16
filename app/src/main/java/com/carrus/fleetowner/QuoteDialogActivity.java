@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.ConnectionDetector;
+import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
 
@@ -130,6 +131,9 @@ public class QuoteDialogActivity extends BaseActivity {
                     JSONObject mObject = new JSONObject(s);
                     int status = mObject.getInt("statusCode");
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
+                        Constants.isTruckQuotesUpdated=true;
+                        Constants.isTruckAssignUpdate=true;
+
                         Toast.makeText(QuoteDialogActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                         Intent output = new Intent();
                         setResult(RESULT_OK, output);
@@ -184,6 +188,7 @@ public class QuoteDialogActivity extends BaseActivity {
                             JSONObject mObject = new JSONObject(s);
                             int status = mObject.getInt("statusCode");
                             if (ApiResponseFlags.OK.getOrdinal() == status) {
+                                Constants.isTruckAssignUpdate=true;
                                 Toast.makeText(QuoteDialogActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                                 Intent output = new Intent();
                                 setResult(RESULT_OK, output);

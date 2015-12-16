@@ -3,7 +3,6 @@ package com.carrus.fleetowner.adapters;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -43,7 +42,7 @@ public class DriverListAdapter extends RecyclerView.Adapter {
     private boolean loading;
     private OnLoadMoreListener onLoadMoreListener;
     private boolean isTouchable = false;
-    private int selectedPos=-1;
+    private int selectedPos = -1;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -63,7 +62,7 @@ public class DriverListAdapter extends RecyclerView.Adapter {
             mProfileIV = (ImageView) v.findViewById(R.id.profileIV);
             mCallBtnIV = (ImageView) v.findViewById(R.id.callBtnIV);
             mRatingBar = (RatingBar) v.findViewById(R.id.driverRating);
-            mMainLayout=(LinearLayout) v.findViewById(R.id.mainLayout);
+            mMainLayout = (LinearLayout) v.findViewById(R.id.mainLayout);
         }
     }
 
@@ -139,9 +138,9 @@ public class DriverListAdapter extends RecyclerView.Adapter {
 //        holder.mTextView.setText(mDataset[position
         if (holder instanceof ViewHolder) {
 
-            if(selectedPos!=-1 && selectedPos==position){
+            if (selectedPos != -1 && selectedPos == position) {
                 ((ViewHolder) holder).mMainLayout.setBackgroundColor(mActivity.getResources().getColor(R.color.list_selected));
-            }else{
+            } else {
                 ((ViewHolder) holder).mMainLayout.setBackgroundColor(mActivity.getResources().getColor(R.color.windowBackground));
             }
 
@@ -173,7 +172,7 @@ public class DriverListAdapter extends RecyclerView.Adapter {
                 ((ViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        selectedPos=position;
+                        selectedPos = position;
                         notifyDataSetChanged();
                     }
                 });
@@ -214,6 +213,13 @@ public class DriverListAdapter extends RecyclerView.Adapter {
 
     public void setLoaded() {
         loading = false;
+    }
+
+    public String getSelectedDriver() {
+        if (selectedPos != -1)
+            return myList.get(selectedPos).getDriverId();
+
+        return null;
     }
 
 }

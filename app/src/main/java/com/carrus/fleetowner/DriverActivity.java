@@ -35,6 +35,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+import static com.carrus.fleetowner.utils.Constants.ID;
 import static com.carrus.fleetowner.utils.Constants.LIMIT;
 import static com.carrus.fleetowner.utils.Constants.SORT;
 
@@ -56,12 +57,11 @@ public class DriverActivity extends BaseActivity {
     private DriverModel mDriverModel;
     private Context mContext;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver);
-        mContext=this;
+        mContext = this;
         init();
         initializeClickListner();
     }
@@ -110,15 +110,30 @@ public class DriverActivity extends BaseActivity {
             }
         });
 
+        findViewById(R.id.assigndriverBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mConnectionDetector.isConnectingToInternet())
+                    if (mAdapter.getSelectedDriver() == null) {
+                        Utils.shopAlterDialog(mContext, getResources().getString(R.string.selecetDriver), false);
+                    } else {
+                        assignDriver(mAdapter.getSelectedDriver());
+                    }
+                else {
+                    Utils.shopAlterDialog(mContext, getResources().getString(R.string.nointernetconnection), false);
+                }
+            }
+        });
+
     }
 
     private void getDrivers() {
         if (isRefreshView) {
             swipeRefreshLayout.setRefreshing(true);
-            skip=0;
-            bookingList=null;
+            skip = 0;
+            bookingList = null;
         } else {
-            if(bookingList==null || bookingList.size()==0)
+            if (bookingList == null || bookingList.size() == 0)
                 Utils.loading_box(mContext);
         }
 
@@ -138,7 +153,7 @@ public class DriverActivity extends BaseActivity {
                         if (bookingList == null) {
                             bookingList = new ArrayList<Datum>();
                             bookingList.addAll(mDriverModel.getData());
-                            mAdapter = new DriverListAdapter((Activity)mContext, bookingList, mRecyclerView, true);
+                            mAdapter = new DriverListAdapter((Activity) mContext, bookingList, mRecyclerView, true);
                             mRecyclerView.setAdapter(mAdapter);
                             setonScrollListener();
                         } else {
@@ -173,7 +188,7 @@ public class DriverActivity extends BaseActivity {
                 }
 
                 Utils.loading_box_stop();
-                isRefreshView=false;
+                isRefreshView = false;
                 swipeRefreshLayout.setRefreshing(false);
             }
 
@@ -193,7 +208,7 @@ public class DriverActivity extends BaseActivity {
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
                         Toast.makeText(mContext, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
 
-                    }else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
+                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
                         Toast.makeText(mContext, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         try {
                             bookingList.remove(bookingList.size() - 1);
@@ -206,8 +221,6 @@ public class DriverActivity extends BaseActivity {
 
                 } catch (Exception ex) {
                     Toast.makeText(mContext, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
-//                    mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-//                    mErrorTxtView.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -233,4 +246,54 @@ public class DriverActivity extends BaseActivity {
         });
     }
 
+    private void assignDriver(String id) {
+        Utils.loading_box(DriverActivity.this);
+        RestClient.getApiService().assignTrucker(mSessionManager.getAccessToken(), id, getIntent().getStringExtra(ID), new Callback<String>() {
+            @Override
+            public void success(String s, Response response) {
+                Log.v("" + getClass().getSimpleName(), "Response> " + s);
+                try {
+                    JSONObject mObject = new JSONObject(s);
+
+                    int status = mObject.getInt("statusCode");
+
+                    if (ApiResponseFlags.OK.getOrdinal() == status) {
+                        Constants.isTruckAssignUpdate = true;
+                        Toast.makeText(DriverActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        finish();
+
+                    } else {
+                        Toast.makeText(DriverActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Utils.loading_box_stop();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Utils.loading_box_stop();
+                try {
+                    Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
+
+                    if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
+                        Toast.makeText(mContext, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+//                        mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
+//                        mErrorTxtView.setVisibility(View.VISIBLE);
+                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
+                        Utils.shopAlterDialog(mContext, Utils.getErrorMsg(error), true);
+                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
+                        Toast.makeText(mContext, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
+
+                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
+                        Toast.makeText(mContext, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (Exception ex) {
+                    Toast.makeText(mContext, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 }

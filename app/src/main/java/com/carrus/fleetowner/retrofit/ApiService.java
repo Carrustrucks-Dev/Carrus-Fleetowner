@@ -68,4 +68,11 @@ public interface ApiService {
     @PUT("/api/v1/fleetOwner/quote/{quoteId}")
     public void modifyQuotes(@Header(AUTHORIZATION) String authorization, @Field("bidId") String bidId, @Field("tracking") String tracking, @Field("offerCost") String offerCost, @Field("note") String note,@Path("quoteId") String object, Callback<String> callback);
 
+    @PUT("/api/v1/fleetOwner/ignoreRequest/{bidId}")
+    public void ignoreBid(@Header(AUTHORIZATION) String authorization, @Path("bidId") String object, Callback<String> callback);
+
+    @FormUrlEncoded
+    @PUT("/api/v1/fleetOwner/assignTrucker")
+    public void assignTrucker(@Header(AUTHORIZATION) String authorization, @Field("driverId") String driverId, @Field("bookingId") String bookingId, Callback<String> callback);
+
 }

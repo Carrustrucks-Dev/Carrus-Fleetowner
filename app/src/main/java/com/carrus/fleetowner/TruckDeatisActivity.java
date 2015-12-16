@@ -2,6 +2,7 @@ package com.carrus.fleetowner;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,12 +20,23 @@ import com.carrus.fleetowner.models.Header;
 import com.carrus.fleetowner.models.TruckAssignDetails;
 import com.carrus.fleetowner.models.TruckQuotesDetails;
 import com.carrus.fleetowner.models.TrucksDetailsModel;
+import com.carrus.fleetowner.retrofit.RestClient;
+import com.carrus.fleetowner.utils.ApiResponseFlags;
+import com.carrus.fleetowner.utils.Constants;
+import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 import static com.carrus.fleetowner.utils.Constants.BIDVALUE;
 import static com.carrus.fleetowner.utils.Constants.CHILDACTIVITY;
@@ -50,6 +62,7 @@ public class TruckDeatisActivity extends BaseActivity {
     private List<Header> listDataHeader;
     private HashMap<Header, List<ExpandableChildItem>> listDataChild;
     private Button mQuoteBtn, mIgnoreBtn;
+    private SessionManager mSessionManager;
 
 
     @Override
@@ -61,6 +74,7 @@ public class TruckDeatisActivity extends BaseActivity {
     }
 
     private void init() {
+        mSessionManager = new SessionManager(this);
         headerTxtView = (TextView) findViewById(R.id.headerTxtView);
         mBackBtn = (ImageView) findViewById(R.id.menu_back_btn);
         mBackBtn.setVisibility(View.VISIBLE);
@@ -140,7 +154,7 @@ public class TruckDeatisActivity extends BaseActivity {
             mTruckQuotesDetails =
                     (TruckQuotesDetails) bundle.getSerializable(VALUE);
             setQuoteValuesonViews();
-        }else if (intent.getStringExtra(TYPE).equalsIgnoreCase("assigment")) {
+        } else if (intent.getStringExtra(TYPE).equalsIgnoreCase("assigment")) {
             headerTxtView.setText(getResources().getString(R.string.pendingassign_head));
             mQuoteBtn.setText(getResources().getString(R.string.assign_driver));
             mIgnoreBtn.setVisibility(View.GONE);
@@ -175,8 +189,9 @@ public class TruckDeatisActivity extends BaseActivity {
                     intent.putExtra(ID, mTruckQuotesDetails.getId());
                     intent.putExtra(QUOTEID, mTruckQuotesDetails.getQuoteId());
                     startActivityForResult(intent, CHILDACTIVITY);
-                }else if(mQuoteBtn.getText().toString().equalsIgnoreCase(getResources().getString(R.string.assign_driver))){
+                } else if (mQuoteBtn.getText().toString().equalsIgnoreCase(getResources().getString(R.string.assign_driver))) {
                     Intent mIntent = new Intent(TruckDeatisActivity.this, DriverActivity.class);
+                    intent.putExtra(ID, mTruckAssignDetails.getId());
                     startActivityForResult(mIntent, CHILDACTIVITY);
                 }
 
@@ -186,7 +201,7 @@ public class TruckDeatisActivity extends BaseActivity {
         mIgnoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                ignoreRequest();
             }
         });
 
@@ -196,7 +211,8 @@ public class TruckDeatisActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CHILDACTIVITY && resultCode == RESULT_OK && data != null) {
 //            Toast.makeText(TruckDeatisActivity.this, "Successfully bid", Toast.LENGTH_SHORT).show();
-        }else{
+            finish();
+        } else {
 //            Toast.makeText(TruckDeatisActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
         }
     }
@@ -333,8 +349,8 @@ public class TruckDeatisActivity extends BaseActivity {
 
         // Adding child data
         ArrayList<ExpandableChildItem> notes = new ArrayList<ExpandableChildItem>();
-        if(mTruckAssignDetails.getTruckerNote()!=null)
-        notes.add(new ExpandableChildItem("", mTruckAssignDetails.getTruckerNote().toString(), 1));
+        if (mTruckAssignDetails.getTruckerNote() != null)
+            notes.add(new ExpandableChildItem("", mTruckAssignDetails.getTruckerNote().toString(), 1));
 
         // Adding child data
         ArrayList<ExpandableChildItem> fleetowner = new ArrayList<ExpandableChildItem>();
@@ -404,5 +420,50 @@ public class TruckDeatisActivity extends BaseActivity {
         listView.setLayoutParams(params);
         listView.requestLayout();
 
+    }
+
+    private void ignoreRequest() {
+        Utils.loading_box(TruckDeatisActivity.this);
+        RestClient.getApiService().ignoreBid(mSessionManager.getAccessToken(), mTrucksDetailsModel.getId(), new Callback<String>() {
+            @Override
+            public void success(String s, Response response) {
+                Log.v("" + getClass().getSimpleName(), "Response> " + s);
+                try {
+                    JSONObject mObject = new JSONObject(s);
+
+                    int status = mObject.getInt("statusCode");
+
+                    if (ApiResponseFlags.OK.getOrdinal() == status) {
+                        Constants.isTruckQuotesUpdated=true;
+                        Toast.makeText(TruckDeatisActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        finish();
+
+                    } else {
+                        Toast.makeText(TruckDeatisActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Utils.loading_box_stop();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Utils.loading_box_stop();
+                try {
+                    Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
+
+                    if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
+                        Toast.makeText(TruckDeatisActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
+                        Utils.shopAlterDialog(TruckDeatisActivity.this, Utils.getErrorMsg(error), true);
+                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
+                        Toast.makeText(TruckDeatisActivity.this, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception ex) {
+                    Toast.makeText(TruckDeatisActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
