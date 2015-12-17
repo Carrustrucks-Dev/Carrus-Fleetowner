@@ -5,10 +5,13 @@ import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.Header;
+import retrofit.http.Multipart;
 import retrofit.http.POST;
 import retrofit.http.PUT;
+import retrofit.http.Part;
 import retrofit.http.Path;
 import retrofit.http.Query;
+import retrofit.mime.TypedFile;
 
 /**
  * Created by Sunny on 11/3/15.
@@ -74,5 +77,9 @@ public interface ApiService {
     @FormUrlEncoded
     @PUT("/api/v1/fleetOwner/assignTrucker")
     public void assignTrucker(@Header(AUTHORIZATION) String authorization, @Field("driverId") String driverId, @Field("bookingId") String bookingId, Callback<String> callback);
+
+    @Multipart
+    @PUT("/api/v1/fleetOwner/uploadProfilePic")
+    public void uploadProfilePic(@Header(AUTHORIZATION) String authorization,@Part("image") TypedFile body, Callback<String> callback);
 
 }

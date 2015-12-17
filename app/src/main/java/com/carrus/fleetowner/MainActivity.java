@@ -211,6 +211,10 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
         }
     }
 
+    public void onRefreshImageView(){
+        drawerFragment.loadImage();
+    }
+
     @Override
     public void onStopDrawerSwip() {
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);

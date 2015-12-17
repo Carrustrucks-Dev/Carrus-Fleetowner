@@ -43,6 +43,7 @@ public class FragmentDrawer extends Fragment {
     private TypedArray icons = null;
     private FragmentDrawerListener drawerListener;
     private SessionManager mSessionManager;
+    private ImageView mProfileIV;
 
     public FragmentDrawer() {
 
@@ -83,9 +84,9 @@ public class FragmentDrawer extends Fragment {
                              Bundle savedInstanceState) {
         // Inflating view layout
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
-        final ImageView mProfileIV = (ImageView) layout.findViewById(R.id.profileIV);
-        Picasso.with(getActivity()).load(R.mipmap.ic_launcher).transform(new CircleTransform()).into(mProfileIV);
+        mProfileIV = (ImageView) layout.findViewById(R.id.profileIV);
         mSessionManager = new SessionManager(getActivity());
+        loadImage();
         recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
         final TextView mCompanyTxtView = (TextView) layout.findViewById(R.id.companyTxtView);
         mCompanyTxtView.setText(mSessionManager.getCompanyName());
@@ -121,37 +122,13 @@ public class FragmentDrawer extends Fragment {
         return layout;
     }
 
-
+    public void loadImage() {
+        if (mSessionManager.getProfilePic() != null)
+            Picasso.with(getActivity()).load(mSessionManager.getProfilePic()).placeholder(R.mipmap.ic_launcher).skipMemoryCache().resize(300, 300).transform(new CircleTransform()).into(mProfileIV);
+    }
     public void setUp(int fragmentId, DrawerLayout drawerLayout) {
         containerView = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
-//        mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
-//            @Override
-//            public void onDrawerOpened(View drawerView) {
-//                super.onDrawerOpened(drawerView);
-//                getActivity().invalidateOptionsMenu();
-//            }
-//
-//            @Override
-//            public void onDrawerClosed(View drawerView) {
-//                super.onDrawerClosed(drawerView);
-//                getActivity().invalidateOptionsMenu();
-//            }
-//
-//            @Override
-//            public void onDrawerSlide(View drawerView, float slideOffset) {
-//                super.onDrawerSlide(drawerView, slideOffset);
-//                toolbar.setAlpha(1 - slideOffset / 2);
-//            }
-//        };
-
-//        mDrawerLayout.setDrawerListener(mDrawerToggle);
-//        mDrawerLayout.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                mDrawerToggle.syncState();
-//            }
-//        });
 
     }
 

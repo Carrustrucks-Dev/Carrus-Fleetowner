@@ -58,12 +58,15 @@
     <string name="consignmntnotfound">No consignment note found</string>
     <string name="quotesamountrequired">Bid amount required</string>
     <string name="selecetDriver">Please, select driver...</string>
+    <string name="choose_image">Choose image from...</string>
 
     <!--text-->
     <string name="forgetpasswddetails">Enter email address and link would be sent to you to reset your password</string>
     <string name="searchtruck">Search Truck Number</string>
     <string name="pickup">PICK UP</string>
     <string name="dropoff">DROP OFF</string>
+    <string name="galery">Galery</string>
+    <string name="camera">Camera</string>
 
     <!-- Signout Dialog-->
     <string name="quit">Sign Out!</string>

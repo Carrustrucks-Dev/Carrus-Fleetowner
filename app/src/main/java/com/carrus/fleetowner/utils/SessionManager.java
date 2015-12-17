@@ -41,6 +41,7 @@ public class SessionManager {
     public static final String KEY_RATING = "rating";
     public static final String KEY_ADDRESS = "address";
     public static final String KEY_COMPANY_TYPE = "company_type";
+    public static final String PROFILEPIC = "profile_pic";
 
 
     // Constructor
@@ -69,7 +70,7 @@ public class SessionManager {
 //        mobileNumber.setText(sharedPreferences.getString(DRIVER_PHONENO, ""));
 //        driverRating.setRating(Float.valueOf(sharedPreferences.getString(RATING, "0")));
 
-    public void saveUserInfo(String accesstoken, String usertype, String email, String name, String comapnyName, String address, String companyType, String phone) {
+    public void saveUserInfo(String accesstoken, String usertype, String email, String name, String comapnyName, String address, String companyType, String phone, String profilePic) {
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
 
@@ -83,6 +84,7 @@ public class SessionManager {
 //        editor.putString(KEY_RATING, rating);
         editor.putString(KEY_ADDRESS, address);
         editor.putString(KEY_COMPANY_TYPE, companyType);
+        editor.putString(PROFILEPIC, profilePic);
 
         // commit changes
         editor.commit();
@@ -159,5 +161,16 @@ public class SessionManager {
 
     public String getCompanyType() {
         return pref.getString(KEY_COMPANY_TYPE, "Private");
+    }
+
+    public String getProfilePic() {
+        return pref.getString(PROFILEPIC, "");
+    }
+
+    public void setProfilePic(String profilepic) {
+        editor.putString(PROFILEPIC, profilepic);
+
+        // commit changes
+        editor.commit();
     }
 }

@@ -103,13 +103,11 @@ public class LoginActivity extends BaseActivity {
                 Log.v("" + getClass().getSimpleName(), "Response> " + s);
                 try {
                     JSONObject mObject = new JSONObject(s);
-
                     int status = mObject.getInt("statusCode");
-
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
 
                         JSONObject mDataobject = mObject.getJSONObject("data");
-                        mSessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getString("userType"), mDataobject.getString("email"), mDataobject.getString("fullName"), mDataobject.getString("companyName"), mDataobject.getJSONObject("addressDetails").getString("address"),"", mDataobject.getString("phoneNumber"));
+                        mSessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getString("userType"), mDataobject.getString("email"), mDataobject.getString("fullName"), mDataobject.getString("companyName"), mDataobject.getJSONObject("addressDetails").getString("address"), "", mDataobject.getString("phoneNumber"), mDataobject.getJSONObject("profilePicture").getString("original"));
                         Toast.makeText(LoginActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                         startActivityForResult(new Intent(LoginActivity.this, MainActivity.class), 500);
                         finish();
@@ -139,6 +137,7 @@ public class LoginActivity extends BaseActivity {
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
                         Toast.makeText(LoginActivity.this, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                     }
+
                 } catch (Exception ex) {
                     Toast.makeText(LoginActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
                 }
