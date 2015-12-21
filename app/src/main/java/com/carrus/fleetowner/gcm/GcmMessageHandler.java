@@ -75,8 +75,8 @@ public class GcmMessageHandler extends IntentService {
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
-                        .setLargeIcon(BitmapFactory.decodeResource(getResources(),
-                        getNotificationIcon()))
+                        .setSmallIcon(getNotificationIcon()).setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                        R.mipmap.ic_launcher))
                         .setContentTitle(title)
                         .setStyle(new NotificationCompat.BigTextStyle()
                                 .bigText(msg)).setAutoCancel(true)
