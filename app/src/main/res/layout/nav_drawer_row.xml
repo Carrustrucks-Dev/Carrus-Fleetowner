@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:layout_marginTop="@dimen/fifteen"
         android:orientation="horizontal">
 
         <ImageView
@@ -21,7 +20,6 @@
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="@dimen/fifteen"
             android:layout_height="wrap_content"
             android:textColor="@drawable/textview_selector"
             android:textSize="@dimen/mid_fond"
@@ -32,8 +30,7 @@
         android:id="@+id/lineView"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/point_five"
-        android:layout_marginTop="@dimen/fifteen"
-        android:background="@color/windowBackground"
+        android:background="@color/gray_text"
         android:layout_marginLeft="@dimen/thirty"
         android:layout_marginRight="@dimen/thirty"
         android:paddingLeft="@dimen/thirty"

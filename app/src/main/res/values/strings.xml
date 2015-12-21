@@ -35,11 +35,11 @@
     <!-- naviagtion drawer icons-->
     <array name="nav_drawer_icons">
         <item>@drawable/home_btn_selector</item>
-        <item>@drawable/booking_btn_selector</item>
-        <item>@drawable/payment_btn_selector</item>
-        <item>@drawable/contact_btn_selector</item>
-        <item>@drawable/contact_btn_selector</item>
-        <item>@drawable/contact_btn_selector</item>
+        <item>@drawable/notification_btn_selector</item>
+        <item>@drawable/truck_btn_selector</item>
+        <item>@drawable/driver_btn_selector</item>
+        <item>@drawable/aboutus_btn_selector</item>
+        <item>@drawable/call_btn_selector</item>
         <item>@drawable/signout_btn_selector</item>
     </array>
 

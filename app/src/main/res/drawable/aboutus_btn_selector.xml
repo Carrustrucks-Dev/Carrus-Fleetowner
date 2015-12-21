@@ -3,14 +3,14 @@
 
     <item
         android:state_pressed="true"
-        android:drawable="@mipmap/mybookings_on"
+        android:drawable="@mipmap/aboutus_on"
         />
     <item
         android:state_focused="true"
-        android:drawable="@mipmap/mybookings_on"
+        android:drawable="@mipmap/aboutus_on"
         />
     <item
-        android:drawable="@mipmap/mybookings_off"
+        android:drawable="@mipmap/aboutus_off"
         />
 
 </selector>

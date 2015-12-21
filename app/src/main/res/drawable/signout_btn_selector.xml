@@ -3,14 +3,14 @@
 
     <item
         android:state_pressed="true"
-        android:drawable="@mipmap/icon_signout_pressed"
+        android:drawable="@mipmap/signout_on"
         />
     <item
         android:state_focused="true"
-        android:drawable="@mipmap/icon_signout_pressed"
+        android:drawable="@mipmap/signout_on"
         />
     <item
-        android:drawable="@mipmap/icon_signout_normal"
+        android:drawable="@mipmap/signout_off"
         />
 
 </selector>

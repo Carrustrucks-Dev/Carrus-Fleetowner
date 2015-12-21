@@ -52,7 +52,7 @@ public class GcmMessageHandler extends IntentService {
             if (myObject.has("bookingStatus")) {
 
             } else
-                sendNotification(extras.getString("message").toString(), extras.getString("brand_name").toString(), myObject.getString("bookingId"));
+                sendNotification(extras.getString("message").toString().replaceAll("_", " "), extras.getString("brand_name").toString(), myObject.getString("bookingId"));
 
         } catch (Exception e) {
             sendNotification("", "Carrus Shipper", "");
@@ -75,7 +75,7 @@ public class GcmMessageHandler extends IntentService {
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(getNotificationIcon()).setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                        .setLargeIcon(BitmapFactory.decodeResource(getResources(),
                         getNotificationIcon()))
                         .setContentTitle(title)
                         .setStyle(new NotificationCompat.BigTextStyle()

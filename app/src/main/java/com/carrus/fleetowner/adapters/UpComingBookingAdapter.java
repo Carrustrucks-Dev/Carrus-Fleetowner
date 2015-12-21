@@ -167,6 +167,7 @@ public class UpComingBookingAdapter extends RecyclerView.Adapter {
                     break;
 
             }
+
             try {
                 ((ViewHolder) holder).mTimeTxtView.setText(Utils.getDay(myList.get(position).pickUp.date) + ", " + myList.get(position).pickUp.time);
             } catch (ParseException e) {
@@ -196,6 +197,8 @@ public class UpComingBookingAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         return myList != null ? myList.size() : 0;
     }
+
+
     @Override
     public int getItemViewType(int position) {
         return myList.get(position) != null ? VIEW_ITEM : VIEW_PROG;
