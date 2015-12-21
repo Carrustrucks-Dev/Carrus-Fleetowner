@@ -82,4 +82,7 @@ public interface ApiService {
     @PUT("/api/v1/fleetOwner/uploadProfilePic")
     public void uploadProfilePic(@Header(AUTHORIZATION) String authorization,@Part("image") TypedFile body, Callback<String> callback);
 
+    @GET("/api/v1/fleetOwner/allTruck")
+    public void getallTruck(@Header(AUTHORIZATION) String authorization, @Query(LIMIT) String limit, @Query(SKIP) String skip, @Query(SORT) String sort, @Query("truckStatus") String truckStatus, Callback<String> callback);
+
 }
