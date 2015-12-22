@@ -136,6 +136,7 @@ public class TruckReguestsFragment extends Fragment {
     }
 
     private void setSelectionNewReuest(int button_id) {
+
         selectedFlag = 0;
         mNewRequestTV.setBackgroundResource(R.drawable.tab_background);
         mPendingQuotesTV.setBackgroundResource(R.drawable.tab_square_background_white);
