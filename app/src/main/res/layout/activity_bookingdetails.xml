@@ -35,7 +35,7 @@
                     android:textSize="@dimen/mid_fond" />
 
 
-                <TextView
+                <com.carrus.fleetowner.utils.CapitalizedTextView
                     android:id="@+id/statusTxtView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -395,35 +395,6 @@
                     android:layout_height="wrap_content"
                     android:background="@color/tabcolor_dark"
                     android:text="@string/viewpod"
-                    android:textColor="@color/windowBackground"
-                    android:visibility="gone" />
-
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="@dimen/one"
-                    android:background="@color/windowBackground" />
-
-
-                <Button
-                    android:id="@+id/viewInVoiceBtn"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/tabcolor_dark"
-                    android:text="@string/viewinvoice"
-                    android:textColor="@color/windowBackground"
-                    android:visibility="gone" />
-
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="@dimen/one"
-                    android:background="@color/windowBackground" />
-
-                <Button
-                    android:id="@+id/viewConsignmentBtn"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/tabcolor_dark"
-                    android:text="@string/viewconsignment"
                     android:textColor="@color/windowBackground"
                     android:visibility="gone" />
 

@@ -1,6 +1,7 @@
 package com.carrus.fleetowner.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.carrus.fleetowner.R;
+import com.carrus.fleetowner.ShowPODActivity;
+import com.carrus.fleetowner.models.DocModel;
 import com.carrus.fleetowner.models.ExpandableChildItem;
 import com.carrus.fleetowner.models.Header;
 
@@ -21,18 +24,29 @@ import java.util.List;
 /**
  * Created by Saurbhv on 10/30/15.
  */
-public class ExpandableListAdapter extends BaseExpandableListAdapter{
+public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context _context;
     private List<Header> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<Header, List<ExpandableChildItem>> _listDataChild;
+    private DocModel doc;
+
+    public ExpandableListAdapter(Context context, List<Header> listDataHeader,
+                                 HashMap<Header, List<ExpandableChildItem>> listChildData, DocModel doc) {
+        this._context = context;
+        this._listDataHeader = listDataHeader;
+        this._listDataChild = listChildData;
+        this.doc = doc;
+    }
+
 
     public ExpandableListAdapter(Context context, List<Header> listDataHeader,
                                  HashMap<Header, List<ExpandableChildItem>> listChildData) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
+        this.doc = doc;
     }
 
     @Override
@@ -60,33 +74,48 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter{
                 typeCargoTxtView = (TextView) convertView.findViewById(R.id.typeCargoTxtView);
                 weightTxtView = (TextView) convertView.findViewById(R.id.weightTxtView);
                 typeCargoTxtView.setText(expandableChildItem.getName());
-                weightTxtView.setText(expandableChildItem.getDetail()+" Ton");
+                weightTxtView.setText(expandableChildItem.getDetail() + " Ton");
                 break;
 
             case 1:
                 convertView = infalInflater.inflate(R.layout.itemview_desc, null);
-                TextView mDescTxtView=(TextView)convertView.findViewById(R.id.descTxtView);
-                if(expandableChildItem.getDetail()!=null)
-                mDescTxtView.setText(expandableChildItem.getDetail());
+                TextView mDescTxtView = (TextView) convertView.findViewById(R.id.descTxtView);
+                if (expandableChildItem.getDetail() != null)
+                    mDescTxtView.setText(expandableChildItem.getDetail());
                 break;
 
             case 2:
                 convertView = infalInflater.inflate(R.layout.itemview_documents, null);
-                final LinearLayout podBtnLayout=(LinearLayout) convertView.findViewById(R.id.podBtnLayout);
-                final LinearLayout invoiceBtnLayout=(LinearLayout) convertView.findViewById(R.id.invoiceBtnLayout);
-                final LinearLayout consigmntBtnLayout=(LinearLayout) convertView.findViewById(R.id.consigmntBtnLayout);
+                final LinearLayout podBtnLayout = (LinearLayout) convertView.findViewById(R.id.podBtnLayout);
+                final LinearLayout invoiceBtnLayout = (LinearLayout) convertView.findViewById(R.id.invoiceBtnLayout);
+                final LinearLayout consigmntBtnLayout = (LinearLayout) convertView.findViewById(R.id.consigmntBtnLayout);
+                final ImageView podImgView = (ImageView) convertView.findViewById(R.id.podIV);
+                final ImageView invoiceImgView = (ImageView) convertView.findViewById(R.id.invoiceIV);
+                final ImageView consignmntImgView = (ImageView) convertView.findViewById(R.id.consigmntIV);
 
                 podBtnLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(_context, "POD", Toast.LENGTH_SHORT).show();
+                        if (doc.pod != null) {
+                            Intent mIntent = new Intent(_context, ShowPODActivity.class);
+                            mIntent.putExtra("url", doc.pod);
+                            _context.startActivity(mIntent);
+                        } else {
+                            Toast.makeText(_context, _context.getResources().getString(R.string.yetnotimplement), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
                 invoiceBtnLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(_context, "Invoice", Toast.LENGTH_SHORT).show();
+                        if (doc.invoice != null) {
+                            Intent mIntent = new Intent(_context, ShowPODActivity.class);
+                            mIntent.putExtra("url", doc.invoice);
+                            _context.startActivity(mIntent);
+                        } else {
+                            Toast.makeText(_context, _context.getResources().getString(R.string.yetnotimplement), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
@@ -94,9 +123,33 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter{
                 consigmntBtnLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(_context, "Consignment", Toast.LENGTH_SHORT).show();
+                        if (doc.consigmentNote != null) {
+                            Intent mIntent = new Intent(_context, ShowPODActivity.class);
+                            mIntent.putExtra("url", doc.consigmentNote);
+                            _context.startActivity(mIntent);
+                        } else {
+                            Toast.makeText(_context, _context.getResources().getString(R.string.yetnotimplement), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
+
+                if (doc.pod != null) {
+                    podImgView.setBackgroundResource(R.mipmap.icon_view_doc);
+                } else {
+                    podImgView.setBackgroundResource(R.mipmap.icon_upload_doc);
+                }
+
+                if (doc.invoice != null) {
+                    invoiceImgView.setBackgroundResource(R.mipmap.icon_view_doc);
+                } else {
+                    invoiceImgView.setBackgroundResource(R.mipmap.icon_upload_doc);
+                }
+
+                if (doc.consigmentNote != null) {
+                    consignmntImgView.setBackgroundResource(R.mipmap.icon_view_doc);
+                } else {
+                    consignmntImgView.setBackgroundResource(R.mipmap.icon_upload_doc);
+                }
                 break;
 
         }
@@ -148,7 +201,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter{
                 .findViewById(R.id.header_title);
         lblListHeader.setText(mHeader.getName());
 
-        final ImageView btn_expand_toggle=(ImageView) convertView.findViewById(R.id.btn_expand_toggle);
+        final ImageView btn_expand_toggle = (ImageView) convertView.findViewById(R.id.btn_expand_toggle);
 
 //        if (mHeader.isVisible()) {
 //            btn_expand_toggle.setImageResource(R.mipmap.circle_minus);

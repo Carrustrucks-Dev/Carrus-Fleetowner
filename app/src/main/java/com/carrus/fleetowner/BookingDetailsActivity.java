@@ -42,7 +42,6 @@ public class BookingDetailsActivity extends BaseActivity {
     //    private RecyclerView recyclerview;
     private MyBookingDataModel mMyBookingDataModel;
     private TextView nameDetailTxtView, typeDetailTxtView, locationDetailsTxtView, trackDetailsIdTxtView, statusTxtView, addresPickupTxtView, datePickupTxtView, timePickupTxtView, addressDropTxtView, dateDropTxtview, timeDropTxtView, paymentModeTxtView, totalCostTxtView, namePickUpTxtView, phonePickUpTxtView, codePickUpTxtView, nameDropofTxtView, phoneDropofTxtView, codeDropofTxtView;
-    private Button viewPodBtn, cancelBtn, viewInVoiceBtn, viewConsignmentBtn;
     private ExpandableListView mExpandableListView;
     private List<Header> listDataHeader;
     private HashMap<Header, List<ExpandableChildItem>> listDataChild;
@@ -85,10 +84,6 @@ public class BookingDetailsActivity extends BaseActivity {
         timeDropTxtView = (TextView) findViewById(R.id.timeDropTxtView);
         paymentModeTxtView = (TextView) findViewById(R.id.paymentModeTxtView);
         totalCostTxtView = (TextView) findViewById(R.id.totalCostTxtView);
-        viewPodBtn = (Button) findViewById(R.id.viewPodBtn);
-        cancelBtn = (Button) findViewById(R.id.cancelBtn);
-        viewInVoiceBtn = (Button) findViewById(R.id.viewInVoiceBtn);
-        viewConsignmentBtn = (Button) findViewById(R.id.viewConsignmentBtn);
         mProfileIV = (ImageView) findViewById(R.id.profileIV);
         locationIV = (ImageView) findViewById(R.id.locationBtnIV);
         namePickUpTxtView = (TextView) findViewById(R.id.namePickupTxtView);
@@ -97,8 +92,6 @@ public class BookingDetailsActivity extends BaseActivity {
         nameDropofTxtView = (TextView) findViewById(R.id.nameDropTxtView);
         phoneDropofTxtView = (TextView) findViewById(R.id.phoneDropTxtView);
         codeDropofTxtView = (TextView) findViewById(R.id.codeDropTxtView);
-
-//        Picasso.with(BookingDetailsActivity.this).load(R.mipmap.icon_placeholder).resize(100, 100).transform(new CircleTransform()).into(mProfileIV);
 
         // Listview Group click listener
         mExpandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
@@ -175,56 +168,6 @@ public class BookingDetailsActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 onShareClick();
-            }
-        });
-
-        viewPodBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mMyBookingDataModel.doc.pod != null) {
-                    Intent mIntent = new Intent(BookingDetailsActivity.this, ShowPODActivity.class);
-                    mIntent.putExtra("url", mMyBookingDataModel.doc.pod);
-                    startActivity(mIntent);
-                } else {
-                    Toast.makeText(BookingDetailsActivity.this, getResources().getString(R.string.podnotfound), Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
-        viewInVoiceBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mMyBookingDataModel.doc.invoice != null) {
-                    Intent mIntent = new Intent(BookingDetailsActivity.this, ShowPODActivity.class);
-                    mIntent.putExtra("url", mMyBookingDataModel.doc.invoice);
-                    startActivity(mIntent);
-                } else {
-                    Toast.makeText(BookingDetailsActivity.this, getResources().getString(R.string.invoicenotfound), Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
-
-        viewConsignmentBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mMyBookingDataModel.doc.consigmentNote != null) {
-                    Intent mIntent = new Intent(BookingDetailsActivity.this, ShowPODActivity.class);
-                    mIntent.putExtra("url", mMyBookingDataModel.doc.consigmentNote);
-                    startActivity(mIntent);
-                } else {
-                    Toast.makeText(BookingDetailsActivity.this, getResources().getString(R.string.consignmntnotfound), Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                performCancelAction();
             }
         });
 
@@ -307,83 +250,10 @@ public class BookingDetailsActivity extends BaseActivity {
         nameDetailTxtView.setText(mMyBookingDataModel.shipper.firstName + " " + mMyBookingDataModel.shipper.lastName);
         typeDetailTxtView.setText(mMyBookingDataModel.truck.truckType.typeTruckName + ", " + mMyBookingDataModel.truck.truckNumber);
         locationDetailsTxtView.setText(mMyBookingDataModel.pickUp.city + " to " + mMyBookingDataModel.dropOff.city);
-        if (mMyBookingDataModel.crn!=null && !mMyBookingDataModel.crn.equalsIgnoreCase(""))
+        if (mMyBookingDataModel.crn != null && !mMyBookingDataModel.crn.equalsIgnoreCase(""))
             trackDetailsIdTxtView.setText("CRN-" + mMyBookingDataModel.crn);
 
         statusTxtView.setText(mMyBookingDataModel.bookingStatus.replace("_", " "));
-        switch (mMyBookingDataModel.bookingStatus.toLowerCase()) {
-            case "on_going":
-            case "halt":
-            case "on the way":
-            case "reached_destination":
-                topView.setBackgroundColor(getResources().getColor(R.color.blue_ongoing));
-                cancelBtn.setVisibility(View.GONE);
-                viewPodBtn.setVisibility(View.GONE);
-                viewInVoiceBtn.setVisibility(View.GONE);
-                viewConsignmentBtn.setVisibility(View.GONE);
-                locationIV.setVisibility(View.VISIBLE);
-                break;
-
-            case "canceled":
-                topView.setBackgroundColor(getResources().getColor(R.color.red));
-                viewPodBtn.setVisibility(View.GONE);
-                viewInVoiceBtn.setVisibility(View.GONE);
-                viewConsignmentBtn.setVisibility(View.GONE);
-                cancelBtn.setVisibility(View.GONE);
-                break;
-
-            case "confirmed":
-                topView.setBackgroundColor(getResources().getColor(R.color.green));
-                cancelBtn.setVisibility(View.VISIBLE);
-                viewPodBtn.setVisibility(View.GONE);
-                viewInVoiceBtn.setVisibility(View.GONE);
-                viewConsignmentBtn.setVisibility(View.GONE);
-                break;
-
-            case "completed":
-                topView.setBackgroundColor(getResources().getColor(R.color.gray_completed));
-                cancelBtn.setVisibility(View.GONE);
-                viewPodBtn.setVisibility(View.VISIBLE);
-                viewInVoiceBtn.setVisibility(View.VISIBLE);
-                viewConsignmentBtn.setVisibility(View.VISIBLE);
-
-                if (mMyBookingDataModel.doc.pod != null) {
-                    viewPodBtn.setBackgroundColor(getResources().getColor(R.color.tabcolor_dark));
-                } else {
-                    viewPodBtn.setBackgroundColor(getResources().getColor(R.color.gray_completed));
-                }
-
-                if (mMyBookingDataModel.doc.invoice != null) {
-                    viewInVoiceBtn.setBackgroundColor(getResources().getColor(R.color.tabcolor_dark));
-                } else {
-                    viewInVoiceBtn.setBackgroundColor(getResources().getColor(R.color.gray_completed));
-                }
-
-                if (mMyBookingDataModel.doc.consigmentNote != null) {
-                    viewConsignmentBtn.setBackgroundColor(getResources().getColor(R.color.tabcolor_dark));
-                } else {
-                    viewConsignmentBtn.setBackgroundColor(getResources().getColor(R.color.gray_completed));
-                }
-
-                break;
-        }
-
-
-        switch (mMyBookingDataModel.bookingStatus.toUpperCase()) {
-            case "ACCEPTED":
-                cancelBtn.setVisibility(View.VISIBLE);
-                break;
-
-            case "PENDING":
-                cancelBtn.setVisibility(View.VISIBLE);
-                break;
-
-
-            case "CONFIRMED":
-                cancelBtn.setVisibility(View.VISIBLE);
-                break;
-        }
-
 
         addresPickupTxtView.setText(mMyBookingDataModel.pickUp.address + ", " + mMyBookingDataModel.pickUp.city + ", " + mMyBookingDataModel.pickUp.state + ", " + mMyBookingDataModel.pickUp.zipCode);
 
@@ -433,7 +303,7 @@ public class BookingDetailsActivity extends BaseActivity {
         listDataChild.put(listDataHeader.get(2), notes);
         listDataChild.put(listDataHeader.get(3), fleetowner);
 
-        listAdapter = new ExpandableListAdapter(BookingDetailsActivity.this, listDataHeader, listDataChild);
+        listAdapter = new ExpandableListAdapter(BookingDetailsActivity.this, listDataHeader, listDataChild, mMyBookingDataModel.doc);
         mExpandableListView.setAdapter(listAdapter);
         setListViewHeight(mExpandableListView);
 //        chnageHieghtListView();

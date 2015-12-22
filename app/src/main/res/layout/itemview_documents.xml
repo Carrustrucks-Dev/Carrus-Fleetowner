@@ -15,9 +15,10 @@
         android:background="@drawable/dotted">
 
         <ImageView
+            android:id="@+id/podIV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/icon_upload_doc" />
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,9 +40,10 @@
         android:background="@drawable/dotted">
 
         <ImageView
+            android:id="@+id/invoiceIV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/icon_upload_doc" />
+             />
 
         <TextView
             android:layout_width="wrap_content"
@@ -63,9 +65,10 @@
         android:background="@drawable/dotted">
 
         <ImageView
+            android:id="@+id/consigmntIV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/icon_upload_doc" />
+             />
 
         <TextView
             android:layout_width="wrap_content"
