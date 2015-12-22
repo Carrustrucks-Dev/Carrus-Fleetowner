@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/ten"
         android:orientation="horizontal">
 
         <ImageView
@@ -30,6 +31,7 @@
         android:id="@+id/lineView"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/point_five"
+        android:layout_marginTop="@dimen/ten"
         android:background="@color/gray_text"
         android:layout_marginLeft="@dimen/thirty"
         android:layout_marginRight="@dimen/thirty"
