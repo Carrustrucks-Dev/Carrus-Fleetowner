@@ -157,7 +157,6 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
         statusTxtView = (TextView) view.findViewById(R.id.statusTxtView);
         mSearchEdtTxt = (EditText) view.findViewById(R.id.searchEdtTxt);
 
-
         mSearchEdtTxt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
