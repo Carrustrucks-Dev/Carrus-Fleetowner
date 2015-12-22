@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/ten"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/podBtnLayout"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/ten"
+        android:background="@drawable/dotted">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_upload_doc" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/ten"
+            android:text="@string/pod"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/large_font"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/invoiceBtnLayout"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ten"
+        android:orientation="horizontal"
+        android:padding="@dimen/ten"
+        android:background="@drawable/dotted">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_upload_doc" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/ten"
+            android:text="@string/invoice"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/large_font"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/consigmntBtnLayout"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ten"
+        android:orientation="horizontal"
+        android:padding="@dimen/ten"
+        android:background="@drawable/dotted">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_upload_doc" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/ten"
+            android:text="@string/condignmntnotes"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/large_font"/>
+    </LinearLayout>
+</LinearLayout>

@@ -39,7 +39,7 @@
         <item>@drawable/truck_btn_selector</item>
         <item>@drawable/driver_btn_selector</item>
         <item>@drawable/aboutus_btn_selector</item>
-        <item>@drawable/call_btn_selector</item>
+        <item>@drawable/navcall_btn_selector</item>
         <item>@drawable/signout_btn_selector</item>
     </array>
 
@@ -117,6 +117,7 @@
     <string name="newRequest">New Requests</string>
     <string name="cargodetails">CARGO DETAILS</string>
     <string name="notesCaps">NOTES</string>
+    <string name="documents">DOCUMENTS</string>
     <string name="fleetownernotes">FLEET OWNER NOTES</string>
     <string name="shippernotes">SHIPPER\'S NOTES</string>
     <string name="typeofcargo">Type of Cargo</string>
@@ -138,4 +139,7 @@
     <string name="viewinvoice">VIEW INVOICE</string>
     <string name="viewconsignment">VIEW CONSIGNMENT NOTE</string>
     <string name="notes_cap">NOTES</string>
+    <string name="pod">POD</string>
+    <string name="invoice">Invoice</string>
+    <string name="condignmntnotes">Consignment Notes</string>
 </resources>

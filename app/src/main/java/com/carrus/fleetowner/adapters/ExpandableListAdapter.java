@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.models.ExpandableChildItem;
@@ -59,14 +61,42 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter{
                 weightTxtView = (TextView) convertView.findViewById(R.id.weightTxtView);
                 typeCargoTxtView.setText(expandableChildItem.getName());
                 weightTxtView.setText(expandableChildItem.getDetail()+" Ton");
-
-
                 break;
+
             case 1:
                 convertView = infalInflater.inflate(R.layout.itemview_desc, null);
                 TextView mDescTxtView=(TextView)convertView.findViewById(R.id.descTxtView);
                 if(expandableChildItem.getDetail()!=null)
                 mDescTxtView.setText(expandableChildItem.getDetail());
+                break;
+
+            case 2:
+                convertView = infalInflater.inflate(R.layout.itemview_documents, null);
+                final LinearLayout podBtnLayout=(LinearLayout) convertView.findViewById(R.id.podBtnLayout);
+                final LinearLayout invoiceBtnLayout=(LinearLayout) convertView.findViewById(R.id.invoiceBtnLayout);
+                final LinearLayout consigmntBtnLayout=(LinearLayout) convertView.findViewById(R.id.consigmntBtnLayout);
+
+                podBtnLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(_context, "POD", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                invoiceBtnLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(_context, "Invoice", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+                consigmntBtnLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(_context, "Consignment", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 break;
 
         }
@@ -129,8 +159,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter{
         int imageResourceId = isExpanded ? R.mipmap.circle_minus
                 : R.mipmap.circle_plus;
         btn_expand_toggle.setImageResource(imageResourceId);
-
-
 
         return convertView;
     }

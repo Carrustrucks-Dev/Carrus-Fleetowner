@@ -147,8 +147,9 @@ public class BookingDetailsActivity extends BaseActivity {
 
         // Adding child data
         listDataHeader.add(new Header(getResources().getString(R.string.cargodetails), false));
+        listDataHeader.add(new Header(getResources().getString(R.string.documents), false));
         listDataHeader.add(new Header(getResources().getString(R.string.notes_cap), false));
-        listDataHeader.add(new Header(getResources().getString(R.string.fleetownernotes), false));
+        listDataHeader.add(new Header(getResources().getString(R.string.shippernotes), false));
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
@@ -416,6 +417,10 @@ public class BookingDetailsActivity extends BaseActivity {
         cargoDetails.add(new ExpandableChildItem(mMyBookingDataModel.cargo.cargoType.typeCargoName, mMyBookingDataModel.cargo.weight + "", 0));
 
         // Adding child data
+        ArrayList<ExpandableChildItem> docDetails = new ArrayList<ExpandableChildItem>();
+        docDetails.add(new ExpandableChildItem(mMyBookingDataModel.cargo.cargoType.typeCargoName, mMyBookingDataModel.cargo.weight + "", 2));
+
+        // Adding child data
         ArrayList<ExpandableChildItem> notes = new ArrayList<ExpandableChildItem>();
         notes.add(new ExpandableChildItem("", mMyBookingDataModel.jobNote, 1));
 
@@ -424,20 +429,21 @@ public class BookingDetailsActivity extends BaseActivity {
         fleetowner.add(new ExpandableChildItem("", mMyBookingDataModel.truckerNote, 1));
 
         listDataChild.put(listDataHeader.get(0), cargoDetails); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), notes);
-        listDataChild.put(listDataHeader.get(2), fleetowner);
+        listDataChild.put(listDataHeader.get(1), docDetails);
+        listDataChild.put(listDataHeader.get(2), notes);
+        listDataChild.put(listDataHeader.get(3), fleetowner);
 
         listAdapter = new ExpandableListAdapter(BookingDetailsActivity.this, listDataHeader, listDataChild);
         mExpandableListView.setAdapter(listAdapter);
         setListViewHeight(mExpandableListView);
 //        chnageHieghtListView();
         final ScrollView scrollview = (ScrollView) findViewById(R.id.mainscrollview);
-
         scrollview.post(new Runnable() {
             public void run() {
                 scrollview.scrollTo(0, 0);
             }
         });
+
     }
 
     private void getBookingDetails(String id) {
