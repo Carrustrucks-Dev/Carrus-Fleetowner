@@ -74,6 +74,7 @@ public class DriverActivity extends BaseActivity {
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 //        swipeRefreshLayout.setColorSchemeColors(
 //                Color.RED, Color.GREEN, Color.BLUE, Color.CYAN);
+
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         // use this setting to improve performance if you know that changes

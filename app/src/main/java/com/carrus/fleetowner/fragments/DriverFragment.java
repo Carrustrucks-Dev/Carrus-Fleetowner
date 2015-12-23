@@ -7,13 +7,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.carrus.fleetowner.R;
+import com.carrus.fleetowner.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +32,7 @@ public class DriverFragment extends Fragment {
     private List<Fragment> myFragmentList = new ArrayList<>();
     private ViewPager vpPager;
     private MyPagerAdapter adapterViewPager;
+    private EditText mSearchEdtTxt;
 
     @Nullable
     @Override
@@ -59,9 +64,39 @@ public class DriverFragment extends Fragment {
         mBlackTextView.setText(getResources().getString(R.string.black));
         final LinearLayout mSearchLayout = (LinearLayout) view.findViewById(R.id.searchLayout);
         mSearchLayout.setVisibility(View.VISIBLE);
+        mSearchEdtTxt=(EditText) view.findViewById(R.id.searchEdtTxt);
         vpPager = (ViewPager) view.findViewById(R.id.vpPager);
         vpPager.setAdapter(adapterViewPager);
+        mSearchEdtTxt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    // Your piece of code on keyboard search click
+                    if (mSearchEdtTxt.getText().toString().trim().isEmpty()) {
+                        mSearchEdtTxt.setError(getResources().getString(R.string.enterdrivername));
+                        mSearchEdtTxt.requestFocus();
+                    } else {
+                        Utils.hideSoftKeyboard(getActivity());
+//                        if (searchTrackingId()) {
+//                            Toast.makeText(getActivity(), "No booking found", Toast.LENGTH_SHORT).show();
+//                        }
+                        if(selectedFlag==0){
 
+                            ((WhiteDriverFragment)adapterViewPager.getItem(0)).isRefreshView=true;
+                            ((WhiteDriverFragment)adapterViewPager.getItem(0)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
+
+                        }else{
+                            ((BlackDriverFragment)adapterViewPager.getItem(1)).isRefreshView=true;
+                            ((BlackDriverFragment)adapterViewPager.getItem(1)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
+                        }
+
+                    }
+
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void initializeClickListners() {

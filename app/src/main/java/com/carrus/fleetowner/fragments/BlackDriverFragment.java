@@ -52,7 +52,7 @@ public class BlackDriverFragment extends Fragment {
     private SessionManager mSessionManager;
     private int skip = 0;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private boolean isRefreshView = false;
+    public boolean isRefreshView = false;
     private ConnectionDetector mConnectionDetector;
     private TextView mErrorTxtView;
     private List<Datum> bookingList;
@@ -150,7 +150,7 @@ public class BlackDriverFragment extends Fragment {
         }
     }
 
-    private void getMyBooking(String val) {
+    public void getMyBooking(String val) {
         if (isRefreshView) {
             swipeRefreshLayout.setRefreshing(true);
             skip=0;
