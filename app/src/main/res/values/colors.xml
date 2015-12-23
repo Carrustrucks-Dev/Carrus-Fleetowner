@@ -13,6 +13,8 @@
     <color name="transparent">#00000000</color>
     <color name="gray">#F0F0F0</color>
     <color name="gray_text">#969696</color>
+    <color name="dark_gray">#565656</color>
+    <color name="tracnsparent_gray">#CC969696</color>
     <color name="red">#FB4E4E</color>
     <color name="green">#72CD56</color>
     <color name="blue_ongoing">#2058AB</color>

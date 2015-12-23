@@ -38,7 +38,7 @@ import java.util.List;
 public class BookingDetailsActivity extends BaseActivity {
 
     private TextView headerTxtView;
-    private ImageView mBackBtn, shareBtnIV;
+    private ImageView mBackBtn;
     //    private RecyclerView recyclerview;
     private MyBookingDataModel mMyBookingDataModel;
     private TextView nameDetailTxtView, typeDetailTxtView, locationDetailsTxtView, trackDetailsIdTxtView, statusTxtView, addresPickupTxtView, datePickupTxtView, timePickupTxtView, addressDropTxtView, dateDropTxtview, timeDropTxtView, paymentModeTxtView, totalCostTxtView, namePickUpTxtView, phonePickUpTxtView, codePickUpTxtView, nameDropofTxtView, phoneDropofTxtView, codeDropofTxtView;
@@ -64,9 +64,7 @@ public class BookingDetailsActivity extends BaseActivity {
         headerTxtView = (TextView) findViewById(R.id.headerTxtView);
         headerTxtView.setText(getResources().getString(R.string.bookingdetails));
         mBackBtn = (ImageView) findViewById(R.id.menu_back_btn);
-        shareBtnIV = (ImageView) findViewById(R.id.shareBtnIV);
         mBackBtn.setVisibility(View.VISIBLE);
-        shareBtnIV.setVisibility(View.VISIBLE);
 //        recyclerview = (RecyclerView) findViewById(R.id.recyclerview);
 //        recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         topView = (RelativeLayout) findViewById(R.id.topView);
@@ -164,12 +162,12 @@ public class BookingDetailsActivity extends BaseActivity {
             }
         });
 
-        shareBtnIV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onShareClick();
-            }
-        });
+//        shareBtnIV.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onShareClick();
+//            }
+//        });
 
         findViewById(R.id.callBtnIV).setOnClickListener(new View.OnClickListener() {
             @Override

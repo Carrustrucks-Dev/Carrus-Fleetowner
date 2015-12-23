@@ -21,6 +21,7 @@ import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -86,7 +87,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
     private GMapV2GetRouteDirection v2GetRouteDirection;
     private ConnectionDetector mConnectionDetector;
     private SessionManager mSessionManager;
-    private RelativeLayout mBottomView;
+    private LinearLayout mBottomView;
     private Trucks mTrucks;
     private boolean isMarkerMatch = false;
     private ImageView mProfileIV;
@@ -122,7 +123,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        mBottomView = (RelativeLayout) rootView.findViewById(R.id.bottomview);
+        mBottomView = (LinearLayout) rootView.findViewById(R.id.bottomview);
         mConnectionDetector = new ConnectionDetector(getActivity());
         hideProfile();
         try {
