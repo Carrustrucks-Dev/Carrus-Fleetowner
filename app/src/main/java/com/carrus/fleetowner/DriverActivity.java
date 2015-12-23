@@ -137,7 +137,7 @@ public class DriverActivity extends BaseActivity {
                 Utils.loading_box(mContext);
         }
 
-        RestClient.getApiService().getallTrucker(mSessionManager.getAccessToken(), LIMIT + "", skip + "", SORT, Constants.DRIVERWHITE, new Callback<String>() {
+        RestClient.getApiService().getallTrucker(mSessionManager.getAccessToken(), "", LIMIT + "", skip + "", SORT, Constants.DRIVERWHITE, new Callback<String>() {
 
             @Override
             public void success(String s, Response response) {

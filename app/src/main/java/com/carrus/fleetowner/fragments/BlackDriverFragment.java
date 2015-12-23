@@ -89,7 +89,7 @@ public class BlackDriverFragment extends Fragment {
         mSessionManager = new SessionManager(getActivity());
         mConnectionDetector = new ConnectionDetector(getActivity());
         if (mConnectionDetector.isConnectingToInternet())
-            getMyBooking();
+            getMyBooking("");
         else {
             mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
             mErrorTxtView.setVisibility(View.VISIBLE);
@@ -103,7 +103,7 @@ public class BlackDriverFragment extends Fragment {
             public void onClick(View v) {
                 mErrorTxtView.setVisibility(View.GONE);
                 if (mConnectionDetector.isConnectingToInternet())
-                    getMyBooking();
+                    getMyBooking("");
                 else {
                     mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
                     mErrorTxtView.setVisibility(View.VISIBLE);
@@ -134,7 +134,7 @@ public class BlackDriverFragment extends Fragment {
             @Override
             public void onRefresh() {
                 isRefreshView = true;
-                getMyBooking();
+                getMyBooking("");
             }
         });
     }
@@ -146,11 +146,11 @@ public class BlackDriverFragment extends Fragment {
         if(Constants.isUpComingUpdate){
             Constants.isUpComingUpdate=false;
             isRefreshView = true;
-            getMyBooking();
+            getMyBooking("");
         }
     }
 
-    private void getMyBooking() {
+    private void getMyBooking(String val) {
         if (isRefreshView) {
             swipeRefreshLayout.setRefreshing(true);
             skip=0;
@@ -160,7 +160,7 @@ public class BlackDriverFragment extends Fragment {
                 Utils.loading_box(getActivity());
         }
 
-        RestClient.getApiService().getallTrucker(mSessionManager.getAccessToken(), LIMIT + "", skip + "", SORT,Constants.DRIVERBLACK, new Callback<String>() {
+        RestClient.getApiService().getallTrucker(mSessionManager.getAccessToken(),val, LIMIT + "", skip + "", SORT,Constants.DRIVERBLACK, new Callback<String>() {
 
             @Override
             public void success(String s, Response response) {
@@ -262,7 +262,7 @@ public class BlackDriverFragment extends Fragment {
                 try {
                     bookingList.add(null);
                     mAdapter.notifyItemInserted(bookingList.size() - 1);
-                    getMyBooking();
+                    getMyBooking("");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

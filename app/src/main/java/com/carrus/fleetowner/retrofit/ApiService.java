@@ -23,6 +23,7 @@ public interface ApiService {
     String LIMIT = "limit";
     String SKIP = "skip";
     String SORT = "sort";
+    String BIDID = "bidId";
 
     @GET("/maps/api/directions/xml")
     public void getDriections(@Query("origin") String origin, @Query("destination") String destination, @Query("sensor") String sensor, @Query("units") String units, @Query("mode") String mode, Callback<String> callback);
@@ -42,7 +43,7 @@ public interface ApiService {
     public void getOnGoing(@Header(AUTHORIZATION) String authorization, @Query(LIMIT) String limit, @Query(SKIP) String skip, @Query(SORT) String sort, Callback<String> callback);
 
     @GET("/api/v1/fleetOwner/allTrucker")
-    public void getallTrucker(@Header(AUTHORIZATION) String authorization, @Query(LIMIT) String limit, @Query(SKIP) String skip, @Query(SORT) String sort, @Query("driverStatus") String driverStatus, Callback<String> callback);
+    public void getallTrucker(@Header(AUTHORIZATION) String authorization, @Query("search") String search, @Query(LIMIT) String limit, @Query(SKIP) String skip, @Query(SORT) String sort, @Query("driverStatus") String driverStatus, Callback<String> callback);
 
     @GET("/api/v1/fleetOwner/getPast")
     public void getPast(@Header(AUTHORIZATION) String authorization, @Query(LIMIT) String limit, @Query(SKIP) String skip, @Query(SORT) String sort, Callback<String> callback);
@@ -65,14 +66,14 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("/api/v1/fleetOwner/quote")
-    public void addQuotes(@Header(AUTHORIZATION) String authorization, @Field("bidId") String bidId, @Field("tracking") String tracking, @Field("offerCost") String offerCost, @Field("note") String note, Callback<String> callback);
+    public void addQuotes(@Header(AUTHORIZATION) String authorization, @Field(BIDID) String bidId, @Field("tracking") String tracking, @Field("offerCost") String offerCost, @Field("note") String note, Callback<String> callback);
 
     @FormUrlEncoded
     @PUT("/api/v1/fleetOwner/quote/{quoteId}")
-    public void modifyQuotes(@Header(AUTHORIZATION) String authorization, @Field("bidId") String bidId, @Field("tracking") String tracking, @Field("offerCost") String offerCost, @Field("note") String note,@Path("quoteId") String object, Callback<String> callback);
+    public void modifyQuotes(@Header(AUTHORIZATION) String authorization, @Field(BIDID) String bidId, @Field("tracking") String tracking, @Field("offerCost") String offerCost, @Field("note") String note,@Path("quoteId") String object, Callback<String> callback);
 
     @PUT("/api/v1/fleetOwner/ignoreRequest/{bidId}")
-    public void ignoreBid(@Header(AUTHORIZATION) String authorization, @Path("bidId") String object, Callback<String> callback);
+    public void ignoreBid(@Header(AUTHORIZATION) String authorization, @Path(BIDID) String object, Callback<String> callback);
 
     @FormUrlEncoded
     @PUT("/api/v1/fleetOwner/assignTrucker")
