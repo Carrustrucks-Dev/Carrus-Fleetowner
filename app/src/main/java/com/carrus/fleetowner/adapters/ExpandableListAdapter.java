@@ -89,9 +89,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 final LinearLayout podBtnLayout = (LinearLayout) convertView.findViewById(R.id.podBtnLayout);
                 final LinearLayout invoiceBtnLayout = (LinearLayout) convertView.findViewById(R.id.invoiceBtnLayout);
                 final LinearLayout consigmntBtnLayout = (LinearLayout) convertView.findViewById(R.id.consigmntBtnLayout);
-                final ImageView podImgView = (ImageView) convertView.findViewById(R.id.podIV);
-                final ImageView invoiceImgView = (ImageView) convertView.findViewById(R.id.invoiceIV);
-                final ImageView consignmntImgView = (ImageView) convertView.findViewById(R.id.consigmntIV);
 
                 podBtnLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -101,7 +98,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                             mIntent.putExtra("url", doc.pod);
                             _context.startActivity(mIntent);
                         } else {
-                            Toast.makeText(_context, _context.getResources().getString(R.string.yetnotimplement), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(_context, _context.getResources().getString(R.string.podnotfound), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -114,7 +111,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                             mIntent.putExtra("url", doc.invoice);
                             _context.startActivity(mIntent);
                         } else {
-                            Toast.makeText(_context, _context.getResources().getString(R.string.yetnotimplement), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(_context, _context.getResources().getString(R.string.invoicenotfound), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -128,28 +125,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                             mIntent.putExtra("url", doc.consigmentNote);
                             _context.startActivity(mIntent);
                         } else {
-                            Toast.makeText(_context, _context.getResources().getString(R.string.yetnotimplement), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(_context, _context.getResources().getString(R.string.consignmntnotfound), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
 
-                if (doc.pod != null) {
-                    podImgView.setBackgroundResource(R.mipmap.icon_view_doc);
-                } else {
-                    podImgView.setBackgroundResource(R.mipmap.icon_upload_doc);
-                }
-
-                if (doc.invoice != null) {
-                    invoiceImgView.setBackgroundResource(R.mipmap.icon_view_doc);
-                } else {
-                    invoiceImgView.setBackgroundResource(R.mipmap.icon_upload_doc);
-                }
-
-                if (doc.consigmentNote != null) {
-                    consignmntImgView.setBackgroundResource(R.mipmap.icon_view_doc);
-                } else {
-                    consignmntImgView.setBackgroundResource(R.mipmap.icon_upload_doc);
-                }
                 break;
 
         }

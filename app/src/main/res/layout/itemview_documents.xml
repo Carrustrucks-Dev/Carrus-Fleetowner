@@ -12,12 +12,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="@dimen/ten"
-        android:background="@drawable/dotted">
+        android:background="@drawable/dotted_whitebg">
 
         <ImageView
             android:id="@+id/podIV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@mipmap/icon_view_doc"
             />
 
         <TextView
@@ -37,12 +38,13 @@
         android:layout_marginTop="@dimen/ten"
         android:orientation="horizontal"
         android:padding="@dimen/ten"
-        android:background="@drawable/dotted">
+        android:background="@drawable/dotted_whitebg">
 
         <ImageView
             android:id="@+id/invoiceIV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@mipmap/icon_view_doc"
              />
 
         <TextView
@@ -62,12 +64,13 @@
         android:layout_marginTop="@dimen/ten"
         android:orientation="horizontal"
         android:padding="@dimen/ten"
-        android:background="@drawable/dotted">
+        android:background="@drawable/dotted_whitebg">
 
         <ImageView
             android:id="@+id/consigmntIV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@mipmap/icon_view_doc"
              />
 
         <TextView

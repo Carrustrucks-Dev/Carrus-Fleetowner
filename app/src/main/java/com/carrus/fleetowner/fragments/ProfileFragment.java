@@ -211,7 +211,6 @@ public class ProfileFragment extends Fragment implements
         }
     }
 
-
     private void uploadImage(final String path) {
         Utils.loading_box(getActivity());
         RestClient.getApiService().uploadProfilePic(mSessionManager.getAccessToken(), new TypedFile("image/*", new File(path)), new Callback<String>() {
