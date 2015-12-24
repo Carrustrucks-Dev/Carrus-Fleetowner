@@ -150,6 +150,7 @@ public class DriverFragment extends Fragment {
     }
 
     private void setSelectionWhite(int button_id) {
+        mSearchEdtTxt.setError(null);
         selectedFlag = 0;
         mWhiteTextView.setBackgroundResource(R.drawable.tab_background);
         mBlackTextView.setBackgroundResource(R.drawable.tab_past_background_white);
@@ -160,7 +161,7 @@ public class DriverFragment extends Fragment {
     }
 
     private void setSeclectionBlack(int button_id) {
-
+        mSearchEdtTxt.setError(null);
         selectedFlag = 1;
         mWhiteTextView.setBackgroundResource(R.drawable.tab_upcming_background_white);
         mBlackTextView.setBackgroundResource(R.drawable.tab_background);

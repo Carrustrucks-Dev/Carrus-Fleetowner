@@ -129,6 +129,7 @@ public class TruckDeatisActivity extends BaseActivity {
             }
         });
 
+
         //prepareListData();
         listDataHeader = new ArrayList<Header>();
         listDataChild = new HashMap<Header, List<ExpandableChildItem>>();
