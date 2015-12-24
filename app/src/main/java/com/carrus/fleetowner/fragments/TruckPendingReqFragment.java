@@ -226,6 +226,8 @@ public class TruckPendingReqFragment extends Fragment{
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
                         Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
                         if (bookingList == null || bookingList.size() == 0) {
+                            mAdapter = new TruckListAdapter(getActivity(), bookingList, mRecyclerView);
+                            mRecyclerView.setAdapter(mAdapter);
                             mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
                             mErrorTxtView.setVisibility(View.VISIBLE);
                         }
@@ -251,6 +253,8 @@ public class TruckPendingReqFragment extends Fragment{
                 } catch (Exception ex) {
                     Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
                     if (bookingList == null || bookingList.size() == 0) {
+                        mAdapter = new TruckListAdapter(getActivity(), bookingList, mRecyclerView);
+                        mRecyclerView.setAdapter(mAdapter);
                         mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
                         mErrorTxtView.setVisibility(View.VISIBLE);
                     }

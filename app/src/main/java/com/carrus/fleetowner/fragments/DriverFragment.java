@@ -32,7 +32,7 @@ public class DriverFragment extends Fragment {
     private List<Fragment> myFragmentList = new ArrayList<>();
     private ViewPager vpPager;
     private MyPagerAdapter adapterViewPager;
-    private EditText mSearchEdtTxt;
+    public EditText mSearchEdtTxt;
 
     @Nullable
     @Override
@@ -81,13 +81,11 @@ public class DriverFragment extends Fragment {
 //                            Toast.makeText(getActivity(), "No booking found", Toast.LENGTH_SHORT).show();
 //                        }
                         if(selectedFlag==0){
-
-                            ((WhiteDriverFragment)adapterViewPager.getItem(0)).isRefreshView=true;
-                            ((WhiteDriverFragment)adapterViewPager.getItem(0)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
-
+                            ((WhiteDriverFragment) getActiveFragment(vpPager, 0)).isRefreshView=true;
+                            ((WhiteDriverFragment) getActiveFragment(vpPager, 0)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
                         }else{
-                            ((BlackDriverFragment)adapterViewPager.getItem(1)).isRefreshView=true;
-                            ((BlackDriverFragment)adapterViewPager.getItem(1)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
+                            ((BlackDriverFragment) getActiveFragment(vpPager, 1)).isRefreshView=true;
+                            ((BlackDriverFragment) getActiveFragment(vpPager, 1)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
                         }
 
                     }
@@ -205,5 +203,14 @@ public class DriverFragment extends Fragment {
             return "Page " + position;
         }
 
+    }
+
+    public Fragment getActiveFragment(ViewPager container, int position) {
+        String name = makeFragmentName(container.getId(), position);
+        return getChildFragmentManager().findFragmentByTag(name);
+    }
+
+    private static String makeFragmentName(int viewId, int index) {
+        return "android:switcher:" + viewId + ":" + index;
     }
 }

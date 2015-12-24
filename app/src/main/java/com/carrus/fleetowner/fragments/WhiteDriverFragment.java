@@ -89,7 +89,7 @@ public class WhiteDriverFragment extends Fragment {
         mSessionManager = new SessionManager(getActivity());
         mConnectionDetector = new ConnectionDetector(getActivity());
         if (mConnectionDetector.isConnectingToInternet())
-            getMyBooking("");
+            getMyBooking(((DriverFragment)getParentFragment()).mSearchEdtTxt.getText().toString().trim());
         else {
             mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
             mErrorTxtView.setVisibility(View.VISIBLE);
@@ -103,7 +103,7 @@ public class WhiteDriverFragment extends Fragment {
             public void onClick(View v) {
                 mErrorTxtView.setVisibility(View.GONE);
                 if (mConnectionDetector.isConnectingToInternet())
-                    getMyBooking("");
+                    getMyBooking(((DriverFragment)getParentFragment()).mSearchEdtTxt.getText().toString().trim());
                 else {
                     mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
                     mErrorTxtView.setVisibility(View.VISIBLE);
@@ -134,7 +134,7 @@ public class WhiteDriverFragment extends Fragment {
             @Override
             public void onRefresh() {
                 isRefreshView = true;
-                getMyBooking("");
+                getMyBooking(((DriverFragment)getParentFragment()).mSearchEdtTxt.getText().toString().trim());
             }
         });
     }
@@ -146,7 +146,7 @@ public class WhiteDriverFragment extends Fragment {
         if(Constants.isUpComingUpdate){
             Constants.isUpComingUpdate=false;
             isRefreshView = true;
-            getMyBooking("");
+            getMyBooking(((DriverFragment)getParentFragment()).mSearchEdtTxt.getText().toString().trim());
         }
     }
 
@@ -227,6 +227,8 @@ public class WhiteDriverFragment extends Fragment {
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
                         Toast.makeText(getActivity(), getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
                         if(bookingList==null || bookingList.size()==0) {
+                            mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
+                            mRecyclerView.setAdapter(mAdapter);
                             mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
                             mErrorTxtView.setVisibility(View.VISIBLE);
                         }
@@ -252,6 +254,8 @@ public class WhiteDriverFragment extends Fragment {
                 } catch (Exception ex) {
                     Toast.makeText(getActivity(), getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
                     if(bookingList==null || bookingList.size()==0) {
+                        mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
+                        mRecyclerView.setAdapter(mAdapter);
                         mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
                         mErrorTxtView.setVisibility(View.VISIBLE);
                     }
@@ -270,7 +274,7 @@ public class WhiteDriverFragment extends Fragment {
                 try {
                     bookingList.add(null);
                     mAdapter.notifyItemInserted(bookingList.size() - 1);
-                    getMyBooking("");
+                    getMyBooking(((DriverFragment)getParentFragment()).mSearchEdtTxt.getText().toString().trim());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

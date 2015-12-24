@@ -229,6 +229,8 @@ public class UpComingFragment extends Fragment {
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
                         Toast.makeText(getActivity(), getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
                         if(bookingList==null || bookingList.size()==0) {
+                            mAdapter = new UpComingBookingAdapter(getActivity(), bookingList, mRecyclerView);
+                            mRecyclerView.setAdapter(mAdapter);
                             mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
                             mErrorTxtView.setVisibility(View.VISIBLE);
                         }
@@ -256,6 +258,8 @@ public class UpComingFragment extends Fragment {
                     if (activity != null && isAdded()) {
                         Toast.makeText(getActivity(), getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
                         if (bookingList == null || bookingList.size() == 0) {
+                            mAdapter = new UpComingBookingAdapter(getActivity(), bookingList, mRecyclerView);
+                            mRecyclerView.setAdapter(mAdapter);
                             mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
                             mErrorTxtView.setVisibility(View.VISIBLE);
                         }
