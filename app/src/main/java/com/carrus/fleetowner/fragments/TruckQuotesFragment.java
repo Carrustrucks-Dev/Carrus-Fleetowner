@@ -56,6 +56,7 @@ public class TruckQuotesFragment extends Fragment {
     private ConnectionDetector mConnectionDetector;
     private List<TruckQuotesDetails> bookingList;
     private TruckQuotesModel mTruckQuotesModel;
+    private TextView mErrorTxtView;
 
     /**
      * Static factory method that takes an int parameter,
@@ -91,13 +92,29 @@ public class TruckQuotesFragment extends Fragment {
             getMyBooking();
         else {
             Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+            mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
+            mErrorTxtView.setVisibility(View.VISIBLE);
         }
     }
 
     private void intializeListners() {
+        mErrorTxtView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mErrorTxtView.setVisibility(View.GONE);
+                if (mConnectionDetector.isConnectingToInternet())
+                    getMyBooking();
+                else {
+                    mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
+                    mErrorTxtView.setVisibility(View.VISIBLE);
+                    Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+                }
+            }
+        });
     }
 
     private void init(View view) {
+        mErrorTxtView=(TextView) view.findViewById(R.id.errorTxtView);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
 //        swipeRefreshLayout.setColorSchemeColors(
 //                Color.RED, Color.GREEN, Color.BLUE, Color.CYAN);
@@ -134,6 +151,7 @@ public class TruckQuotesFragment extends Fragment {
     }
 
     private void getMyBooking() {
+        mErrorTxtView.setVisibility(View.GONE);
         if (isRefreshView) {
             swipeRefreshLayout.setRefreshing(true);
             skip=0;
@@ -207,11 +225,18 @@ public class TruckQuotesFragment extends Fragment {
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
                         Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+                        if (bookingList == null || bookingList.size() == 0) {
+                            mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
+                            mErrorTxtView.setVisibility(View.VISIBLE);
+                        }
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
                         Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
-
+                        if(bookingList==null || bookingList.size()==0) {
+                            mErrorTxtView.setText(getResources().getString(R.string.norecordfound));
+                            mErrorTxtView.setVisibility(View.VISIBLE);
+                        }
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
                         Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         try {
@@ -225,6 +250,10 @@ public class TruckQuotesFragment extends Fragment {
 
                 } catch (Exception ex) {
                     Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+                    if (bookingList == null || bookingList.size() == 0) {
+                        mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
+                        mErrorTxtView.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         });

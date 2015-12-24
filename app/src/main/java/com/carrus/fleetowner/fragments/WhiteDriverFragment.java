@@ -151,6 +151,7 @@ public class WhiteDriverFragment extends Fragment {
     }
 
     public void getMyBooking(String val) {
+        mErrorTxtView.setVisibility(View.GONE);
         if (isRefreshView) {
             swipeRefreshLayout.setRefreshing(true);
             skip=0;
@@ -225,13 +226,18 @@ public class WhiteDriverFragment extends Fragment {
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
                         Toast.makeText(getActivity(), getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
-                        mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-                        mErrorTxtView.setVisibility(View.VISIBLE);
+                        if(bookingList==null || bookingList.size()==0) {
+                            mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
+                            mErrorTxtView.setVisibility(View.VISIBLE);
+                        }
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
                         Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
-
+                        if(bookingList==null || bookingList.size()==0) {
+                            mErrorTxtView.setText(getResources().getString(R.string.norecordfound));
+                            mErrorTxtView.setVisibility(View.VISIBLE);
+                        }
                     }else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
                         Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         try {
@@ -245,8 +251,10 @@ public class WhiteDriverFragment extends Fragment {
 
                 } catch (Exception ex) {
                     Toast.makeText(getActivity(), getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
-                    mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-                    mErrorTxtView.setVisibility(View.VISIBLE);
+                    if(bookingList==null || bookingList.size()==0) {
+                        mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
+                        mErrorTxtView.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         });
