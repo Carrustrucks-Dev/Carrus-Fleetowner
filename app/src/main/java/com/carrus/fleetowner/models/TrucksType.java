@@ -34,19 +34,23 @@ public class TrucksType implements Serializable {
     @Expose
     private List<Trucker> trucker = new ArrayList<Trucker>();
 
+    @SerializedName("typeTruck")
+    @Expose
+    private List<TruckDetails> typeTruck = new ArrayList<TruckDetails>();
+
+    @SerializedName("truckNumber")
+    @Expose
+    private String truckNumber;
+
     /**
-     *
-     * @return
-     * The trucker
+     * @return The trucker
      */
     public List<Trucker> getTrucker() {
         return trucker;
     }
 
     /**
-     *
-     * @param trucker
-     * The trucker
+     * @param trucker The trucker
      */
     public void setTrucker(List<Trucker> trucker) {
         this.trucker = trucker;
@@ -91,5 +95,21 @@ public class TrucksType implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<TruckDetails> getTypeTruck() {
+        return typeTruck;
+    }
+
+    public void setTypeTruck(List<TruckDetails> typeTruck) {
+        this.typeTruck = typeTruck;
+    }
+
+    public String getTruckNumber() {
+        return truckNumber;
+    }
+
+    public void setTruckNumber(String truckNumber) {
+        this.truckNumber = truckNumber;
     }
 }

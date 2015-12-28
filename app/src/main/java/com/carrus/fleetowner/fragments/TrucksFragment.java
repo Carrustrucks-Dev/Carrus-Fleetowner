@@ -76,7 +76,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
     private Trucks mTrucks;
     private boolean isMarkerMatch = false;
     private ImageView mProfileIV;
-    private TextView nameTxtView, typeTxtView, locationTxtView, statusTxtView;
+    private TextView nameTxtView, typeTxtView, locationTxtView, statusTxtView, truckNumberTxtView, crnTxtView;
     private String selectedNumber = null;
     private IntentFilter mIntentFilter;
     private Marker now;
@@ -142,6 +142,8 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
         locationTxtView = (TextView) view.findViewById(R.id.locationTxtView);
         statusTxtView = (TextView) view.findViewById(R.id.statusTxtView);
         mSearchEdtTxt = (EditText) view.findViewById(R.id.searchEdtTxt);
+        truckNumberTxtView=(TextView) view.findViewById(R.id.crntopTxtView);
+        crnTxtView=(TextView) view.findViewById(R.id.crnTxtView);
 
         mSearchEdtTxt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -153,9 +155,9 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                         mSearchEdtTxt.requestFocus();
                     } else {
                         Utils.hideSoftKeyboard(getActivity());
-//                        if (searchTrackingId()) {
-//                            Toast.makeText(getActivity(), "No booking found", Toast.LENGTH_SHORT).show();
-//                        }
+                        if (searchTrackingId()) {
+                            Toast.makeText(getActivity(), "No booking found", Toast.LENGTH_SHORT).show();
+                        }
 
                     }
 
@@ -190,37 +192,36 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
     }
 
 
-//    private boolean searchTrackingId() {
-//        if(mOnGoingShipper!=null)
-//        for (int i = 0; i < mOnGoingShipper.mData.size(); i++) {
-//
-//            if (mOnGoingShipper.mData.get(i).tracking.equalsIgnoreCase("yes")) {
-//                if (mSearchEdtTxt.getText().toString().trim().equals(mOnGoingShipper.mData.get(i).crn)) {
-//                    googleMap.clear();
-//                    LatLng location = new LatLng(mOnGoingShipper.mData.get(i).crruentTracking.get(0).lat, mOnGoingShipper.mData.get(i).crruentTracking.get(0).longg);
-//
-//                    Marker marker = googleMap.addMarker(new MarkerOptions().position(location)
-//                                    .title(mOnGoingShipper.mData.get(i).shipper.firstName)
-//                                    .snippet(mOnGoingShipper.mData.get(i).shipper.firstName)
-//                                    .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_van))
-//                    );
-//
-//                    CameraUpdate center =
-//                            CameraUpdateFactory.newLatLng(location);
-//                    mMarkerArray.add(marker);
-//                    mTrackermodel.add(mOnGoingShipper.mData.get(i));
-//                    CameraUpdate zoom = CameraUpdateFactory.zoomTo(7);
-//
-//                    googleMap.moveCamera(center);
-//                    googleMap.animateCamera(zoom);
-//                    return false;
-//                }
-//            }
-//
-//        }
-//
-//        return true;
-//    }
+    private boolean searchTrackingId() {
+        if(mTrucks!=null)
+        for (int i = 0; i < mTrucks.getData().size(); i++) {
+
+                if (mTrucks.getData().get(i).getBooking().size()!=0 && mSearchEdtTxt.getText().toString().trim().equals(mTrucks.getData().get(i).getBooking().get(0).getCrn())) {
+                    googleMap.clear();
+                    LatLng location = new LatLng(Double.valueOf(mTrucks.getData().get(i).getCurrentCoordinates().getLat()), Double.valueOf(mTrucks.getData().get(i).getCurrentCoordinates().getLong()));
+
+                    Marker marker = googleMap.addMarker(new MarkerOptions().position(location)
+                                    .title(mTrucks.getData().get(i).getTrucker().get(0).getDriverName())
+                                    .snippet("")
+                                    .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_van))
+                    );
+
+                    CameraUpdate center =
+                            CameraUpdateFactory.newLatLng(location);
+                    mMarkerArray.add(marker);
+                    mTrackermodel.add(mOnGoingShipper.mData.get(i));
+                    CameraUpdate zoom = CameraUpdateFactory.zoomTo(7);
+
+                    googleMap.moveCamera(center);
+                    googleMap.animateCamera(zoom);
+                    return false;
+                }
+
+
+        }
+
+        return true;
+    }
 
     /**
      * function to load map. If map is not created it will create it for you
@@ -361,56 +362,22 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
             if (marker.equals(mMarkerArray.get(i))) {
                 if (mTrackermodel.get(i).getBooking().size() != 0) {
                     isMarkerMatch = true;
-                    //googleMap.clear();
-                    //mainActivity.onStopDrawerSwip();
-//                    googleMap.addMarker(new MarkerOptions().position(new LatLng(marker.getPosition().latitude, marker.getPosition().longitude))
-//                            .title(marker.getTitle())
-//                            .snippet(marker.getSnippet()).icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_van)));
                     selectedPos = i;
                     selectedNumber = mTrackermodel.get(i).getTrucker().get(0).getPhoneNumber();
                     nameTxtView.setText(mTrackermodel.get(i).getTrucker().get(0).getDriverName());
-//                    typeTxtView.setText(mTrackermodel.get(i).getTrucker().get(0).ge + ", " + mTrackermodel.get(i).truck.truckNumber);
+                    typeTxtView.setText(mTrackermodel.get(i).getTypeTruck().get(0).typeTruckName);
+                    truckNumberTxtView.setText(mTrackermodel.get(i).getTruckNumber());
+                    crnTxtView.setText("CRN - "+mTrackermodel.get(i).getBooking().get(0).getCrn());
                     locationTxtView.setText(mTrackermodel.get(i).getBooking().get(0).getPickUp().getCity() + " to " + mTrackermodel.get(i).getBooking().get(0).getDropOff().getCity());
 //                    Picasso.with(getActivity()).load(R.mipmap.icon_placeholder).resize(100, 100).transform(new CircleTransform()).into(mProfileIV);
                     statusTxtView.setText(mTrackermodel.get(i).getStatus());
-
-//                    switch (mTrackermodel.get(i).bookingStatus.toUpperCase()) {
-//                        case "REACHED_DESTINATION":
-//                        case "REACHED_PICKUP_LOCATION":
-//                            statusTxtView.setTextColor(getResources().getColor(R.color.tabcolor_dark));
-//                            break;
-//
-//                        case "ON_GOING":
-//                        case "UP_GOING":
-//                            statusTxtView.setTextColor(getResources().getColor(R.color.colorPrimary));
-//                            break;
-//
-//                        case "CONFIRMED":
-//                            statusTxtView.setTextColor(getResources().getColor(R.color.green));
-//                            break;
-//
-//                        case "HALT":
-//                        case "COMPLETED":
-//                            statusTxtView.setTextColor(getResources().getColor(R.color.gray_text));
-//                            break;
-//
-//                        case "CANCELED":
-//                            statusTxtView.setTextColor(getResources().getColor(R.color.red));
-//                            break;
-//
-//                    }
                     showProfile();
-                    //getDriectionToDestination(new LatLng(mTrackermodel.get(i).crruentTracking.get(0).lat, mTrackermodel.get(i).crruentTracking.get(0).longg), mTrackermodel.get(i).pickUp.coordinates.pickUpLat + ", " + mTrackermodel.get(i).pickUp.coordinates.pickUpLong, mTrackermodel.get(i).dropOff.coordinates.dropOffLat + ", " + mTrackermodel.get(i).dropOff.coordinates.dropOffLong, GMapV2GetRouteDirection.MODE_DRIVING, i);
                 } else
                     Toast.makeText(getActivity(), "No details found", Toast.LENGTH_SHORT).show();
                 break;
             }
         }
 
-//        if (!isMarkerMatch) {
-//            marker.showInfoWindow();
-//        }
-//        Toast.makeText(getActivity(), marker.getTitle()+", lat> "+marker.getPosition().latitude +"& long> "+marker.getPosition().longitude, Toast.LENGTH_SHORT).show();
         return false;
     }
 

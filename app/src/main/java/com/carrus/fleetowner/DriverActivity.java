@@ -7,7 +7,10 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,6 +59,7 @@ public class DriverActivity extends BaseActivity {
     private List<Datum> bookingList;
     private DriverModel mDriverModel;
     private Context mContext;
+    private EditText mSearchEdtTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +75,7 @@ public class DriverActivity extends BaseActivity {
         headerTxtView.setText(getResources().getString(R.string.drivers));
         mBackBtn = (ImageView) findViewById(R.id.menu_back_btn);
         mBackBtn.setVisibility(View.VISIBLE);
+        mSearchEdtTxt = (EditText) findViewById(R.id.searchEdtTxt);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 //        swipeRefreshLayout.setColorSchemeColors(
 //                Color.RED, Color.GREEN, Color.BLUE, Color.CYAN);
@@ -91,13 +96,13 @@ public class DriverActivity extends BaseActivity {
             @Override
             public void onRefresh() {
                 isRefreshView = true;
-                getDrivers();
+                getDrivers(mSearchEdtTxt.getText().toString().trim());
             }
         });
         mSessionManager = new SessionManager(mContext);
         mConnectionDetector = new ConnectionDetector(mContext);
         if (mConnectionDetector.isConnectingToInternet())
-            getDrivers();
+            getDrivers(mSearchEdtTxt.getText().toString().trim());
         else {
             Utils.shopAlterDialog(mContext, getResources().getString(R.string.nointernetconnection), false);
         }
@@ -126,9 +131,30 @@ public class DriverActivity extends BaseActivity {
             }
         });
 
+        mSearchEdtTxt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    // Your piece of code on keyboard search click
+                    if (mSearchEdtTxt.getText().toString().trim().isEmpty()) {
+                        mSearchEdtTxt.setError(getResources().getString(R.string.enterdrivername));
+                        mSearchEdtTxt.requestFocus();
+                    } else {
+                        Utils.hideSoftKeyboard(DriverActivity.this);
+                        isRefreshView = true;
+                        getDrivers(mSearchEdtTxt.getText().toString().trim());
+
+                    }
+
+                    return true;
+                }
+                return false;
+            }
+        });
+
     }
 
-    private void getDrivers() {
+    private void getDrivers(String val) {
         if (isRefreshView) {
             swipeRefreshLayout.setRefreshing(true);
             skip = 0;
@@ -138,7 +164,7 @@ public class DriverActivity extends BaseActivity {
                 Utils.loading_box(mContext);
         }
 
-        RestClient.getApiService().getallTrucker(mSessionManager.getAccessToken(), "", LIMIT + "", skip + "", SORT, Constants.DRIVERWHITE, new Callback<String>() {
+        RestClient.getApiService().getallTrucker(mSessionManager.getAccessToken(), val, LIMIT + "", skip + "", SORT, Constants.DRIVERWHITE, new Callback<String>() {
 
             @Override
             public void success(String s, Response response) {
@@ -237,7 +263,7 @@ public class DriverActivity extends BaseActivity {
                 try {
                     bookingList.add(null);
                     mAdapter.notifyItemInserted(bookingList.size() - 1);
-                    getDrivers();
+                    getDrivers(mSearchEdtTxt.getText().toString().trim());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
