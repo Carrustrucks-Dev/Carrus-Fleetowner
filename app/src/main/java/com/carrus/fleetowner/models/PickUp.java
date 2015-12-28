@@ -5,112 +5,104 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class PickUp implements Serializable{
+public class PickUp implements Serializable {
 
-@SerializedName("location")
-@Expose
-private String location;
-@SerializedName("date")
-@Expose
-private String date;
-@SerializedName("state")
-@Expose
-private String state;
-@SerializedName("coordinates")
-@Expose
-private Coordinates coordinates;
-@SerializedName("time")
-@Expose
-private String time;
+    @SerializedName("location")
+    @Expose
+    private String location;
+    @SerializedName("date")
+    @Expose
+    private String date;
+    @SerializedName("state")
+    @Expose
+    private String state;
 
-/**
-* 
-* @return
-* The location
-*/
-public String getLocation() {
-return location;
-}
+    @SerializedName("city")
+    @Expose
+    private String city;
 
-/**
-* 
-* @param location
-* The location
-*/
-public void setLocation(String location) {
-this.location = location;
-}
+    @SerializedName("coordinates")
+    @Expose
+    private Coordinates coordinates;
+    @SerializedName("time")
+    @Expose
+    private String time;
 
-/**
-* 
-* @return
-* The date
-*/
-public String getDate() {
-return date;
-}
+    /**
+     * @return The location
+     */
+    public String getLocation() {
+        return location;
+    }
 
-/**
-* 
-* @param date
-* The date
-*/
-public void setDate(String date) {
-this.date = date;
-}
+    /**
+     * @param location The location
+     */
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-/**
-* 
-* @return
-* The state
-*/
-public String getState() {
-return state;
-}
+    /**
+     * @return The date
+     */
+    public String getDate() {
+        return date;
+    }
 
-/**
-* 
-* @param state
-* The state
-*/
-public void setState(String state) {
-this.state = state;
-}
+    /**
+     * @param date The date
+     */
+    public void setDate(String date) {
+        this.date = date;
+    }
 
-/**
-* 
-* @return
-* The coordinates
-*/
-public Coordinates getCoordinates() {
-return coordinates;
-}
+    /**
+     * @return The state
+     */
+    public String getState() {
+        return state;
+    }
 
-/**
-* 
-* @param coordinates
-* The coordinates
-*/
-public void setCoordinates(Coordinates coordinates) {
-this.coordinates = coordinates;
-}
+    /**
+     * @param state The state
+     */
+    public void setState(String state) {
+        this.state = state;
+    }
 
-/**
-* 
-* @return
-* The time
-*/
-public String getTime() {
-return time;
-}
+    /**
+     * @return The coordinates
+     */
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
 
-/**
-* 
-* @param time
-* The time
-*/
-public void setTime(String time) {
-this.time = time;
-}
+    /**
+     * @param coordinates The coordinates
+     */
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
 
+    /**
+     * @return The time
+     */
+    public String getTime() {
+        return time;
+    }
+
+    /**
+     * @param time The time
+     */
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 }

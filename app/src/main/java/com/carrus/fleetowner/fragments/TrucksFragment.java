@@ -5,13 +5,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
-import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,14 +19,12 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.carrus.fleetowner.MainActivity;
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.models.MyBookingDataModel;
-import com.carrus.fleetowner.models.MyBookingModel;
 import com.carrus.fleetowner.models.Trucks;
 import com.carrus.fleetowner.models.TrucksType;
 import com.carrus.fleetowner.retrofit.RestClient;
@@ -48,22 +43,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -81,7 +66,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
     private GoogleMap googleMap;
     //Markers List
     private ArrayList<Marker> mMarkerArray = new ArrayList<Marker>();
-//    private ArrayList<TrackingModel> mTrackermodel = new ArrayList<>();
+    //    private ArrayList<TrackingModel> mTrackermodel = new ArrayList<>();
     public ArrayList<TrucksType> mTrackermodel = new ArrayList<>();
     private MainActivity mainActivity;
     private GMapV2GetRouteDirection v2GetRouteDirection;
@@ -96,7 +81,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
     private IntentFilter mIntentFilter;
     private Marker now;
     private EditText mSearchEdtTxt;
-    private int selectedPos=0;
+    private int selectedPos = 0;
 
 
     public TrucksFragment() {
@@ -288,30 +273,30 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
         isMarkerMatch = false;
         for (int i = 0; i < mTrucks.getData().size(); i++) {
 
-                    LatLng location = new LatLng(Double.valueOf(mTrucks.getData().get(i).getCurrentCoordinates().getLat()), Double.valueOf(mTrucks.getData().get(i).getCurrentCoordinates().getLong()));
-            Marker marker=null;
-            if(mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("WHITE")){
+            LatLng location = new LatLng(Double.valueOf(mTrucks.getData().get(i).getCurrentCoordinates().getLat()), Double.valueOf(mTrucks.getData().get(i).getCurrentCoordinates().getLong()));
+            Marker marker = null;
+            if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("WHITE")) {
                 marker = googleMap.addMarker(new MarkerOptions().position(location)
 //                                    .title(mOnGoingShipper.mData.get(i).shipper.firstName)
 //                                    .snippet(mOnGoingShipper.mData.get(i).shipper.firstName)
                                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_truck_white))
                 );
 
-            }else if(mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("RED")){
+            } else if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("RED")) {
                 marker = googleMap.addMarker(new MarkerOptions().position(location)
 //                                    .title(mOnGoingShipper.mData.get(i).shipper.firstName)
 //                                    .snippet(mOnGoingShipper.mData.get(i).shipper.firstName)
                                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_truck_red))
                 );
 
-            }else if(mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("BLACK")){
+            } else if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("BLACK")) {
                 marker = googleMap.addMarker(new MarkerOptions().position(location)
 //                                    .title(mOnGoingShipper.mData.get(i).shipper.firstName)
 //                                    .snippet(mOnGoingShipper.mData.get(i).shipper.firstName)
                                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_truck_black))
                 );
 
-            }else if(mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("BLUE")){
+            } else if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("BLUE")) {
                 marker = googleMap.addMarker(new MarkerOptions().position(location)
 //                                    .title(mOnGoingShipper.mData.get(i).shipper.firstName)
 //                                    .snippet(mOnGoingShipper.mData.get(i).shipper.firstName)
@@ -320,8 +305,8 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
 
             }
 
-                    mMarkerArray.add(marker);
-                    mTrackermodel.add(mTrucks.getData().get(i));
+            mMarkerArray.add(marker);
+            mTrackermodel.add(mTrucks.getData().get(i));
 
         }
 
@@ -372,21 +357,55 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
     @Override
     public boolean onMarkerClick(Marker marker) {
 
-//        for (int i = 0; i < mMarkerArray.size(); i++) {
-//            if (marker.equals(mMarkerArray.get(i))) {
-//                if (mTrackermodel.get(i).crruentTracking.size() != 0) {
-//                    isMarkerMatch = true;
-//                    googleMap.clear();
-//                    mainActivity.onStopDrawerSwip();
+        for (int i = 0; i < mMarkerArray.size(); i++) {
+            if (marker.equals(mMarkerArray.get(i))) {
+                if (mTrackermodel.get(i).getBooking().size() != 0) {
+                    isMarkerMatch = true;
+                    //googleMap.clear();
+                    //mainActivity.onStopDrawerSwip();
 //                    googleMap.addMarker(new MarkerOptions().position(new LatLng(marker.getPosition().latitude, marker.getPosition().longitude))
 //                            .title(marker.getTitle())
 //                            .snippet(marker.getSnippet()).icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_van)));
-//                    selectedPos=i;
-//                    getDriectionToDestination(new LatLng(mTrackermodel.get(i).crruentTracking.get(0).lat, mTrackermodel.get(i).crruentTracking.get(0).longg), mTrackermodel.get(i).pickUp.coordinates.pickUpLat + ", " + mTrackermodel.get(i).pickUp.coordinates.pickUpLong, mTrackermodel.get(i).dropOff.coordinates.dropOffLat + ", " + mTrackermodel.get(i).dropOff.coordinates.dropOffLong, GMapV2GetRouteDirection.MODE_DRIVING, i);
-//                }
-//                break;
-//            }
-//        }
+                    selectedPos = i;
+                    selectedNumber = mTrackermodel.get(i).getTrucker().get(0).getPhoneNumber();
+                    nameTxtView.setText(mTrackermodel.get(i).getTrucker().get(0).getDriverName());
+//                    typeTxtView.setText(mTrackermodel.get(i).getTrucker().get(0).ge + ", " + mTrackermodel.get(i).truck.truckNumber);
+                    locationTxtView.setText(mTrackermodel.get(i).getBooking().get(0).getPickUp().getCity() + " to " + mTrackermodel.get(i).getBooking().get(0).getDropOff().getCity());
+//                    Picasso.with(getActivity()).load(R.mipmap.icon_placeholder).resize(100, 100).transform(new CircleTransform()).into(mProfileIV);
+                    statusTxtView.setText(mTrackermodel.get(i).getStatus());
+
+//                    switch (mTrackermodel.get(i).bookingStatus.toUpperCase()) {
+//                        case "REACHED_DESTINATION":
+//                        case "REACHED_PICKUP_LOCATION":
+//                            statusTxtView.setTextColor(getResources().getColor(R.color.tabcolor_dark));
+//                            break;
+//
+//                        case "ON_GOING":
+//                        case "UP_GOING":
+//                            statusTxtView.setTextColor(getResources().getColor(R.color.colorPrimary));
+//                            break;
+//
+//                        case "CONFIRMED":
+//                            statusTxtView.setTextColor(getResources().getColor(R.color.green));
+//                            break;
+//
+//                        case "HALT":
+//                        case "COMPLETED":
+//                            statusTxtView.setTextColor(getResources().getColor(R.color.gray_text));
+//                            break;
+//
+//                        case "CANCELED":
+//                            statusTxtView.setTextColor(getResources().getColor(R.color.red));
+//                            break;
+//
+//                    }
+                    showProfile();
+                    //getDriectionToDestination(new LatLng(mTrackermodel.get(i).crruentTracking.get(0).lat, mTrackermodel.get(i).crruentTracking.get(0).longg), mTrackermodel.get(i).pickUp.coordinates.pickUpLat + ", " + mTrackermodel.get(i).pickUp.coordinates.pickUpLong, mTrackermodel.get(i).dropOff.coordinates.dropOffLat + ", " + mTrackermodel.get(i).dropOff.coordinates.dropOffLong, GMapV2GetRouteDirection.MODE_DRIVING, i);
+                } else
+                    Toast.makeText(getActivity(), "No details found", Toast.LENGTH_SHORT).show();
+                break;
+            }
+        }
 
 //        if (!isMarkerMatch) {
 //            marker.showInfoWindow();
@@ -423,7 +442,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                 markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_van));
                 now = googleMap.addMarker(markerOptions);
 
-            }else if(intent.getAction().equals(mBroadcastAction)){
+            } else if (intent.getAction().equals(mBroadcastAction)) {
                 Utils.shopAlterDialog(getActivity(), intent.getStringExtra("data"), true);
                 mainActivity.stopService();
             }

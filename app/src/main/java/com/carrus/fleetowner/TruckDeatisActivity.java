@@ -64,7 +64,6 @@ public class TruckDeatisActivity extends BaseActivity {
     private Button mQuoteBtn, mIgnoreBtn;
     private SessionManager mSessionManager;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -435,6 +434,7 @@ public class TruckDeatisActivity extends BaseActivity {
                     int status = mObject.getInt("statusCode");
 
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
+
                         Constants.isTruckPendingUpdate=true;
                         Toast.makeText(TruckDeatisActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                         finish();
@@ -442,6 +442,7 @@ public class TruckDeatisActivity extends BaseActivity {
                     } else {
                         Toast.makeText(TruckDeatisActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                     }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
