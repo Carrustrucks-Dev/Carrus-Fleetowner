@@ -42,6 +42,10 @@ public class TrucksType implements Serializable {
     @Expose
     private String truckNumber;
 
+    @SerializedName("truckName")
+    @Expose
+    private String truckName;
+
     /**
      * @return The trucker
      */
@@ -111,5 +115,13 @@ public class TrucksType implements Serializable {
 
     public void setTruckNumber(String truckNumber) {
         this.truckNumber = truckNumber;
+    }
+
+    public String getTruckName() {
+        return truckName;
+    }
+
+    public void setTruckName(String truckName) {
+        this.truckName = truckName;
     }
 }

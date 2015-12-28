@@ -76,7 +76,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
     private Trucks mTrucks;
     private boolean isMarkerMatch = false;
     private ImageView mProfileIV;
-    private TextView nameTxtView, typeTxtView, locationTxtView, statusTxtView, truckNumberTxtView, crnTxtView;
+    private TextView nameTxtView, typeTxtView, locationTxtView, statusTxtView, truckNumberTxtView, crnTxtView, nicknameTxtView;
     private String selectedNumber = null;
     private IntentFilter mIntentFilter;
     private Marker now;
@@ -144,6 +144,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
         mSearchEdtTxt = (EditText) view.findViewById(R.id.searchEdtTxt);
         truckNumberTxtView=(TextView) view.findViewById(R.id.crntopTxtView);
         crnTxtView=(TextView) view.findViewById(R.id.crnTxtView);
+        nicknameTxtView=(TextView) view.findViewById(R.id.nicknameTxtView);
 
         mSearchEdtTxt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -367,6 +368,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                     truckNumberTxtView.setText(mTrackermodel.get(i).getTruckNumber());
                     crnTxtView.setText("CRN - "+mTrackermodel.get(i).getBooking().get(0).getCrn());
                     locationTxtView.setText(mTrackermodel.get(i).getBooking().get(0).getPickUp().getCity() + " to " + mTrackermodel.get(i).getBooking().get(0).getDropOff().getCity());
+                    nicknameTxtView.setText("NickName - "+mTrackermodel.get(i).getTruckName());
 //                    Picasso.with(getActivity()).load(R.mipmap.icon_placeholder).resize(100, 100).transform(new CircleTransform()).into(mProfileIV);
                     statusTxtView.setText(mTrackermodel.get(i).getStatus());
                     showProfile();
