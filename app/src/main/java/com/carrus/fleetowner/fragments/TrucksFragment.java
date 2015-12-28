@@ -209,15 +209,13 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                     CameraUpdate center =
                             CameraUpdateFactory.newLatLng(location);
                     mMarkerArray.add(marker);
-                    mTrackermodel.add(mOnGoingShipper.mData.get(i));
+                    mTrackermodel.add(mTrucks.getData().get(i));
                     CameraUpdate zoom = CameraUpdateFactory.zoomTo(7);
 
                     googleMap.moveCamera(center);
                     googleMap.animateCamera(zoom);
                     return false;
                 }
-
-
         }
 
         return true;
