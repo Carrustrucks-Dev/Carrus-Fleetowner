@@ -17,6 +17,9 @@ public class SplashActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        //Force Crash
+//        int i=1/0;
+
         mSessionManager = new SessionManager(this);
         new Handler().postDelayed(new Runnable() {
             @Override
