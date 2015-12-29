@@ -225,12 +225,12 @@ public class BlackDriverFragment extends Fragment {
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Toast.makeText(getActivity(), getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
                         if (bookingList == null || bookingList.size() == 0) {
                             mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
                             mRecyclerView.setAdapter(mAdapter);
-                            mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-                            mErrorTxtView.setVisibility(View.VISIBLE);
+//                            mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
+//                            mErrorTxtView.setVisibility(View.VISIBLE);
                         }
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
@@ -251,12 +251,12 @@ public class BlackDriverFragment extends Fragment {
                     }
 
                 } catch (Exception ex) {
-                    Toast.makeText(getActivity(), getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                    Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
                     if (bookingList == null || bookingList.size() == 0) {
                         mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
                         mRecyclerView.setAdapter(mAdapter);
-                        mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-                        mErrorTxtView.setVisibility(View.VISIBLE);
+//                        mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
+//                        mErrorTxtView.setVisibility(View.VISIBLE);
                     }
                 }
             }

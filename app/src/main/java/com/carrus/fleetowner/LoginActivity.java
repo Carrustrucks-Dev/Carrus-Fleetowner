@@ -131,7 +131,7 @@ public class LoginActivity extends BaseActivity {
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getReason());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Toast.makeText(LoginActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                        Utils.shopAlterDialog(LoginActivity.this, getResources().getString(R.string.nointernetconnection), false);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(LoginActivity.this, Utils.getErrorMsg(error), false);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
@@ -139,7 +139,7 @@ public class LoginActivity extends BaseActivity {
                     }
 
                 } catch (Exception ex) {
-                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                    Utils.shopAlterDialog(LoginActivity.this, getResources().getString(R.string.nointernetconnection), false);
                 }
             }
         });

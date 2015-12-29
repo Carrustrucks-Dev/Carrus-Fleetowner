@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -45,7 +46,7 @@ public class BookingDetailsActivity extends BaseActivity {
     private HashMap<Header, List<ExpandableChildItem>> listDataChild;
     private ExpandableListAdapter listAdapter;
     private ImageView mProfileIV, locationIV;
-    private RelativeLayout topView;
+    private LinearLayout topView;
     private SessionManager mSessionManager;
 
     @Override
@@ -65,7 +66,7 @@ public class BookingDetailsActivity extends BaseActivity {
         mBackBtn.setVisibility(View.VISIBLE);
 //        recyclerview = (RecyclerView) findViewById(R.id.recyclerview);
 //        recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        topView = (RelativeLayout) findViewById(R.id.topView);
+        topView = (LinearLayout) findViewById(R.id.topView);
         mExpandableListView = (ExpandableListView) findViewById(R.id.recyclerview);
         nameDetailTxtView = (TextView) findViewById(R.id.nameDetailTxtView);
         typeDetailTxtView = (TextView) findViewById(R.id.typeDetailTxtView);
@@ -251,7 +252,7 @@ public class BookingDetailsActivity extends BaseActivity {
 
         statusTxtView.setText(mMyBookingDataModel.bookingStatus.replace("_", " "));
 
-        addresPickupTxtView.setText(mMyBookingDataModel.pickUp.address + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.pickUp.city + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.pickUp.state + ", " + mMyBookingDataModel.pickUp.zipCode);
+        addresPickupTxtView.setText(mMyBookingDataModel.pickUp.address + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.pickUp.city + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.pickUp.state + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.pickUp.zipCode);
 
         try {
             datePickupTxtView.setText(Utils.getFullDateTime(mMyBookingDataModel.pickUp.date));

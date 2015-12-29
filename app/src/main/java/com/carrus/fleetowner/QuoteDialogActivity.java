@@ -65,7 +65,7 @@ public class QuoteDialogActivity extends BaseActivity {
         if (mIntent.getBooleanExtra(TYPE, false)) {
             offrbidEdtxt.setText("" + mIntent.getLongExtra(BIDVALUE, 0));
             notesEdtxt.setText(mIntent.getStringExtra(NOTES));
-            quoteId=mIntent.getStringExtra(QUOTEID);
+            quoteId = mIntent.getStringExtra(QUOTEID);
             mSubmitBtn.setText(getResources().getString(R.string.modify));
         }
 
@@ -131,8 +131,8 @@ public class QuoteDialogActivity extends BaseActivity {
                     JSONObject mObject = new JSONObject(s);
                     int status = mObject.getInt("statusCode");
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
-                        Constants.isTruckQuotesUpdated=true;
-                        Constants.isTruckPendingUpdate=true;
+                        Constants.isTruckQuotesUpdated = true;
+                        Constants.isTruckPendingUpdate = true;
 
                         Toast.makeText(QuoteDialogActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                         Intent output = new Intent();
@@ -156,9 +156,11 @@ public class QuoteDialogActivity extends BaseActivity {
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Toast.makeText(QuoteDialogActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                        Utils.shopAlterDialog(QuoteDialogActivity.this, getResources().getString(R.string.nointernetconnection), false);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(QuoteDialogActivity.this, Utils.getErrorMsg(error), true);
+                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Bad_Request.getOrdinal()) {
+                        Toast.makeText(QuoteDialogActivity.this, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
                         Toast.makeText(QuoteDialogActivity.this, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
 
@@ -167,7 +169,7 @@ public class QuoteDialogActivity extends BaseActivity {
                     }
 
                 } catch (Exception ex) {
-                    Toast.makeText(QuoteDialogActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                    Utils.shopAlterDialog(QuoteDialogActivity.this, getResources().getString(R.string.nointernetconnection), false);
                 }
             }
         });
@@ -188,7 +190,7 @@ public class QuoteDialogActivity extends BaseActivity {
                             JSONObject mObject = new JSONObject(s);
                             int status = mObject.getInt("statusCode");
                             if (ApiResponseFlags.OK.getOrdinal() == status) {
-                                Constants.isTruckQuotesUpdated=true;
+                                Constants.isTruckQuotesUpdated = true;
                                 Toast.makeText(QuoteDialogActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                                 Intent output = new Intent();
                                 setResult(RESULT_OK, output);
@@ -211,7 +213,7 @@ public class QuoteDialogActivity extends BaseActivity {
                             Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                             if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                                Toast.makeText(QuoteDialogActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                                Utils.shopAlterDialog(QuoteDialogActivity.this, getResources().getString(R.string.nointernetconnection), false);
                             } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                                 Utils.shopAlterDialog(QuoteDialogActivity.this, Utils.getErrorMsg(error), true);
                             } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
@@ -222,7 +224,7 @@ public class QuoteDialogActivity extends BaseActivity {
                             }
 
                         } catch (Exception ex) {
-                            Toast.makeText(QuoteDialogActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                            Utils.shopAlterDialog(QuoteDialogActivity.this, getResources().getString(R.string.nointernetconnection), false);
                         }
                     }
                 });

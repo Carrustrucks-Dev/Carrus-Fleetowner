@@ -191,7 +191,7 @@ public class TruckDeatisActivity extends BaseActivity {
                     startActivityForResult(intent, CHILDACTIVITY);
                 } else if (mQuoteBtn.getText().toString().equalsIgnoreCase(getResources().getString(R.string.assign_driver))) {
                     Intent mIntent = new Intent(TruckDeatisActivity.this, DriverActivity.class);
-                    intent.putExtra(ID, mTruckAssignDetails.getId());
+                    mIntent.putExtra(ID, mTruckAssignDetails.getId());
                     startActivityForResult(mIntent, CHILDACTIVITY);
                 }
 
@@ -456,14 +456,14 @@ public class TruckDeatisActivity extends BaseActivity {
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Toast.makeText(TruckDeatisActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                        Utils.shopAlterDialog(TruckDeatisActivity.this, getResources().getString(R.string.nointernetconnection), false);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(TruckDeatisActivity.this, Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
                         Toast.makeText(TruckDeatisActivity.this, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception ex) {
-                    Toast.makeText(TruckDeatisActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                    Utils.shopAlterDialog(TruckDeatisActivity.this, getResources().getString(R.string.nointernetconnection), false);
                 }
             }
         });

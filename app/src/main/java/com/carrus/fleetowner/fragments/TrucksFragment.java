@@ -594,14 +594,14 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Toast.makeText(getActivity(), getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
                         Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception ex) {
-                    Toast.makeText(getActivity(), getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                    Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
                 }
             }
         });

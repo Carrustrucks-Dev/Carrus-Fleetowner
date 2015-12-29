@@ -228,8 +228,8 @@ public class TruckAssignFragment extends Fragment {
                         if (bookingList == null || bookingList.size() == 0) {
                             mAdapter = new TruckAssignListAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);
-                            mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-                            mErrorTxtView.setVisibility(View.VISIBLE);
+//                            mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
+//                            mErrorTxtView.setVisibility(View.VISIBLE);
                         }
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
@@ -254,8 +254,8 @@ public class TruckAssignFragment extends Fragment {
                     if (bookingList == null || bookingList.size() == 0) {
                         mAdapter = new TruckAssignListAdapter(getActivity(), bookingList, mRecyclerView);
                         mRecyclerView.setAdapter(mAdapter);
-                        mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-                        mErrorTxtView.setVisibility(View.VISIBLE);
+//                        mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
+//                        mErrorTxtView.setVisibility(View.VISIBLE);
                     }
                 }
             }

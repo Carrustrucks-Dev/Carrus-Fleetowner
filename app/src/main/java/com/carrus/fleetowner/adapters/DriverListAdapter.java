@@ -217,7 +217,7 @@ public class DriverListAdapter extends RecyclerView.Adapter {
 
     public String getSelectedDriver() {
         if (selectedPos != -1)
-            return myList.get(selectedPos).getDriverId();
+            return myList.get(selectedPos).getId();
 
         return null;
     }

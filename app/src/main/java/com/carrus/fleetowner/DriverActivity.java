@@ -123,7 +123,9 @@ public class DriverActivity extends BaseActivity {
                     if (mAdapter.getSelectedDriver() == null) {
                         Utils.shopAlterDialog(mContext, getResources().getString(R.string.selecetDriver), false);
                     } else {
-                        assignDriver(mAdapter.getSelectedDriver());
+                        if (mAdapter.getSelectedDriver() != null)
+                            assignDriver(mAdapter.getSelectedDriver());
+
                     }
                 else {
                     Utils.shopAlterDialog(mContext, getResources().getString(R.string.nointernetconnection), false);
@@ -305,11 +307,13 @@ public class DriverActivity extends BaseActivity {
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Toast.makeText(mContext, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                        Utils.shopAlterDialog(mContext, getResources().getString(R.string.nointernetconnection), false);
 //                        mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
 //                        mErrorTxtView.setVisibility(View.VISIBLE);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(mContext, Utils.getErrorMsg(error), true);
+                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Bad_Request.getOrdinal()) {
+                        Utils.shopAlterDialog(mContext, Utils.getErrorMsg(error), false);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
                         Toast.makeText(mContext, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
 
@@ -318,7 +322,7 @@ public class DriverActivity extends BaseActivity {
                     }
 
                 } catch (Exception ex) {
-                    Toast.makeText(mContext, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                    Utils.shopAlterDialog(mContext, getResources().getString(R.string.nointernetconnection), false);
                 }
             }
         });
