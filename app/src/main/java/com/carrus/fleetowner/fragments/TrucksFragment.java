@@ -201,11 +201,36 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                     googleMap.clear();
                     LatLng location = new LatLng(Double.valueOf(mTrucks.getData().get(i).getCurrentCoordinates().getLat()), Double.valueOf(mTrucks.getData().get(i).getCurrentCoordinates().getLong()));
 
-                    Marker marker = googleMap.addMarker(new MarkerOptions().position(location)
-                                    .title(mTrucks.getData().get(i).getTrucker().get(0).getDriverName())
-                                    .snippet("")
-                                    .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_van))
-                    );
+                    Marker marker = null;
+                    if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("WHITE")) {
+                        marker = googleMap.addMarker(new MarkerOptions().position(location)
+                                        .title(mTrucks.getData().get(i).getTrucker().get(0).getDriverName())
+                                        .snippet("")
+                                        .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_truck_white))
+                        );
+
+                    } else if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("RED")) {
+                        marker = googleMap.addMarker(new MarkerOptions().position(location)
+                                        .title(mTrucks.getData().get(i).getTrucker().get(0).getDriverName())
+                                        .snippet("")
+                                        .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_truck_red))
+                        );
+
+                    } else if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("BLACK")) {
+                        marker = googleMap.addMarker(new MarkerOptions().position(location)
+                                        .title(mTrucks.getData().get(i).getTrucker().get(0).getDriverName())
+                                        .snippet("")
+                                        .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_truck_black))
+                        );
+
+                    } else if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("BLUE")) {
+                        marker = googleMap.addMarker(new MarkerOptions().position(location)
+                                        .title(mTrucks.getData().get(i).getTrucker().get(0).getDriverName())
+                                        .snippet("")
+                                        .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_truck_blue))
+                        );
+
+                    }
 
                     CameraUpdate center =
                             CameraUpdateFactory.newLatLng(location);
@@ -323,22 +348,6 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
 
         googleMap.animateCamera(cu);
 
-//        if (center != null)
-//            googleMap.moveCamera(center);
-
-
-//        for (int i = 0; i < Constants.name.length; i++) {
-//
-//            LatLng location = new LatLng(Constants.latitude[i],Constants.longitude[i]);
-//
-//            Marker marker = googleMap.addMarker(new MarkerOptions().position(location)
-//                    .title(Constants.name[i])
-//                    .snippet(Constants.name[i])
-//                    .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_van))
-//            );
-//
-//            mMarkerArray.add(marker);
-//        }
     }
 
     @Override
@@ -406,7 +415,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
 
                 MarkerOptions markerOptions = new MarkerOptions();
                 markerOptions.position(new LatLng(mTrackingModel.crruentTracking.get(0).lat, mTrackingModel.crruentTracking.get(0).longg));
-                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_van));
+                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_truck_white));
                 now = googleMap.addMarker(markerOptions);
 
             } else if (intent.getAction().equals(mBroadcastAction)) {
