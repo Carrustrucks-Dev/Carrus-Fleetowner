@@ -435,7 +435,7 @@ public class TruckDeatisActivity extends BaseActivity {
 
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
 
-                        Constants.isTruckPendingUpdate=true;
+                        Constants.isTruckPendingUpdate = true;
                         Toast.makeText(TruckDeatisActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                         finish();
 
@@ -452,9 +452,9 @@ public class TruckDeatisActivity extends BaseActivity {
             @Override
             public void failure(RetrofitError error) {
                 Utils.loading_box_stop();
+
                 try {
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
-
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
                         Utils.shopAlterDialog(TruckDeatisActivity.this, getResources().getString(R.string.nointernetconnection), false);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
@@ -465,6 +465,7 @@ public class TruckDeatisActivity extends BaseActivity {
                 } catch (Exception ex) {
                     Utils.shopAlterDialog(TruckDeatisActivity.this, getResources().getString(R.string.nointernetconnection), false);
                 }
+
             }
         });
     }
