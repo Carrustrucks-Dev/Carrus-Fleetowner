@@ -55,7 +55,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="null"
+                android:contentDescription="@string/empty"
                 android:padding="@dimen/ten"
                 android:src="@mipmap/icon_share" />
         </LinearLayout>
@@ -72,7 +72,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_alignParentLeft="true"
-                android:contentDescription="null"
+                android:contentDescription="@string/empty"
                 android:layout_centerVertical="true"
                 android:background="@mipmap/icon_placeholder" />
 
@@ -81,6 +81,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/profileIV"
+                android:layout_toLeftOf="@+id/callviewlayout"
+                android:gravity="left"
                 android:orientation="vertical"
                 android:padding="@dimen/five">
 
@@ -112,6 +114,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/callviewlayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -123,7 +126,7 @@
                     android:id="@+id/callBtnIV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="null"
+                    android:contentDescription="@string/empty"
                     android:padding="@dimen/fifteen"
                     android:src="@drawable/call_btn_selector" />
 

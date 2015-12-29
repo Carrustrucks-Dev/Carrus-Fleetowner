@@ -77,7 +77,7 @@
             android:id="@+id/callBtnIV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="null"
+            android:contentDescription="@string/empty"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:src="@drawable/call_fill_btn_selector"

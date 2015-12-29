@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:contentDescription="null"
+        android:contentDescription="@string/empty"
         android:padding="@dimen/ten"
         android:src="@mipmap/icon_cross" />
 
@@ -20,6 +20,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/trackinglabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/mid_fond"
@@ -30,6 +31,8 @@
 
         <RadioGroup
             android:id="@+id/trackingRadio"
+            android:layout_toRightOf="@+id/trackinglabel"
+            android:gravity="right|center_vertical"
             android:layout_width="wrap_content"
             android:orientation="horizontal"
             android:layout_alignParentRight="true"

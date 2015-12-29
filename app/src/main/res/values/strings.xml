@@ -4,6 +4,12 @@
 
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+    <string name="empty">empty</string>
+    <string name="space"> </string>
+    <string name="towithspaces"> to </string>
+    <string name="crn">CRN - </string>
+    <string name="comma_spraction">, </string>
+    <string name="rupee">₹ </string>
 
     <!--slide menus-->
     <string name="mybooking">My Bookings</string>
@@ -143,4 +149,5 @@
     <string name="pod">POD</string>
     <string name="invoice">Invoice</string>
     <string name="condignmntnotes">Consignment Notes</string>
+
 </resources>

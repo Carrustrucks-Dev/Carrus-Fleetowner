@@ -36,19 +36,19 @@ private String createdAt;
 private CurrentCoordinates currentCoordinates;
 @SerializedName("totalRating")
 @Expose
-private Integer totalRating;
+private String totalRating;
 @SerializedName("noOfPeopleRating")
 @Expose
-private Integer noOfPeopleRating;
+private String noOfPeopleRating;
 @SerializedName("rating")
 @Expose
-private float rating;
+private String rating;
 @SerializedName("loginCount")
 @Expose
-private Integer loginCount;
+private String loginCount;
 @SerializedName("radius")
 @Expose
-private Integer radius;
+private String radius;
 @SerializedName("location")
 @Expose
 private Location location;
@@ -235,7 +235,7 @@ this.currentCoordinates = currentCoordinates;
 * @return
 * The totalRating
 */
-public Integer getTotalRating() {
+public String getTotalRating() {
 return totalRating;
 }
 
@@ -244,7 +244,7 @@ return totalRating;
 * @param totalRating
 * The totalRating
 */
-public void setTotalRating(Integer totalRating) {
+public void setTotalRating(String totalRating) {
 this.totalRating = totalRating;
 }
 
@@ -253,7 +253,7 @@ this.totalRating = totalRating;
 * @return
 * The noOfPeopleRating
 */
-public Integer getNoOfPeopleRating() {
+public String getNoOfPeopleRating() {
 return noOfPeopleRating;
 }
 
@@ -262,7 +262,7 @@ return noOfPeopleRating;
 * @param noOfPeopleRating
 * The noOfPeopleRating
 */
-public void setNoOfPeopleRating(Integer noOfPeopleRating) {
+public void setNoOfPeopleRating(String noOfPeopleRating) {
 this.noOfPeopleRating = noOfPeopleRating;
 }
 
@@ -271,7 +271,7 @@ this.noOfPeopleRating = noOfPeopleRating;
 * @return
 * The rating
 */
-public float getRating() {
+public String getRating() {
 return rating;
 }
 
@@ -280,7 +280,7 @@ return rating;
 * @param rating
 * The rating
 */
-public void setRating(float rating) {
+public void setRating(String rating) {
 this.rating = rating;
 }
 
@@ -289,7 +289,7 @@ this.rating = rating;
 * @return
 * The loginCount
 */
-public Integer getLoginCount() {
+public String getLoginCount() {
 return loginCount;
 }
 
@@ -298,7 +298,7 @@ return loginCount;
 * @param loginCount
 * The loginCount
 */
-public void setLoginCount(Integer loginCount) {
+public void setLoginCount(String loginCount) {
 this.loginCount = loginCount;
 }
 
@@ -307,7 +307,7 @@ this.loginCount = loginCount;
 * @return
 * The radius
 */
-public Integer getRadius() {
+public String getRadius() {
 return radius;
 }
 
@@ -316,7 +316,7 @@ return radius;
 * @param radius
 * The radius
 */
-public void setRadius(Integer radius) {
+public void setRadius(String radius) {
 this.radius = radius;
 }
 

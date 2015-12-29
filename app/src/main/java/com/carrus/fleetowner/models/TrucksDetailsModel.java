@@ -20,7 +20,7 @@ public class TrucksDetailsModel implements Serializable {
     private Shipper shipper;
     @SerializedName("budget")
     @Expose
-    private Integer budget;
+    private String budget;
     @SerializedName("note")
     @Expose
     private String note;
@@ -95,14 +95,14 @@ public class TrucksDetailsModel implements Serializable {
     /**
      * @return The budget
      */
-    public Integer getBudget() {
+    public String getBudget() {
         return budget;
     }
 
     /**
      * @param budget The budget
      */
-    public void setBudget(Integer budget) {
+    public void setBudget(String budget) {
         this.budget = budget;
     }
 

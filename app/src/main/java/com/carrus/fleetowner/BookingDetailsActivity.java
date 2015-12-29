@@ -243,15 +243,15 @@ public class BookingDetailsActivity extends BaseActivity {
 
     private void setValuesonViews() {
 
-        nameDetailTxtView.setText(mMyBookingDataModel.shipper.firstName + " " + mMyBookingDataModel.shipper.lastName);
-        typeDetailTxtView.setText(mMyBookingDataModel.truck.truckType.typeTruckName + ", " + mMyBookingDataModel.truck.truckNumber);
-        locationDetailsTxtView.setText(mMyBookingDataModel.pickUp.city + " to " + mMyBookingDataModel.dropOff.city);
+        nameDetailTxtView.setText(mMyBookingDataModel.shipper.firstName + getResources().getString(R.string.space) + mMyBookingDataModel.shipper.lastName);
+        typeDetailTxtView.setText(mMyBookingDataModel.truck.truckType.typeTruckName + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.truck.truckNumber);
+        locationDetailsTxtView.setText(mMyBookingDataModel.pickUp.city + getResources().getString(R.string.towithspaces) + mMyBookingDataModel.dropOff.city);
         if (mMyBookingDataModel.crn != null && !mMyBookingDataModel.crn.equalsIgnoreCase(""))
-            trackDetailsIdTxtView.setText("CRN-" + mMyBookingDataModel.crn);
+            trackDetailsIdTxtView.setText(getResources().getString(R.string.crn) + mMyBookingDataModel.crn);
 
         statusTxtView.setText(mMyBookingDataModel.bookingStatus.replace("_", " "));
 
-        addresPickupTxtView.setText(mMyBookingDataModel.pickUp.address + ", " + mMyBookingDataModel.pickUp.city + ", " + mMyBookingDataModel.pickUp.state + ", " + mMyBookingDataModel.pickUp.zipCode);
+        addresPickupTxtView.setText(mMyBookingDataModel.pickUp.address + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.pickUp.city + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.pickUp.state + ", " + mMyBookingDataModel.pickUp.zipCode);
 
         try {
             datePickupTxtView.setText(Utils.getFullDateTime(mMyBookingDataModel.pickUp.date));
@@ -260,7 +260,7 @@ public class BookingDetailsActivity extends BaseActivity {
         }
 
         timePickupTxtView.setText(mMyBookingDataModel.pickUp.time);
-        addressDropTxtView.setText(mMyBookingDataModel.dropOff.address + ", " + mMyBookingDataModel.dropOff.city + ", " + mMyBookingDataModel.dropOff.state + ", " + mMyBookingDataModel.dropOff.zipCode);
+        addressDropTxtView.setText(mMyBookingDataModel.dropOff.address + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.dropOff.city + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.dropOff.state + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.dropOff.zipCode);
 
         try {
             dateDropTxtview.setText(Utils.getFullDateTime(mMyBookingDataModel.dropOff.date));
@@ -270,7 +270,7 @@ public class BookingDetailsActivity extends BaseActivity {
 
         timeDropTxtView.setText(mMyBookingDataModel.dropOff.time);
         paymentModeTxtView.setText(mMyBookingDataModel.paymentMode);
-        totalCostTxtView.setText("₹ " + mMyBookingDataModel.acceptPrice);
+        totalCostTxtView.setText(getResources().getString(R.string.rupee) + mMyBookingDataModel.acceptPrice);
         namePickUpTxtView.setText(mMyBookingDataModel.pickUp.companyName);
         phonePickUpTxtView.setText(mMyBookingDataModel.pickUp.contactNumber);
         codePickUpTxtView.setText(mMyBookingDataModel.pickUp.tin);

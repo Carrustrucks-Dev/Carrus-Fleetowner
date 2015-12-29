@@ -17,10 +17,10 @@
         <ImageView
             android:id="@+id/profileIV"
             android:layout_width="70dp"
-            android:contentDescription="null"
+            android:contentDescription="@string/empty"
             android:layout_height="70dp"
             android:scaleType="fitCenter"
-            android:layout_centerInParent="true" />
+             />
 
         <com.carrus.fleetowner.utils.CapitalizedTextView
             android:id="@+id/companyTxtView"

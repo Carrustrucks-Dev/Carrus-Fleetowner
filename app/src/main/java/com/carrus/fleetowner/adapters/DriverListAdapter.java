@@ -145,14 +145,14 @@ public class DriverListAdapter extends RecyclerView.Adapter {
             }
 
             ((ViewHolder) holder).mNameTxtView.setText(myList.get(position).getDriverName());
-//            ((ViewHolder) holder).vehiclenoTxtView.setText();
+            ((ViewHolder) holder).vehiclenoTxtView.setVisibility(View.GONE);
             try {
                 ((ViewHolder) holder).licenseexpTxtView.setText(Utils.getDateMonth(myList.get(position).getDrivingLicense().getValidity()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
 
-            ((ViewHolder) holder).mRatingBar.setRating(myList.get(position).getRating());
+            ((ViewHolder) holder).mRatingBar.setRating(Float.valueOf(myList.get(position).getRating()));
             ((ViewHolder) holder).mRatingBar.setFocusable(false);
 
             ((ViewHolder) holder).mCallBtnIV.setOnClickListener(new View.OnClickListener() {

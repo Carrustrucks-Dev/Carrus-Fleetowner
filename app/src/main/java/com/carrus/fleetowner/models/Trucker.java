@@ -34,13 +34,13 @@ private String createdAt;
 private CurrentCoordinates currentCoordinates;
 @SerializedName("totalRating")
 @Expose
-private Integer totalRating;
+private String totalRating;
 @SerializedName("noOfPeopleRating")
 @Expose
-private Integer noOfPeopleRating;
+private String noOfPeopleRating;
 @SerializedName("rating")
 @Expose
-private Integer rating;
+private String rating;
 @SerializedName("loginCount")
 @Expose
 private Integer loginCount;
@@ -230,7 +230,7 @@ this.currentCoordinates = currentCoordinates;
 * @return
 * The totalRating
 */
-public Integer getTotalRating() {
+public String getTotalRating() {
 return totalRating;
 }
 
@@ -239,7 +239,7 @@ return totalRating;
 * @param totalRating
 * The totalRating
 */
-public void setTotalRating(Integer totalRating) {
+public void setTotalRating(String totalRating) {
 this.totalRating = totalRating;
 }
 
@@ -248,7 +248,7 @@ this.totalRating = totalRating;
 * @return
 * The noOfPeopleRating
 */
-public Integer getNoOfPeopleRating() {
+public String getNoOfPeopleRating() {
 return noOfPeopleRating;
 }
 
@@ -257,7 +257,7 @@ return noOfPeopleRating;
 * @param noOfPeopleRating
 * The noOfPeopleRating
 */
-public void setNoOfPeopleRating(Integer noOfPeopleRating) {
+public void setNoOfPeopleRating(String noOfPeopleRating) {
 this.noOfPeopleRating = noOfPeopleRating;
 }
 
@@ -266,7 +266,7 @@ this.noOfPeopleRating = noOfPeopleRating;
 * @return
 * The rating
 */
-public Integer getRating() {
+public String getRating() {
 return rating;
 }
 
@@ -275,7 +275,7 @@ return rating;
 * @param rating
 * The rating
 */
-public void setRating(Integer rating) {
+public void setRating(String rating) {
 this.rating = rating;
 }
 
