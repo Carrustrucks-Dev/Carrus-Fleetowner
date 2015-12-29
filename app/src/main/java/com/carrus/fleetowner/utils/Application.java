@@ -2,8 +2,8 @@ package com.carrus.fleetowner.utils;
 
 
 import com.carrus.fleetowner.R;
-
 import com.crashlytics.android.Crashlytics;
+
 import io.fabric.sdk.android.Fabric;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 

@@ -13,6 +13,7 @@
         android:layout_centerVertical="true"
         android:padding="@dimen/ten"
         android:visibility="gone"
+        android:contentDescription="null"
         android:src="@mipmap/icon_menu" />
 
     <ImageView
@@ -21,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:padding="@dimen/ten"
+        android:contentDescription="null"
         android:visibility="gone"
         android:src="@mipmap/icon_back" />
 
@@ -43,6 +45,7 @@
         android:layout_alignParentRight="true"
         android:padding="@dimen/ten"
         android:visibility="gone"
+        android:contentDescription="null"
         android:src="@mipmap/icon_share" />
 
 </RelativeLayout>

@@ -16,6 +16,7 @@
             android:id="@+id/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="null"
              />
 
         <TextView
@@ -24,7 +25,8 @@
             android:layout_height="wrap_content"
             android:textColor="@drawable/textview_selector"
             android:textSize="@dimen/mid_fond"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textIsSelectable="false" />
     </LinearLayout>
 
     <View

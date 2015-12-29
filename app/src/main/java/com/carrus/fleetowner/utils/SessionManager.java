@@ -1,6 +1,7 @@
 package com.carrus.fleetowner.utils;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -45,6 +46,7 @@ public class SessionManager {
 
 
     // Constructor
+    @SuppressLint("CommitPrefEdits")
     public SessionManager(Context context) {
         this._context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);

@@ -1,5 +1,6 @@
 package com.carrus.fleetowner;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 /**
  * Created by Muddassir on 6/10/15.
  */
+@SuppressLint("Registered")
 public class BaseActivity extends FragmentActivity {
     int onStartCount = 0;
 

@@ -18,7 +18,7 @@
     <string name="term_privacy">Terms | Privacy Policy</string>
     <string name="bookingdetails">Booking Details</string>
     <string name="crnsubject">CRN Number</string>
-    <string name="share_chooser_text">Share using...</string>
+    <string name="share_chooser_text">Share using…</string>
 
 
     <!-- navigation drawer item labels  -->
@@ -58,9 +58,9 @@
     <string name="invoicenotfound">No invoice found</string>
     <string name="consignmntnotfound">No consignment note found</string>
     <string name="quotesamountrequired">Bid amount required</string>
-    <string name="selecetDriver">Please, select driver...</string>
-    <string name="choose_image">Choose image from...</string>
-    <string name="yetnotimplement">Uploading functionality in progress...</string>
+    <string name="selecetDriver">Please, select driver…</string>
+    <string name="choose_image">Choose image from…</string>
+    <string name="yetnotimplement">Uploading functionality in progress…</string>
 
     <!--text-->
     <string name="forgetpasswddetails">Enter email address and link would be sent to you to reset your password</string>
@@ -129,14 +129,13 @@
     <string name="assign_driver">ASSIGN DRIVER</string>
 
     <string name="typeoftruck">Type of Truck</string>
-    <string name="notes">Notes...</string>
+    <string name="notes">Notes…</string>
     <string name="trackingavail">Tracking Available</string>
 
     <!--Booking details Text-->
     <string name="paymentmode">PAYMENT MODE</string>
     <string name="totalcost">TOTAL COST</string>
     <string name="done">DONE</string>
-    <string name="cancel">CANCEL</string>
     <string name="viewpod">VIEW POD</string>
     <string name="viewinvoice">VIEW INVOICE</string>
     <string name="viewconsignment">VIEW CONSIGNMENT NOTE</string>

@@ -27,7 +27,7 @@
             android:textColor="@color/gray_text"
             android:padding="@dimen/ten"
             android:gravity="right"
-            android:text="checmical"
+            android:text=""
             android:layout_height="wrap_content"
             android:layout_weight="0.7"/>
     </LinearLayout>
@@ -61,7 +61,7 @@
             android:textColor="@color/gray_text"
             android:padding="@dimen/ten"
             android:gravity="right"
-            android:text="1 Ton"
+            android:text=""
             android:layout_height="wrap_content"
             android:layout_weight="0.7"/>
     </LinearLayout>

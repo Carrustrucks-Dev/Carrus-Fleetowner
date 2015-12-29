@@ -203,6 +203,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
 
                     Marker marker = null;
                     if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("WHITE")) {
+
                         marker = googleMap.addMarker(new MarkerOptions().position(location)
                                         .title(mTrucks.getData().get(i).getTrucker().get(0).getDriverName())
                                         .snippet("")
@@ -210,6 +211,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                         );
 
                     } else if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("RED")) {
+
                         marker = googleMap.addMarker(new MarkerOptions().position(location)
                                         .title(mTrucks.getData().get(i).getTrucker().get(0).getDriverName())
                                         .snippet("")
@@ -217,6 +219,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                         );
 
                     } else if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("BLACK")) {
+
                         marker = googleMap.addMarker(new MarkerOptions().position(location)
                                         .title(mTrucks.getData().get(i).getTrucker().get(0).getDriverName())
                                         .snippet("")
@@ -224,6 +227,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                         );
 
                     } else if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("BLUE")) {
+
                         marker = googleMap.addMarker(new MarkerOptions().position(location)
                                         .title(mTrucks.getData().get(i).getTrucker().get(0).getDriverName())
                                         .snippet("")

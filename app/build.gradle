@@ -4,7 +4,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'io.fabric.tools:gradle:1.+'
+        classpath 'io.fabric.tools:gradle:1.21.2'
     }
 }
 apply plugin: 'com.android.application'
@@ -17,7 +17,7 @@ repositories {
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "23.0.0"
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
         applicationId "com.carrus.fleetowner"
@@ -40,14 +40,16 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.android.support:design:22.2.1'
     compile 'com.android.support:recyclerview-v7:22.0.0'
-    compile 'com.google.android.gms:play-services:7.8.0'
+    compile 'com.google.android.gms:play-services:8.3.0'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
+    //noinspection NewerVersionAvailable
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
+    //noinspection NewerVersionAvailable
     compile 'com.squareup.okhttp:okhttp:2.0.0'
     compile 'uk.co.chrisjenx:calligraphy:2.1.0'
-    compile 'com.github.rahatarmanahmed:circularprogressview:2.2.1'
-    compile 'com.google.code.gson:gson:2.2.4'
-    compile 'com.squareup.picasso:picasso:2.3.2'
+    compile 'com.github.rahatarmanahmed:circularprogressview:2.4.0'
+    compile 'com.google.code.gson:gson:2.5'
+    compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.kbeanie:image-chooser-library:1.5.2@aar'
     compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
         transitive = true;

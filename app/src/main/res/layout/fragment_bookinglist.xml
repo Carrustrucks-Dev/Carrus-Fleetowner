@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Dummy"
+        android:text=""
         android:textColor="@android:color/black"
         android:visibility="gone" />
 </RelativeLayout>

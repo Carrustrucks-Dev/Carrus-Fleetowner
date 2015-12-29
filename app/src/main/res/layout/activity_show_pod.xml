@@ -30,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignRight="@+id/image"
+            android:contentDescription="null"
             android:layout_alignTop="@+id/image"
             android:clickable="true"
             android:src="@mipmap/icon_cross" />

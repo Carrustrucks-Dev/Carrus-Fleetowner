@@ -7,7 +7,8 @@
     android:orientation="horizontal"
     android:paddingBottom="@dimen/ten"
     android:paddingTop="@dimen/ten"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:baselineAligned="false">
 
 
     <RelativeLayout
@@ -20,6 +21,7 @@
             android:layout_width="@dimen/mediumhieght"
             android:layout_height="@dimen/mediumhieght"
             android:layout_centerHorizontal="true"
+            android:contentDescription="null"
             android:layout_centerVertical="true"
             android:background="@mipmap/ic_launcher" />
     </RelativeLayout>
@@ -36,7 +38,7 @@
             android:id="@+id/nameTxtView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name"
+            android:text=""
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/low_font"
 
@@ -46,7 +48,7 @@
             android:id="@+id/vehiclenoTxtView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vehicle Number"
+            android:text=""
             android:textColor="@color/gray_text"
             android:textSize="@dimen/low_font" />
 
@@ -93,6 +95,7 @@
             android:id="@+id/callBtnIV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="null"
             android:src="@drawable/call_btn_selector" />
     </LinearLayout>
 

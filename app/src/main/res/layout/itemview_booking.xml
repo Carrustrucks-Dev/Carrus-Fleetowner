@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:paddingTop="@dimen/ten"
     android:paddingBottom="@dimen/ten"
     android:orientation="horizontal"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:baselineAligned="false">
 
 
     <RelativeLayout
@@ -32,17 +34,17 @@
                 android:id="@+id/dateTxtView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="05"
+                android:text=""
                 android:layout_marginBottom="-12dp"
                 android:textColor="@color/windowBackground"
                 android:textSize="@dimen/toolarge_font"
-                />
+                tools:ignore="NegativeMargin" />
 
             <TextView
                 android:id="@+id/monthTxtView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="OCT"
+                android:text=""
                 android:textColor="@color/windowBackground"
                 android:textSize="@dimen/mid_fond"
                 />
@@ -62,7 +64,7 @@
             android:id="@+id/addressTxtView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Address"
+            android:text=""
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/low_font"
 
@@ -72,7 +74,7 @@
             android:id="@+id/nameTxtView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name"
+            android:text=""
             android:textColor="@color/tabcolor_dark"
             android:textSize="@dimen/low_font"
             />
@@ -81,7 +83,7 @@
             android:id="@+id/codeTxtView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Code"
+            android:text=""
             android:textColor="@android:color/darker_gray"
             android:textSize="@dimen/low_font"
             />
@@ -102,7 +104,7 @@
             android:id="@+id/timeTxtView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Time"
+            android:text=""
             android:gravity="center_vertical"
             android:textColor="@android:color/darker_gray"
             android:textSize="@dimen/low_font"
@@ -113,7 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:text="Status"
+            android:text=""
             android:textColor="@android:color/darker_gray"
             android:textSize="@dimen/low_font"
             />

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/windowBackground"
@@ -33,13 +34,14 @@
                 android:layout_height="wrap_content"
                 android:background="@color/gray"
                 android:padding="@dimen/ten"
-                android:text="Tata Ace - 2"
+                android:text=""
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/toolarge_font" />
 
             <include layout="@layout/view_pickup" />
 
-            <include layout="@layout/view_dropoff" />
+            <include layout="@layout/view_dropoff"
+                tools:ignore="DuplicateIncludedIds" />
 
             <ExpandableListView
                 android:id="@+id/recyclerview"

@@ -98,10 +98,17 @@ public class PickUp implements Serializable {
         this.time = time;
     }
 
+
+    /**
+     * @return The city
+     */
     public String getCity() {
         return city;
     }
 
+    /**
+     * @param city The city
+     */
     public void setCity(String city) {
         this.city = city;
     }

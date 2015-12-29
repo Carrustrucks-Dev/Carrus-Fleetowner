@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rv"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:splitMotionEvents="false">
+    android:splitMotionEvents="false"
+    tools:ignore="MergeRootFrame">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -33,7 +35,7 @@
                 android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="Title"
+                android:text=""
 
                 android:visibility="gone" />
 
@@ -58,7 +60,7 @@
                 android:maxHeight="400dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="Message"
+                android:text=""
                 android:textColor="@color/gray_text"
                 android:textSize="@dimen/mid_fond" />
 

@@ -29,6 +29,7 @@
                         android:id="@+id/driverImage"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
+                        android:contentDescription="null"
                          />
 
                     <Button
@@ -108,7 +109,8 @@
                     android:layout_marginTop="@dimen/six"
                     android:textAppearance="@style/CustomTextAppearance"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/big_font" />
+                    android:textSize="@dimen/big_font"
+                    android:textIsSelectable="true" />
 
                 <View
                     android:layout_width="match_parent"
@@ -131,7 +133,8 @@
                     android:layout_marginTop="@dimen/six"
                     android:textAppearance="@style/CustomTextAppearance"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/big_font" />
+                    android:textSize="@dimen/big_font"
+                    android:textIsSelectable="true" />
 
                 <View
                     android:layout_width="match_parent"
@@ -154,7 +157,8 @@
                     android:layout_marginTop="@dimen/six"
                     android:textAppearance="@style/CustomTextAppearance"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/big_font" />
+                    android:textSize="@dimen/big_font"
+                    android:textIsSelectable="true" />
 
                 <View
                     android:layout_width="match_parent"

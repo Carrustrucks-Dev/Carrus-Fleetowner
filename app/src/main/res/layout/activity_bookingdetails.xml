@@ -58,6 +58,7 @@
                     android:id="@+id/profileIV"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
+                    android:contentDescription="null"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:background="@mipmap/icon_placeholder" />
@@ -75,7 +76,7 @@
                         android:id="@+id/nameDetailTxtView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rahul Dhiman"
+                        android:text=""
                         android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/big_font" />
 
@@ -84,7 +85,7 @@
                         android:id="@+id/typeDetailTxtView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Tata Ace"
+                        android:text=""
                         android:textColor="@color/gray_text"
                         android:textSize="@dimen/mid_fond" />
 
@@ -93,7 +94,7 @@
                         android:id="@+id/locationDetailsTxtView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="CH 01 A 2772"
+                        android:text=""
                         android:textColor="@color/gray_text"
                         android:textSize="@dimen/mid_fond" />
                 </LinearLayout>
@@ -104,6 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:contentDescription="null"
                     android:layout_toLeftOf="@+id/callBtnIV"
                     android:padding="@dimen/ten"
                     android:src="@drawable/location_btn_selector"
@@ -113,6 +115,7 @@
                 <ImageView
                     android:id="@+id/callBtnIV"
                     android:layout_width="wrap_content"
+                    android:contentDescription="null"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
@@ -136,7 +139,7 @@
                 android:drawablePadding="@dimen/ten"
                 android:paddingLeft="@dimen/ten"
                 android:paddingRight="@dimen/ten"
-                android:text="Name"
+                android:text=""
                 android:textColor="@color/gray_text"
                 android:textSize="@dimen/mid_fond" />
 
@@ -150,7 +153,7 @@
                 android:paddingLeft="@dimen/ten"
                 android:paddingRight="@dimen/ten"
                 android:paddingTop="@dimen/ten"
-                android:text="Address"
+                android:text=""
                 android:textColor="@color/gray_text"
                 android:textSize="@dimen/mid_fond" />
 
@@ -163,7 +166,7 @@
                 android:paddingLeft="@dimen/ten"
                 android:paddingRight="@dimen/ten"
                 android:paddingTop="@dimen/ten"
-                android:text="Date"
+                android:text=""
                 android:textColor="@color/gray_text"
                 android:textSize="@dimen/mid_fond" />
 
@@ -176,7 +179,7 @@
                 android:paddingLeft="@dimen/ten"
                 android:paddingRight="@dimen/ten"
                 android:paddingTop="@dimen/ten"
-                android:text="Time"
+                android:text=""
                 android:textColor="@color/gray_text"
                 android:textSize="@dimen/mid_fond" />
 
@@ -189,7 +192,7 @@
                 android:paddingLeft="@dimen/ten"
                 android:paddingRight="@dimen/ten"
                 android:paddingTop="@dimen/ten"
-                android:text="phone"
+                android:text=""
                 android:textColor="@color/gray_text"
                 android:textSize="@dimen/mid_fond" />
 
@@ -203,7 +206,7 @@
                 android:paddingLeft="@dimen/ten"
                 android:paddingRight="@dimen/ten"
                 android:paddingTop="@dimen/ten"
-                android:text="code"
+                android:text=""
                 android:textColor="@color/gray_text"
                 android:textSize="@dimen/mid_fond" />
 
@@ -232,7 +235,7 @@
                 android:drawablePadding="@dimen/ten"
                 android:paddingLeft="@dimen/ten"
                 android:paddingRight="@dimen/ten"
-                android:text="Name"
+                android:text=""
                 android:textColor="@color/gray_text"
                 android:textSize="@dimen/mid_fond" />
 
@@ -246,7 +249,7 @@
                 android:paddingLeft="@dimen/ten"
                 android:paddingRight="@dimen/ten"
                 android:paddingTop="@dimen/ten"
-                android:text="Address"
+                android:text=""
                 android:textColor="@color/gray_text"
                 android:textSize="@dimen/mid_fond" />
 
@@ -259,7 +262,7 @@
                 android:paddingLeft="@dimen/ten"
                 android:paddingRight="@dimen/ten"
                 android:paddingTop="@dimen/ten"
-                android:text="Date"
+                android:text=""
                 android:textColor="@color/gray_text"
                 android:textSize="@dimen/mid_fond" />
 
@@ -272,7 +275,7 @@
                 android:paddingLeft="@dimen/ten"
                 android:paddingRight="@dimen/ten"
                 android:paddingTop="@dimen/ten"
-                android:text="Time"
+                android:text=""
                 android:textColor="@color/gray_text"
                 android:textSize="@dimen/mid_fond" />
 
@@ -285,7 +288,7 @@
                 android:paddingLeft="@dimen/ten"
                 android:paddingRight="@dimen/ten"
                 android:paddingTop="@dimen/ten"
-                android:text="phone"
+                android:text=""
                 android:textColor="@color/gray_text"
                 android:textSize="@dimen/mid_fond" />
 
@@ -299,7 +302,7 @@
                 android:paddingLeft="@dimen/ten"
                 android:paddingRight="@dimen/ten"
                 android:paddingTop="@dimen/ten"
-                android:text="code"
+                android:text=""
                 android:textColor="@color/gray_text"
                 android:textSize="@dimen/mid_fond" />
 
@@ -339,7 +342,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="CASH"
+                    android:text=""
                     android:textColor="@color/tabcolor_dark"
                     android:textSize="@dimen/large_font" />
 
@@ -369,7 +372,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="$ 200"
+                    android:text=""
                     android:textColor="@color/tabcolor_dark"
                     android:textSize="@dimen/large_font" />
 
@@ -385,7 +388,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/gray_text"
-                    android:text="@string/cancel"
+                    android:text="@android:string/cancel"
                     android:textColor="@color/windowBackground"
                     android:visibility="gone" />
 

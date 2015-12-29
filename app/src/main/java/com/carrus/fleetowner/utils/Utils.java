@@ -1,5 +1,6 @@
 package com.carrus.fleetowner.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -141,57 +142,57 @@ measures height of recyclerview when placed inside scrollview
     public static String getDate(String time) throws ParseException {
         Calendar cal = Calendar.getInstance();
         TimeZone tz = cal.getTimeZone();
-        DateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        @SuppressLint("SimpleDateFormat") DateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 //        f.setTimeZone(TimeZone.getTimeZone("ISO"));
         f.setTimeZone(tz);
         Date d = f.parse(String.valueOf(time));
-        DateFormat date = new SimpleDateFormat("dd");
-        DateFormat month = new SimpleDateFormat("MMM");
+        @SuppressLint("SimpleDateFormat") DateFormat date = new SimpleDateFormat("dd");
+        @SuppressLint("SimpleDateFormat") DateFormat month = new SimpleDateFormat("MMM");
         return date.format(d);
     }
 
     public static String getDateMonth(String time) throws ParseException {
         Calendar cal = Calendar.getInstance();
         TimeZone tz = cal.getTimeZone();
-        DateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        @SuppressLint("SimpleDateFormat") DateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 //        f.setTimeZone(TimeZone.getTimeZone("ISO"));
         f.setTimeZone(tz);
         Date d = f.parse(String.valueOf(time));
-        DateFormat date = new SimpleDateFormat("dd MMM");
+        @SuppressLint("SimpleDateFormat") DateFormat date = new SimpleDateFormat("dd MMM");
         return date.format(d);
     }
 
     public static String getMonth(String time) throws ParseException {
         Calendar cal = Calendar.getInstance();
         TimeZone tz = cal.getTimeZone();
-        DateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        @SuppressLint("SimpleDateFormat") DateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 //        f.setTimeZone(TimeZone.getTimeZone("ISO"));
         f.setTimeZone(tz);
         Date d = f.parse(String.valueOf(time));
-        DateFormat date = new SimpleDateFormat("dd");
-        DateFormat month = new SimpleDateFormat("MMM");
+        @SuppressLint("SimpleDateFormat") DateFormat date = new SimpleDateFormat("dd");
+        @SuppressLint("SimpleDateFormat") DateFormat month = new SimpleDateFormat("MMM");
         return month.format(d);
     }
 
     public static String getDay(String time) throws ParseException {
         Calendar cal = Calendar.getInstance();
         TimeZone tz = cal.getTimeZone();
-        DateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        @SuppressLint("SimpleDateFormat") DateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 //        f.setTimeZone(TimeZone.getTimeZone("ISO"));
         f.setTimeZone(tz);
         Date d = f.parse(String.valueOf(time));
-        DateFormat day = new SimpleDateFormat("EEE");
+        @SuppressLint("SimpleDateFormat") DateFormat day = new SimpleDateFormat("EEE");
         return day.format(d);
     }
 
     public static String getFullDateTime(String time) throws ParseException {
         Calendar cal = Calendar.getInstance();
         TimeZone tz = cal.getTimeZone();
-        DateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        @SuppressLint("SimpleDateFormat") DateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 //        f.setTimeZone(TimeZone.getTimeZone("ISO"));
         f.setTimeZone(tz);
         Date d = f.parse(String.valueOf(time));
-        DateFormat day = new SimpleDateFormat("EEEE, dd MMMM yyyy");
+        @SuppressLint("SimpleDateFormat") DateFormat day = new SimpleDateFormat("EEEE, dd MMMM yyyy");
         return day.format(d);
     }
 

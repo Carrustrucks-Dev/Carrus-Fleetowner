@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -20,7 +21,7 @@
         android:drawablePadding="@dimen/ten"
         android:paddingLeft="@dimen/ten"
         android:paddingRight="@dimen/ten"
-        android:text="Time"
+        android:text=""
         android:textColor="@color/gray_text"
         android:textSize="@dimen/mid_fond" />
 
@@ -33,7 +34,7 @@
         android:paddingLeft="@dimen/ten"
         android:paddingRight="@dimen/ten"
         android:paddingTop="@dimen/ten"
-        android:text="Address"
+        android:text=""
         android:textColor="@color/gray_text"
         android:textSize="@dimen/mid_fond" />
 
@@ -46,7 +47,7 @@
         android:paddingLeft="@dimen/ten"
         android:paddingRight="@dimen/ten"
         android:paddingTop="@dimen/ten"
-        android:text="Date"
+        android:text=""
         android:textColor="@color/gray_text"
         android:textSize="@dimen/mid_fond" />
 
@@ -56,7 +57,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/ten"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:ignore="DuplicateIncludedIds">
 
         <TextView
             android:id="@+id/phoneDropTxtView"
@@ -67,7 +69,7 @@
             android:paddingLeft="@dimen/ten"
             android:paddingRight="@dimen/ten"
             android:paddingTop="@dimen/ten"
-            android:text="phone"
+            android:text=""
             android:textColor="@color/gray_text"
             android:textSize="@dimen/mid_fond" />
 
@@ -75,9 +77,11 @@
             android:id="@+id/callBtnIV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="null"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/call_fill_btn_selector" />
+            android:src="@drawable/call_fill_btn_selector"
+            tools:ignore="DuplicateIncludedIds" />
     </RelativeLayout>
 
 </LinearLayout>

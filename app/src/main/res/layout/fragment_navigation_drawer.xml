@@ -17,6 +17,7 @@
         <ImageView
             android:id="@+id/profileIV"
             android:layout_width="70dp"
+            android:contentDescription="null"
             android:layout_height="70dp"
             android:scaleType="fitCenter"
             android:layout_centerInParent="true" />
