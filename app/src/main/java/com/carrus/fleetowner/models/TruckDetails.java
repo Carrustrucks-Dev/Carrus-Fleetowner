@@ -14,4 +14,12 @@ public class TruckDetails  implements Serializable {
 
     @SerializedName("typeTruckName")
     public String typeTruckName;
+
+    @SerializedName("truckNumber")
+    public String truckNumber;
+
+    @Override
+    public String toString() {
+        return truckNumber;
+    }
 }

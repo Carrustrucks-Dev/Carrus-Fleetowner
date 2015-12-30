@@ -56,9 +56,9 @@ private Object profilePicture;
 @SerializedName("isBlocked")
 @Expose
 private Boolean isBlocked;
-@SerializedName("fleetOwner")
-@Expose
-private List<String> fleetOwner = new ArrayList<String>();
+//@SerializedName("fleetOwner")
+//@Expose
+//private List<String> fleetOwner = new ArrayList<String>();
 @SerializedName("userType")
 @Expose
 private String userType;
@@ -374,18 +374,18 @@ this.isBlocked = isBlocked;
 * @return
 * The fleetOwner
 */
-public List<String> getFleetOwner() {
-return fleetOwner;
-}
+//public List<String> getFleetOwner() {
+//return fleetOwner;
+////}
 
 /**
 * 
 * @param fleetOwner
 * The fleetOwner
 */
-public void setFleetOwner(List<String> fleetOwner) {
-this.fleetOwner = fleetOwner;
-}
+//public void setFleetOwner(List<String> fleetOwner) {
+//this.fleetOwner = fleetOwner;
+//}
 
 /**
 * 

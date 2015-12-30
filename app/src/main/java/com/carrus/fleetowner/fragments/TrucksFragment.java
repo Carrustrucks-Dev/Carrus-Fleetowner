@@ -577,9 +577,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                         mTrucks = gson.fromJson(s, Trucks.class);
                         addmarkers();
                     } else {
-
                         Toast.makeText(getActivity(), mObject.getString("message"), Toast.LENGTH_SHORT).show();
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
