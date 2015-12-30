@@ -24,7 +24,7 @@
             android:padding="@dimen/ten"
             android:text="@string/newrequests"
             android:textColor="@color/windowBackground"
-            android:textSize="@dimen/big_font" />
+            android:textSize="@dimen/tab_font" />
 
         <TextView
             android:id="@+id/pendingquotesTV"
@@ -38,7 +38,7 @@
             android:padding="@dimen/ten"
             android:text="@string/pendingquotes"
             android:textColor="@color/tabcolor_dark"
-            android:textSize="@dimen/big_font" />
+            android:textSize="@dimen/tab_font" />
 
         <TextView
             android:id="@+id/pendingassignTV"
@@ -50,7 +50,7 @@
             android:padding="@dimen/ten"
             android:text="@string/pendingassign"
             android:textColor="@color/tabcolor_dark"
-            android:textSize="@dimen/big_font" />
+            android:textSize="@dimen/tab_font" />
 
     </LinearLayout>
 

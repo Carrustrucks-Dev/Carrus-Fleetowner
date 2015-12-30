@@ -35,4 +35,5 @@
     <dimen name="large_font">20sp</dimen>
     <dimen name="toolarge_font">30sp</dimen>
     <dimen name="extralarge_font">50sp</dimen>
+    <dimen name="tab_font">16sp</dimen>
 </resources>
