@@ -92,7 +92,7 @@ public class TruckAssignFragment extends Fragment {
         if (mConnectionDetector.isConnectingToInternet())
             getMyBooking();
         else {
-           noInternetDialog();
+            noInternetDialog();
         }
     }
 
@@ -111,7 +111,7 @@ public class TruckAssignFragment extends Fragment {
     }
 
     private void init(View view) {
-        mErrorTxtView=(TextView) view.findViewById(R.id.errorTxtView);
+        mErrorTxtView = (TextView) view.findViewById(R.id.errorTxtView);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
 //        swipeRefreshLayout.setColorSchemeColors(
 //                Color.RED, Color.GREEN, Color.BLUE, Color.CYAN);
@@ -140,8 +140,8 @@ public class TruckAssignFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(Constants.isTruckAssignUpdate){
-            Constants.isTruckAssignUpdate=false;
+        if (Constants.isTruckAssignUpdate) {
+            Constants.isTruckAssignUpdate = false;
             isRefreshView = true;
             getMyBooking();
         }
@@ -151,10 +151,10 @@ public class TruckAssignFragment extends Fragment {
         mErrorTxtView.setVisibility(View.GONE);
         if (isRefreshView) {
             swipeRefreshLayout.setRefreshing(true);
-            skip=0;
-            bookingList=null;
+            skip = 0;
+            bookingList = null;
         } else {
-            if(bookingList==null || bookingList.size()==0)
+            if (bookingList == null || bookingList.size() == 0)
                 Utils.loading_box(getActivity());
         }
 
@@ -176,8 +176,8 @@ public class TruckAssignFragment extends Fragment {
                             bookingList.addAll(mTruckAssignModel.getData());
                             mAdapter = new TruckAssignListAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);
-                            if(mTruckAssignModel.getData().size()==LIMIT)
-                            setonScrollListener();
+                            if (mTruckAssignModel.getData().size() == LIMIT)
+                                setonScrollListener();
                         } else {
                             bookingList.remove(bookingList.size() - 1);
                             mAdapter.notifyItemRemoved(bookingList.size());
@@ -209,7 +209,7 @@ public class TruckAssignFragment extends Fragment {
                 }
 
                 Utils.loading_box_stop();
-                isRefreshView=false;
+                isRefreshView = false;
                 swipeRefreshLayout.setRefreshing(false);
             }
 
@@ -222,7 +222,7 @@ public class TruckAssignFragment extends Fragment {
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
 //                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
-                       noInternetDialog();
+                        noInternetDialog();
                         if (bookingList == null || bookingList.size() == 0) {
                             mAdapter = new TruckAssignListAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);
@@ -233,11 +233,11 @@ public class TruckAssignFragment extends Fragment {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
                         Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
-                        if(bookingList==null || bookingList.size()==0) {
+                        if (bookingList == null || bookingList.size() == 0) {
                             mErrorTxtView.setText(getResources().getString(R.string.norecordfound));
                             mErrorTxtView.setVisibility(View.VISIBLE);
                         }
-                    }else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
+                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
                         Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         try {
                             bookingList.remove(bookingList.size() - 1);
@@ -248,7 +248,7 @@ public class TruckAssignFragment extends Fragment {
                     }
 
                 } catch (Exception ex) {
-                   noInternetDialog();
+                    noInternetDialog();
                     if (bookingList == null || bookingList.size() == 0) {
                         mAdapter = new TruckAssignListAdapter(getActivity(), bookingList, mRecyclerView);
                         mRecyclerView.setAdapter(mAdapter);
@@ -279,7 +279,8 @@ public class TruckAssignFragment extends Fragment {
             }
         });
     }
-    private void noInternetDialog(){
+
+    private void noInternetDialog() {
         CommonNoInternetDialog.WithActivity(getActivity()).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
             @Override
             public void OnOkButtonPressed() {

@@ -301,7 +301,7 @@ public class TruckDeatisActivity extends BaseActivity {
 
         // Adding child data
         ArrayList<ExpandableChildItem> fleetowner = new ArrayList<ExpandableChildItem>();
-        fleetowner.add(new ExpandableChildItem("", mTrucksDetailsModel.getShipper().firstName, 1));
+//        fleetowner.add(new ExpandableChildItem("", mTrucksDetailsModel.getShipper().firstName, 1));
 
         listDataChild.put(listDataHeader.get(0), cargoDetails); // Header, Child data
         listDataChild.put(listDataHeader.get(1), notes);
