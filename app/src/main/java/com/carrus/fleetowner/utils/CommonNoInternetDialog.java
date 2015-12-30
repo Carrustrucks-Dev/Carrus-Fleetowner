@@ -11,6 +11,8 @@ import android.content.DialogInterface;
 
 public class CommonNoInternetDialog {
 
+    private static AlertDialog mAlertDialog = null;
+
     /**
      * @param act
      * @return
@@ -55,33 +57,34 @@ public class CommonNoInternetDialog {
         public void Show(String message, String okButtonText, String cancelButtonText, ConfirmationDialogEventsListener confirmationDialogEvents1) {
             try {
                 this.confirmationDialogEvents = confirmationDialogEvents1;
-
-                final AlertDialog mAlertDialog = new AlertDialog.Builder(activity)
-                        // Set Dialog Icon
+                if (mAlertDialog == null)
+                    mAlertDialog = new AlertDialog.Builder(activity)
+                            // Set Dialog Icon
 //                .setIcon(R.drawable.androidhappy)
-                        // Set Dialog Title
-                        .setTitle("")
-                                // Set Dialog Message
-                        .setMessage(message)
-                        .setCancelable(false)
+                            // Set Dialog Title
+                            .setTitle("")
+                                    // Set Dialog Message
+                            .setMessage(message)
+                            .setCancelable(false)
 
-                                // Positive button
-                        .setPositiveButton(okButtonText, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Do something else
-                                dialog.dismiss();
-
-                                confirmationDialogEvents.OnOkButtonPressed();
-                            }
-                        })
-                        .setNegativeButton(cancelButtonText, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                                confirmationDialogEvents.OnCancelButtonPressed();
-                            }
-                        })
-                        .create();
+                                    // Positive button
+                            .setPositiveButton(okButtonText, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Do something else
+                                    dialog.dismiss();
+                                    mAlertDialog=null;
+                                    confirmationDialogEvents.OnOkButtonPressed();
+                                }
+                            })
+                            .setNegativeButton(cancelButtonText, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                    mAlertDialog=null;
+                                    confirmationDialogEvents.OnCancelButtonPressed();
+                                }
+                            })
+                            .create();
                 mAlertDialog.show();
             } catch (Exception e) {
                 e.printStackTrace();

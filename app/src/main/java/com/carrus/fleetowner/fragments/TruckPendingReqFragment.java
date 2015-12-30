@@ -87,6 +87,7 @@ public class TruckPendingReqFragment extends Fragment{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         mSessionManager = new SessionManager(getActivity());
         mConnectionDetector = new ConnectionDetector(getActivity());
         if (mConnectionDetector.isConnectingToInternet())
@@ -97,6 +98,7 @@ public class TruckPendingReqFragment extends Fragment{
     }
 
     private void intializeListners() {
+
         mErrorTxtView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +110,7 @@ public class TruckPendingReqFragment extends Fragment{
                 }
             }
         });
+
     }
 
     private void init(View view) {
