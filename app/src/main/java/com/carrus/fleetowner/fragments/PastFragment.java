@@ -22,6 +22,7 @@ import com.carrus.fleetowner.models.MyBookingDataModel;
 import com.carrus.fleetowner.models.MyBookingModel;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
+import com.carrus.fleetowner.utils.CommonNoInternetDialog;
 import com.carrus.fleetowner.utils.ConnectionDetector;
 import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.SessionManager;
@@ -91,9 +92,7 @@ public class PastFragment extends Fragment {
         if (mConnectionDetector.isConnectingToInternet())
             getPastBookings();
         else {
-            mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-            mErrorTxtView.setVisibility(View.VISIBLE);
-            Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+            noInternetDialog();
         }
     }
 
@@ -105,9 +104,7 @@ public class PastFragment extends Fragment {
                 if (mConnectionDetector.isConnectingToInternet())
                     getPastBookings();
                 else {
-                    mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-                    mErrorTxtView.setVisibility(View.VISIBLE);
-                    Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+                   noInternetDialog();
                 }
             }
         });
@@ -225,7 +222,9 @@ public class PastFragment extends Fragment {
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+//                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+                       noInternetDialog();
+
                         if (bookingList == null || bookingList.size() == 0) {
                             mAdapter = new PastBookingAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);
@@ -235,7 +234,7 @@ public class PastFragment extends Fragment {
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
-                        Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         if(bookingList==null || bookingList.size()==0) {
                             mErrorTxtView.setText(getResources().getString(R.string.norecordfound));
                             mErrorTxtView.setVisibility(View.VISIBLE);
@@ -252,7 +251,7 @@ public class PastFragment extends Fragment {
                 } catch (Exception ex) {
                     Activity activity = getActivity();
                     if (activity != null && isAdded()) {
-                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+                       noInternetDialog();
                         if (bookingList == null || bookingList.size() == 0) {
                             mAdapter = new PastBookingAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);
@@ -279,6 +278,21 @@ public class PastFragment extends Fragment {
                     e.printStackTrace();
                 }
 
+            }
+        });
+    }
+
+    private void noInternetDialog(){
+        CommonNoInternetDialog.WithActivity(getActivity()).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
+            @Override
+            public void OnOkButtonPressed() {
+                isRefreshView = true;
+                getPastBookings();
+            }
+
+            @Override
+            public void OnCancelButtonPressed() {
+                getActivity().finish();
             }
         });
     }

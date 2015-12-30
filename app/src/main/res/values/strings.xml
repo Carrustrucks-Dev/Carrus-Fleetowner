@@ -66,6 +66,7 @@
     <string name="quotesamountrequired">Bid amount required</string>
     <string name="selecetDriver">Please, select driver…</string>
     <string name="choose_image">Choose image from…</string>
+    <string name="trucknotfound">Truck Not found, Please choose another driver</string>
     <string name="yetnotimplement">Uploading functionality in progress…</string>
 
     <!--text-->
@@ -150,4 +151,7 @@
     <string name="invoice">Invoice</string>
     <string name="condignmntnotes">Consignment Notes</string>
 
+    <!--Dialog Button Text-->
+    <string name="tryagain">Try again</string>
+    <string name="exit">Exit</string>
 </resources>

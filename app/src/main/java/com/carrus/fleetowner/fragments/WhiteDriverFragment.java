@@ -21,6 +21,7 @@ import com.carrus.fleetowner.models.Datum;
 import com.carrus.fleetowner.models.DriverModel;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
+import com.carrus.fleetowner.utils.CommonNoInternetDialog;
 import com.carrus.fleetowner.utils.ConnectionDetector;
 import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.SessionManager;
@@ -91,9 +92,7 @@ public class WhiteDriverFragment extends Fragment {
         if (mConnectionDetector.isConnectingToInternet())
             getMyBooking(((DriverFragment)getParentFragment()).mSearchEdtTxt.getText().toString().trim());
         else {
-            mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-            mErrorTxtView.setVisibility(View.VISIBLE);
-            Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+          noInternetDialog();
         }
     }
 
@@ -105,9 +104,7 @@ public class WhiteDriverFragment extends Fragment {
                 if (mConnectionDetector.isConnectingToInternet())
                     getMyBooking(((DriverFragment)getParentFragment()).mSearchEdtTxt.getText().toString().trim());
                 else {
-                    mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-                    mErrorTxtView.setVisibility(View.VISIBLE);
-                    Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+                   noInternetDialog();
                 }
             }
         });
@@ -225,7 +222,8 @@ public class WhiteDriverFragment extends Fragment {
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+//                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+                       noInternetDialog();
                         if(bookingList==null || bookingList.size()==0) {
                             mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
                             mRecyclerView.setAdapter(mAdapter);
@@ -252,7 +250,7 @@ public class WhiteDriverFragment extends Fragment {
                     }
 
                 } catch (Exception ex) {
-                    Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+                    noInternetDialog();
                     if(bookingList==null || bookingList.size()==0) {
                         mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
                         mRecyclerView.setAdapter(mAdapter);
@@ -274,7 +272,7 @@ public class WhiteDriverFragment extends Fragment {
                 try {
                     bookingList.add(null);
                     mAdapter.notifyItemInserted(bookingList.size() - 1);
-                    getMyBooking(((DriverFragment)getParentFragment()).mSearchEdtTxt.getText().toString().trim());
+                    getMyBooking(((DriverFragment) getParentFragment()).mSearchEdtTxt.getText().toString().trim());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -283,5 +281,18 @@ public class WhiteDriverFragment extends Fragment {
             }
         });
     }
+    private void noInternetDialog(){
+        CommonNoInternetDialog.WithActivity(getActivity()).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
+            @Override
+            public void OnOkButtonPressed() {
+                isRefreshView = true;
+                getMyBooking(((DriverFragment)getParentFragment()).mSearchEdtTxt.getText().toString().trim());
+            }
 
+            @Override
+            public void OnCancelButtonPressed() {
+                getActivity().finish();
+            }
+        });
+    }
 }

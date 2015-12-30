@@ -17,11 +17,13 @@ import android.widget.Toast;
 
 import com.carrus.fleetowner.adapters.DividerItemDecoration;
 import com.carrus.fleetowner.adapters.DriverListAdapter;
+import com.carrus.fleetowner.fragments.DriverFragment;
 import com.carrus.fleetowner.interfaces.OnLoadMoreListener;
 import com.carrus.fleetowner.models.Datum;
 import com.carrus.fleetowner.models.DriverModel;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
+import com.carrus.fleetowner.utils.CommonNoInternetDialog;
 import com.carrus.fleetowner.utils.ConnectionDetector;
 import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.SessionManager;
@@ -104,7 +106,7 @@ public class DriverActivity extends BaseActivity {
         if (mConnectionDetector.isConnectingToInternet())
             getDrivers(mSearchEdtTxt.getText().toString().trim());
         else {
-            Utils.shopAlterDialog(mContext, getResources().getString(R.string.nointernetconnection), false);
+           noInternetDialog();
         }
     }
 
@@ -128,7 +130,7 @@ public class DriverActivity extends BaseActivity {
 
                     }
                 else {
-                    Utils.shopAlterDialog(mContext, getResources().getString(R.string.nointernetconnection), false);
+                    noInternetDialog();
                 }
             }
         });
@@ -229,7 +231,7 @@ public class DriverActivity extends BaseActivity {
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Toast.makeText(mContext, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                        noInternetDialog();
 //                        mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
 //                        mErrorTxtView.setVisibility(View.VISIBLE);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
@@ -249,7 +251,7 @@ public class DriverActivity extends BaseActivity {
                     }
 
                 } catch (Exception ex) {
-                    Toast.makeText(mContext, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                    noInternetDialog();
                 }
             }
         });
@@ -307,13 +309,12 @@ public class DriverActivity extends BaseActivity {
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Utils.shopAlterDialog(mContext, getResources().getString(R.string.nointernetconnection), false);
-//                        mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-//                        mErrorTxtView.setVisibility(View.VISIBLE);
+                        Toast.makeText(mContext, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(mContext, Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Bad_Request.getOrdinal()) {
-                        Utils.shopAlterDialog(mContext, Utils.getErrorMsg(error), false);
+                        Utils.shopAlterDialog(mContext, getResources().getString(R.string.trucknotfound), false);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
                         Toast.makeText(mContext, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
 
@@ -322,8 +323,23 @@ public class DriverActivity extends BaseActivity {
                     }
 
                 } catch (Exception ex) {
-                    Utils.shopAlterDialog(mContext, getResources().getString(R.string.nointernetconnection), false);
+                    Toast.makeText(mContext, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+    }
+
+    private void noInternetDialog(){
+        CommonNoInternetDialog.WithActivity((Activity)mContext).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
+            @Override
+            public void OnOkButtonPressed() {
+                isRefreshView = true;
+                getDrivers(mSearchEdtTxt.getText().toString().trim());
+            }
+
+            @Override
+            public void OnCancelButtonPressed() {
+                finish();
             }
         });
     }

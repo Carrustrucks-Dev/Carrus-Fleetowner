@@ -29,6 +29,7 @@ import com.carrus.fleetowner.models.Trucks;
 import com.carrus.fleetowner.models.TrucksType;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
+import com.carrus.fleetowner.utils.CommonNoInternetDialog;
 import com.carrus.fleetowner.utils.ConnectionDetector;
 import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.GMapV2GetRouteDirection;
@@ -592,7 +593,18 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+//                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+                        CommonNoInternetDialog.WithActivity(getActivity()).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
+                            @Override
+                            public void OnOkButtonPressed() {
+                                getAllTrucks();
+                            }
+
+                            @Override
+                            public void OnCancelButtonPressed() {
+                                getActivity().finish();
+                            }
+                        });
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {

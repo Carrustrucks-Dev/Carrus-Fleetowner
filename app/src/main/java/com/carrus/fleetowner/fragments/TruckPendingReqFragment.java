@@ -21,6 +21,7 @@ import com.carrus.fleetowner.models.TruckModel;
 import com.carrus.fleetowner.models.TrucksDetailsModel;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
+import com.carrus.fleetowner.utils.CommonNoInternetDialog;
 import com.carrus.fleetowner.utils.ConnectionDetector;
 import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.SessionManager;
@@ -91,9 +92,7 @@ public class TruckPendingReqFragment extends Fragment{
         if (mConnectionDetector.isConnectingToInternet())
             getMyBooking();
         else {
-            Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
-            mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-            mErrorTxtView.setVisibility(View.VISIBLE);
+           noInternetDialog();
         }
     }
 
@@ -105,9 +104,7 @@ public class TruckPendingReqFragment extends Fragment{
                 if (mConnectionDetector.isConnectingToInternet())
                     getMyBooking();
                 else {
-                    mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
-                    mErrorTxtView.setVisibility(View.VISIBLE);
-                    Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+                   noInternetDialog();
                 }
             }
         });
@@ -224,7 +221,8 @@ public class TruckPendingReqFragment extends Fragment{
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+//                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+                      noInternetDialog();
                         if (bookingList == null || bookingList.size() == 0) {
                             mAdapter = new TruckListAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);
@@ -251,7 +249,7 @@ public class TruckPendingReqFragment extends Fragment{
                     }
 
                 } catch (Exception ex) {
-                    Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+                   noInternetDialog();
                     if (bookingList == null || bookingList.size() == 0) {
                         mAdapter = new TruckListAdapter(getActivity(), bookingList, mRecyclerView);
                         mRecyclerView.setAdapter(mAdapter);
@@ -282,5 +280,18 @@ public class TruckPendingReqFragment extends Fragment{
             }
         });
     }
+    private void noInternetDialog(){
+        CommonNoInternetDialog.WithActivity(getActivity()).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
+            @Override
+            public void OnOkButtonPressed() {
+                isRefreshView = true;
+                getMyBooking();
+            }
 
+            @Override
+            public void OnCancelButtonPressed() {
+                getActivity().finish();
+            }
+        });
+    }
 }
