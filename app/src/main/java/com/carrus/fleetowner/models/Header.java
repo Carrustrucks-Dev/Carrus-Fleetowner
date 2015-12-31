@@ -4,8 +4,8 @@ package com.carrus.fleetowner.models;
  * Created by Sunny on 11/16/15.
  */
 public class Header {
-    String name;
-    boolean isVisible;
+    private String name;
+    private boolean isVisible;
 
     public Header(String name , boolean isVisible){
         this.name=name;

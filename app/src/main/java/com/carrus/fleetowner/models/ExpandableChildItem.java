@@ -4,9 +4,9 @@ package com.carrus.fleetowner.models;
  * Created by Saurbhv on 10/31/15.
  */
 public class ExpandableChildItem {
-    String name;
-    String detail;
-    int type;
+    private String name;
+    private String detail;
+    private int type;
 
 
     public ExpandableChildItem(String name,String detail, int type) {

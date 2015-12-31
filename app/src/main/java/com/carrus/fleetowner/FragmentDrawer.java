@@ -34,10 +34,8 @@ public class FragmentDrawer extends Fragment {
 
     private static String TAG = FragmentDrawer.class.getSimpleName();
 
-    private RecyclerView recyclerView;
     //    private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
-    private NavigationDrawerAdapter adapter;
     private View containerView;
     private static String[] titles = null;
     private TypedArray icons = null;
@@ -53,7 +51,7 @@ public class FragmentDrawer extends Fragment {
         this.drawerListener = listener;
     }
 
-    public List<NavDrawerItem> getData() {
+    private List<NavDrawerItem> getData() {
         List<NavDrawerItem> data = new ArrayList<>();
 
 
@@ -87,12 +85,12 @@ public class FragmentDrawer extends Fragment {
         mProfileIV = (ImageView) layout.findViewById(R.id.profileIV);
         mSessionManager = new SessionManager(getActivity());
         loadImage();
-        recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
+        RecyclerView recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
         final TextView mCompanyTxtView = (TextView) layout.findViewById(R.id.companyTxtView);
         mCompanyTxtView.setText(mSessionManager.getCompanyName());
         final TextView mUserNameTxtView = (TextView) layout.findViewById(R.id.usernameTxtView);
         mUserNameTxtView.setText(mSessionManager.getName());
-        adapter = new NavigationDrawerAdapter(getActivity(), getData());
+        NavigationDrawerAdapter adapter = new NavigationDrawerAdapter(getActivity(), getData());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
@@ -124,7 +122,7 @@ public class FragmentDrawer extends Fragment {
 
     public void loadImage() {
         if (mSessionManager.getProfilePic() != null)
-            Picasso.with(getActivity()).load(mSessionManager.getProfilePic()).placeholder(R.mipmap.ic_launcher).skipMemoryCache().resize(300, 300).transform(new CircleTransform()).into(mProfileIV);
+            Picasso.with(getActivity()).load(mSessionManager.getProfilePic()).placeholder(R.mipmap.ic_launcher).resize(300, 300).transform(new CircleTransform()).into(mProfileIV);
     }
     public void setUp(int fragmentId, DrawerLayout drawerLayout) {
         containerView = getActivity().findViewById(fragmentId);
@@ -140,8 +138,8 @@ public class FragmentDrawer extends Fragment {
 
     static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 
-        private GestureDetector gestureDetector;
-        private ClickListener clickListener;
+        private final GestureDetector gestureDetector;
+        private final ClickListener clickListener;
 
         public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final ClickListener clickListener) {
             this.clickListener = clickListener;
@@ -179,8 +177,8 @@ public class FragmentDrawer extends Fragment {
     }
 
     public interface FragmentDrawerListener {
-        public void onDrawerItemSelected(View view, int position);
+        void onDrawerItemSelected(View view, int position);
 
-        public void onHeaderSelected();
+        void onHeaderSelected();
     }
 }

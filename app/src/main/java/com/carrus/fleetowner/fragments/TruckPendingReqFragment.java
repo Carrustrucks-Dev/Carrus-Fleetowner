@@ -49,7 +49,6 @@ public class TruckPendingReqFragment extends Fragment{
     private final String TAG = getClass().getSimpleName();
     private RecyclerView mRecyclerView;
     private TruckListAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     private SessionManager mSessionManager;
     private int skip = 0;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -125,7 +124,7 @@ public class TruckPendingReqFragment extends Fragment{
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(
                 new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));

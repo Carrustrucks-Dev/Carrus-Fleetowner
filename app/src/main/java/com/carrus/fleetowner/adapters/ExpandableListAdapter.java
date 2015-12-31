@@ -27,10 +27,10 @@ import java.util.List;
  */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
-    private Context _context;
-    private List<Header> _listDataHeader; // header titles
+    private final Context _context;
+    private final List<Header> _listDataHeader; // header titles
     // child data in format of header title, child title
-    private HashMap<Header, List<ExpandableChildItem>> _listDataChild;
+    private final HashMap<Header, List<ExpandableChildItem>> _listDataChild;
     private DocModel doc;
 
     public ExpandableListAdapter(Context context, List<Header> listDataHeader,

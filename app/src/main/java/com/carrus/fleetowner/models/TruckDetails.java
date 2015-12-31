@@ -16,7 +16,7 @@ public class TruckDetails  implements Serializable {
     public String typeTruckName;
 
     @SerializedName("truckNumber")
-    public String truckNumber;
+    private String truckNumber;
 
     @Override
     public String toString() {

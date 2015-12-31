@@ -67,5 +67,5 @@ public class MyBookingDataModel implements Serializable {
     public String truckerNote;
 
     @SerializedName("crruentTracking")
-    public List<TrackingDetails> crruentTracking = new ArrayList<TrackingDetails>();
+    public final List<TrackingDetails> crruentTracking = new ArrayList<TrackingDetails>();
 }

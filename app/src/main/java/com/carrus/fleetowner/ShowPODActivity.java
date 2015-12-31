@@ -13,10 +13,7 @@ import com.squareup.picasso.Picasso;
  */
 public class ShowPODActivity extends BaseActivity {
 
-    public ImageView closeButton;
-    private String url;
-    private ImageView imageView;
-    private WebView mWebView;
+    private ImageView closeButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,13 +27,13 @@ public class ShowPODActivity extends BaseActivity {
 
     private void init() {
         closeButton = (ImageView) findViewById(R.id.imageView_close);
-        imageView = (ImageView) findViewById(R.id.image);
-        mWebView = (WebView) findViewById(R.id.webView);
+        ImageView imageView = (ImageView) findViewById(R.id.image);
+        WebView mWebView = (WebView) findViewById(R.id.webView);
         mWebView.getSettings().setJavaScriptEnabled(true);
 //        mWebView.getSettings().setPluginsEnabled(true);
 
         Intent intent = getIntent();
-        url = intent.getStringExtra("url");
+        String url = intent.getStringExtra("url");
 
 
         String extension = url.substring(url.lastIndexOf("."));

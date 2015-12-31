@@ -35,7 +35,6 @@ import java.util.List;
  */
 public class BookingDetailsActivity extends BaseActivity {
 
-    private TextView headerTxtView;
     private ImageView mBackBtn;
     //    private RecyclerView recyclerview;
     private MyBookingDataModel mMyBookingDataModel;
@@ -43,10 +42,7 @@ public class BookingDetailsActivity extends BaseActivity {
     private ExpandableListView mExpandableListView;
     private List<Header> listDataHeader;
     private HashMap<Header, List<ExpandableChildItem>> listDataChild;
-    private ExpandableListAdapter listAdapter;
-    private ImageView mProfileIV, locationIV;
-    private LinearLayout topView;
-    private SessionManager mSessionManager;
+    private ImageView locationIV;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,14 +54,10 @@ public class BookingDetailsActivity extends BaseActivity {
     }
 
     private void init() {
-        mSessionManager = new SessionManager(this);
-        headerTxtView = (TextView) findViewById(R.id.headerTxtView);
+        TextView headerTxtView = (TextView) findViewById(R.id.headerTxtView);
         headerTxtView.setText(getResources().getString(R.string.bookingdetails));
         mBackBtn = (ImageView) findViewById(R.id.menu_back_btn);
         mBackBtn.setVisibility(View.VISIBLE);
-//        recyclerview = (RecyclerView) findViewById(R.id.recyclerview);
-//        recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        topView = (LinearLayout) findViewById(R.id.topView);
         mExpandableListView = (ExpandableListView) findViewById(R.id.recyclerview);
         nameDetailTxtView = (TextView) findViewById(R.id.nameDetailTxtView);
         typeDetailTxtView = (TextView) findViewById(R.id.typeDetailTxtView);
@@ -80,7 +72,6 @@ public class BookingDetailsActivity extends BaseActivity {
         timeDropTxtView = (TextView) findViewById(R.id.timeDropTxtView);
         paymentModeTxtView = (TextView) findViewById(R.id.paymentModeTxtView);
         totalCostTxtView = (TextView) findViewById(R.id.totalCostTxtView);
-        mProfileIV = (ImageView) findViewById(R.id.profileIV);
         locationIV = (ImageView) findViewById(R.id.locationBtnIV);
         namePickUpTxtView = (TextView) findViewById(R.id.namePickupTxtView);
         phonePickUpTxtView = (TextView) findViewById(R.id.phonePickupTxtView);
@@ -299,7 +290,7 @@ public class BookingDetailsActivity extends BaseActivity {
         listDataChild.put(listDataHeader.get(2), notes);
         listDataChild.put(listDataHeader.get(3), fleetowner);
 
-        listAdapter = new ExpandableListAdapter(BookingDetailsActivity.this, listDataHeader, listDataChild, mMyBookingDataModel.doc);
+        ExpandableListAdapter listAdapter = new ExpandableListAdapter(BookingDetailsActivity.this, listDataHeader, listDataChild, mMyBookingDataModel.doc);
         mExpandableListView.setAdapter(listAdapter);
         setListViewHeight(mExpandableListView);
 //        chnageHieghtListView();
@@ -362,53 +353,6 @@ public class BookingDetailsActivity extends BaseActivity {
 //                    Toast.makeText(BookingDetailsActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
 //                }
 //                finish();
-//            }
-//        });
-    }
-
-    private void performCancelAction() {
-//        Utils.loading_box(BookingDetailsActivity.this);
-//        RestClient.getApiService().cancelBooking(mSessionManager.getAccessToken(), "CANCELED", mMyBookingDataModel.id, new Callback<String>() {
-//            @Override
-//            public void success(String s, Response response) {
-//                Log.v("" + getClass().getSimpleName(), "Response> " + s);
-//                try {
-//                    JSONObject mObject = new JSONObject(s);
-//
-//                    int status = mObject.getInt("statusCode");
-//
-//                    if (ApiResponseFlags.OK.getOrdinal() == status) {
-//                        Constants.isPastUpdate = true;
-//                        Constants.isUpComingUpdate = true;
-//
-//                        Toast.makeText(BookingDetailsActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
-//                        finish();
-//
-//                    } else {
-//                        Toast.makeText(BookingDetailsActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//                Utils.loading_box_stop();
-//            }
-//
-//            @Override
-//            public void failure(RetrofitError error) {
-//                Utils.loading_box_stop();
-//                try {
-//                    Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
-//
-//                    if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-//                        Toast.makeText(BookingDetailsActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
-//                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
-//                        Utils.shopAlterDialog(BookingDetailsActivity.this, Utils.getErrorMsg(error), true);
-//                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
-//                        Toast.makeText(BookingDetailsActivity.this, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
-//                    }
-//                } catch (Exception ex) {
-//                    Toast.makeText(BookingDetailsActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
-//                }
 //            }
 //        });
     }

@@ -25,7 +25,6 @@ public class TruckReguestsFragment extends Fragment {
     private TextView mNewRequestTV, mPendingQuotesTV, mPendingAssignTV;
     private int selectedFlag = 0;
     private List<Fragment> myFragmentList = new ArrayList<>();
-    private Bundle bundle = null;
     private ViewPager vpPager;
     private MyPagerAdapter adapterViewPager;
 
@@ -34,7 +33,7 @@ public class TruckReguestsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View convertView = inflater.inflate(R.layout.fragment_truck, container, false);
-        bundle = this.getArguments();
+        Bundle bundle = this.getArguments();
         init(convertView);
         initializeClickListners();
 
@@ -208,7 +207,7 @@ public class TruckReguestsFragment extends Fragment {
 //    }
 
     public class MyPagerAdapter extends FragmentPagerAdapter {
-        private int NUM_ITEMS = 3;
+        private final int NUM_ITEMS = 3;
 
         public MyPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);

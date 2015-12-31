@@ -19,12 +19,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDrawerAdapter.MyViewHolder> {
-    List<NavDrawerItem> data = Collections.emptyList();
-    private LayoutInflater inflater;
-    private Context context;
+    private List<NavDrawerItem> data = Collections.emptyList();
+    private final LayoutInflater inflater;
 
     public NavigationDrawerAdapter(Context context, List<NavDrawerItem> data) {
-        this.context = context;
+        Context context1 = context;
         inflater = LayoutInflater.from(context);
         this.data = data;
     }
@@ -37,8 +36,7 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.nav_drawer_row, parent, false);
-        MyViewHolder holder = new MyViewHolder(view);
-        return holder;
+        return new MyViewHolder(view);
     }
 
     @Override
@@ -59,9 +57,9 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView title;
-        ImageView icon;
-        View lineView;
+        final TextView title;
+        final ImageView icon;
+        final View lineView;
 
         public MyViewHolder(View itemView) {
             super(itemView);

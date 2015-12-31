@@ -35,7 +35,7 @@ public class CommonNoInternetDialog {
      * Confirmation dialog class for activity
      */
     public static class ConDialogActivity {
-        private Activity activity;
+        private final Activity activity;
         private ConfirmationDialogEventsListener confirmationDialogEvents;
 
 

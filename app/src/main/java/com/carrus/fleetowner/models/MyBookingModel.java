@@ -20,5 +20,5 @@ public class MyBookingModel   implements Serializable {
 
 
     @SerializedName("data")
-    public List<MyBookingDataModel> mData = new ArrayList<MyBookingDataModel>();
+    public final List<MyBookingDataModel> mData = new ArrayList<MyBookingDataModel>();
 }

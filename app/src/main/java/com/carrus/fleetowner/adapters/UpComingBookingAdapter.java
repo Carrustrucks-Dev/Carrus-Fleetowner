@@ -22,15 +22,14 @@ import java.util.List;
 
 public class UpComingBookingAdapter extends RecyclerView.Adapter {
     //    private String[] mDataset;
-    private Activity mActivity;
+    private final Activity mActivity;
     private List<MyBookingDataModel> myList;
 
     private final int VIEW_ITEM = 1;
-    private final int VIEW_PROG = 0;
 
     // The minimum amount of items to have below your current scroll position
     // before loading more.
-    private int visibleThreshold = 5;
+    private final int visibleThreshold = 5;
     private int lastVisibleItem, totalItemCount;
     private boolean loading;
     private OnLoadMoreListener onLoadMoreListener;
@@ -40,7 +39,13 @@ public class UpComingBookingAdapter extends RecyclerView.Adapter {
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView mDatetxtView, mMonthTxtView, mNameTxtView, mCodeTxtView, mAddressTxtView, mTimeTxtView, mStatusTxtView;
+        public final TextView mDatetxtView;
+        public final TextView mMonthTxtView;
+        public final TextView mNameTxtView;
+        public final TextView mCodeTxtView;
+        public final TextView mAddressTxtView;
+        public final TextView mTimeTxtView;
+        public final TextView mStatusTxtView;
 
         public ViewHolder(View v) {
             super(v);
@@ -203,11 +208,12 @@ public class UpComingBookingAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
+        int VIEW_PROG = 0;
         return myList.get(position) != null ? VIEW_ITEM : VIEW_PROG;
     }
 
     public static class ProgressViewHolder extends RecyclerView.ViewHolder {
-        public ProgressBar progressBar;
+        public final ProgressBar progressBar;
 
         public ProgressViewHolder(View v) {
             super(v);

@@ -14,7 +14,7 @@ import com.carrus.fleetowner.R;
 public class ImageChooserDialog {
 
 
-    private Activity activity;
+    private final Activity activity;
     private OnButtonClicked onButtonClicked;
 
     /**

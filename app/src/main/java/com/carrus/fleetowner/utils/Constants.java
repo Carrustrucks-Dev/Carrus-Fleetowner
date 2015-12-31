@@ -5,7 +5,7 @@ package com.carrus.fleetowner.utils;
  */
 public class Constants {
 
-    public static String ROOT ="http://52.25.204.93:8080";
+    public static final String ROOT ="http://52.25.204.93:8080";
 //    public static String ROOT ="http://52.25.204.93:3005";
 //    public static String ROOT ="http://52.25.204.93:3006";
     public static final String GOOGLE_URL ="http://maps.googleapis.com";

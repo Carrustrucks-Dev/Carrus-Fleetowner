@@ -16,10 +16,10 @@ public class DeviceTokenFetcher extends AsyncTask<String, Void, String> {
 
 
     // The reference of activity would be used as context
-    private Activity activity;
+    private final Activity activity;
 
     // The device token fetched would be returned to the Listener
-    private Listener listener;
+    private final Listener listener;
 
     /**
      * Constructor to initialize the DeviceTokenFetcher

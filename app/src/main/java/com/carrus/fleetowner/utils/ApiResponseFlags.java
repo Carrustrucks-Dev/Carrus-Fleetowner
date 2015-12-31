@@ -14,9 +14,9 @@ public enum ApiResponseFlags {
     Already_Exists(409),
     Internal_Server_Error(500);
 
-    private int ordinal;
+    private final int ordinal;
 
-    private ApiResponseFlags(int ordinal) {
+    ApiResponseFlags(int ordinal) {
         this.ordinal = ordinal;
     }
 

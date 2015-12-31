@@ -18,7 +18,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  */
 @SuppressLint("Registered")
 public class BaseActivity extends FragmentActivity {
-    int onStartCount = 0;
+    private int onStartCount = 0;
 
 
     @Override

@@ -40,7 +40,6 @@ public class QuoteDialogActivity extends BaseActivity {
     private SessionManager sessionManager;
     private Button mSubmitBtn;
     private float userRating = 0;
-    private ConnectionDetector mConnectionDetector;
     private RadioGroup radioTrackGroup;
     private RadioButton radioButton;
     private String id, quoteId;
@@ -50,7 +49,7 @@ public class QuoteDialogActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_quote);
         sessionManager = new SessionManager(this);
-        mConnectionDetector = new ConnectionDetector(this);
+        ConnectionDetector mConnectionDetector = new ConnectionDetector(this);
         init();
         initializeClickListners();
     }

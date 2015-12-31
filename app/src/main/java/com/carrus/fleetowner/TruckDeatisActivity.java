@@ -53,7 +53,13 @@ import static com.carrus.fleetowner.utils.Constants.VALUE;
  */
 public class TruckDeatisActivity extends BaseActivity {
 
-    private TextView headerTxtView, mTruckNameTV, timePickupTxtView, addresPickupTxtView, datePickupTxtView, timeDropTxtView, addressDropTxtView, dateDropTxtview;
+    private TextView mTruckNameTV;
+    private TextView timePickupTxtView;
+    private TextView addresPickupTxtView;
+    private TextView datePickupTxtView;
+    private TextView timeDropTxtView;
+    private TextView addressDropTxtView;
+    private TextView dateDropTxtview;
     private ImageView mBackBtn;
     private TrucksDetailsModel mTrucksDetailsModel;
     private TruckQuotesDetails mTruckQuotesDetails;
@@ -74,7 +80,7 @@ public class TruckDeatisActivity extends BaseActivity {
 
     private void init() {
         mSessionManager = new SessionManager(this);
-        headerTxtView = (TextView) findViewById(R.id.headerTxtView);
+        TextView headerTxtView = (TextView) findViewById(R.id.headerTxtView);
         mBackBtn = (ImageView) findViewById(R.id.menu_back_btn);
         mBackBtn.setVisibility(View.VISIBLE);
         mExpandableListView = (ExpandableListView) findViewById(R.id.recyclerview);

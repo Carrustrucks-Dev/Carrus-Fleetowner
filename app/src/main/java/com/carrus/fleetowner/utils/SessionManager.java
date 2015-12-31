@@ -13,16 +13,16 @@ import com.carrus.fleetowner.LoginActivity;
 
 public class SessionManager {
     // Shared Preferences
-    SharedPreferences pref;
+    private final SharedPreferences pref;
 
     // Editor for Shared preferences
-    Editor editor;
+    private final Editor editor;
 
     // Context
-    Context _context;
+    private final Context _context;
 
     // Shared pref mode
-    int PRIVATE_MODE = 0;
+    private final int PRIVATE_MODE = 0;
 
     // Sharedpref file name
     private static final String PREF_NAME = "CarrusShipper";
@@ -31,18 +31,18 @@ public class SessionManager {
     private static final String IS_LOGIN = "IsLoggedIn";
 
     // User name (make variable public to access from outside)
-    public static final String KEY_TOKEN = "deviceToken";
+    private static final String KEY_TOKEN = "deviceToken";
 
-    public static final String KEY_ACCESSTOKEN = "accessToken";
-    public static final String KEY_USERTYPE = "usertype";
-    public static final String KEY_EMAIL = "email";
-    public static final String KEY_NAME = "name";
-    public static final String KEY_COMPANY_NAME = "company_name";
-    public static final String KEY_PHONE = "phone";
-    public static final String KEY_RATING = "rating";
-    public static final String KEY_ADDRESS = "address";
-    public static final String KEY_COMPANY_TYPE = "company_type";
-    public static final String PROFILEPIC = "profile_pic";
+    private static final String KEY_ACCESSTOKEN = "accessToken";
+    private static final String KEY_USERTYPE = "usertype";
+    private static final String KEY_EMAIL = "email";
+    private static final String KEY_NAME = "name";
+    private static final String KEY_COMPANY_NAME = "company_name";
+    private static final String KEY_PHONE = "phone";
+    private static final String KEY_RATING = "rating";
+    private static final String KEY_ADDRESS = "address";
+    private static final String KEY_COMPANY_TYPE = "company_type";
+    private static final String PROFILEPIC = "profile_pic";
 
 
     // Constructor

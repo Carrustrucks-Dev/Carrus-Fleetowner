@@ -173,7 +173,7 @@ public class DriverFragment extends Fragment {
 
 
     public class MyPagerAdapter extends FragmentPagerAdapter {
-        private int NUM_ITEMS = 2;
+        private final int NUM_ITEMS = 2;
 
         public MyPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
@@ -206,7 +206,7 @@ public class DriverFragment extends Fragment {
 
     }
 
-    public Fragment getActiveFragment(ViewPager container, int position) {
+    private Fragment getActiveFragment(ViewPager container, int position) {
         String name = makeFragmentName(container.getId(), position);
         return getChildFragmentManager().findFragmentByTag(name);
     }

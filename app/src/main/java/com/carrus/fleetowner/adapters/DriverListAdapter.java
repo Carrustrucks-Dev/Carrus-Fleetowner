@@ -29,15 +29,14 @@ import java.util.List;
  */
 public class DriverListAdapter extends RecyclerView.Adapter {
     //    private String[] mDataset;
-    private Activity mActivity;
+    private final Activity mActivity;
     private List<Datum> myList;
 
     private final int VIEW_ITEM = 1;
-    private final int VIEW_PROG = 0;
 
     // The minimum amount of items to have below your current scroll position
     // before loading more.
-    private int visibleThreshold = 5;
+    private final int visibleThreshold = 5;
     private int lastVisibleItem, totalItemCount;
     private boolean loading;
     private OnLoadMoreListener onLoadMoreListener;
@@ -49,10 +48,13 @@ public class DriverListAdapter extends RecyclerView.Adapter {
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView mNameTxtView, vehiclenoTxtView, licenseexpTxtView;
-        public ImageView mProfileIV, mCallBtnIV;
-        public RatingBar mRatingBar;
-        public LinearLayout mMainLayout;
+        public final TextView mNameTxtView;
+        public final TextView vehiclenoTxtView;
+        public final TextView licenseexpTxtView;
+        public final ImageView mProfileIV;
+        public final ImageView mCallBtnIV;
+        public final RatingBar mRatingBar;
+        public final LinearLayout mMainLayout;
 
         public ViewHolder(View v) {
             super(v);
@@ -197,11 +199,12 @@ public class DriverListAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
+        int VIEW_PROG = 0;
         return myList.get(position) != null ? VIEW_ITEM : VIEW_PROG;
     }
 
     public static class ProgressViewHolder extends RecyclerView.ViewHolder {
-        public ProgressBar progressBar;
+        public final ProgressBar progressBar;
 
         public ProgressViewHolder(View v) {
             super(v);

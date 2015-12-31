@@ -50,7 +50,6 @@ public class BlackDriverFragment extends Fragment {
     private final String TAG = getClass().getSimpleName();
     private RecyclerView mRecyclerView;
     private DriverListAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     private SessionManager mSessionManager;
     private int skip = 0;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -68,7 +67,7 @@ public class BlackDriverFragment extends Fragment {
     public static BlackDriverFragment newInstance(int index) {
         BlackDriverFragment f = new BlackDriverFragment();
         Bundle args = new Bundle();
-        args.putInt("index", index);
+        args.putInt("index", 1);
         f.setArguments(args);
         return f;
     }
@@ -123,7 +122,7 @@ public class BlackDriverFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(
                 new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));

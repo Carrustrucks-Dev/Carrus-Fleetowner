@@ -21,8 +21,7 @@ import org.json.JSONObject;
 
 
 public class GcmMessageHandler extends IntentService {
-    public static final int MESSAGE_NOTIFICATION_ID = 435345;
-    private NotificationManager mNotificationManager;
+    private static final int MESSAGE_NOTIFICATION_ID = 435345;
 
     //Device Token:  APA91bG8ySyWfcLn1txW873blkcAWJMbLsBcN4Xy7t03NiPEkkAPVYWgYEOu4O-tEmi_7YWj3Njc-soMYuaY3nNjleBunExvow8BHhYDtd457Zumy-XrU2mylYXJPTevhcHSDVNtQp6k
     //API Key:  AIzaSyAlmqhW0x5MOLv6mOOS3QMrrijDebmIIPE
@@ -63,7 +62,7 @@ public class GcmMessageHandler extends IntentService {
     }
 
     private void sendNotification(String msg, String title, String id) {
-        mNotificationManager = (NotificationManager)
+        NotificationManager mNotificationManager = (NotificationManager)
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
 
         final Intent notificationIntent = new Intent(this, SplashActivity.class);

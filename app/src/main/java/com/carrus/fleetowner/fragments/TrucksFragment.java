@@ -60,23 +60,21 @@ import retrofit.client.Response;
  */
 public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickListener {
 
-    public static final String mBroadcastUiAction = "com.carrus.carrusshipper.broadcast.UI";
-    public static final String mBroadcastAction = "com.carrus.carrusshipper.broadcast.AccessDenied";
+    private static final String mBroadcastUiAction = "com.carrus.carrusshipper.broadcast.UI";
+    private static final String mBroadcastAction = "com.carrus.carrusshipper.broadcast.AccessDenied";
 
     // Google Map
     private GoogleMap googleMap;
     //Markers List
-    private ArrayList<Marker> mMarkerArray = new ArrayList<Marker>();
+    private final ArrayList<Marker> mMarkerArray = new ArrayList<Marker>();
     //    private ArrayList<TrackingModel> mTrackermodel = new ArrayList<>();
-    public ArrayList<TrucksType> mTrackermodel = new ArrayList<>();
+    private final ArrayList<TrucksType> mTrackermodel = new ArrayList<>();
     private MainActivity mainActivity;
-    private GMapV2GetRouteDirection v2GetRouteDirection;
     private ConnectionDetector mConnectionDetector;
     private SessionManager mSessionManager;
     private LinearLayout mBottomView;
     private Trucks mTrucks;
     private boolean isMarkerMatch = false;
-    private ImageView mProfileIV;
     private TextView nameTxtView, typeTxtView, locationTxtView, statusTxtView, truckNumberTxtView, crnTxtView, nicknameTxtView;
     private String selectedNumber = null;
     private IntentFilter mIntentFilter;
@@ -90,15 +88,9 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        v2GetRouteDirection = new GMapV2GetRouteDirection();
+        GMapV2GetRouteDirection v2GetRouteDirection = new GMapV2GetRouteDirection();
 
         mIntentFilter = new IntentFilter();
         mIntentFilter.addAction(mBroadcastUiAction);
@@ -137,7 +129,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
     }
 
     private void init(View view) {
-        mProfileIV = (ImageView) view.findViewById(R.id.profileIV);
+        ImageView mProfileIV = (ImageView) view.findViewById(R.id.profileIV);
         nameTxtView = (TextView) view.findViewById(R.id.nameTxtView);
         typeTxtView = (TextView) view.findViewById(R.id.typeTxtView);
         locationTxtView = (TextView) view.findViewById(R.id.locationTxtView);
@@ -294,7 +286,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
     }
 
     //Add marker function on google map
-    public void addmarkers() {
+    private void addmarkers() {
         selectedNumber = null;
         hideProfile();
         googleMap.clear();
@@ -406,7 +398,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
     }
 
 
-    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
 

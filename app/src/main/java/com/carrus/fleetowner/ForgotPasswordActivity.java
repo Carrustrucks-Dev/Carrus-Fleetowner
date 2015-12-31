@@ -26,7 +26,6 @@ import retrofit.client.Response;
 public class ForgotPasswordActivity extends BaseActivity{
 
     private ImageView mBackButton;
-    private TextView headerTxtView;
     private EditText mEmailEdtTxt;
     private ConnectionDetector mConnectionDetector;
 
@@ -43,7 +42,7 @@ public class ForgotPasswordActivity extends BaseActivity{
     private void init(){
         mBackButton=(ImageView) findViewById(R.id.menu_back_btn);
         mBackButton.setVisibility(View.VISIBLE);
-        headerTxtView=(TextView) findViewById(R.id.headerTxtView);
+        TextView headerTxtView = (TextView) findViewById(R.id.headerTxtView);
         headerTxtView.setText(getResources().getString(R.string.forgotpasswdlable));
         mEmailEdtTxt=(EditText) findViewById(R.id.emailForgotEdtTxt);
     }

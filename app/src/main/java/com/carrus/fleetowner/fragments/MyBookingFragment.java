@@ -129,7 +129,7 @@ public class MyBookingFragment extends Fragment {
     }
 
     public class MyPagerAdapter extends FragmentPagerAdapter {
-        private int NUM_ITEMS = 2;
+        private final int NUM_ITEMS = 2;
 
         public MyPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
