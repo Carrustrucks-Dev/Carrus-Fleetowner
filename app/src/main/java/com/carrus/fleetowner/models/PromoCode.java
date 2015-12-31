@@ -11,7 +11,7 @@ public class PromoCode implements Serializable{
 
 @SerializedName("promoCodeId")
 @Expose
-private List<Object> promoCodeId = new ArrayList<Object>();
+private List<Object> promoCodeId = new ArrayList<>();
 
 /**
 * 

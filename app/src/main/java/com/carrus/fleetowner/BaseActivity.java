@@ -61,6 +61,7 @@ public class BaseActivity extends FragmentActivity {
         if (view instanceof EditText) {
             View w = getCurrentFocus();
             int scrcoords[] = new int[2];
+            assert w != null;
             w.getLocationOnScreen(scrcoords);
             float x = event.getRawX() + w.getLeft() - scrcoords[0];
             float y = event.getRawY() + w.getTop() - scrcoords[1];

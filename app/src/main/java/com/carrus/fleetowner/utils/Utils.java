@@ -242,8 +242,8 @@ measures height of recyclerview when placed inside scrollview
         try {
             InputMethodManager imm = (InputMethodManager) activity.getSystemService(activity.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
-        } catch (Exception e) {
-
+        } catch (Exception ignored) {
+            ignored.printStackTrace();
         }
     }
 

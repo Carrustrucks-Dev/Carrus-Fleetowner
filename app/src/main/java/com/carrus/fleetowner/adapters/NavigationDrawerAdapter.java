@@ -23,7 +23,6 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
     private final LayoutInflater inflater;
 
     public NavigationDrawerAdapter(Context context, List<NavDrawerItem> data) {
-        Context context1 = context;
         inflater = LayoutInflater.from(context);
         this.data = data;
     }
@@ -65,7 +64,7 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.title);
             icon =(ImageView) itemView.findViewById(R.id.icon);
-            lineView=(View) itemView.findViewById(R.id.lineView);
+            lineView= itemView.findViewById(R.id.lineView);
         }
     }
 }

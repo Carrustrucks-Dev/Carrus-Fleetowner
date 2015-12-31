@@ -37,7 +37,7 @@ public class TruckAssignDetails implements Serializable {
     private String fleetOwner;
     @SerializedName("transactionLogs")
     @Expose
-    private List<Object> transactionLogs = new ArrayList<Object>();
+    private List<Object> transactionLogs = new ArrayList<>();
     @SerializedName("tracking")
     @Expose
     private String tracking;

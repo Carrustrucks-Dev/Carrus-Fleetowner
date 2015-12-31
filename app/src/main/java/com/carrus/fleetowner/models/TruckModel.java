@@ -21,7 +21,7 @@ public class TruckModel implements Serializable {
 
     @SerializedName("data")
     @Expose
-    private List<TrucksDetailsModel> data = new ArrayList<TrucksDetailsModel>();
+    private List<TrucksDetailsModel> data = new ArrayList<>();
 
     /**
      * @return The statusCode

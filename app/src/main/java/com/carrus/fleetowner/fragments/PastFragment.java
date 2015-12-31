@@ -172,7 +172,7 @@ public class PastFragment extends Fragment {
                         mMyBookingModel = gson.fromJson(s, MyBookingModel.class);
                         // specify an adapter (see also next example)
                         if (bookingList == null) {
-                            bookingList = new ArrayList<MyBookingDataModel>();
+                            bookingList = new ArrayList<>();
                             bookingList.addAll(mMyBookingModel.mData);
                             mAdapter = new PastBookingAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);

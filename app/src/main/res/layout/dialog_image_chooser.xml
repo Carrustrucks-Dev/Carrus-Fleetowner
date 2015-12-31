@@ -43,7 +43,7 @@
                 android:layout_height="1dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/windowBackground"
-                android:visibility="gone"></View>
+                android:visibility="gone"/>
 
 
             <TextView
@@ -69,7 +69,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@color/windowBackground"
-                android:visibility="invisible"></View>
+                android:visibility="invisible"/>
 
             <Button
                 android:id="@+id/btnGalery"

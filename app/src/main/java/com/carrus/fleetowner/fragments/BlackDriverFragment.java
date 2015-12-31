@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.carrus.fleetowner.BuildConfig;
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.adapters.DividerItemDecoration;
 import com.carrus.fleetowner.adapters.DriverListAdapter;
@@ -173,7 +172,7 @@ public class BlackDriverFragment extends Fragment {
                         mDriverModel = gson.fromJson(s, DriverModel.class);
                         // specify an adapter (see also next example)
                         if (bookingList == null) {
-                            bookingList = new ArrayList<Datum>();
+                            bookingList = new ArrayList<>();
                             bookingList.addAll(mDriverModel.getData());
                             mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
                             mRecyclerView.setAdapter(mAdapter);

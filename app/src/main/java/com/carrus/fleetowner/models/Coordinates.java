@@ -11,7 +11,7 @@ public class Coordinates implements Serializable{
 
 @SerializedName("coordinates")
 @Expose
-private List<Integer> coordinates = new ArrayList<Integer>();
+private List<Integer> coordinates = new ArrayList<>();
 @SerializedName("type")
 @Expose
 private String type;

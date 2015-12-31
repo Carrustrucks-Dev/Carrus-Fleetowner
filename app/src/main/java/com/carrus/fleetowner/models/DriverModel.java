@@ -22,7 +22,7 @@ public class DriverModel implements Serializable {
 
     @SerializedName("data")
     @Expose
-    private List<Datum> data = new ArrayList<Datum>();
+    private List<Datum> data = new ArrayList<>();
 
     /**
      *

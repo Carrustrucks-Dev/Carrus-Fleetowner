@@ -21,9 +21,6 @@ public class SessionManager {
     // Context
     private final Context _context;
 
-    // Shared pref mode
-    private final int PRIVATE_MODE = 0;
-
     // Sharedpref file name
     private static final String PREF_NAME = "CarrusShipper";
 
@@ -49,6 +46,7 @@ public class SessionManager {
     @SuppressLint("CommitPrefEdits")
     public SessionManager(Context context) {
         this._context = context;
+        int PRIVATE_MODE = 0;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }

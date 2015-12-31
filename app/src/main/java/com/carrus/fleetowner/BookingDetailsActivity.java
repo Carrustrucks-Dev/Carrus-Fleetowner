@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -22,7 +21,6 @@ import com.carrus.fleetowner.adapters.ExpandableListAdapter;
 import com.carrus.fleetowner.models.ExpandableChildItem;
 import com.carrus.fleetowner.models.Header;
 import com.carrus.fleetowner.models.MyBookingDataModel;
-import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
 
 import java.text.ParseException;
@@ -122,8 +120,8 @@ public class BookingDetailsActivity extends BaseActivity {
         });
 
         //prepareListData();
-        listDataHeader = new ArrayList<Header>();
-        listDataChild = new HashMap<Header, List<ExpandableChildItem>>();
+        listDataHeader = new ArrayList<>();
+        listDataChild = new HashMap<>();
 
         // Adding child data
         listDataHeader.add(new Header(getResources().getString(R.string.cargodetails), false));
@@ -270,19 +268,19 @@ public class BookingDetailsActivity extends BaseActivity {
         codeDropofTxtView.setText(mMyBookingDataModel.dropOff.tin);
 
         // Adding child data
-        ArrayList<ExpandableChildItem> cargoDetails = new ArrayList<ExpandableChildItem>();
+        ArrayList<ExpandableChildItem> cargoDetails = new ArrayList<>();
         cargoDetails.add(new ExpandableChildItem(mMyBookingDataModel.cargo.cargoType.typeCargoName, mMyBookingDataModel.cargo.weight + "", 0));
 
         // Adding child data
-        ArrayList<ExpandableChildItem> docDetails = new ArrayList<ExpandableChildItem>();
+        ArrayList<ExpandableChildItem> docDetails = new ArrayList<>();
         docDetails.add(new ExpandableChildItem(mMyBookingDataModel.cargo.cargoType.typeCargoName, mMyBookingDataModel.cargo.weight + "", 2));
 
         // Adding child data
-        ArrayList<ExpandableChildItem> notes = new ArrayList<ExpandableChildItem>();
+        ArrayList<ExpandableChildItem> notes = new ArrayList<>();
         notes.add(new ExpandableChildItem("", mMyBookingDataModel.jobNote, 1));
 
         // Adding child data
-        ArrayList<ExpandableChildItem> fleetowner = new ArrayList<ExpandableChildItem>();
+        ArrayList<ExpandableChildItem> fleetowner = new ArrayList<>();
         fleetowner.add(new ExpandableChildItem("", mMyBookingDataModel.truckerNote, 1));
 
         listDataChild.put(listDataHeader.get(0), cargoDetails); // Header, Child data
@@ -374,7 +372,7 @@ public class BookingDetailsActivity extends BaseActivity {
         Intent openInChooser = Intent.createChooser(emailIntent, resources.getString(R.string.share_chooser_text));
 
         List<ResolveInfo> resInfo = pm.queryIntentActivities(sendIntent, 0);
-        List<LabeledIntent> intentList = new ArrayList<LabeledIntent>();
+        List<LabeledIntent> intentList = new ArrayList<>();
         for (int i = 0; i < resInfo.size(); i++) {
             // Extract the label, append it, and repackage it in a LabeledIntent
             ResolveInfo ri = resInfo.get(i);

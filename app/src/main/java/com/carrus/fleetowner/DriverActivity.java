@@ -181,7 +181,7 @@ public class DriverActivity extends BaseActivity {
                         mDriverModel = gson.fromJson(s, DriverModel.class);
                         // specify an adapter (see also next example)
                         if (bookingList == null) {
-                            bookingList = new ArrayList<Datum>();
+                            bookingList = new ArrayList<>();
                             bookingList.addAll(mDriverModel.getData());
                             mAdapter = new DriverListAdapter((Activity) mContext, bookingList, mRecyclerView, true);
                             mRecyclerView.setAdapter(mAdapter);

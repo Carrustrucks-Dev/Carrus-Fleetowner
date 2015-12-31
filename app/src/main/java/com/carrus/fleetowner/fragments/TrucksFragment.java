@@ -66,7 +66,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
     // Google Map
     private GoogleMap googleMap;
     //Markers List
-    private final ArrayList<Marker> mMarkerArray = new ArrayList<Marker>();
+    private final ArrayList<Marker> mMarkerArray = new ArrayList<>();
     //    private ArrayList<TrackingModel> mTrackermodel = new ArrayList<>();
     private final ArrayList<TrucksType> mTrackermodel = new ArrayList<>();
     private MainActivity mainActivity;

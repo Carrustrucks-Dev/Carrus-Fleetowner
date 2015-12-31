@@ -22,7 +22,7 @@ public class TruckAssignModel implements Serializable {
 
     @SerializedName("data")
     @Expose
-    private List<TruckAssignDetails> data = new ArrayList<TruckAssignDetails>();
+    private List<TruckAssignDetails> data = new ArrayList<>();
 
     /**
      * @return The statusCode

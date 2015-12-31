@@ -13,8 +13,6 @@ import com.squareup.picasso.Picasso;
  */
 public class ShowPODActivity extends BaseActivity {
 
-    private ImageView closeButton;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +24,7 @@ public class ShowPODActivity extends BaseActivity {
     }
 
     private void init() {
-        closeButton = (ImageView) findViewById(R.id.imageView_close);
+        ImageView closeButton = (ImageView) findViewById(R.id.imageView_close);
         ImageView imageView = (ImageView) findViewById(R.id.image);
         WebView mWebView = (WebView) findViewById(R.id.webView);
         mWebView.getSettings().setJavaScriptEnabled(true);

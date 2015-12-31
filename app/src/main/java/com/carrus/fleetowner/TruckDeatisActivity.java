@@ -136,8 +136,8 @@ public class TruckDeatisActivity extends BaseActivity {
 
 
         //prepareListData();
-        listDataHeader = new ArrayList<Header>();
-        listDataChild = new HashMap<Header, List<ExpandableChildItem>>();
+        listDataHeader = new ArrayList<>();
+        listDataChild = new HashMap<>();
 
         // Adding child data
         listDataHeader.add(new Header(getResources().getString(R.string.cargodetails), false));
@@ -246,15 +246,15 @@ public class TruckDeatisActivity extends BaseActivity {
         timeDropTxtView.setText(mTruckQuotesDetails.getDropOff().getTime());
 
         // Adding child data
-        ArrayList<ExpandableChildItem> cargoDetails = new ArrayList<ExpandableChildItem>();
+        ArrayList<ExpandableChildItem> cargoDetails = new ArrayList<>();
         cargoDetails.add(new ExpandableChildItem(mTruckQuotesDetails.getCargo().cargoType.typeCargoName, mTruckQuotesDetails.getCargo().weight + "", 0));
 
         // Adding child data
-        ArrayList<ExpandableChildItem> notes = new ArrayList<ExpandableChildItem>();
+        ArrayList<ExpandableChildItem> notes = new ArrayList<>();
         notes.add(new ExpandableChildItem("", mTruckQuotesDetails.getNote(), 1));
 
         // Adding child data
-        ArrayList<ExpandableChildItem> fleetowner = new ArrayList<ExpandableChildItem>();
+        ArrayList<ExpandableChildItem> fleetowner = new ArrayList<>();
         fleetowner.add(new ExpandableChildItem("", mTruckQuotesDetails.getShipper().firstName, 1));
 
         listDataChild.put(listDataHeader.get(0), cargoDetails); // Header, Child data
@@ -298,15 +298,15 @@ public class TruckDeatisActivity extends BaseActivity {
         timeDropTxtView.setText(mTrucksDetailsModel.dropOff.getTime());
 
         // Adding child data
-        ArrayList<ExpandableChildItem> cargoDetails = new ArrayList<ExpandableChildItem>();
+        ArrayList<ExpandableChildItem> cargoDetails = new ArrayList<>();
         cargoDetails.add(new ExpandableChildItem(mTrucksDetailsModel.getCargo().cargoType.typeCargoName, mTrucksDetailsModel.getCargo().weight + "", 0));
 
         // Adding child data
-        ArrayList<ExpandableChildItem> notes = new ArrayList<ExpandableChildItem>();
+        ArrayList<ExpandableChildItem> notes = new ArrayList<>();
         notes.add(new ExpandableChildItem("", mTrucksDetailsModel.getNote(), 1));
 
         // Adding child data
-        ArrayList<ExpandableChildItem> fleetowner = new ArrayList<ExpandableChildItem>();
+        ArrayList<ExpandableChildItem> fleetowner = new ArrayList<>();
 //        fleetowner.add(new ExpandableChildItem("", mTrucksDetailsModel.getShipper().firstName, 1));
 
         listDataChild.put(listDataHeader.get(0), cargoDetails); // Header, Child data
@@ -350,16 +350,16 @@ public class TruckDeatisActivity extends BaseActivity {
         timeDropTxtView.setText(mTruckAssignDetails.getDropOff().time);
 
         // Adding child data
-        ArrayList<ExpandableChildItem> cargoDetails = new ArrayList<ExpandableChildItem>();
+        ArrayList<ExpandableChildItem> cargoDetails = new ArrayList<>();
         cargoDetails.add(new ExpandableChildItem(mTruckAssignDetails.getCargo().cargoType.typeCargoName, mTruckAssignDetails.getCargo().weight + "", 0));
 
         // Adding child data
-        ArrayList<ExpandableChildItem> notes = new ArrayList<ExpandableChildItem>();
+        ArrayList<ExpandableChildItem> notes = new ArrayList<>();
         if (mTruckAssignDetails.getTruckerNote() != null)
             notes.add(new ExpandableChildItem("", mTruckAssignDetails.getTruckerNote().toString(), 1));
 
         // Adding child data
-        ArrayList<ExpandableChildItem> fleetowner = new ArrayList<ExpandableChildItem>();
+        ArrayList<ExpandableChildItem> fleetowner = new ArrayList<>();
         fleetowner.add(new ExpandableChildItem("", mTruckAssignDetails.getShipper().firstName, 1));
 
         listDataChild.put(listDataHeader.get(0), cargoDetails); // Header, Child data

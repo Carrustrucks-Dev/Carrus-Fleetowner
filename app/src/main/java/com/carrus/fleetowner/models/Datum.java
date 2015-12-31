@@ -60,7 +60,7 @@ public class Datum implements Serializable {
     private Boolean isBlocked;
     @SerializedName("fleetOwner")
     @Expose
-    private List<FleetOwner> fleetOwner = new ArrayList<FleetOwner>();
+    private List<FleetOwner> fleetOwner = new ArrayList<>();
     @SerializedName("userType")
     @Expose
     private String userType;
@@ -88,7 +88,7 @@ public class Datum implements Serializable {
 
     @SerializedName("trucks")
     @Expose
-    private List<TruckDetails> trucks = new ArrayList<TruckDetails>();
+    private List<TruckDetails> trucks = new ArrayList<>();
 
     /**
      * @return The Id

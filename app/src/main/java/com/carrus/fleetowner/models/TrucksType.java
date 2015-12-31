@@ -32,11 +32,11 @@ public class TrucksType implements Serializable {
 
     @SerializedName("trucker")
     @Expose
-    private List<Trucker> trucker = new ArrayList<Trucker>();
+    private List<Trucker> trucker = new ArrayList<>();
 
     @SerializedName("typeTruck")
     @Expose
-    private List<TruckDetails> typeTruck = new ArrayList<TruckDetails>();
+    private List<TruckDetails> typeTruck = new ArrayList<>();
 
     @SerializedName("truckNumber")
     @Expose

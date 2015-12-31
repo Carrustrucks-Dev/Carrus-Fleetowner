@@ -139,8 +139,6 @@ public class ProfileFragment extends Fragment implements
         imageChooserManager.setImageChooserListener(this);
         try {
             mediaPath = imageChooserManager.choose();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -153,8 +151,6 @@ public class ProfileFragment extends Fragment implements
         imageChooserManager.setImageChooserListener(this);
         try {
             mediaPath = imageChooserManager.choose();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }

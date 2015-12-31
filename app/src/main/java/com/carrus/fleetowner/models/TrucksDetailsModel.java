@@ -44,7 +44,7 @@ public class TrucksDetailsModel implements Serializable {
     private Integer acceptPrice;
     @SerializedName("trucker")
     @Expose
-    private List<Object> trucker = new ArrayList<Object>();
+    private List<Object> trucker = new ArrayList<>();
     @SerializedName("truck")
     @Expose
     private Truck truck;
@@ -59,7 +59,7 @@ public class TrucksDetailsModel implements Serializable {
     public PickUp pickUp;
     @SerializedName("booking")
     @Expose
-    private List<Object> booking = new ArrayList<Object>();
+    private List<Object> booking = new ArrayList<>();
     @SerializedName("__v")
     @Expose
     private Integer V;
