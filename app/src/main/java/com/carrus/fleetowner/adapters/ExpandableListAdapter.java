@@ -76,7 +76,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 typeCargoTxtView = (TextView) convertView.findViewById(R.id.typeCargoTxtView);
                 weightTxtView = (TextView) convertView.findViewById(R.id.weightTxtView);
                 typeCargoTxtView.setText(expandableChildItem.getName());
-                weightTxtView.setText(expandableChildItem.getDetail() + " Ton");
+                weightTxtView.setText(expandableChildItem.getDetail() + _context.getResources().getString(R.string.ton));
                 break;
 
             case 1:

@@ -144,10 +144,10 @@ public class TruckAssignListAdapter extends RecyclerView.Adapter {
             }
 
 //            ((ViewHolder) holder).mNameTxtView.setText(myList.get(position).getDriverName());
-            ((ViewHolder) holder).mAddressTxtView.setText(myList.get(position).getPickUp().city + " to " + myList.get(position).getDropOff().city);
+            ((ViewHolder) holder).mAddressTxtView.setText(myList.get(position).getPickUp().city + mActivity.getResources().getString(R.string.towithspaces) + myList.get(position).getDropOff().city);
             ((ViewHolder) holder).mTypeCargoTxtView.setText(myList.get(position).getCargo().cargoType.typeCargoName);
-            ((ViewHolder) holder).mWeightTxtView.setText(myList.get(position).getCargo().weight + " Ton");
-            ((ViewHolder) holder).mBudgetTxtView.setText("Rs " + myList.get(position).getAcceptPrice());
+            ((ViewHolder) holder).mWeightTxtView.setText(myList.get(position).getCargo().weight + mActivity.getResources().getString(R.string.ton));
+            ((ViewHolder) holder).mBudgetTxtView.setText(mActivity.getResources().getString(R.string.rs) + myList.get(position).getAcceptPrice());
             ((ViewHolder) holder).mLabelTxtView.setText(mActivity.getResources().getString(R.string.finalbid));
 
             ((ViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {

@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.carrus.fleetowner.adapters.DividerItemDecoration;
 import com.carrus.fleetowner.adapters.DriverListAdapter;
-import com.carrus.fleetowner.fragments.DriverFragment;
 import com.carrus.fleetowner.interfaces.OnLoadMoreListener;
 import com.carrus.fleetowner.models.Datum;
 import com.carrus.fleetowner.models.DriverModel;

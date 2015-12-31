@@ -136,9 +136,9 @@ public class PastBookingAdapter extends RecyclerView.Adapter {
                 e.printStackTrace();
             }
 
-            ((ViewHolder) holder).mNameTxtView.setText(myList.get(position).shipper.firstName + " " + myList.get(position).shipper.lastName);
-            ((ViewHolder) holder).mCodeTxtView.setText(myList.get(position).truck.truckType.typeTruckName + ", " + myList.get(position).truck.truckNumber);
-            ((ViewHolder) holder).mAddressTxtView.setText(myList.get(position).pickUp.city + " to " + myList.get(position).dropOff.city);
+            ((ViewHolder) holder).mNameTxtView.setText(myList.get(position).shipper.firstName + mActivity.getResources().getString(R.string.space) + myList.get(position).shipper.lastName);
+            ((ViewHolder) holder).mCodeTxtView.setText(myList.get(position).truck.truckType.typeTruckName + mActivity.getResources().getString(R.string.comma_spraction) + myList.get(position).truck.truckNumber);
+            ((ViewHolder) holder).mAddressTxtView.setText(myList.get(position).pickUp.city + mActivity.getResources().getString(R.string.towithspaces) + myList.get(position).dropOff.city);
 
             ((ViewHolder) holder).mStatusTxtView.setText(myList.get(position).bookingStatus.replace("_", " "));
 

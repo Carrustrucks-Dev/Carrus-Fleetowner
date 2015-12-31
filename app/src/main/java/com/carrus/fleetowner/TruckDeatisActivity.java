@@ -220,7 +220,7 @@ public class TruckDeatisActivity extends BaseActivity {
     private void setQuoteValuesonViews() {
 
         mTruckNameTV.setText(mTruckQuotesDetails.getTruck().truckType.typeTruckName);
-        addresPickupTxtView.setText(mTruckQuotesDetails.getPickUp().getLocation() + ", " + mTruckQuotesDetails.getPickUp().getState());
+        addresPickupTxtView.setText(mTruckQuotesDetails.getPickUp().getLocation() + getResources().getString(R.string.comma_spraction) + mTruckQuotesDetails.getPickUp().getState());
 
         try {
             datePickupTxtView.setText(Utils.getFullDateTime(mTruckQuotesDetails.getPickUp().getDate()));
@@ -229,7 +229,7 @@ public class TruckDeatisActivity extends BaseActivity {
         }
 
         timePickupTxtView.setText(mTruckQuotesDetails.getPickUp().getTime());
-        addressDropTxtView.setText(mTruckQuotesDetails.getDropOff().getLocation() + ", " + mTruckQuotesDetails.getDropOff().getState());
+        addressDropTxtView.setText(mTruckQuotesDetails.getDropOff().getLocation() + getResources().getString(R.string.comma_spraction) + mTruckQuotesDetails.getDropOff().getState());
 
         try {
             dateDropTxtview.setText(Utils.getFullDateTime(mTruckQuotesDetails.getDropOff().getDate()));
@@ -272,7 +272,7 @@ public class TruckDeatisActivity extends BaseActivity {
     private void setValuesonViews() {
 
         mTruckNameTV.setText(mTrucksDetailsModel.getTruck().truckType.typeTruckName);
-        addresPickupTxtView.setText(mTrucksDetailsModel.pickUp.getLocation() + ", " + mTrucksDetailsModel.pickUp.getState());
+        addresPickupTxtView.setText(mTrucksDetailsModel.pickUp.getLocation() + getResources().getString(R.string.comma_spraction) + mTrucksDetailsModel.pickUp.getState());
 
         try {
             datePickupTxtView.setText(Utils.getFullDateTime(mTrucksDetailsModel.pickUp.getDate()));
@@ -281,7 +281,7 @@ public class TruckDeatisActivity extends BaseActivity {
         }
 
         timePickupTxtView.setText(mTrucksDetailsModel.pickUp.getTime());
-        addressDropTxtView.setText(mTrucksDetailsModel.dropOff.getLocation() + ", " + mTrucksDetailsModel.dropOff.getState());
+        addressDropTxtView.setText(mTrucksDetailsModel.dropOff.getLocation() + getResources().getString(R.string.comma_spraction) + mTrucksDetailsModel.dropOff.getState());
 
         try {
             dateDropTxtview.setText(Utils.getFullDateTime(mTrucksDetailsModel.dropOff.getDate()));
@@ -324,7 +324,7 @@ public class TruckDeatisActivity extends BaseActivity {
     private void setAssignValuesonViews() {
 
         mTruckNameTV.setText(mTruckAssignDetails.getTruck().truckType.typeTruckName);
-        addresPickupTxtView.setText(mTruckAssignDetails.getPickUp().city + ", " + mTruckAssignDetails.getPickUp().state);
+        addresPickupTxtView.setText(mTruckAssignDetails.getPickUp().city + getResources().getString(R.string.comma_spraction) + mTruckAssignDetails.getPickUp().state);
 
         try {
             datePickupTxtView.setText(Utils.getFullDateTime(mTruckAssignDetails.getPickUp().date));
@@ -333,7 +333,7 @@ public class TruckDeatisActivity extends BaseActivity {
         }
 
         timePickupTxtView.setText(mTruckAssignDetails.getPickUp().time);
-        addressDropTxtView.setText(mTruckAssignDetails.getDropOff().city + ", " + mTruckAssignDetails.getDropOff().state);
+        addressDropTxtView.setText(mTruckAssignDetails.getDropOff().city + getResources().getString(R.string.comma_spraction) + mTruckAssignDetails.getDropOff().state);
 
         try {
             dateDropTxtview.setText(Utils.getFullDateTime(mTruckAssignDetails.getDropOff().date));

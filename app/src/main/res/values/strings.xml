@@ -10,6 +10,9 @@
     <string name="crn">CRN -&#160;</string>
     <string name="comma_spraction">,&#160;</string>
     <string name="rupee">₹&#160;</string>
+    <string name="rs">RS&#160;</string>
+    <string name="ton">&#160;Ton</string>
+    <string name="nickname">NickName -&#160;</string>
 
     <!--slide menus-->
     <string name="mybooking">My Bookings</string>
@@ -58,6 +61,7 @@
     <string name="nointernetconnection">No internet connection found. Please try again</string>
     <string name="norecordfound">No Record Found</string>
     <string name="nonotesfound">No note Found</string>
+    <string name="nodetailsfound">No details found</string>
     <string name="ratingerror">Rating not zero</string>
     <string name="commentrequired">Comment must not be empty</string>
     <string name="podnotfound">No POD found</string>

@@ -148,11 +148,11 @@ public class TruckQuotesListAdapter extends RecyclerView.Adapter {
             }
 
 //            ((ViewHolder) holder).mNameTxtView.setText(myList.get(position).getDriverName());
-            ((ViewHolder) holder).mAddressTxtView.setText(myList.get(position).getPickUp().getLocation() + " to " + myList.get(position).getDropOff().getLocation());
+            ((ViewHolder) holder).mAddressTxtView.setText(myList.get(position).getPickUp().getLocation() + mActivity.getResources().getString(R.string.towithspaces) + myList.get(position).getDropOff().getLocation());
             ((ViewHolder) holder).mTypeCargoTxtView.setText(myList.get(position).getCargo().cargoType.typeCargoName);
-            ((ViewHolder) holder).mWeightTxtView.setText(myList.get(position).getCargo().weight + " Ton");
-                ((ViewHolder) holder).mBudgetTxtView.setText("Rs " + myList.get(position).getBudget());
-                ((ViewHolder) holder).mOfferdBidTxtView.setText("Rs " + myList.get(position).getOfferCost());
+            ((ViewHolder) holder).mWeightTxtView.setText(myList.get(position).getCargo().weight + mActivity.getResources().getString(R.string.ton));
+                ((ViewHolder) holder).mBudgetTxtView.setText(mActivity.getResources().getString(R.string.rs) + myList.get(position).getBudget());
+                ((ViewHolder) holder).mOfferdBidTxtView.setText(mActivity.getResources().getString(R.string.rs) + myList.get(position).getOfferCost());
 
             ((ViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

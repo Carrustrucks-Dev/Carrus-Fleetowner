@@ -143,10 +143,10 @@ public class TruckListAdapter extends RecyclerView.Adapter {
             }
 
 //            ((ViewHolder) holder).mNameTxtView.setText(myList.get(position).getDriverName());
-            ((ViewHolder) holder).mAddressTxtView.setText(myList.get(position).pickUp.getLocation() + " to " + myList.get(position).dropOff.getLocation());
+            ((ViewHolder) holder).mAddressTxtView.setText(myList.get(position).pickUp.getLocation() + mActivity.getResources().getString(R.string.towithspaces) + myList.get(position).dropOff.getLocation());
             ((ViewHolder) holder).mTypeCargoTxtView.setText(myList.get(position).getCargo().cargoType.typeCargoName);
-            ((ViewHolder) holder).mWeightTxtView.setText(myList.get(position).getCargo().weight + " Ton");
-            ((ViewHolder) holder).mBudgetTxtView.setText("Rs " + myList.get(position).getBudget());
+            ((ViewHolder) holder).mWeightTxtView.setText(myList.get(position).getCargo().weight + mActivity.getResources().getString(R.string.ton));
+            ((ViewHolder) holder).mBudgetTxtView.setText(mActivity.getResources().getString(R.string.rs) + myList.get(position).getBudget());
 
             ((ViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

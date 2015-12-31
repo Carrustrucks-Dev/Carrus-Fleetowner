@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.carrus.fleetowner.BuildConfig;
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.adapters.DividerItemDecoration;
 import com.carrus.fleetowner.adapters.DriverListAdapter;
@@ -162,7 +163,8 @@ public class BlackDriverFragment extends Fragment {
 
             @Override
             public void success(String s, Response response) {
-                Log.v("" + getClass().getSimpleName(), "Response> " + s);
+//                if(BuildConfig.DEBUG)
+                Log.e("" + getClass().getSimpleName(), "Response> " + s);
 
                 try {
                     JSONObject mObject = new JSONObject(s);

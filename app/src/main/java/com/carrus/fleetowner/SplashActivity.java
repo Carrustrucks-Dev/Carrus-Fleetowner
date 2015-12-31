@@ -3,8 +3,6 @@ package com.carrus.fleetowner;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.DisplayMetrics;
-import android.widget.Toast;
 
 import com.carrus.fleetowner.utils.SessionManager;
 

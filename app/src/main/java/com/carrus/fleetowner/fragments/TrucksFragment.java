@@ -380,14 +380,14 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                     nameTxtView.setText(mTrackermodel.get(i).getTrucker().get(0).getDriverName());
                     typeTxtView.setText(mTrackermodel.get(i).getTypeTruck().get(0).typeTruckName);
                     truckNumberTxtView.setText(mTrackermodel.get(i).getTruckNumber());
-                    crnTxtView.setText("CRN - "+mTrackermodel.get(i).getBooking().get(0).getCrn());
-                    locationTxtView.setText(mTrackermodel.get(i).getBooking().get(0).getPickUp().getCity() + " to " + mTrackermodel.get(i).getBooking().get(0).getDropOff().getCity());
-                    nicknameTxtView.setText("NickName - "+mTrackermodel.get(i).getTruckName());
+                    crnTxtView.setText(getResources().getString(R.string.crn)+mTrackermodel.get(i).getBooking().get(0).getCrn());
+                    locationTxtView.setText(mTrackermodel.get(i).getBooking().get(0).getPickUp().getCity() + getResources().getString(R.string.towithspaces) + mTrackermodel.get(i).getBooking().get(0).getDropOff().getCity());
+                    nicknameTxtView.setText(getResources().getString(R.string.nickname)+mTrackermodel.get(i).getTruckName());
 //                    Picasso.with(getActivity()).load(R.mipmap.icon_placeholder).resize(100, 100).transform(new CircleTransform()).into(mProfileIV);
                     statusTxtView.setText(mTrackermodel.get(i).getStatus());
                     showProfile();
                 } else
-                    Toast.makeText(getActivity(), "No details found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getResources().getString(R.string.nodetailsfound), Toast.LENGTH_SHORT).show();
                 break;
             }
         }
