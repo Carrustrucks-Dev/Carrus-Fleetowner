@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Sunny on 12/21/15.
+ * Created by Sunny on 12/21/15 for Fleet Owner.
  */
 public class TrucksType implements Serializable {
 

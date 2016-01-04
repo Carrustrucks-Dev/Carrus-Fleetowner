@@ -49,7 +49,7 @@ import static com.carrus.fleetowner.utils.Constants.VALUE;
 
 
 /**
- * Created by Sunny on 12/10/15.
+ * Created by Sunny on 12/10/15 for Fleet Owner.
  */
 public class TruckDeatisActivity extends BaseActivity {
 
@@ -140,9 +140,9 @@ public class TruckDeatisActivity extends BaseActivity {
         listDataChild = new HashMap<>();
 
         // Adding child data
-        listDataHeader.add(new Header(getResources().getString(R.string.cargodetails), false));
-        listDataHeader.add(new Header(getResources().getString(R.string.notes_cap), false));
-        listDataHeader.add(new Header(getResources().getString(R.string.shippernotes), false));
+        listDataHeader.add(new Header(getResources().getString(R.string.cargodetails)));
+        listDataHeader.add(new Header(getResources().getString(R.string.notes_cap)));
+        listDataHeader.add(new Header(getResources().getString(R.string.shippernotes)));
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();

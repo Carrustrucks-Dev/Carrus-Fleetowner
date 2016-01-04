@@ -1,5 +1,6 @@
 package com.carrus.fleetowner;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by Sunny on 11/17/15.
+ * Created by Sunny on 11/17/15 for Fleet Owner.
  */
 public class ShowPODActivity extends BaseActivity {
 
@@ -23,6 +24,7 @@ public class ShowPODActivity extends BaseActivity {
 
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void init() {
         ImageView closeButton = (ImageView) findViewById(R.id.imageView_close);
         ImageView imageView = (ImageView) findViewById(R.id.image);

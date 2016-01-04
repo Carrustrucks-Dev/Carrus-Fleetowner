@@ -178,7 +178,7 @@ public class ProfileFragment extends Fragment implements
             public void run() {
                 if (image != null) {
                     uploadImage(image
-                            .getFileThumbnail().toString());
+                            .getFileThumbnail());
                 }
             }
         });

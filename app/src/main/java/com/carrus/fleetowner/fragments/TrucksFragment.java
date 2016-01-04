@@ -1,6 +1,5 @@
 package com.carrus.fleetowner.fragments;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -56,7 +55,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /**
- * Created by Sunny on 10/29/15.
+ * Created by Sunny on 10/29/15 for Fleet Owner.
  */
 public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickListener {
 
@@ -116,16 +115,6 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
 
         // Inflate the layout for this fragment
         return rootView;
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
     }
 
     private void init(View view) {
@@ -411,6 +400,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                 }
 
                 MarkerOptions markerOptions = new MarkerOptions();
+                assert mTrackingModel != null;
                 markerOptions.position(new LatLng(mTrackingModel.crruentTracking.get(0).lat, mTrackingModel.crruentTracking.get(0).longg));
                 markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_truck_white));
                 now = googleMap.addMarker(markerOptions);

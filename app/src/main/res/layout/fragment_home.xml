@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -84,7 +85,8 @@
                 android:layout_toLeftOf="@+id/callviewlayout"
                 android:gravity="left"
                 android:orientation="vertical"
-                android:padding="@dimen/five">
+                android:padding="@dimen/five"
+                tools:ignore="UnusedIds">
 
                 <com.carrus.fleetowner.utils.CapitalizedTextView
                     android:id="@+id/nameTxtView"
@@ -120,7 +122,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="UnusedIds">
 
                 <ImageView
                     android:id="@+id/callBtnIV"

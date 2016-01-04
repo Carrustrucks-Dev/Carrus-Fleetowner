@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,11 +9,13 @@
         android:id="@+id/container_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UnusedIds">
 
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
+            layout="@layout/toolbar"
+            tools:ignore="UnusedIds" />
     </LinearLayout>
 
     <LinearLayout
@@ -20,7 +23,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/container_toolbar"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UnusedIds">
 
         <EditText
             android:id="@+id/searchEdtTxt"
@@ -47,11 +51,13 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/assigndriverBtn"
         android:layout_below="@+id/searchLayout"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UnusedIds">
 
         <include
             android:id="@+id/toolbar"
-            layout="@layout/fragment_bookinglist" />
+            layout="@layout/fragment_bookinglist"
+            tools:ignore="UnusedIds" />
     </LinearLayout>
 
     <Button

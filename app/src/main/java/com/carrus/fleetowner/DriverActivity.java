@@ -44,7 +44,7 @@ import static com.carrus.fleetowner.utils.Constants.LIMIT;
 import static com.carrus.fleetowner.utils.Constants.SORT;
 
 /**
- * Created by Sunny on 12/15/15.
+ * Created by Sunny on 12/15/15 for Fleet Owner.
  */
 public class DriverActivity extends BaseActivity {
 
@@ -91,7 +91,7 @@ public class DriverActivity extends BaseActivity {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(
-                new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
+                new DividerItemDecoration(mContext));
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -124,8 +124,7 @@ public class DriverActivity extends BaseActivity {
                     if (mAdapter.getSelectedDriver() == null) {
                         Utils.shopAlterDialog(mContext, getResources().getString(R.string.selecetDriver), false);
                     } else {
-                        if (mAdapter.getSelectedDriver() != null)
-                            assignDriver(mAdapter.getSelectedDriver());
+                        assignDriver(mAdapter.getSelectedDriver());
 
                     }
                 else {
@@ -205,9 +204,6 @@ public class DriverActivity extends BaseActivity {
                         if (ApiResponseFlags.Not_Found.getOrdinal() == status) {
                             bookingList.remove(bookingList.size() - 1);
                             mAdapter.notifyItemRemoved(bookingList.size());
-                        } else {
-//                            mErrorTxtView.setText(mObject.getString("message"));
-//                            mErrorTxtView.setVisibility(View.VISIBLE);
                         }
 
                         Toast.makeText(mContext, mObject.getString("message"), Toast.LENGTH_SHORT).show();

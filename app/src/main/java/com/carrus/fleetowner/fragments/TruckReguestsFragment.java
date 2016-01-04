@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Sunny on 12/9/15.
+ * Created by Sunny on 12/9/15 for Fleet Owner.
  */
 public class TruckReguestsFragment extends Fragment {
 
@@ -41,14 +41,9 @@ public class TruckReguestsFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setSelectionNewReuest(0);
+        setSelectionNewReuest();
     }
 
     private void init(View view) {
@@ -72,19 +67,19 @@ public class TruckReguestsFragment extends Fragment {
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                        setSelectionNewReuest(0);
+                        setSelectionNewReuest();
                         break;
 
                     case 1:
-                        setSeclectionQuotes(1);
+                        setSeclectionQuotes();
                         break;
 
                     case 2:
-                        setSeclectionAssign(2);
+                        setSeclectionAssign();
                         break;
 
                     default:
-                        setSelectionNewReuest(0);
+                        setSelectionNewReuest();
 
                 }
             }
@@ -100,7 +95,7 @@ public class TruckReguestsFragment extends Fragment {
             public void onClick(View v) {
 
                 if (selectedFlag != 0) {
-                    setSelectionNewReuest(0);
+                    setSelectionNewReuest();
                 }
 
             }
@@ -110,7 +105,7 @@ public class TruckReguestsFragment extends Fragment {
             public void onClick(View v) {
 
                 if (selectedFlag != 1) {
-                    setSeclectionQuotes(1);
+                    setSeclectionQuotes();
                 }
 
             }
@@ -121,7 +116,7 @@ public class TruckReguestsFragment extends Fragment {
             public void onClick(View v) {
 
                 if (selectedFlag != 2) {
-                    setSeclectionAssign(2);
+                    setSeclectionAssign();
                 }
 
             }
@@ -134,7 +129,7 @@ public class TruckReguestsFragment extends Fragment {
         adapterViewPager = new MyPagerAdapter(getChildFragmentManager()); //here used child fragment manager
     }
 
-    private void setSelectionNewReuest(int button_id) {
+    private void setSelectionNewReuest() {
 
         selectedFlag = 0;
         mNewRequestTV.setBackgroundResource(R.drawable.tab_background);
@@ -143,11 +138,11 @@ public class TruckReguestsFragment extends Fragment {
         mNewRequestTV.setTextColor(getResources().getColor(R.color.windowBackground));
         mPendingQuotesTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
         mPendingAssignTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
-        vpPager.setCurrentItem(button_id);
+        vpPager.setCurrentItem(0);
 
     }
 
-    private void setSeclectionQuotes(int button_id) {
+    private void setSeclectionQuotes() {
 
         selectedFlag = 1;
         mNewRequestTV.setBackgroundResource(R.drawable.tab_upcming_background_white);
@@ -156,11 +151,11 @@ public class TruckReguestsFragment extends Fragment {
         mNewRequestTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
         mPendingAssignTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
         mPendingQuotesTV.setTextColor(getResources().getColor(R.color.windowBackground));
-        vpPager.setCurrentItem(button_id);
+        vpPager.setCurrentItem(1);
 
     }
 
-    private void setSeclectionAssign(int button_id) {
+    private void setSeclectionAssign() {
 
         selectedFlag = 2;
         mNewRequestTV.setBackgroundResource(R.drawable.tab_upcming_background_white);
@@ -169,7 +164,7 @@ public class TruckReguestsFragment extends Fragment {
         mNewRequestTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
         mPendingQuotesTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
         mPendingAssignTV.setTextColor(getResources().getColor(R.color.windowBackground));
-        vpPager.setCurrentItem(button_id);
+        vpPager.setCurrentItem(2);
 
     }
 
@@ -224,13 +219,13 @@ public class TruckReguestsFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0: // Fragment # 0 - This will show FirstFragment
-                    return TruckPendingReqFragment.newInstance(0);
+                    return TruckPendingReqFragment.newInstance();
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return TruckQuotesFragment.newInstance(1);
+                    return TruckQuotesFragment.newInstance();
                 case 2: // Fragment # 0 - This will show FirstFragment different title
-                    return TruckAssignFragment.newInstance(2);
+                    return TruckAssignFragment.newInstance();
                 default:
-                    return TruckPendingReqFragment.newInstance(0);
+                    return TruckPendingReqFragment.newInstance();
             }
         }
 

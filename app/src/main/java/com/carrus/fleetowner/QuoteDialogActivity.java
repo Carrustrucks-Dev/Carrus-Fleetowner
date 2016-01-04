@@ -32,7 +32,7 @@ import static com.carrus.fleetowner.utils.Constants.QUOTEID;
 import static com.carrus.fleetowner.utils.Constants.TYPE;
 
 /**
- * Created by Sunny on 11/19/15.
+ * Created by Sunny on 11/19/15 for Fleet Owner.
  */
 public class QuoteDialogActivity extends BaseActivity {
 

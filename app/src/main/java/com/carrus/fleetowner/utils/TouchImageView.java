@@ -1,7 +1,7 @@
 package com.carrus.fleetowner.utils;
 
 /**
- * Created by Saurbhv on 10/13/15.
+ * Created by Saurbhv on 10/13/15 for Fleet Owner.
  */
 import android.content.Context;
 import android.graphics.Matrix;
@@ -49,7 +49,6 @@ public class TouchImageView extends ImageView {
 
     private void sharedConstructing(Context context) {
         super.setClickable(true);
-        Context context1 = context;
         mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
         matrix = new Matrix();
         m = new float[9];

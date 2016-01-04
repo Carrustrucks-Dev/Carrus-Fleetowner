@@ -21,7 +21,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /**
- * Created by Sunny on 11/5/15.
+ * Created by Sunny on 11/5/15 for Fleet Owner.
  */
 public class ForgotPasswordActivity extends BaseActivity{
 
@@ -62,7 +62,7 @@ public class ForgotPasswordActivity extends BaseActivity{
                 if(mEmailEdtTxt.getText().toString().trim().isEmpty()){
                     mEmailEdtTxt.setError(getResources().getString(R.string.email_required));
                     mEmailEdtTxt.requestFocus();
-                } else if (!Utils.isValidEmail(mEmailEdtTxt.getText().toString().trim())) {
+                } else if (Utils.isValidEmail(mEmailEdtTxt.getText().toString().trim())) {
                     mEmailEdtTxt.setError(getResources().getString(R.string.validemail_required));
                     mEmailEdtTxt.requestFocus();
                 }else{

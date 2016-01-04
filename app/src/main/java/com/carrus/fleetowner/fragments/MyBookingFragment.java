@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.carrus.fleetowner.R;
 
 /**
- * Created by Sunny on 10/30/15.
+ * Created by Sunny on 10/30/15 for Fleet Owner.
  */
 public class MyBookingFragment extends Fragment {
 
@@ -45,7 +45,7 @@ public class MyBookingFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setSelectionUpcoming(0);
+        setSelectionUpcoming();
     }
 
     private void init(View view) {
@@ -69,14 +69,14 @@ public class MyBookingFragment extends Fragment {
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                        setSelectionUpcoming(0);
+                        setSelectionUpcoming();
                         break;
 
                     case 1:
-                        setSeclectionPast(1);
+                        setSeclectionPast();
                         break;
                     default:
-                        setSelectionUpcoming(0);
+                        setSelectionUpcoming();
 
                 }
             }
@@ -92,7 +92,7 @@ public class MyBookingFragment extends Fragment {
             public void onClick(View v) {
 
                 if (selectedFlag != 0) {
-                    setSelectionUpcoming(0);
+                    setSelectionUpcoming();
                 }
 
             }
@@ -102,30 +102,30 @@ public class MyBookingFragment extends Fragment {
             public void onClick(View v) {
 
                 if (selectedFlag != 1) {
-                    setSeclectionPast(1);
+                    setSeclectionPast();
                 }
 
             }
         });
     }
 
-    private void setSelectionUpcoming(int button_id) {
+    private void setSelectionUpcoming() {
         selectedFlag = 0;
         mUpComingTextView.setBackgroundResource(R.drawable.tab_background);
         mPastTextView.setBackgroundResource(R.drawable.tab_past_background_white);
         mUpComingTextView.setTextColor(getResources().getColor(R.color.windowBackground));
         mPastTextView.setTextColor(getResources().getColor(R.color.tabcolor_dark));
-        vpPager.setCurrentItem(button_id);
+        vpPager.setCurrentItem(0);
     }
 
-    private void setSeclectionPast(int button_id) {
+    private void setSeclectionPast() {
 
         selectedFlag = 1;
         mUpComingTextView.setBackgroundResource(R.drawable.tab_upcming_background_white);
         mPastTextView.setBackgroundResource(R.drawable.tab_background);
         mUpComingTextView.setTextColor(getResources().getColor(R.color.tabcolor_dark));
         mPastTextView.setTextColor(getResources().getColor(R.color.windowBackground));
-        vpPager.setCurrentItem(button_id);
+        vpPager.setCurrentItem(1);
     }
 
     public class MyPagerAdapter extends FragmentPagerAdapter {
@@ -146,11 +146,11 @@ public class MyBookingFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0: // Fragment # 0 - This will show FirstFragment
-                    return UpComingFragment.newInstance(0);
+                    return UpComingFragment.newInstance();
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return PastFragment.newInstance(1);
+                    return PastFragment.newInstance();
                 default:
-                    return UpComingFragment.newInstance(0);
+                    return UpComingFragment.newInstance();
             }
         }
 

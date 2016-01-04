@@ -25,7 +25,7 @@ import static com.carrus.fleetowner.utils.Constants.DEVICE_TYPE;
 import static com.carrus.fleetowner.utils.Constants.SENDER_ID;
 
 /**
- * Created by Sunny on 11/5/15.
+ * Created by Sunny on 11/5/15 for Fleet Owner.
  */
 public class LoginActivity extends BaseActivity {
 
@@ -65,7 +65,7 @@ public class LoginActivity extends BaseActivity {
                 } else if (mPasswordEdtTxt.getText().toString().trim().isEmpty()) {
                     mPasswordEdtTxt.setError(getResources().getString(R.string.passwd_required));
                     mPasswordEdtTxt.requestFocus();
-                } else if (!Utils.isValidEmail(mEmailidEdtTxt.getText().toString().trim())) {
+                } else if (Utils.isValidEmail(mEmailidEdtTxt.getText().toString().trim())) {
                     mEmailidEdtTxt.setError(getResources().getString(R.string.validemail_required));
                     mEmailidEdtTxt.requestFocus();
                 } else {
@@ -107,7 +107,7 @@ public class LoginActivity extends BaseActivity {
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
 
                         JSONObject mDataobject = mObject.getJSONObject("data");
-                        mSessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getString("userType"), mDataobject.getString("email"), mDataobject.getString("fullName"), mDataobject.getString("companyName"), mDataobject.getJSONObject("addressDetails").getString("address"), "", mDataobject.getString("phoneNumber"), mDataobject.getJSONObject("profilePicture").getString("original"));
+                        mSessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getString("userType"), mDataobject.getString("email"), mDataobject.getString("fullName"), mDataobject.getString("companyName"), mDataobject.getJSONObject("addressDetails").getString("address"), mDataobject.getString("phoneNumber"), mDataobject.getJSONObject("profilePicture").getString("original"));
                         Toast.makeText(LoginActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                         startActivityForResult(new Intent(LoginActivity.this, MainActivity.class), 500);
                         finish();

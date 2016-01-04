@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/rounded_bg"
@@ -27,7 +28,8 @@
             android:layout_centerVertical="true"
             android:textColor="@android:color/black"
             android:layout_alignParentLeft="true"
-            android:text="@string/trackingavail" />
+            android:text="@string/trackingavail"
+            tools:ignore="UnusedIds" />
 
         <RadioGroup
             android:id="@+id/trackingRadio"
@@ -36,21 +38,24 @@
             android:layout_width="wrap_content"
             android:orientation="horizontal"
             android:layout_alignParentRight="true"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="UnusedIds">
             <RadioButton
                 android:id="@+id/radioYes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:text="@string/yes"
-                android:checked="true" />
+                android:checked="true"
+                tools:ignore="UnusedIds" />
 
             <RadioButton
                 android:id="@+id/radioNo"
                 android:layout_width="wrap_content"
                 android:textColor="@android:color/black"
                 android:layout_height="wrap_content"
-                android:text="@string/no" />
+                android:text="@string/no"
+                tools:ignore="UnusedIds" />
 
         </RadioGroup>
 

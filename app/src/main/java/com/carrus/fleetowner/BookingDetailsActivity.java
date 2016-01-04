@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by Sunny on 11/6/15.
+ * Created by Sunny on 11/6/15 for Fleet Owner.
  */
 public class BookingDetailsActivity extends BaseActivity {
 
@@ -124,10 +124,10 @@ public class BookingDetailsActivity extends BaseActivity {
         listDataChild = new HashMap<>();
 
         // Adding child data
-        listDataHeader.add(new Header(getResources().getString(R.string.cargodetails), false));
-        listDataHeader.add(new Header(getResources().getString(R.string.documents), false));
-        listDataHeader.add(new Header(getResources().getString(R.string.notes_cap), false));
-        listDataHeader.add(new Header(getResources().getString(R.string.shippernotes), false));
+        listDataHeader.add(new Header(getResources().getString(R.string.cargodetails)));
+        listDataHeader.add(new Header(getResources().getString(R.string.documents)));
+        listDataHeader.add(new Header(getResources().getString(R.string.notes_cap)));
+        listDataHeader.add(new Header(getResources().getString(R.string.shippernotes)));
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
@@ -136,8 +136,6 @@ public class BookingDetailsActivity extends BaseActivity {
             mMyBookingDataModel =
                     (MyBookingDataModel) bundle.getSerializable("value");
             setValuesonViews();
-        } else {
-            getBookingDetails(getIntent().getStringExtra("id"));
         }
     }
 
@@ -299,60 +297,6 @@ public class BookingDetailsActivity extends BaseActivity {
             }
         });
 
-    }
-
-    private void getBookingDetails(String id) {
-//        Utils.loading_box(BookingDetailsActivity.this);
-//
-//        RestClient.getApiService().getSingleOnGoingBookingTrack(mSessionManager.getAccessToken(), id, 100, 0, Constants.SORT, new Callback<String>() {
-//            @Override
-//            public void success(String s, Response response) {
-//                Log.v("" + getClass().getSimpleName(), "Response> " + s);
-//                try {
-//                    JSONObject mObject = new JSONObject(s);
-//
-//                    int status = mObject.getInt("statusCode");
-//
-//                    if (ApiResponseFlags.OK.getOrdinal() == status) {
-//                        Gson gson = new Gson();
-//                        MyBookingModel mOnGoingShipper = gson.fromJson(s, MyBookingModel.class);
-//
-//                        if (mOnGoingShipper.mData.size() != 0) {
-//                            mMyBookingDataModel = mOnGoingShipper.mData.get(0);
-//                            setValuesonViews();
-//                        } else {
-//                            finish();
-//                        }
-//
-//                    } else {
-//                        Toast.makeText(BookingDetailsActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
-//                        finish();
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//                Utils.loading_box_stop();
-//            }
-//
-//            @Override
-//            public void failure(RetrofitError error) {
-//                Utils.loading_box_stop();
-//                try {
-//                    Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
-//
-//                    if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-//                        Toast.makeText(BookingDetailsActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
-//                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
-//                        Utils.shopAlterDialog(BookingDetailsActivity.this, Utils.getErrorMsg(error), true);
-//                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
-//                        Toast.makeText(BookingDetailsActivity.this, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
-//                    }
-//                } catch (Exception ex) {
-//                    Toast.makeText(BookingDetailsActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
-//                }
-//                finish();
-//            }
-//        });
     }
 
     private void onShareClick() {

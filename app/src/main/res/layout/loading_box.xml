@@ -1,9 +1,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rv"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/transparent">
+    android:background="@color/transparent"
+    tools:ignore="UnusedIds">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -24,7 +26,8 @@
             app:cpv_thickness="4dp"
 
             app:cpv_indeterminate="true"
-            app:cpv_animAutostart="true" />
+            app:cpv_animAutostart="true"
+            tools:ignore="UnusedIds" />
 
 
     </RelativeLayout>

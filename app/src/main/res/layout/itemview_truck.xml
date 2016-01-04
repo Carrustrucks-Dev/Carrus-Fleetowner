@@ -21,7 +21,8 @@
             android:layout_width="@dimen/mediumhieght"
             android:layout_height="@dimen/mediumhieght"
             android:layout_centerInParent="true"
-            android:background="@drawable/circle">
+            android:background="@drawable/circle"
+            tools:ignore="UselessParent">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -29,7 +30,8 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
 
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
 
                 <TextView
                     android:id="@+id/dateTxtView"
@@ -93,7 +95,8 @@
                 android:gravity="right"
                 android:text="@string/typecargo"
                 android:textColor="@color/green"
-                android:textSize="@dimen/low_font" />
+                android:textSize="@dimen/low_font"
+                tools:ignore="UnusedIds" />
 
         </RelativeLayout>
 
@@ -108,7 +111,8 @@
                 android:layout_alignParentLeft="true"
                 android:text="@string/weight"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="@dimen/low_font" />
+                android:textSize="@dimen/low_font"
+                tools:ignore="UnusedIds" />
 
             <com.carrus.fleetowner.utils.CapitalizedTextView
                 android:id="@+id/weightTxtView"
@@ -118,7 +122,8 @@
                 android:layout_toRightOf="@+id/weightTVlabel"
                 android:gravity="right"
                 android:textColor="@color/green"
-                android:textSize="@dimen/low_font" />
+                android:textSize="@dimen/low_font"
+                tools:ignore="UnusedIds" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -160,7 +165,8 @@
 
                 android:text="@string/offrdbid"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="@dimen/low_font" />
+                android:textSize="@dimen/low_font"
+                tools:ignore="UnusedIds" />
 
             <TextView
                 android:id="@+id/offerBidTxtView"
@@ -171,7 +177,8 @@
                 android:gravity="right"
                 android:textColor="@color/green"
                 android:textSize="@dimen/low_font"
-                android:textIsSelectable="true" />
+                android:textIsSelectable="true"
+                tools:ignore="UnusedIds" />
         </RelativeLayout>
 
     </LinearLayout>

@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:layout_marginRight="@dimen/ten"
-        tools:ignore="DuplicateIncludedIds">
+        tools:ignore="DuplicateIncludedIds,UnusedIds">
 
         <TextView
             android:id="@+id/phonePickupTxtView"

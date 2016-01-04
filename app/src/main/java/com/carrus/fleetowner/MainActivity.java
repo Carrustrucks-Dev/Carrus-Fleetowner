@@ -1,5 +1,6 @@
 package com.carrus.fleetowner;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -54,7 +55,7 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerFragment.setUp(R.id.fragment_navigation_drawer, mDrawerLayout);
+        drawerFragment.setUp(mDrawerLayout);
         drawerFragment.setDrawerListener(this);
 
         initializeView();
@@ -77,6 +78,7 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
 
     private void initializeClickListners() {
         mMenuButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RtlHardcoded")
             @Override
             public void onClick(View v) {
                 if (mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {

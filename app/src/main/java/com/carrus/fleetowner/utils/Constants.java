@@ -1,7 +1,7 @@
 package com.carrus.fleetowner.utils;
 
 /**
- * Created by Sunny on 11/2/15.
+ * Created by Sunny on 11/2/15 for Fleet Owner.
  */
 public class Constants {
 

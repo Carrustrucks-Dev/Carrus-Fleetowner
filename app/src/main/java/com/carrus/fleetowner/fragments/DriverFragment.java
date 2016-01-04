@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Sunny on 12/9/15.
+ * Created by Sunny on 12/9/15 for Fleet Owner.
  */
 public class DriverFragment extends Fragment {
 
@@ -54,7 +54,7 @@ public class DriverFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setSelectionWhite(0);
+        setSelectionWhite();
     }
 
     private void init(View view) {
@@ -109,14 +109,14 @@ public class DriverFragment extends Fragment {
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                        setSelectionWhite(0);
+                        setSelectionWhite();
                         break;
 
                     case 1:
-                        setSeclectionBlack(1);
+                        setSeclectionBlack();
                         break;
                     default:
-                        setSelectionWhite(0);
+                        setSelectionWhite();
 
                 }
             }
@@ -132,7 +132,7 @@ public class DriverFragment extends Fragment {
             public void onClick(View v) {
 
                 if (selectedFlag != 0) {
-                    setSelectionWhite(0);
+                    setSelectionWhite();
                 }
 
             }
@@ -142,32 +142,32 @@ public class DriverFragment extends Fragment {
             public void onClick(View v) {
 
                 if (selectedFlag != 1) {
-                    setSeclectionBlack(1);
+                    setSeclectionBlack();
                 }
 
             }
         });
     }
 
-    private void setSelectionWhite(int button_id) {
+    private void setSelectionWhite() {
         mSearchEdtTxt.setError(null);
         selectedFlag = 0;
         mWhiteTextView.setBackgroundResource(R.drawable.tab_background);
         mBlackTextView.setBackgroundResource(R.drawable.tab_past_background_white);
         mWhiteTextView.setTextColor(getResources().getColor(R.color.windowBackground));
         mBlackTextView.setTextColor(getResources().getColor(R.color.tabcolor_dark));
-        vpPager.setCurrentItem(button_id);
+        vpPager.setCurrentItem(0);
 
     }
 
-    private void setSeclectionBlack(int button_id) {
+    private void setSeclectionBlack() {
         mSearchEdtTxt.setError(null);
         selectedFlag = 1;
         mWhiteTextView.setBackgroundResource(R.drawable.tab_upcming_background_white);
         mBlackTextView.setBackgroundResource(R.drawable.tab_background);
         mWhiteTextView.setTextColor(getResources().getColor(R.color.tabcolor_dark));
         mBlackTextView.setTextColor(getResources().getColor(R.color.windowBackground));
-        vpPager.setCurrentItem(button_id);
+        vpPager.setCurrentItem(1);
 
     }
 
@@ -190,11 +190,11 @@ public class DriverFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0: // Fragment # 0 - This will show FirstFragment
-                    return WhiteDriverFragment.newInstance(0);
+                    return WhiteDriverFragment.newInstance();
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return BlackDriverFragment.newInstance(1);
+                    return BlackDriverFragment.newInstance();
                 default:
-                    return WhiteDriverFragment.newInstance(0);
+                    return WhiteDriverFragment.newInstance();
             }
         }
 

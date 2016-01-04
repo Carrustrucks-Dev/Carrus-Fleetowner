@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/drawer_Dark">
@@ -54,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/nav_header_container"
         android:layout_above="@+id/termsTxtView"
-         />
+        tools:ignore="UnusedIds" />
 
 
     <com.carrus.fleetowner.utils.CapitalizedTextView
@@ -68,5 +69,6 @@
         android:layout_centerHorizontal="true"
         android:paddingLeft="@dimen/ten"
         android:textSize="@dimen/big_font"
-        android:text="@string/term_privacy"/>
+        android:text="@string/term_privacy"
+        tools:ignore="UnusedIds" />
 </RelativeLayout>

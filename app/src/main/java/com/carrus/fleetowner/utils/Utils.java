@@ -29,7 +29,7 @@ import retrofit.RetrofitError;
 import retrofit.mime.TypedByteArray;
 
 /**
- * Created by Sunny on 11/6/15.
+ * Created by Sunny on 11/6/15 for Fleet Owner.
  */
 public class Utils {
 
@@ -55,7 +55,7 @@ measures height of recyclerview when placed inside scrollview
 
         ViewGroup.LayoutParams params = myListView.getLayoutParams();
         params.height = totalHeight
-                + (1 * (myListAdapter.getItemCount() - 1));
+                + ((myListAdapter.getItemCount() - 1));
         myListView.setLayoutParams(params);
 
         //	Log.i("height of listItem:", String.valueOf(totalHeight));
@@ -131,8 +131,9 @@ measures height of recyclerview when placed inside scrollview
         return phrase;
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean isValidEmail(String target) {
-        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        return TextUtils.isEmpty(target) || !android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 
     public static String getDate(String time) throws ParseException {
@@ -240,7 +241,7 @@ measures height of recyclerview when placed inside scrollview
 //        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
 //        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
         try {
-            InputMethodManager imm = (InputMethodManager) activity.getSystemService(activity.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
         } catch (Exception ignored) {
             ignored.printStackTrace();

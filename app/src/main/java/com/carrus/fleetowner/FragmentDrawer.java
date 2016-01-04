@@ -1,7 +1,7 @@
 package com.carrus.fleetowner;
 
 /**
- * Created by Ravi on 29/07/15.
+ * Created by Ravi on 29/07/15 for Fleet Owner.
  */
 
 import android.content.Context;
@@ -100,10 +100,6 @@ public class FragmentDrawer extends Fragment {
                 mDrawerLayout.closeDrawer(containerView);
             }
 
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
         }));
 
         LinearLayout mHeaderLayout = (LinearLayout) layout.findViewById(R.id.nav_header_container);
@@ -124,8 +120,8 @@ public class FragmentDrawer extends Fragment {
         if (mSessionManager.getProfilePic() != null)
             Picasso.with(getActivity()).load(mSessionManager.getProfilePic()).placeholder(R.mipmap.ic_launcher).resize(300, 300).transform(new CircleTransform()).into(mProfileIV);
     }
-    public void setUp(int fragmentId, DrawerLayout drawerLayout) {
-        containerView = getActivity().findViewById(fragmentId);
+    public void setUp(DrawerLayout drawerLayout) {
+        containerView = getActivity().findViewById(R.id.fragment_navigation_drawer);
         mDrawerLayout = drawerLayout;
 
     }
@@ -133,7 +129,6 @@ public class FragmentDrawer extends Fragment {
     public interface ClickListener {
         void onClick(View view, int position);
 
-        void onLongClick(View view, int position);
     }
 
     static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
@@ -152,9 +147,6 @@ public class FragmentDrawer extends Fragment {
                 @Override
                 public void onLongPress(MotionEvent e) {
                     View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
-                    if (child != null && clickListener != null) {
-                        clickListener.onLongClick(child, recyclerView.getChildPosition(child));
-                    }
                 }
             });
         }

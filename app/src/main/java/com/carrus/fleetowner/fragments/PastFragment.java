@@ -43,7 +43,7 @@ import static com.carrus.fleetowner.utils.Constants.LIMIT;
 import static com.carrus.fleetowner.utils.Constants.SORT;
 
 /**
- * Created by Sunny on 10/30/15.
+ * Created by Sunny on 10/30/15 for Fleet Owner.
  */
 public class PastFragment extends Fragment {
 
@@ -65,10 +65,10 @@ public class PastFragment extends Fragment {
      * initializes the fragment's arguments, and returns the
      * new fragment to the client.
      */
-    public static PastFragment newInstance(int index) {
+    public static PastFragment newInstance() {
         PastFragment f = new PastFragment();
         Bundle args = new Bundle();
-        args.putInt("index", index);
+        args.putInt("index", 1);
         f.setArguments(args);
         return f;
     }
@@ -124,7 +124,7 @@ public class PastFragment extends Fragment {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(
-                new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+                new DividerItemDecoration(getActivity()));
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

@@ -51,7 +51,7 @@ public class GcmMessageHandler extends IntentService {
             if (myObject.has("bookingStatus")) {
 
             } else
-                sendNotification(extras.getString("message").toString().replaceAll("_", " "), extras.getString("brand_name").toString(), myObject.getString("bookingId"));
+                sendNotification(extras.getString("message").replaceAll("_", " "), extras.getString("brand_name"), myObject.getString("bookingId"));
 
         } catch (Exception e) {
             sendNotification("", "Carrus Shipper", "");

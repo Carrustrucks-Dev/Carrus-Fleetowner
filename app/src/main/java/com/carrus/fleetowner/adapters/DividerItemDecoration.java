@@ -23,19 +23,19 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
     private int mOrientation;
 
-    public DividerItemDecoration(Context context, int orientation) {
+    public DividerItemDecoration(Context context) {
         final TypedArray a = context.obtainStyledAttributes(ATTRS);
         mDivider = a.getDrawable(0);
         a.recycle();
-        setOrientation(LinearLayoutManager.VERTICAL);
+        setOrientation();
     }
 
 
-    private void setOrientation(int orientation) {
-        if (orientation != HORIZONTAL_LIST && orientation != VERTICAL_LIST) {
+    private void setOrientation() {
+        if (false) {
             throw new IllegalArgumentException("invalid orientation");
         }
-        mOrientation = orientation;
+        mOrientation = LinearLayoutManager.VERTICAL;
     }
 
     @Override

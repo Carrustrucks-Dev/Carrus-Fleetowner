@@ -42,7 +42,7 @@ import static com.carrus.fleetowner.utils.Constants.LIMIT;
 import static com.carrus.fleetowner.utils.Constants.SORT;
 
 /**
- * Created by Sunny on 12/9/15.
+ * Created by Sunny on 12/9/15 for Fleet Owner.
  */
 public class BlackDriverFragment extends Fragment {
 
@@ -63,7 +63,7 @@ public class BlackDriverFragment extends Fragment {
      * initializes the fragment's arguments, and returns the
      * new fragment to the client.
      */
-    public static BlackDriverFragment newInstance(int index) {
+    public static BlackDriverFragment newInstance() {
         BlackDriverFragment f = new BlackDriverFragment();
         Bundle args = new Bundle();
         args.putInt("index", 1);
@@ -91,7 +91,7 @@ public class BlackDriverFragment extends Fragment {
         if (mConnectionDetector.isConnectingToInternet())
             getMyBooking(((DriverFragment) getParentFragment()).mSearchEdtTxt.getText().toString().trim());
         else {
-           noInternetDialog();
+            noInternetDialog();
         }
     }
 
@@ -103,7 +103,7 @@ public class BlackDriverFragment extends Fragment {
                 if (mConnectionDetector.isConnectingToInternet())
                     getMyBooking(((DriverFragment) getParentFragment()).mSearchEdtTxt.getText().toString().trim());
                 else {
-                   noInternetDialog();
+                    noInternetDialog();
                 }
             }
         });
@@ -124,7 +124,7 @@ public class BlackDriverFragment extends Fragment {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(
-                new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+                new DividerItemDecoration(getActivity()));
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -223,7 +223,7 @@ public class BlackDriverFragment extends Fragment {
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
 //                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
-noInternetDialog();
+                        noInternetDialog();
 
                         if (bookingList == null || bookingList.size() == 0) {
                             mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
@@ -282,7 +282,7 @@ noInternetDialog();
         });
     }
 
-    private void noInternetDialog(){
+    private void noInternetDialog() {
         CommonNoInternetDialog.WithActivity(getActivity()).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
             @Override
             public void OnOkButtonPressed() {

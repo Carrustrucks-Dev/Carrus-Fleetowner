@@ -24,7 +24,7 @@ import static com.carrus.fleetowner.utils.Constants.TYPE;
 import static com.carrus.fleetowner.utils.Constants.VALUE;
 
 /**
- * Created by Sunny on 12/9/15.
+ * Created by Sunny on 12/9/15 for Fleet Owner.
  */
 public class TruckAssignListAdapter extends RecyclerView.Adapter {
     //    private String[] mDataset;

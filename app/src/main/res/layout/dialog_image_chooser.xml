@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:splitMotionEvents="false"
-    tools:ignore="MergeRootFrame">
+    tools:ignore="MergeRootFrame,UnusedIds">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -16,7 +16,8 @@
         android:layout_marginRight="25dp"
         android:layout_marginTop="15dp"
         android:background="@color/colorPrimary"
-        android:splitMotionEvents="false">
+        android:splitMotionEvents="false"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:id="@+id/rl1"
@@ -24,7 +25,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingTop="15dp"
-            android:splitMotionEvents="false">
+            android:splitMotionEvents="false"
+            tools:ignore="UnusedIds">
 
             <TextView
                 android:id="@+id/textHead"
@@ -36,7 +38,8 @@
                 android:paddingRight="10dp"
                 android:text=""
 
-                android:visibility="gone" />
+                android:visibility="gone"
+                tools:ignore="UnusedIds" />
 
             <View
                 android:layout_width="100dp"
