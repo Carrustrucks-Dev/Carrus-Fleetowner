@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,17 +78,7 @@ public class DriverFragment extends Fragment {
                         mSearchEdtTxt.setError(getResources().getString(R.string.enterdrivername));
                         mSearchEdtTxt.requestFocus();
                     } else {
-                        Utils.hideSoftKeyboard(getActivity());
-//                        if (searchTrackingId()) {
-//                            Toast.makeText(getActivity(), "No booking found", Toast.LENGTH_SHORT).show();
-//                        }
-                        if(selectedFlag==0){
-                            ((WhiteDriverFragment) getActiveFragment(vpPager, 0)).isRefreshView=true;
-                            ((WhiteDriverFragment) getActiveFragment(vpPager, 0)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
-                        }else{
-                            ((BlackDriverFragment) getActiveFragment(vpPager, 1)).isRefreshView=true;
-                            ((BlackDriverFragment) getActiveFragment(vpPager, 1)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
-                        }
+                        performSearch();
 
                     }
 
@@ -95,6 +87,47 @@ public class DriverFragment extends Fragment {
                 return false;
             }
         });
+
+
+        mSearchEdtTxt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                // TODO Auto-generated method stub
+
+                if (count == 0) {
+                    performSearch();
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                // TODO Auto-generated method stub
+            }
+        });
+
+    }
+
+
+    private void performSearch(){
+        Utils.hideSoftKeyboard(getActivity());
+//                        if (searchTrackingId()) {
+//                            Toast.makeText(getActivity(), "No booking found", Toast.LENGTH_SHORT).show();
+//                        }
+        if (selectedFlag == 0) {
+            ((WhiteDriverFragment) getActiveFragment(vpPager, 0)).isRefreshView = true;
+            ((WhiteDriverFragment) getActiveFragment(vpPager, 0)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
+        } else {
+            ((BlackDriverFragment) getActiveFragment(vpPager, 1)).isRefreshView = true;
+            ((BlackDriverFragment) getActiveFragment(vpPager, 1)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
+        }
     }
 
     private void initializeClickListners() {

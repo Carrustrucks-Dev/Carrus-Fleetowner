@@ -146,7 +146,7 @@ public class BlackDriverFragment extends Fragment {
         }
     }
 
-    public void getMyBooking(String val) {
+    public void getMyBooking(final String val) {
         mErrorTxtView.setVisibility(View.GONE);
         if (isRefreshView) {
             swipeRefreshLayout.setRefreshing(true);
@@ -234,8 +234,9 @@ public class BlackDriverFragment extends Fragment {
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
+                        if(!val.isEmpty())
                         Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
-                        if (bookingList == null || bookingList.size() == 0) {
+                        else if (bookingList == null || bookingList.size() == 0) {
                             mErrorTxtView.setText(getResources().getString(R.string.norecordfound));
                             mErrorTxtView.setVisibility(View.VISIBLE);
                         }
