@@ -124,9 +124,9 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
         locationTxtView = (TextView) view.findViewById(R.id.locationTxtView);
         statusTxtView = (TextView) view.findViewById(R.id.statusTxtView);
         mSearchEdtTxt = (EditText) view.findViewById(R.id.searchEdtTxt);
-        truckNumberTxtView=(TextView) view.findViewById(R.id.crntopTxtView);
-        crnTxtView=(TextView) view.findViewById(R.id.crnTxtView);
-        nicknameTxtView=(TextView) view.findViewById(R.id.nicknameTxtView);
+        truckNumberTxtView = (TextView) view.findViewById(R.id.crntopTxtView);
+        crnTxtView = (TextView) view.findViewById(R.id.crnTxtView);
+        nicknameTxtView = (TextView) view.findViewById(R.id.nicknameTxtView);
 
         mSearchEdtTxt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -176,10 +176,10 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
 
 
     private boolean searchTrackingId() {
-        if(mTrucks!=null)
-        for (int i = 0; i < mTrucks.getData().size(); i++) {
+        if (mTrucks != null)
+            for (int i = 0; i < mTrucks.getData().size(); i++) {
 
-                if (mTrucks.getData().get(i).getBooking().size()!=0 && mSearchEdtTxt.getText().toString().trim().equals(mTrucks.getData().get(i).getBooking().get(0).getCrn())) {
+                if (mTrucks.getData().get(i).getBooking().size() != 0 && mSearchEdtTxt.getText().toString().trim().equals(mTrucks.getData().get(i).getBooking().get(0).getCrn())) {
                     googleMap.clear();
                     LatLng location = new LatLng(Double.valueOf(mTrucks.getData().get(i).getCurrentCoordinates().getLat()), Double.valueOf(mTrucks.getData().get(i).getCurrentCoordinates().getLong()));
 
@@ -228,7 +228,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                     googleMap.animateCamera(zoom);
                     return false;
                 }
-        }
+            }
 
         return true;
     }
@@ -361,11 +361,15 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                     nameTxtView.setText(mTrackermodel.get(i).getTrucker().get(0).getDriverName());
                     typeTxtView.setText(mTrackermodel.get(i).getTypeTruck().get(0).typeTruckName);
                     truckNumberTxtView.setText(mTrackermodel.get(i).getTruckNumber());
-                    crnTxtView.setText(getResources().getString(R.string.crn)+mTrackermodel.get(i).getBooking().get(0).getCrn());
+                    crnTxtView.setText(getResources().getString(R.string.crn) + mTrackermodel.get(i).getBooking().get(0).getCrn());
                     locationTxtView.setText(mTrackermodel.get(i).getBooking().get(0).getPickUp().getCity() + getResources().getString(R.string.towithspaces) + mTrackermodel.get(i).getBooking().get(0).getDropOff().getCity());
-                    nicknameTxtView.setText(getResources().getString(R.string.nickname)+mTrackermodel.get(i).getTruckName());
+                    nicknameTxtView.setText(getResources().getString(R.string.nickname) + mTrackermodel.get(i).getTruckName());
 //                    Picasso.with(getActivity()).load(R.mipmap.icon_placeholder).resize(100, 100).transform(new CircleTransform()).into(mProfileIV);
-                    statusTxtView.setText(mTrackermodel.get(i).getStatus());
+                    if (mTrackermodel.get(i).getStatus().equalsIgnoreCase(getResources().getString(R.string.activate)))
+                        statusTxtView.setText(getResources().getString(R.string.ongoing));
+                    else
+                        statusTxtView.setText(mTrackermodel.get(i).getStatus());
+
                     showProfile();
                 } else
                     Toast.makeText(getActivity(), getResources().getString(R.string.nodetailsfound), Toast.LENGTH_SHORT).show();

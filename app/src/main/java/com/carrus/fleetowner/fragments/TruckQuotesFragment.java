@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +58,7 @@ public class TruckQuotesFragment extends Fragment {
     private List<TruckQuotesDetails> bookingList;
     private TruckQuotesModel mTruckQuotesModel;
     private TextView mErrorTxtView;
+    private LinearLayout mErrorLayout;
 
     /**
      * Static factory method that takes an int parameter,
@@ -96,10 +98,10 @@ public class TruckQuotesFragment extends Fragment {
     }
 
     private void intializeListners() {
-        mErrorTxtView.setOnClickListener(new View.OnClickListener() {
+        mErrorLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mErrorTxtView.setVisibility(View.GONE);
+                mErrorLayout.setVisibility(View.GONE);
                 if (mConnectionDetector.isConnectingToInternet())
                     getMyBooking();
                 else {
@@ -110,6 +112,7 @@ public class TruckQuotesFragment extends Fragment {
     }
 
     private void init(View view) {
+        mErrorLayout =(LinearLayout) view.findViewById(R.id.errorLayout);
         mErrorTxtView=(TextView) view.findViewById(R.id.errorTxtView);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
 //        swipeRefreshLayout.setColorSchemeColors(
@@ -147,7 +150,7 @@ public class TruckQuotesFragment extends Fragment {
     }
 
     private void getMyBooking() {
-        mErrorTxtView.setVisibility(View.GONE);
+        mErrorLayout.setVisibility(View.GONE);
         if (isRefreshView) {
             swipeRefreshLayout.setRefreshing(true);
             skip=0;
@@ -234,7 +237,7 @@ public class TruckQuotesFragment extends Fragment {
                        // Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         if(bookingList==null || bookingList.size()==0) {
                             mErrorTxtView.setText(getResources().getString(R.string.norecordfound));
-                            mErrorTxtView.setVisibility(View.VISIBLE);
+                            mErrorLayout.setVisibility(View.VISIBLE);
                         }
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
                         Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();

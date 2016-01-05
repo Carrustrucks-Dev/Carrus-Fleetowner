@@ -99,6 +99,8 @@
     <!-- My booking screen text-->
     <string name="upcming">Upcoming</string>
     <string name="past">Past</string>
+    <string name="activate">ACTIVATE</string>
+    <string name="ongoing">On Going</string>
 
     <!-- My Profile screen text-->
     <string name="company_name">COMPANY NAME</string>
