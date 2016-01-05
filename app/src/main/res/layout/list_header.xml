@@ -21,7 +21,7 @@
         android:textIsSelectable="false" />
     <ImageView
         android:id="@+id/btn_expand_toggle"
-        android:src="@mipmap/circle_plus"
+        android:src="@mipmap/btn_plus"
         android:layout_width="30dp"
         android:contentDescription="@string/empty"
         android:layout_height="30dp"
