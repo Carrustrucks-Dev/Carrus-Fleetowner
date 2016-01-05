@@ -22,8 +22,9 @@
     <ImageView
         android:id="@+id/btn_expand_toggle"
         android:src="@mipmap/btn_plus"
-        android:layout_width="30dp"
+        android:layout_width="wrap_content"
         android:contentDescription="@string/empty"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/five"
         android:layout_weight="0"/>
 </LinearLayout>
