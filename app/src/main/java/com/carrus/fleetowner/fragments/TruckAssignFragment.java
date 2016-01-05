@@ -231,7 +231,7 @@ public class TruckAssignFragment extends Fragment {
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
-                        Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         if (bookingList == null || bookingList.size() == 0) {
                             mErrorTxtView.setText(getResources().getString(R.string.norecordfound));
                             mErrorTxtView.setVisibility(View.VISIBLE);

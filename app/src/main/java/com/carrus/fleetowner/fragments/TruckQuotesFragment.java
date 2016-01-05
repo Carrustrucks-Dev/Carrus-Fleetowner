@@ -231,7 +231,7 @@ public class TruckQuotesFragment extends Fragment {
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
-                        Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         if(bookingList==null || bookingList.size()==0) {
                             mErrorTxtView.setText(getResources().getString(R.string.norecordfound));
                             mErrorTxtView.setVisibility(View.VISIBLE);
@@ -266,7 +266,6 @@ public class TruckQuotesFragment extends Fragment {
             @Override
             public void onLoadMore() {
                 //add null , so the adapter will check view_type and show progress bar at bottom
-
                 try {
                     bookingList.add(null);
                     mAdapter.notifyItemInserted(bookingList.size() - 1);
@@ -274,8 +273,6 @@ public class TruckQuotesFragment extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-
             }
         });
     }
