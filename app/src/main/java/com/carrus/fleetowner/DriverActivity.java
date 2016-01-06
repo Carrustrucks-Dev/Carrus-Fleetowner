@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +62,8 @@ public class DriverActivity extends BaseActivity {
     private DriverModel mDriverModel;
     private Context mContext;
     private EditText mSearchEdtTxt;
+    private TextView mErrorTxtView;
+    private LinearLayout mErrorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +80,8 @@ public class DriverActivity extends BaseActivity {
         mBackBtn = (ImageView) findViewById(R.id.menu_back_btn);
         mBackBtn.setVisibility(View.VISIBLE);
         mSearchEdtTxt = (EditText) findViewById(R.id.searchEdtTxt);
+        mErrorLayout =(LinearLayout) findViewById(R.id.errorLayout);
+        mErrorTxtView = (TextView) findViewById(R.id.errorTxtView);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 //        swipeRefreshLayout.setColorSchemeColors(
 //                Color.RED, Color.GREEN, Color.BLUE, Color.CYAN);
@@ -154,9 +159,22 @@ public class DriverActivity extends BaseActivity {
             }
         });
 
+        mErrorLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mErrorLayout.setVisibility(View.GONE);
+                if (mConnectionDetector.isConnectingToInternet())
+                    getDrivers(mSearchEdtTxt.getText().toString().trim());
+                else {
+                    noInternetDialog();
+                }
+            }
+        });
+
     }
 
     private void getDrivers(String val) {
+        mErrorLayout.setVisibility(View.GONE);
         if (isRefreshView) {
             swipeRefreshLayout.setRefreshing(true);
             skip = 0;
@@ -227,13 +245,18 @@ public class DriverActivity extends BaseActivity {
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
                         noInternetDialog();
+                        mAdapter = new DriverListAdapter((Activity) mContext, bookingList, mRecyclerView, true);
+                        mRecyclerView.setAdapter(mAdapter);
 //                        mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
 //                        mErrorTxtView.setVisibility(View.VISIBLE);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(mContext, Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
-                        Toast.makeText(mContext, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
-
+//                        Toast.makeText(mContext, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
+                        if (bookingList == null || bookingList.size() == 0) {
+                            mErrorTxtView.setText(getResources().getString(R.string.nopendingassignfound));
+                            mErrorLayout.setVisibility(View.VISIBLE);
+                        }
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
                         Toast.makeText(mContext, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         try {
@@ -247,6 +270,8 @@ public class DriverActivity extends BaseActivity {
 
                 } catch (Exception ex) {
                     noInternetDialog();
+                    mAdapter = new DriverListAdapter((Activity) mContext, bookingList, mRecyclerView, true);
+                    mRecyclerView.setAdapter(mAdapter);
                 }
             }
         });
@@ -312,7 +337,6 @@ public class DriverActivity extends BaseActivity {
                         Utils.shopAlterDialog(mContext, getResources().getString(R.string.trucknotfound), false);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
                         Toast.makeText(mContext, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
-
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
                         Toast.makeText(mContext, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                     }
