@@ -240,7 +240,7 @@ public class BlackDriverFragment extends Fragment {
                         if(!val.isEmpty())
                         Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         else if (bookingList == null || bookingList.size() == 0) {
-                            mErrorTxtView.setText(getResources().getString(R.string.norecordfound));
+                            mErrorTxtView.setText(getResources().getString(R.string.nodriverfound));
                             mErrorLayout.setVisibility(View.VISIBLE);
                         }
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {

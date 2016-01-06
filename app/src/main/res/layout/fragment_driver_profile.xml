@@ -44,8 +44,9 @@
 
                 </RelativeLayout>
 
-                <com.carrus.fleetowner.utils.CapitalizedTextView
+                <TextView
                     android:id="@+id/driverName"
+                    android:capitalize="characters"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/five"
@@ -80,8 +81,9 @@
                     android:textColor="@color/gray_text"
                     android:textSize="@dimen/big_font" />
 
-                <com.carrus.fleetowner.utils.CapitalizedTextView
+                <TextView
                     android:id="@+id/cmpanyNameTxtView"
+                    android:capitalize="characters"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/six"

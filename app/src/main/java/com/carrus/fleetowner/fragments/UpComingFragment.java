@@ -239,7 +239,7 @@ public class UpComingFragment extends Fragment {
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
                        // Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         if(bookingList==null || bookingList.size()==0) {
-                            mErrorTxtView.setText(getResources().getString(R.string.norecordfound));
+                            mErrorTxtView.setText(getResources().getString(R.string.noupcmingfound));
                             mErrorLayout.setVisibility(View.VISIBLE);
                         }
                     }else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {

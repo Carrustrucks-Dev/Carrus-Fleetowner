@@ -56,24 +56,29 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingLeft="@dimen/five"
         android:paddingRight="@dimen/five"
         android:layout_weight="0.38">
-        <com.carrus.fleetowner.utils.CapitalizedTextView
+
+        <TextView
             android:id="@+id/addressTxtView"
+            android:capitalize="characters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:text=""
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/low_font"
 
             />
 
-        <com.carrus.fleetowner.utils.CapitalizedTextView
+        <TextView
             android:id="@+id/nameTxtView"
             android:layout_width="wrap_content"
+            android:capitalize="characters"
+            android:ellipsize="end"
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/tabcolor_dark"

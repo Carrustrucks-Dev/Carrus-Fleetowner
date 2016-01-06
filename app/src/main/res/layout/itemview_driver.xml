@@ -34,8 +34,9 @@
         android:paddingLeft="@dimen/five"
         android:paddingRight="@dimen/five">
 
-        <com.carrus.fleetowner.utils.CapitalizedTextView
+        <TextView
             android:id="@+id/nameTxtView"
+            android:capitalize="characters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
@@ -65,8 +66,9 @@
                 android:textSize="@dimen/low_font" />
         </LinearLayout>
 
-        <com.carrus.fleetowner.utils.CapitalizedTextView
+        <TextView
             android:id="@+id/vehiclenoTxtView"
+            android:capitalize="characters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""

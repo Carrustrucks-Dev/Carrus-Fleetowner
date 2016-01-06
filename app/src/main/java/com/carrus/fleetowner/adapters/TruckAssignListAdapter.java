@@ -15,7 +15,6 @@ import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.TruckDeatisActivity;
 import com.carrus.fleetowner.interfaces.OnLoadMoreListener;
 import com.carrus.fleetowner.models.TruckAssignDetails;
-import com.carrus.fleetowner.utils.CapitalizedTextView;
 import com.carrus.fleetowner.utils.Utils;
 
 import java.text.ParseException;

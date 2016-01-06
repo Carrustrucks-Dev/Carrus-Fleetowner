@@ -146,7 +146,7 @@ public class DriverListAdapter extends RecyclerView.Adapter {
                 ((ViewHolder) holder).mMainLayout.setBackgroundColor(mActivity.getResources().getColor(R.color.windowBackground));
             }
 
-            ((ViewHolder) holder).mNameTxtView.setText(myList.get(position).getDriverName());
+            ((ViewHolder) holder).mNameTxtView.setText(Character.toUpperCase(myList.get(position).getDriverName().charAt(0)) + myList.get(position).getDriverName().substring(1));
 //            ((ViewHolder) holder).vehiclenoTxtView.setVisibility(View.GONE);
             ((ViewHolder) holder).vehiclenoTxtView.setText(myList.get(position).getTrucks().toString().replace("[", "")
                     .replace("]", ""));
