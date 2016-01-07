@@ -16,7 +16,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +30,6 @@ import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.CommonNoInternetDialog;
 import com.carrus.fleetowner.utils.ConnectionDetector;
 import com.carrus.fleetowner.utils.Constants;
-import com.carrus.fleetowner.utils.GMapV2GetRouteDirection;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
 import com.google.android.gms.maps.CameraUpdate;
@@ -55,7 +53,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /**
- * Created by Sunny on 10/29/15 for Fleet Owner.
+ * Created by Sunny on 10/29/15 for Fleet Owner for Fleet Owner.
  */
 public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickListener {
 
@@ -89,7 +87,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        GMapV2GetRouteDirection v2GetRouteDirection = new GMapV2GetRouteDirection();
+//        GMapV2GetRouteDirection v2GetRouteDirection = new GMapV2GetRouteDirection();
 
         mIntentFilter = new IntentFilter();
         mIntentFilter.addAction(mBroadcastUiAction);
@@ -118,7 +116,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
     }
 
     private void init(View view) {
-        ImageView mProfileIV = (ImageView) view.findViewById(R.id.profileIV);
+//        ImageView mProfileIV = (ImageView) view.findViewById(R.id.profileIV);
         nameTxtView = (TextView) view.findViewById(R.id.nameTxtView);
         typeTxtView = (TextView) view.findViewById(R.id.typeTxtView);
         locationTxtView = (TextView) view.findViewById(R.id.locationTxtView);

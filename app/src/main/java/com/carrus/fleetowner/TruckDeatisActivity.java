@@ -49,7 +49,7 @@ import static com.carrus.fleetowner.utils.Constants.VALUE;
 
 
 /**
- * Created by Sunny on 12/10/15 for Fleet Owner.
+ * Created by Sunny on 12/10/15 for Fleet Owner for Fleet Owner.
  */
 public class TruckDeatisActivity extends BaseActivity {
 
@@ -218,8 +218,6 @@ public class TruckDeatisActivity extends BaseActivity {
         if (requestCode == CHILDACTIVITY && resultCode == RESULT_OK && data != null) {
 //            Toast.makeText(TruckDeatisActivity.this, "Successfully bid", Toast.LENGTH_SHORT).show();
             finish();
-        } else {
-//            Toast.makeText(TruckDeatisActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Sunny on 12/9/15 for Fleet Owner.
+ * Created by Sunny on 12/9/15 for Fleet Owner for Fleet Owner.
  */
 public class TruckReguestsFragment extends Fragment {
 
@@ -33,7 +33,6 @@ public class TruckReguestsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View convertView = inflater.inflate(R.layout.fragment_truck, container, false);
-        Bundle bundle = this.getArguments();
         init(convertView);
         initializeClickListners();
 

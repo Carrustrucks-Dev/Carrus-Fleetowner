@@ -1,7 +1,7 @@
 package com.carrus.fleetowner.models;
 
 /**
- * Created by Ravi on 29/07/15 for Fleet Owner.
+ * Created by Ravi on 29/07/15 for Fleet Owner for Fleet Owner.
  */
 public class NavDrawerItem {
     private boolean showNotify;

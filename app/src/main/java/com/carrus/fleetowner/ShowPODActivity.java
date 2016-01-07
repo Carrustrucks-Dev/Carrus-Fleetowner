@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by Sunny on 11/17/15 for Fleet Owner.
+ * Created by Sunny on 11/17/15 for Fleet Owner for Fleet Owner.
  */
 public class ShowPODActivity extends BaseActivity {
 
@@ -26,7 +26,7 @@ public class ShowPODActivity extends BaseActivity {
 
     @SuppressLint("SetJavaScriptEnabled")
     private void init() {
-        ImageView closeButton = (ImageView) findViewById(R.id.imageView_close);
+//        ImageView closeButton = (ImageView) findViewById(R.id.imageView_close);
         ImageView imageView = (ImageView) findViewById(R.id.image);
         WebView mWebView = (WebView) findViewById(R.id.webView);
         mWebView.getSettings().setJavaScriptEnabled(true);

@@ -29,7 +29,7 @@ import retrofit.RetrofitError;
 import retrofit.mime.TypedByteArray;
 
 /**
- * Created by Sunny on 11/6/15 for Fleet Owner.
+ * Created by Sunny on 11/6/15 for Fleet Owner for Fleet Owner.
  */
 public class Utils {
 
@@ -144,7 +144,6 @@ measures height of recyclerview when placed inside scrollview
         f.setTimeZone(tz);
         Date d = f.parse(String.valueOf(time));
         @SuppressLint("SimpleDateFormat") DateFormat date = new SimpleDateFormat("dd");
-        @SuppressLint("SimpleDateFormat") DateFormat month = new SimpleDateFormat("MMM");
         return date.format(d);
     }
 
@@ -166,7 +165,6 @@ measures height of recyclerview when placed inside scrollview
 //        f.setTimeZone(TimeZone.getTimeZone("ISO"));
         f.setTimeZone(tz);
         Date d = f.parse(String.valueOf(time));
-        @SuppressLint("SimpleDateFormat") DateFormat date = new SimpleDateFormat("dd");
         @SuppressLint("SimpleDateFormat") DateFormat month = new SimpleDateFormat("MMM");
         return month.format(d);
     }
@@ -217,11 +215,16 @@ measures height of recyclerview when placed inside scrollview
         mAlertDialog.show();
 
     }
-
+    /**
+     * For Fetching Retrofit Error Message
+     *
+     * @param error The retrofit error reference
+     *
+     */
     public static String getErrorMsg(RetrofitError error) {
         String errorMessage = "";
         String str = new String(((TypedByteArray) error.getResponse().getBody()).getBytes());
-        JSONObject json = null;
+        JSONObject json;
         try {
             json = new JSONObject(str);
             errorMessage = json.getString("message");
@@ -234,7 +237,7 @@ measures height of recyclerview when placed inside scrollview
     /**
      * hiding keyboard
      *
-     * @param activity
+     * @param activity The activity reference
      */
 
     public static void hideSoftKeyboard(Activity activity) {

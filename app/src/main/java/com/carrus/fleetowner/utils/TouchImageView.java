@@ -1,7 +1,7 @@
 package com.carrus.fleetowner.utils;
 
 /**
- * Created by Saurbhv on 10/13/15 for Fleet Owner.
+ * Created by Saurbhv on 10/13/15 for Fleet Owner for Fleet Owner.
  */
 import android.content.Context;
 import android.graphics.Matrix;
@@ -159,7 +159,6 @@ public class TouchImageView extends ImageView {
                 || viewWidth == 0 || viewHeight == 0)
             return;
         oldMeasuredHeight = viewHeight;
-        int oldMeasuredWidth = viewWidth;
 
         if (saveScale == 1) {
             // Fit to screen.

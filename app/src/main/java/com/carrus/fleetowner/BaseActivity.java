@@ -14,7 +14,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 /**
- * Created by Muddassir on 6/10/15 for Fleet Owner.
+ * Created by Muddassir on 6/10/15 for Fleet Owner for Fleet Owner.
  */
 @SuppressLint("Registered")
 public class BaseActivity extends FragmentActivity {

@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.carrus.fleetowner.R;
 
 /**
- * Created by Sunny on 10/30/15 for Fleet Owner.
+ * Created by Sunny on 10/30/15 for Fleet Owner for Fleet Owner.
  */
 public class MyBookingFragment extends Fragment {
 

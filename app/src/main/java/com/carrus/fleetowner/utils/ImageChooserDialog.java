@@ -18,22 +18,23 @@ public class ImageChooserDialog {
     private OnButtonClicked onButtonClicked;
 
     /**
-     * @param act
+     * @param act The activity reference
      */
     private ImageChooserDialog(Activity act) {
         activity = act;
     }
 
     /**
-     * @param activity
-     * @return
+     * @param activity The Activity reference
+     * @return The value to be return
      */
     public static ImageChooserDialog With(Activity activity) {
         return new ImageChooserDialog(activity);
     }
 
     /**
-     * @param message
+     * @param message The message to be shown
+     * @param onOkButtonClicked1 The button click reference
      */
     public void Show(String message, OnButtonClicked onOkButtonClicked1) {
         try {

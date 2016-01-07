@@ -45,7 +45,7 @@ import static com.carrus.fleetowner.utils.Constants.LIMIT;
 import static com.carrus.fleetowner.utils.Constants.SORT;
 
 /**
- * Created by Sunny on 12/15/15 for Fleet Owner.
+ * Created by Sunny on 12/15/15 for Fleet Owner for Fleet Owner.
  */
 public class DriverActivity extends BaseActivity {
 

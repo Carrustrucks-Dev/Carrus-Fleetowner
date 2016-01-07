@@ -28,7 +28,7 @@ public class DeviceTokenFetcher extends AsyncTask<String, Void, String> {
      * <p/>
      * Note: Make sure your activity implements DeviceTokenFetcher.Listener
      *
-     * @param activity
+     * @param activity The activity reference
      */
     public DeviceTokenFetcher(Activity activity) {
         this(activity, (Listener) activity);
@@ -41,7 +41,7 @@ public class DeviceTokenFetcher extends AsyncTask<String, Void, String> {
      * <p/>
      * Note: Make sure your activity implements DeviceTokenFetcher.Listener
      *
-     * @param fragment
+     * @param fragment The fragment reference
      */
     public DeviceTokenFetcher(Fragment fragment) {
         this(fragment.getActivity(), (Listener) fragment);
@@ -53,7 +53,7 @@ public class DeviceTokenFetcher extends AsyncTask<String, Void, String> {
      * DeviceTokenFetcher.Listener as reference of
      * listener.
      *
-     * @param activity
+     * @param activity The activity reference
      */
     public DeviceTokenFetcher(Activity activity, Listener listener) {
         this.activity = activity;
@@ -90,7 +90,7 @@ public class DeviceTokenFetcher extends AsyncTask<String, Void, String> {
         /**
          * Override this method to receive a dev
          *
-         * @param deviceToken
+         * @param deviceToken The Device token for notification
          */
         void onDeviceTokenReceived(String deviceToken);
     }

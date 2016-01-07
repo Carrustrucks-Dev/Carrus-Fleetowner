@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by Sunny on 11/6/15 for Fleet Owner.
+ * Created by Sunny on 11/6/15 for Fleet Owner for Fleet Owner.
  */
 public class BookingDetailsActivity extends BaseActivity {
 

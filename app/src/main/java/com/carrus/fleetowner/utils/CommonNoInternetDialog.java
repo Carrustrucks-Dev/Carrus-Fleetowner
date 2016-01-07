@@ -14,8 +14,8 @@ public class CommonNoInternetDialog {
     private static AlertDialog mAlertDialog = null;
 
     /**
-     * @param act
-     * @return
+     * @param act The Activity reference
+     * @return The value to be return
      */
     public static ConDialogActivity WithActivity(Activity act) {
         return new ConDialogActivity(act);
@@ -23,7 +23,6 @@ public class CommonNoInternetDialog {
 
 
     public interface ConfirmationDialogEventsListener {
-
 
         void OnOkButtonPressed();
 
@@ -40,7 +39,7 @@ public class CommonNoInternetDialog {
 
 
         /**
-         * @param activity
+         * @param activity The activity reference
          */
         public ConDialogActivity(Activity activity) {
             this.activity = activity;
@@ -49,10 +48,10 @@ public class CommonNoInternetDialog {
 
 
         /**
-         * @param message
-         * @param okButtonText
-         * @param cancelButtonText
-         * @param confirmationDialogEvents1
+         * @param message The message
+         * @param okButtonText The text of the Ok button
+         * @param cancelButtonText The text of the cancel Button
+         * @param confirmationDialogEvents1 The object of dialog listener
          */
         public void Show(String message, String okButtonText, String cancelButtonText, ConfirmationDialogEventsListener confirmationDialogEvents1) {
             try {

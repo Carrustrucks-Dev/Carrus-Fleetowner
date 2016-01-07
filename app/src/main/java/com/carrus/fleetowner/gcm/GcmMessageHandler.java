@@ -15,7 +15,6 @@ import android.util.Log;
 
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.SplashActivity;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.json.JSONObject;
 
@@ -41,17 +40,17 @@ public class GcmMessageHandler extends IntentService {
     protected void onHandleIntent(Intent intent) {
         // Retrieve data extras from push notification
         Bundle extras = intent.getExtras();
-        GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
+//        GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
         // Keys in the data are shown as extras
         Log.i("Complete payload", intent.getExtras().toString());
         try {
-            String msg = extras.getString("message");
+//            String msg = extras.getString("message");
 //            sendNotification(extras.getString("message").toString(), extras.getString("gcm.notification.title").toString());
             JSONObject myObject = new JSONObject(extras.getString("flag"));
-            if (myObject.has("bookingStatus")) {
-
-            } else
-                sendNotification(extras.getString("message").replaceAll("_", " "), extras.getString("brand_name"), myObject.getString("bookingId"));
+//            if (myObject.has("bookingStatus")) {
+//
+//            } else
+            sendNotification(extras.getString("message").replaceAll("_", " "), extras.getString("brand_name"), myObject.getString("bookingId"));
 
         } catch (Exception e) {
             sendNotification("", "Carrus Shipper", "");

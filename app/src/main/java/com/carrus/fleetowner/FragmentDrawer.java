@@ -1,7 +1,7 @@
 package com.carrus.fleetowner;
 
 /**
- * Created by Ravi on 29/07/15 for Fleet Owner.
+ * Created by Ravi on 29/07/15 for Fleet Owner for Fleet Owner.
  */
 
 import android.content.Context;
@@ -146,7 +146,7 @@ public class FragmentDrawer extends Fragment {
 
                 @Override
                 public void onLongPress(MotionEvent e) {
-                    View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
+//                    View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
                 }
             });
         }

@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
-import com.carrus.fleetowner.utils.ConnectionDetector;
 import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
@@ -32,14 +31,13 @@ import static com.carrus.fleetowner.utils.Constants.QUOTEID;
 import static com.carrus.fleetowner.utils.Constants.TYPE;
 
 /**
- * Created by Sunny on 11/19/15 for Fleet Owner.
+ * Created by Sunny on 11/19/15 for Fleet Owner for Fleet Owner.
  */
 public class QuoteDialogActivity extends BaseActivity {
 
     private EditText offrbidEdtxt, notesEdtxt;
     private SessionManager sessionManager;
     private Button mSubmitBtn;
-    private float userRating = 0;
     private RadioGroup radioTrackGroup;
     private RadioButton radioButton;
     private String id, quoteId;
@@ -49,7 +47,6 @@ public class QuoteDialogActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_quote);
         sessionManager = new SessionManager(this);
-        ConnectionDetector mConnectionDetector = new ConnectionDetector(this);
         init();
         initializeClickListners();
     }

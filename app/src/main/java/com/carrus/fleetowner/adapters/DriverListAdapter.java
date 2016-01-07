@@ -25,7 +25,7 @@ import java.text.ParseException;
 import java.util.List;
 
 /**
- * Created by Sunny on 12/9/15 for Fleet Owner.
+ * Created by Sunny on 12/9/15 for Fleet Owner for Fleet Owner.
  */
 public class DriverListAdapter extends RecyclerView.Adapter {
     //    private String[] mDataset;
