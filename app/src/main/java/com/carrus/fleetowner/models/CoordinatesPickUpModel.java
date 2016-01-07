@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Created by Sunny on 11/17/15 for Fleet Owner for Fleet Owner.
+ * Created by Sunny on 11/17/15 for Fleet Owner for Fleet Owner for Fleet Owner.
  */
 public class CoordinatesPickUpModel implements Serializable{
 

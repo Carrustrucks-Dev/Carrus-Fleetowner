@@ -1,7 +1,7 @@
 package com.carrus.fleetowner.adapters;
 
 /**
- * Created by Ravi on 29/07/15 for Fleet Owner for Fleet Owner.
+ * Created by Ravi on 29/07/15 for Fleet Owner for Fleet Owner for Fleet Owner.
  */
 
 import android.content.Context;

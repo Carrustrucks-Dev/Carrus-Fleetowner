@@ -21,7 +21,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /**
- * Created by Sunny on 11/5/15 for Fleet Owner for Fleet Owner.
+ * Created by Sunny on 11/5/15 for Fleet Owner for Fleet Owner for Fleet Owner.
  */
 public class ForgotPasswordActivity extends BaseActivity{
 

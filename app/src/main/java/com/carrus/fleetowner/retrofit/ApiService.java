@@ -14,7 +14,7 @@ import retrofit.http.Query;
 import retrofit.mime.TypedFile;
 
 /**
- * Created by Sunny on 11/3/15 for Fleet Owner for Fleet Owner.
+ * Created by Sunny on 11/3/15 for Fleet Owner for Fleet Owner for Fleet Owner.
  */
 public interface ApiService {
     String LOGOUT_URL = "/api/v1/fleetOwner/logout";
@@ -39,6 +39,8 @@ public interface ApiService {
     void getDriections(@Query("origin") String origin, @Query("destination") String destination, @Query("sensor") String sensor, @Query("units") String units, @Query("mode") String mode, Callback<String> callback);
 
     /**
+     * Login Api
+     *
      * @param email The user email
      * @param password The password
      * @param deviceType Type of the device
@@ -160,7 +162,6 @@ public interface ApiService {
 
     /**
      * @param authorization The access token for authorization
-     * @param limit The limit of the data
      * @param limit The limit of the data
      * @param skip The limit to skip the old data
      * @param truckStatus The status of the truck

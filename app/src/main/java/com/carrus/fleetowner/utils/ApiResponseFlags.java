@@ -1,7 +1,7 @@
 package com.carrus.fleetowner.utils;
 
 /**
- * Created by Sunny on 11/6/15 for Fleet Owner for Fleet Owner for Fleet Owner.
+ * Created by Sunny on 11/6/15 for Fleet Owner for Fleet Owner for Fleet Owner for Fleet Owner.
  */
 public enum ApiResponseFlags {
 

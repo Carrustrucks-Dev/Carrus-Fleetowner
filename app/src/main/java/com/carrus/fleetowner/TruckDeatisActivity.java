@@ -49,7 +49,7 @@ import static com.carrus.fleetowner.utils.Constants.VALUE;
 
 
 /**
- * Created by Sunny on 12/10/15 for Fleet Owner for Fleet Owner.
+ * Created by Sunny on 12/10/15 for Fleet Owner for Fleet Owner for Fleet Owner.
  */
 public class TruckDeatisActivity extends BaseActivity {
 

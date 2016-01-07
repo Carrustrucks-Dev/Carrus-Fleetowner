@@ -53,7 +53,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /**
- * Created by Sunny on 10/29/15 for Fleet Owner for Fleet Owner.
+ * Created by Sunny on 10/29/15 for Fleet Owner for Fleet Owner for Fleet Owner.
  */
 public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickListener {
 

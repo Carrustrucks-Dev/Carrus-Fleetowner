@@ -1,7 +1,7 @@
 package com.carrus.fleetowner.models;
 
 /**
- * Created by Saurbhv on 10/31/15 for Fleet Owner for Fleet Owner.
+ * Created by Saurbhv on 10/31/15 for Fleet Owner for Fleet Owner for Fleet Owner.
  */
 public class ExpandableChildItem {
     private String name;

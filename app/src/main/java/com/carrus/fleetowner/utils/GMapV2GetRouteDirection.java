@@ -10,7 +10,7 @@ import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 
-public class GMapV2GetRouteDirection {
+class GMapV2GetRouteDirection {
     public final static String MODE_DRIVING = "driving";
     public final static String MODE_WALKING = "walking";
 

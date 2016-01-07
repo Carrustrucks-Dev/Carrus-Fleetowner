@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by Sunny on 11/17/15 for Fleet Owner for Fleet Owner.
+ * Created by Sunny on 11/17/15 for Fleet Owner for Fleet Owner for Fleet Owner.
  */
 public class ShowPODActivity extends BaseActivity {
 

@@ -25,7 +25,7 @@ import static com.carrus.fleetowner.utils.Constants.TYPE;
 import static com.carrus.fleetowner.utils.Constants.VALUE;
 
 /**
- * Created by Sunny on 12/9/15 for Fleet Owner for Fleet Owner.
+ * Created by Sunny on 12/9/15 for Fleet Owner for Fleet Owner for Fleet Owner.
  */
 public class TruckQuotesListAdapter extends RecyclerView.Adapter {
     //    private String[] mDataset;

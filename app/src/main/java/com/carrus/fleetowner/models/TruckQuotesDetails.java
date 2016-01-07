@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Sunny on 12/10/15 for Fleet Owner for Fleet Owner.
+ * Created by Sunny on 12/10/15 for Fleet Owner for Fleet Owner for Fleet Owner.
  */
 public class TruckQuotesDetails implements Serializable{
     @SerializedName("_id")

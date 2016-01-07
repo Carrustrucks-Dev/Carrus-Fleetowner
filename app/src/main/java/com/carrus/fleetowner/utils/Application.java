@@ -9,7 +9,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
 /**
- * Created by Muddassir on 6/10/15 for Fleet Owner for Fleet Owner.
+ * Created by Muddassir on 6/10/15 for Fleet Owner for Fleet Owner for Fleet Owner.
  */
 public class Application extends android.app.Application {
     @Override

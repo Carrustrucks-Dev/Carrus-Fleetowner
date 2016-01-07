@@ -7,7 +7,7 @@ import android.os.Handler;
 import com.carrus.fleetowner.utils.SessionManager;
 
 /**
- * Created by Sunny on 12/3/15 for Fleet Owner for Fleet Owner.
+ * Created by Sunny on 12/3/15 for Fleet Owner for Fleet Owner for Fleet Owner.
  */
 public class SplashActivity extends BaseActivity {
 
