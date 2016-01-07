@@ -95,7 +95,7 @@ public class DriverFragment extends Fragment {
 
                 // TODO Auto-generated method stub
 
-                if (count == 0) {
+                if (s.length() == 0) {
                     performSearch();
                 }
             }

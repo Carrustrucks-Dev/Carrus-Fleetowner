@@ -64,10 +64,8 @@
 
         <TextView
             android:id="@+id/addressTxtView"
-            android:capitalize="characters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
             android:text=""
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/low_font"
@@ -77,8 +75,6 @@
         <TextView
             android:id="@+id/nameTxtView"
             android:layout_width="wrap_content"
-            android:capitalize="characters"
-            android:ellipsize="end"
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/tabcolor_dark"

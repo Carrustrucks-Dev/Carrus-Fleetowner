@@ -69,7 +69,6 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/colorPrimary"
-            android:capitalize="characters"
             android:textSize="@dimen/low_font"
             />
 
@@ -82,7 +81,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:capitalize="characters"
                 android:text="@string/typecargo"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="@dimen/low_font" />
@@ -117,7 +115,6 @@
 
             <TextView
                 android:id="@+id/weightTxtView"
-                android:capitalize="characters"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -164,7 +161,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-
                 android:text="@string/offrdbid"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="@dimen/low_font"

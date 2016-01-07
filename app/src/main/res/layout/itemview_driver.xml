@@ -36,7 +36,6 @@
 
         <com.carrus.fleetowner.utils.CapitalizedTextView
             android:id="@+id/nameTxtView"
-            android:capitalize="characters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
@@ -68,7 +67,6 @@
 
         <TextView
             android:id="@+id/vehiclenoTxtView"
-            android:capitalize="characters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
