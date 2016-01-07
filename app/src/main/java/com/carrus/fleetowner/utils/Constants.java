@@ -14,7 +14,8 @@ public class Constants {
     public static final String selectedId="selectedTrackingId";
     public static final int LIMIT=10;
     public static final int CHILDACTIVITY=700;
-    public static final String SORT="ASC";
+//    public static final String SORT="ASC";
+    public static final String SORT="DESC";
     public static final String DRIVERWHITE="WHITE";
     public static final String DRIVERBLACK="BLACK";
     public static final String TYPE="type";
