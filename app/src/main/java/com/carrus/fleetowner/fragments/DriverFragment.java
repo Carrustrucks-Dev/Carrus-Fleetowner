@@ -21,9 +21,6 @@ import android.widget.TextView;
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.utils.Utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Sunny on 12/9/15 for Fleet Owner.
  */
@@ -31,7 +28,6 @@ public class DriverFragment extends Fragment {
 
     private TextView mWhiteTextView, mBlackTextView;
     private int selectedFlag = 0;
-    private List<Fragment> myFragmentList = new ArrayList<>();
     private ViewPager vpPager;
     private MyPagerAdapter adapterViewPager;
     public EditText mSearchEdtTxt;
