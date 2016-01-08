@@ -75,6 +75,7 @@ public class FragmentDrawer extends Fragment {
         // drawer icons
         Resources res = getResources();
         icons = res.obtainTypedArray(R.array.nav_drawer_icons);
+
     }
 
     @Override
