@@ -54,7 +54,6 @@ public class FragmentDrawer extends Fragment {
     private List<NavDrawerItem> getData() {
         List<NavDrawerItem> data = new ArrayList<>();
 
-
         // preparing navigation drawer items
         for (int i = 0; i < titles.length; i++) {
             NavDrawerItem navItem = new NavDrawerItem();
@@ -62,6 +61,7 @@ public class FragmentDrawer extends Fragment {
             navItem.setIcon(icons.getResourceId(i, 0));
             data.add(navItem);
         }
+
         return data;
     }
 
@@ -112,7 +112,6 @@ public class FragmentDrawer extends Fragment {
             }
         });
 
-
         return layout;
     }
 
@@ -120,6 +119,7 @@ public class FragmentDrawer extends Fragment {
         if (mSessionManager.getProfilePic() != null)
             Picasso.with(getActivity()).load(mSessionManager.getProfilePic()).placeholder(R.mipmap.icon_placeholder).resize(300, 300).transform(new CircleTransform()).into(mProfileIV);
     }
+
     public void setUp(DrawerLayout drawerLayout) {
         containerView = getActivity().findViewById(R.id.fragment_navigation_drawer);
         mDrawerLayout = drawerLayout;
@@ -148,7 +148,12 @@ public class FragmentDrawer extends Fragment {
                 public void onLongPress(MotionEvent e) {
 //                    View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
                 }
+
             });
+        }
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept){
         }
 
         @Override
