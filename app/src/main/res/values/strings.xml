@@ -103,7 +103,7 @@
     <string name="forgotpasswd">FORGOT PASSWORD ?</string>
     <string name="send">SEND</string>
     <string name="forgotpasswdlable">Forgot Password</string>
-    <string name="rememberme">Remember me</string>
+    <string name="rememberme">&#160;&#160;Remember me</string>
 
     <!-- My booking screen text-->
     <string name="upcming">Upcoming</string>
