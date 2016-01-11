@@ -43,6 +43,7 @@ public class ImageChooserDialog {
             final Dialog dialog = new Dialog(activity,
                     R.style.Theme_AppCompat_Translucent);
             dialog.setContentView(R.layout.dialog_image_chooser);
+            dialog.setCancelable(true);
             WindowManager.LayoutParams layoutParams = dialog.getWindow()
                     .getAttributes();
             layoutParams.dimAmount = 0.6f;
