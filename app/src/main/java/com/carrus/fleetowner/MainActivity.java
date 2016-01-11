@@ -162,9 +162,13 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
             case 5:
                 if (selectedPos != 5) {
 //                    selectedPos = 2;
-                    Intent callIntent = new Intent(Intent.ACTION_CALL);
-                    callIntent.setData(Uri.parse("tel:" + Constants.CONTACT_CARRUS));
-                    startActivity(callIntent);
+                    try {
+                        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                        callIntent.setData(Uri.parse("tel:" + Constants.CONTACT_CARRUS));
+                        startActivity(callIntent);
+                    }catch (Exception ex){
+                        ex.printStackTrace();
+                    }
                 }
                 break;
 

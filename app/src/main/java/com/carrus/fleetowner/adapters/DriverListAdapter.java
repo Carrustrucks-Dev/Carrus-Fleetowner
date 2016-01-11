@@ -163,7 +163,7 @@ public class DriverListAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     try {
-                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        Intent callIntent = new Intent(Intent.ACTION_DIAL);
                         callIntent.setData(Uri.parse("tel:" + myList.get(position).getPhoneNumber()));
                         mActivity.startActivity(callIntent);
                     } catch (Exception e) {

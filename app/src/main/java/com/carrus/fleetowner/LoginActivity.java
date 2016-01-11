@@ -47,7 +47,7 @@ public class LoginActivity extends BaseActivity {
         mSessionManager = new SessionManager(this);
         mConnectionDetector = new ConnectionDetector(this);
         init();
-        initializeClickListners();
+        initializeClickListeners();
     }
 
     private void init() {
@@ -61,7 +61,7 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    private void initializeClickListners() {
+    private void initializeClickListeners() {
         findViewById(R.id.submitBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
