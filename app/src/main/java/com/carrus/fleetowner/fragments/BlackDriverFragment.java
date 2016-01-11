@@ -128,7 +128,8 @@ public class BlackDriverFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(
                 new DividerItemDecoration(getActivity()));
-
+        mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
+        mRecyclerView.setAdapter(mAdapter);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

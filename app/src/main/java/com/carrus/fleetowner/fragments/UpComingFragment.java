@@ -130,6 +130,9 @@ public class UpComingFragment extends Fragment {
         mRecyclerView.addItemDecoration(
                 new DividerItemDecoration(getActivity()));
 
+        mAdapter = new UpComingBookingAdapter(getActivity(), bookingList, mRecyclerView);
+        mRecyclerView.setAdapter(mAdapter);
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

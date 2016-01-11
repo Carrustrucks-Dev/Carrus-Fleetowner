@@ -128,7 +128,8 @@ public class TruckQuotesFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(
                 new DividerItemDecoration(getActivity()));
-
+        mAdapter = new TruckQuotesListAdapter(getActivity(), bookingList, mRecyclerView);
+        mRecyclerView.setAdapter(mAdapter);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.adapters.DividerItemDecoration;
+import com.carrus.fleetowner.adapters.TruckAssignListAdapter;
 import com.carrus.fleetowner.adapters.TruckListAdapter;
 import com.carrus.fleetowner.interfaces.OnLoadMoreListener;
 import com.carrus.fleetowner.models.TruckModel;
@@ -131,7 +132,8 @@ public class TruckPendingReqFragment extends Fragment{
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(
                 new DividerItemDecoration(getActivity()));
-
+        mAdapter = new TruckListAdapter(getActivity(), bookingList, mRecyclerView);
+        mRecyclerView.setAdapter(mAdapter);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

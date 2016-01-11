@@ -129,7 +129,8 @@ public class TruckAssignFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(
                 new DividerItemDecoration(getActivity()));
-
+        mAdapter = new TruckAssignListAdapter(getActivity(), bookingList, mRecyclerView);
+        mRecyclerView.setAdapter(mAdapter);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

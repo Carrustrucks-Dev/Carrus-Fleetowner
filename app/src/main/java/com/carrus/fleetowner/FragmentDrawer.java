@@ -122,6 +122,7 @@ public class FragmentDrawer extends Fragment {
     }
 
     public void setUp(DrawerLayout drawerLayout) {
+
         containerView = getActivity().findViewById(R.id.fragment_navigation_drawer);
         mDrawerLayout = drawerLayout;
 

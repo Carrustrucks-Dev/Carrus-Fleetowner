@@ -97,7 +97,8 @@ public class DriverActivity extends BaseActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(
                 new DividerItemDecoration(mContext));
-
+        mAdapter = new DriverListAdapter((Activity) mContext, bookingList, mRecyclerView, true);
+        mRecyclerView.setAdapter(mAdapter);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

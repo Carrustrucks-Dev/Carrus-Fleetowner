@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.adapters.DividerItemDecoration;
 import com.carrus.fleetowner.adapters.PastBookingAdapter;
+import com.carrus.fleetowner.adapters.UpComingBookingAdapter;
 import com.carrus.fleetowner.interfaces.OnLoadMoreListener;
 import com.carrus.fleetowner.models.MyBookingDataModel;
 import com.carrus.fleetowner.models.MyBookingModel;
@@ -129,6 +130,9 @@ public class PastFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(
                 new DividerItemDecoration(getActivity()));
+
+        mAdapter = new PastBookingAdapter(getActivity(), bookingList, mRecyclerView);
+        mRecyclerView.setAdapter(mAdapter);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
