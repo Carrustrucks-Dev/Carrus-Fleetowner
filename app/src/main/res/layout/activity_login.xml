@@ -66,7 +66,21 @@
             android:textColor="@color/windowBackground"
             android:background="@color/colorPrimary"
             />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
 
+            <CheckBox
+                android:id="@+id/remembermeChkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rememberme"
+                android:textSize="@dimen/mid_fond"
+                android:textColor="@color/windowBackground"
+                />
+        </LinearLayout>
         <TextView
             android:id="@+id/forgotPasswdTxtView"
             android:layout_width="wrap_content"

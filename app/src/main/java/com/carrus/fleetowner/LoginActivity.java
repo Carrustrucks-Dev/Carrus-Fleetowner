@@ -1,9 +1,12 @@
 package com.carrus.fleetowner;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,15 +26,19 @@ import retrofit.client.Response;
 
 import static com.carrus.fleetowner.utils.Constants.DEVICE_TYPE;
 import static com.carrus.fleetowner.utils.Constants.SENDER_ID;
+import static com.carrus.fleetowner.utils.Constants.ISREMEMBER;
+import static com.carrus.fleetowner.utils.Constants.USERNAME;
+import static com.carrus.fleetowner.utils.Constants.PASSWORD;
 
 /**
  * Created by Sunny on 11/5/15 for Fleet Owner for Fleet Owner for Fleet Owner.
  */
 public class LoginActivity extends BaseActivity {
 
-    private EditText mEmailidEdtTxt, mPasswordEdtTxt;
+    private EditText mEmailEdtTxt, mPasswordEdtTxt;
     private SessionManager mSessionManager;
     private ConnectionDetector mConnectionDetector;
+    private CheckBox mRememberCheckbox;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,10 +52,12 @@ public class LoginActivity extends BaseActivity {
 
     private void init() {
 
-        mEmailidEdtTxt = (EditText) findViewById(R.id.emailLoginET);
+        mEmailEdtTxt = (EditText) findViewById(R.id.emailLoginET);
         mPasswordEdtTxt = (EditText) findViewById(R.id.passwdLoginET);
+        mRememberCheckbox = (CheckBox) findViewById(R.id.remembermeChkBox);
         mSessionManager = new SessionManager(this);
         getDeviceToken();
+        getRememberMe();
 
     }
 
@@ -59,15 +68,15 @@ public class LoginActivity extends BaseActivity {
                 if (mSessionManager.getDeviceToken().isEmpty()) {
                     getDeviceToken();
                 }
-                if (mEmailidEdtTxt.getText().toString().trim().isEmpty()) {
-                    mEmailidEdtTxt.setError(getResources().getString(R.string.email_required));
-                    mEmailidEdtTxt.requestFocus();
+                if (mEmailEdtTxt.getText().toString().trim().isEmpty()) {
+                    mEmailEdtTxt.setError(getResources().getString(R.string.email_required));
+                    mEmailEdtTxt.requestFocus();
                 } else if (mPasswordEdtTxt.getText().toString().trim().isEmpty()) {
                     mPasswordEdtTxt.setError(getResources().getString(R.string.passwd_required));
                     mPasswordEdtTxt.requestFocus();
-                } else if (Utils.isValidEmail(mEmailidEdtTxt.getText().toString().trim())) {
-                    mEmailidEdtTxt.setError(getResources().getString(R.string.validemail_required));
-                    mEmailidEdtTxt.requestFocus();
+                } else if (Utils.isValidEmail(mEmailEdtTxt.getText().toString().trim())) {
+                    mEmailEdtTxt.setError(getResources().getString(R.string.validemail_required));
+                    mEmailEdtTxt.requestFocus();
                 } else {
                     if (mConnectionDetector.isConnectingToInternet())
                         verifyLoggedIn();
@@ -97,7 +106,7 @@ public class LoginActivity extends BaseActivity {
 
     private void verifyLoggedIn() {
         Utils.loading_box(LoginActivity.this);
-        RestClient.getApiService().login(mEmailidEdtTxt.getText().toString().trim(), mPasswordEdtTxt.getText().toString().trim(), DEVICE_TYPE, Utils.getDeviceName(), mSessionManager.getDeviceToken(), new Callback<String>() {
+        RestClient.getApiService().login(mEmailEdtTxt.getText().toString().trim(), mPasswordEdtTxt.getText().toString().trim(), DEVICE_TYPE, Utils.getDeviceName(), mSessionManager.getDeviceToken(), new Callback<String>() {
             @Override
             public void success(String s, Response response) {
                 Log.v("" + getClass().getSimpleName(), "Response> " + s);
@@ -105,6 +114,11 @@ public class LoginActivity extends BaseActivity {
                     JSONObject mObject = new JSONObject(s);
                     int status = mObject.getInt("statusCode");
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
+
+                        if (mRememberCheckbox.isChecked())
+                            setRememberMe();
+                        else
+                            clearRememberMe();
 
                         JSONObject mDataobject = mObject.getJSONObject("data");
                         mSessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getString("userType"), mDataobject.getString("email"), mDataobject.getString("fullName"), mDataobject.getString("companyName"), mDataobject.getJSONObject("addressDetails").getString("address"), mDataobject.getString("phoneNumber"), mDataobject.getJSONObject("profilePicture").getString("original"));
@@ -144,5 +158,27 @@ public class LoginActivity extends BaseActivity {
             }
         });
     }
+    private void setRememberMe() {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor mEditor = prefs.edit();
+        mEditor.putBoolean(ISREMEMBER, true);
+        mEditor.putString(USERNAME, mEmailEdtTxt.getText().toString().trim());
+        mEditor.putString(PASSWORD, mPasswordEdtTxt.getText().toString().trim());
+        mEditor.commit();
 
+    }
+
+    private void getRememberMe() {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        if (prefs.getBoolean(ISREMEMBER, false)) {
+            mRememberCheckbox.setChecked(true);
+            mEmailEdtTxt.setText(prefs.getString(USERNAME, ""));
+            mPasswordEdtTxt.setText(prefs.getString(PASSWORD, ""));
+        }
+    }
+
+    private void clearRememberMe() {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        prefs.edit().clear().commit();
+    }
 }
