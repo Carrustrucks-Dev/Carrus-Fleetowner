@@ -106,7 +106,7 @@
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
 
-                <category android:name="com.carrus.carrusshipper" />
+                <category android:name="com.carrus.fleetowner" />
             </intent-filter>
         </receiver>
 
@@ -120,6 +120,10 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="9a344ba4644c7661f8ee12e1e5573f21396bbaf0" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>
