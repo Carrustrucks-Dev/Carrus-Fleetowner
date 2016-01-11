@@ -26,7 +26,7 @@ import retrofit.client.Response;
 
 import static com.carrus.fleetowner.utils.Constants.DEVICE_TYPE;
 import static com.carrus.fleetowner.utils.Constants.SENDER_ID;
-import static com.carrus.fleetowner.utils.Constants.ISREMEMBER;
+import static com.carrus.fleetowner.utils.Constants.REMEMBERME;
 import static com.carrus.fleetowner.utils.Constants.USERNAME;
 import static com.carrus.fleetowner.utils.Constants.PASSWORD;
 
@@ -161,7 +161,7 @@ public class LoginActivity extends BaseActivity {
     private void setRememberMe() {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor mEditor = prefs.edit();
-        mEditor.putBoolean(ISREMEMBER, true);
+        mEditor.putBoolean(REMEMBERME, true);
         mEditor.putString(USERNAME, mEmailEdtTxt.getText().toString().trim());
         mEditor.putString(PASSWORD, mPasswordEdtTxt.getText().toString().trim());
         mEditor.commit();
@@ -170,7 +170,7 @@ public class LoginActivity extends BaseActivity {
 
     private void getRememberMe() {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        if (prefs.getBoolean(ISREMEMBER, false)) {
+        if (prefs.getBoolean(REMEMBERME, false)) {
             mRememberCheckbox.setChecked(true);
             mEmailEdtTxt.setText(prefs.getString(USERNAME, ""));
             mPasswordEdtTxt.setText(prefs.getString(PASSWORD, ""));
