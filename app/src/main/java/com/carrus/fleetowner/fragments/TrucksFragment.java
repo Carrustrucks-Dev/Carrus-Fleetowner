@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.carrus.fleetowner.BuildConfig;
 import com.carrus.fleetowner.MainActivity;
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.models.MyBookingDataModel;
@@ -551,6 +552,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
         RestClient.getApiService().getallTruck(mSessionManager.getAccessToken(), "0", "0", Constants.SORT, "ALL", new Callback<String>() {
             @Override
             public void success(String s, Response response) {
+                if(BuildConfig.DEBUG)
                 Log.v("" + getClass().getSimpleName(), "Response> " + s);
                 try {
                     JSONObject mObject = new JSONObject(s);
@@ -574,6 +576,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
             public void failure(RetrofitError error) {
                 Utils.loading_box_stop();
                 try {
+                    if(BuildConfig.DEBUG)
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {

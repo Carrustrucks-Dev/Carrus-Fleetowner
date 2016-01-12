@@ -23,9 +23,8 @@
             android:scaleType="fitCenter"
              />
 
-        <TextView
+        <com.carrus.fleetowner.utils.CapitalizedTextView
             android:id="@+id/companyTxtView"
-            android:capitalize="characters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/windowBackground"
@@ -35,9 +34,8 @@
             android:textSize="@dimen/big_font_eighteen"
             android:text="@string/app_name"/>
 
-        <TextView
+        <com.carrus.fleetowner.utils.CapitalizedTextView
             android:id="@+id/usernameTxtView"
-            android:capitalize="characters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/windowBackground"
@@ -60,9 +58,8 @@
         tools:ignore="UnusedIds" />
 
 
-    <TextView
+    <com.carrus.fleetowner.utils.CapitalizedTextView
         android:id="@+id/termsTxtView"
-        android:capitalize="characters"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/gray_text"

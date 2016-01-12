@@ -80,15 +80,15 @@
                     android:textColor="@color/gray_text"
                     android:textSize="@dimen/big_font" />
 
-                <TextView
+                <com.carrus.fleetowner.utils.CapitalizedTextView
                     android:id="@+id/cmpanyNameTxtView"
-                    android:capitalize="characters"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/six"
                     android:textAppearance="@style/CustomTextAppearance"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/big_font" />
+                    android:textSize="@dimen/big_font"
+                    android:textIsSelectable="false" />
 
 
                 <View
@@ -113,7 +113,7 @@
                     android:textAppearance="@style/CustomTextAppearance"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/big_font"
-                    android:textIsSelectable="true" />
+                    android:textIsSelectable="false" />
 
                 <View
                     android:layout_width="match_parent"
@@ -137,7 +137,7 @@
                     android:textAppearance="@style/CustomTextAppearance"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/big_font"
-                    android:textIsSelectable="true" />
+                    android:textIsSelectable="false" />
 
                 <View
                     android:layout_width="match_parent"
@@ -161,7 +161,7 @@
                     android:textAppearance="@style/CustomTextAppearance"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/big_font"
-                    android:textIsSelectable="true" />
+                    android:textIsSelectable="false" />
 
                 <View
                     android:layout_width="match_parent"

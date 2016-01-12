@@ -431,6 +431,7 @@ public class TruckDeatisActivity extends BaseActivity {
         RestClient.getApiService().ignoreBid(mSessionManager.getAccessToken(), mTrucksDetailsModel.getId(), new Callback<String>() {
             @Override
             public void success(String s, Response response) {
+                if(BuildConfig.DEBUG)
                 Log.v("" + getClass().getSimpleName(), "Response> " + s);
                 try {
                     JSONObject mObject = new JSONObject(s);
@@ -458,6 +459,7 @@ public class TruckDeatisActivity extends BaseActivity {
                 Utils.loading_box_stop();
 
                 try {
+                    if(BuildConfig.DEBUG)
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
                         Utils.shopAlterDialog(TruckDeatisActivity.this, getResources().getString(R.string.nointernetconnection), false);

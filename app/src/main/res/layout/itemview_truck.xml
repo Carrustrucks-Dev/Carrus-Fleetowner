@@ -122,7 +122,8 @@
                 android:gravity="right"
                 android:textColor="@color/green"
                 android:textSize="@dimen/low_font"
-                tools:ignore="UnusedIds" />
+                tools:ignore="UnusedIds"
+                android:textIsSelectable="true" />
         </RelativeLayout>
 
         <RelativeLayout

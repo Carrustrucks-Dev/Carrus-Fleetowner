@@ -25,10 +25,10 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 import static com.carrus.fleetowner.utils.Constants.DEVICE_TYPE;
-import static com.carrus.fleetowner.utils.Constants.SENDER_ID;
-import static com.carrus.fleetowner.utils.Constants.REMEMBERME;
-import static com.carrus.fleetowner.utils.Constants.USERNAME;
 import static com.carrus.fleetowner.utils.Constants.PASSWORD;
+import static com.carrus.fleetowner.utils.Constants.REMEMBERME;
+import static com.carrus.fleetowner.utils.Constants.SENDER_ID;
+import static com.carrus.fleetowner.utils.Constants.USERNAME;
 
 /**
  * Created by Sunny on 11/5/15 for Fleet Owner for Fleet Owner for Fleet Owner.
@@ -66,6 +66,7 @@ public class LoginActivity extends BaseActivity {
         findViewById(R.id.submitBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (mSessionManager.getDeviceToken().isEmpty()) {
                     getDeviceToken();
                 }
@@ -84,6 +85,7 @@ public class LoginActivity extends BaseActivity {
                     else
                         Utils.shopAlterDialog(LoginActivity.this, getResources().getString(R.string.nointernetconnection), false);
                 }
+
             }
         });
 
@@ -113,6 +115,7 @@ public class LoginActivity extends BaseActivity {
         RestClient.getApiService().login(mEmailEdtTxt.getText().toString().trim(), mPasswordEdtTxt.getText().toString().trim(), DEVICE_TYPE, Utils.getDeviceName(), mSessionManager.getDeviceToken(), new Callback<String>() {
             @Override
             public void success(String s, Response response) {
+                if(BuildConfig.DEBUG)
                 Log.v("" + getClass().getSimpleName(), "Response> " + s);
                 try {
                     JSONObject mObject = new JSONObject(s);
@@ -146,6 +149,7 @@ public class LoginActivity extends BaseActivity {
             public void failure(RetrofitError error) {
                 Utils.loading_box_stop();
                 try {
+                    if(BuildConfig.DEBUG)
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getReason());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
@@ -168,7 +172,7 @@ public class LoginActivity extends BaseActivity {
         mEditor.putBoolean(REMEMBERME, true);
         mEditor.putString(USERNAME, mEmailEdtTxt.getText().toString().trim());
         mEditor.putString(PASSWORD, mPasswordEdtTxt.getText().toString().trim());
-        mEditor.commit();
+        mEditor.apply();
 
     }
 
@@ -183,6 +187,6 @@ public class LoginActivity extends BaseActivity {
 
     private void clearRememberMe() {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        prefs.edit().clear().commit();
+        prefs.edit().clear().apply();
     }
 }

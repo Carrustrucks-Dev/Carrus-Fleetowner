@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.carrus.fleetowner.BuildConfig;
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.adapters.DividerItemDecoration;
 import com.carrus.fleetowner.adapters.DriverListAdapter;
@@ -223,6 +224,7 @@ public class BlackDriverFragment extends Fragment {
                 swipeRefreshLayout.setRefreshing(false);
                 Utils.loading_box_stop();
                 try {
+                    if(BuildConfig.DEBUG)
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {

@@ -18,6 +18,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.carrus.fleetowner.BuildConfig;
 import com.carrus.fleetowner.MainActivity;
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.retrofit.RestClient;
@@ -193,6 +194,7 @@ public class ProfileFragment extends Fragment implements
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(BuildConfig.DEBUG)
         Log.d("On Activity Result", requestCode + "");
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
@@ -247,6 +249,7 @@ public class ProfileFragment extends Fragment implements
         RestClient.getApiService().uploadProfilePic(mSessionManager.getAccessToken(), new TypedFile("image/*", new File(path)), new Callback<String>() {
             @Override
             public void success(String s, Response response) {
+                if(BuildConfig.DEBUG)
                 Log.v("" + getClass().getSimpleName(), "Response> " + s);
 
                 try {
@@ -264,11 +267,13 @@ public class ProfileFragment extends Fragment implements
                             Picasso.with(getActivity()).load(mSessionManager.getProfilePic()).placeholder(R.mipmap.icon_placeholder).resize(300, 300).transform(new CircleTransform()).into(driverImage, new com.squareup.picasso.Callback() {
                                 @Override
                                 public void onSuccess() {
+                                    if(BuildConfig.DEBUG)
                                     Log.i("TAG", "Picasso Success Loading Thumbnail - " + path);
                                 }
 
                                 @Override
                                 public void onError() {
+                                    if(BuildConfig.DEBUG)
                                     Log.i("TAG", "Picasso Error Loading Thumbnail Small - " + path);
                                 }
                             });
@@ -287,6 +292,7 @@ public class ProfileFragment extends Fragment implements
             public void failure(RetrofitError error) {
                 Utils.loading_box_stop();
                 try {
+                    if(BuildConfig.DEBUG)
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {

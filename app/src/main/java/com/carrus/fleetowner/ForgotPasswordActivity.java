@@ -82,6 +82,7 @@ public class ForgotPasswordActivity extends BaseActivity{
         RestClient.getApiService().forgotPassword(mEmailEdtTxt.getText().toString().trim(), new Callback<String>() {
             @Override
             public void success(String s, Response response) {
+                if(BuildConfig.DEBUG)
                 Log.v("" + getClass().getSimpleName(), "Response> " + s);
                 try {
                     JSONObject mObject = new JSONObject(s);
@@ -107,6 +108,7 @@ public class ForgotPasswordActivity extends BaseActivity{
             public void failure(RetrofitError error) {
                 Utils.loading_box_stop();
                 try {
+                    if(BuildConfig.DEBUG)
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {

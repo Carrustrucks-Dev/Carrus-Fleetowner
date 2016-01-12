@@ -245,6 +245,7 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
         RestClient.getApiService().logout(mSessionManager.getAccessToken(), new Callback<String>() {
             @Override
             public void success(String s, Response response) {
+                if(BuildConfig.DEBUG)
                 Log.v("" + getClass().getSimpleName(), "Response> " + s);
 
                 try {

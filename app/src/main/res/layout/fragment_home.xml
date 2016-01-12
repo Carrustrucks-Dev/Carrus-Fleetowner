@@ -88,9 +88,8 @@
                 android:padding="@dimen/five"
                 tools:ignore="UnusedIds">
 
-                <TextView
+                <com.carrus.fleetowner.utils.CapitalizedTextView
                     android:id="@+id/nameTxtView"
-                    android:capitalize="characters"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
@@ -98,9 +97,8 @@
                     android:textSize="@dimen/big_font" />
 
 
-                <TextView
+                <com.carrus.fleetowner.utils.CapitalizedTextView
                     android:id="@+id/typeTxtView"
-                    android:capitalize="characters"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
@@ -108,9 +106,8 @@
                     android:textSize="@dimen/mid_fond" />
 
 
-                <TextView
+                <com.carrus.fleetowner.utils.CapitalizedTextView
                     android:id="@+id/crntopTxtView"
-                    android:capitalize="characters"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
@@ -136,9 +133,8 @@
                     android:padding="@dimen/fifteen"
                     android:src="@drawable/call_btn_selector" />
 
-                <TextView
+                <com.carrus.fleetowner.utils.CapitalizedTextView
                     android:id="@+id/statusTxtView"
-                    android:capitalize="characters"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""

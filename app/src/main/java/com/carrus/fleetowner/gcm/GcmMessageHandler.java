@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.carrus.fleetowner.BuildConfig;
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.SplashActivity;
 
@@ -42,6 +43,7 @@ public class GcmMessageHandler extends IntentService {
         Bundle extras = intent.getExtras();
 //        GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
         // Keys in the data are shown as extras
+        if(BuildConfig.DEBUG)
         Log.i("Complete payload", intent.getExtras().toString());
         try {
 //            String msg = extras.getString("message");

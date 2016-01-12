@@ -29,14 +29,13 @@ android {
     buildTypes {
 
         release {
+            buildConfigField "Boolean", "DEBUG_MODE", "false"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-
-//        buildConfigField "Boolean", "DEBUG_MODE", "false"
-//        debug {
-//            buildConfigField "Boolean", "DEBUG_MODE", "true"
-//        }
+        debug {
+            buildConfigField "Boolean", "DEBUG_MODE", "true"
+        }
     }
 }
 

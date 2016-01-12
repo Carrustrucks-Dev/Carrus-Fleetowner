@@ -121,6 +121,7 @@ public class QuoteDialogActivity extends BaseActivity {
         RestClient.getApiService().addQuotes(sessionManager.getAccessToken(), mBidArray.toString(), radioButton.getText().toString().toUpperCase(), offrbidEdtxt.getText().toString().trim(), notesEdtxt.getText().toString().trim(), new Callback<String>() {
             @Override
             public void success(String s, Response response) {
+                if(BuildConfig.DEBUG)
                 Log.v("" + getClass().getSimpleName(), "Response> " + s);
 
                 try {
@@ -149,6 +150,7 @@ public class QuoteDialogActivity extends BaseActivity {
             public void failure(RetrofitError error) {
                 Utils.loading_box_stop();
                 try {
+                    if(BuildConfig.DEBUG)
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
@@ -180,6 +182,7 @@ public class QuoteDialogActivity extends BaseActivity {
                 new Callback<String>() {
                     @Override
                     public void success(String s, Response response) {
+                        if(BuildConfig.DEBUG)
                         Log.v("" + getClass().getSimpleName(), "Response> " + s);
 
                         try {
@@ -206,6 +209,7 @@ public class QuoteDialogActivity extends BaseActivity {
                     public void failure(RetrofitError error) {
                         Utils.loading_box_stop();
                         try {
+                            if(BuildConfig.DEBUG)
                             Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                             if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {

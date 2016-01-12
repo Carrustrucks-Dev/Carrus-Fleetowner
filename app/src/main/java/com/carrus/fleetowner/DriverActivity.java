@@ -189,6 +189,7 @@ public class DriverActivity extends BaseActivity {
 
             @Override
             public void success(String s, Response response) {
+                if(BuildConfig.DEBUG)
                 Log.v("" + getClass().getSimpleName(), "Response> " + s);
 
                 try {
@@ -242,6 +243,7 @@ public class DriverActivity extends BaseActivity {
                 swipeRefreshLayout.setRefreshing(false);
                 Utils.loading_box_stop();
                 try {
+                    if(BuildConfig.DEBUG)
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
@@ -303,6 +305,7 @@ public class DriverActivity extends BaseActivity {
         RestClient.getApiService().assignTrucker(mSessionManager.getAccessToken(), id, getIntent().getStringExtra(ID), new Callback<String>() {
             @Override
             public void success(String s, Response response) {
+                if(BuildConfig.DEBUG)
                 Log.v("" + getClass().getSimpleName(), "Response> " + s);
                 try {
                     JSONObject mObject = new JSONObject(s);
@@ -327,6 +330,7 @@ public class DriverActivity extends BaseActivity {
             public void failure(RetrofitError error) {
                 Utils.loading_box_stop();
                 try {
+                    if(BuildConfig.DEBUG)
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {

@@ -2,6 +2,7 @@ package com.carrus.fleetowner.utils;
 
 import android.util.Log;
 
+import com.carrus.fleetowner.BuildConfig;
 import com.google.android.gms.maps.model.LatLng;
 
 import org.w3c.dom.Document;
@@ -42,6 +43,7 @@ class GMapV2GetRouteDirection {
         Node node1 = nl1.item(0);
         NodeList nl2 = node1.getChildNodes();
         Node node2 = nl2.item(getNodeIndex(nl2, "text"));
+        if(BuildConfig.DEBUG)
         Log.i("DurationText", node2.getTextContent());
         return node2.getTextContent();
     }
@@ -51,6 +53,7 @@ class GMapV2GetRouteDirection {
         Node node1 = nl1.item(0);
         NodeList nl2 = node1.getChildNodes();
         Node node2 = nl2.item(getNodeIndex(nl2, "value"));
+        if(BuildConfig.DEBUG)
         Log.i("DurationValue", node2.getTextContent());
         return Integer.parseInt(node2.getTextContent());
     }
@@ -60,6 +63,7 @@ class GMapV2GetRouteDirection {
         Node node1 = nl1.item(0);
         NodeList nl2 = node1.getChildNodes();
         Node node2 = nl2.item(getNodeIndex(nl2, "text"));
+        if(BuildConfig.DEBUG)
         Log.i("DistanceText", node2.getTextContent());
         return node2.getTextContent();
     }
@@ -69,6 +73,7 @@ class GMapV2GetRouteDirection {
         Node node1 = nl1.item(0);
         NodeList nl2 = node1.getChildNodes();
         Node node2 = nl2.item(getNodeIndex(nl2, "value"));
+        if(BuildConfig.DEBUG)
         Log.i("DistanceValue", node2.getTextContent());
         return Integer.parseInt(node2.getTextContent());
     }
@@ -76,6 +81,7 @@ class GMapV2GetRouteDirection {
     public String getStartAddress (Document doc) {
         NodeList nl1 = doc.getElementsByTagName("start_address");
         Node node1 = nl1.item(0);
+        if(BuildConfig.DEBUG)
         Log.i("StartAddress", node1.getTextContent());
         return node1.getTextContent();
     }
@@ -83,6 +89,7 @@ class GMapV2GetRouteDirection {
     public String getEndAddress (Document doc) {
         NodeList nl1 = doc.getElementsByTagName("end_address");
         Node node1 = nl1.item(0);
+        if(BuildConfig.DEBUG)
         Log.i("StartAddress", node1.getTextContent());
         return node1.getTextContent();
     }
@@ -90,6 +97,7 @@ class GMapV2GetRouteDirection {
     public String getCopyRights (Document doc) {
         NodeList nl1 = doc.getElementsByTagName("copyrights");
         Node node1 = nl1.item(0);
+        if(BuildConfig.DEBUG)
         Log.i("CopyRights", node1.getTextContent());
         return node1.getTextContent();
     }

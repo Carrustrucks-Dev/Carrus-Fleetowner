@@ -39,12 +39,11 @@
                     android:textSize="@dimen/mid_fond" />
 
 
-                <TextView
+                <com.carrus.fleetowner.utils.CapitalizedTextView
                     android:id="@+id/statusTxtView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:capitalize="characters"
                     android:gravity="right|center_vertical"
                     android:padding="@dimen/five"
                     android:text=""
@@ -78,9 +77,8 @@
                     android:orientation="vertical"
                     android:padding="@dimen/five">
 
-                    <TextView
+                    <com.carrus.fleetowner.utils.CapitalizedTextView
                         android:id="@+id/nameDetailTxtView"
-                        android:capitalize="characters"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -138,9 +136,8 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/large_font" />
 
-            <TextView
+            <com.carrus.fleetowner.utils.CapitalizedTextView
                 android:id="@+id/namePickupTxtView"
-                android:capitalize="characters"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@mipmap/company"
@@ -235,9 +232,8 @@
                 android:textSize="@dimen/large_font" />
 
 
-            <TextView
+            <com.carrus.fleetowner.utils.CapitalizedTextView
                 android:id="@+id/nameDropTxtView"
-                android:capitalize="characters"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@mipmap/company"

@@ -1,7 +1,5 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="nav_drawer_width">270dp</dimen>
 
 
@@ -10,22 +8,15 @@
     <dimen name="one">1dp</dimen>
     <dimen name="two">2dp</dimen>
     <dimen name="three">3dp</dimen>
-    <dimen name="four">4dp</dimen>
     <dimen name="five">5dp</dimen>
     <dimen name="six">6dp</dimen>
-    <dimen name="seven">7dp</dimen>
-    <dimen name="eight">8dp</dimen>
-    <dimen name="nine">9dp</dimen>
     <dimen name="ten">10dp</dimen>
     <dimen name="fifteen">15dp</dimen>
     <dimen name="twenty">20dp</dimen>
     <dimen name="thirty">30dp</dimen>
     <dimen name="mediumhieght">70dp</dimen>
-    <dimen name="hundred">100dp</dimen>
-    <dimen name="largehieght">150dp</dimen>
     <dimen name="ratingBarHeight">28dip</dimen>
     <dimen name="ratingBarHeight_s">18dip</dimen>
-    <dimen name="ratingBarWidth_s">16dip</dimen>
 
     <!--Text Sizes-->
     <dimen name="low_font">12sp</dimen>
@@ -34,6 +25,5 @@
     <dimen name="big_font_eighteen">18sp</dimen>
     <dimen name="large_font">20sp</dimen>
     <dimen name="toolarge_font">30sp</dimen>
-    <dimen name="extralarge_font">50sp</dimen>
     <dimen name="tab_font">16sp</dimen>
 </resources>
