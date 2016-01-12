@@ -6,9 +6,11 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
+    android:clickable="true"
     android:paddingBottom="@dimen/ten"
     android:paddingTop="@dimen/fifteen"
     android:background="@color/windowBackground"
+    android:descendantFocusability="blocksDescendants"
     android:weightSum="1"
     android:baselineAligned="false">
 
