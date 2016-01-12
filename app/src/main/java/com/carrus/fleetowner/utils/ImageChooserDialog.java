@@ -43,14 +43,13 @@ public class ImageChooserDialog {
             final Dialog dialog = new Dialog(activity,
                     R.style.Theme_AppCompat_Translucent);
             dialog.setContentView(R.layout.dialog_image_chooser);
-            dialog.setCancelable(true);
             WindowManager.LayoutParams layoutParams = dialog.getWindow()
                     .getAttributes();
             layoutParams.dimAmount = 0.6f;
             dialog.getWindow().addFlags(
                     WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-            dialog.setCancelable(false);
-            dialog.setCanceledOnTouchOutside(false);
+            dialog.setCancelable(true);
+            dialog.setCanceledOnTouchOutside(true);
             TextView textMessage = (TextView) dialog
                     .findViewById(R.id.textMessage);
             textMessage.setMovementMethod(new ScrollingMovementMethod());

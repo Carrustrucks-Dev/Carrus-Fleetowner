@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -54,6 +55,7 @@ public class TruckQuotesListAdapter extends RecyclerView.Adapter {
         public final TextView mMonthTxtView;
         public final TextView mOfferdBidTxtView;
         public final RelativeLayout mOfferedBidLayout;
+        public final LinearLayout mParentLayout;
 
         public ViewHolder(View v) {
             super(v);
@@ -65,6 +67,7 @@ public class TruckQuotesListAdapter extends RecyclerView.Adapter {
             mBudgetTxtView = (TextView) v.findViewById(R.id.budgetTxtView);
             mOfferdBidTxtView = (TextView) v.findViewById(R.id.offerBidTxtView);
             mOfferedBidLayout = (RelativeLayout) v.findViewById(R.id.offerBidLayout);
+            mParentLayout =(LinearLayout) v.findViewById(R.id.parentLayout);
 
         }
     }
@@ -159,7 +162,7 @@ public class TruckQuotesListAdapter extends RecyclerView.Adapter {
             ((ViewHolder) holder).mBudgetTxtView.setText(mActivity.getResources().getString(R.string.rs) + myList.get(position).getBudget());
             ((ViewHolder) holder).mOfferdBidTxtView.setText(mActivity.getResources().getString(R.string.rs) + myList.get(position).getOfferCost());
 
-            ((ViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
+            ((ViewHolder) holder).mParentLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -52,6 +53,7 @@ public class TruckAssignListAdapter extends RecyclerView.Adapter {
         public final TextView mDatetxtView;
         public final TextView mMonthTxtView;
         public final TextView mLabelTxtView;
+        public final LinearLayout mParentLayout;
 
         public ViewHolder(View v) {
             super(v);
@@ -62,6 +64,7 @@ public class TruckAssignListAdapter extends RecyclerView.Adapter {
             mWeightTxtView = (TextView) v.findViewById(R.id.weightTxtView);
             mBudgetTxtView = (TextView) v.findViewById(R.id.budgetTxtView);
             mLabelTxtView = (TextView) v.findViewById(R.id.budgetTVlabel);
+            mParentLayout =(LinearLayout) v.findViewById(R.id.parentLayout);
 
         }
     }
@@ -82,7 +85,7 @@ public class TruckAssignListAdapter extends RecyclerView.Adapter {
                     .getLayoutManager();
 
 
-            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
@@ -155,7 +158,7 @@ public class TruckAssignListAdapter extends RecyclerView.Adapter {
             ((ViewHolder) holder).mBudgetTxtView.setText(mActivity.getResources().getString(R.string.rs) + myList.get(position).getAcceptPrice());
             ((ViewHolder) holder).mLabelTxtView.setText(mActivity.getResources().getString(R.string.finalbid));
 
-            ((ViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
+            ((ViewHolder) holder).mParentLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();

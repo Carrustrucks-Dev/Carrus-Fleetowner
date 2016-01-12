@@ -70,12 +70,12 @@
     <string name="trucknotfound">Truck Not found, Please choose another driver</string>
 
 
-    <string name="nodriverfound">No Driver Found</string>
-    <string name="noupcmingfound">No Upcoming Booking Found</string>
-    <string name="nopastfound">No Past Booking Found</string>
-    <string name="nonewreqfound">No New Request Found</string>
-    <string name="nopendingquotesfound">No Pending Quote Found</string>
-    <string name="nopendingassignfound">No Pending Assignment Found</string>
+    <string name="nodriverfound">No Drivers</string>
+    <string name="noupcmingfound">No Upcoming Bookings</string>
+    <string name="nopastfound">No Past Bookings</string>
+    <string name="nonewreqfound">No New Requests</string>
+    <string name="nopendingquotesfound">No Pending Quotes</string>
+    <string name="nopendingassignfound">No Pending Assignments</string>
 
     <!--text-->
     <string name="forgetpasswddetails">Enter email address and link would be sent to you to reset your password</string>
