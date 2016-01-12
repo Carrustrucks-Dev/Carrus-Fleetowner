@@ -1,6 +1,6 @@
 package com.carrus.fleetowner.fragments;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -44,8 +44,8 @@ public class DriverFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
         adapterViewPager = new MyPagerAdapter(getChildFragmentManager()); //here used child fragment manager
     }
 
@@ -183,8 +183,8 @@ public class DriverFragment extends Fragment {
         selectedFlag = 0;
         mWhiteTextView.setBackgroundResource(R.drawable.tab_background);
         mBlackTextView.setBackgroundResource(R.drawable.tab_past_background_white);
-        mWhiteTextView.setTextColor(getResources().getColor(R.color.windowBackground));
-        mBlackTextView.setTextColor(getResources().getColor(R.color.tabcolor_dark));
+        mWhiteTextView.setTextColor(Utils.getColor(getActivity(), R.color.windowBackground));
+        mBlackTextView.setTextColor(Utils.getColor(getActivity(), R.color.tabcolor_dark));
         vpPager.setCurrentItem(0);
 
     }
@@ -194,8 +194,8 @@ public class DriverFragment extends Fragment {
         selectedFlag = 1;
         mWhiteTextView.setBackgroundResource(R.drawable.tab_upcming_background_white);
         mBlackTextView.setBackgroundResource(R.drawable.tab_background);
-        mWhiteTextView.setTextColor(getResources().getColor(R.color.tabcolor_dark));
-        mBlackTextView.setTextColor(getResources().getColor(R.color.windowBackground));
+        mWhiteTextView.setTextColor(Utils.getColor(getActivity(), R.color.tabcolor_dark));
+        mBlackTextView.setTextColor(Utils.getColor(getActivity(), R.color.windowBackground));
         vpPager.setCurrentItem(1);
 
     }

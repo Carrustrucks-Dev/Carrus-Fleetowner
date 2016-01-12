@@ -75,7 +75,7 @@ public class PastBookingAdapter extends RecyclerView.Adapter {
                     .getLayoutManager();
 
 
-            recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
@@ -150,28 +150,28 @@ public class PastBookingAdapter extends RecyclerView.Adapter {
             switch (myList.get(position).bookingStatus.toUpperCase()) {
                 case "REACHED_DESTINATION":
                 case "REACHED_PICKUP_LOCATION":
-                    ((ViewHolder) holder).mStatusTxtView.setTextColor(mActivity.getResources().getColor(R.color.tabcolor_dark));
+                    ((ViewHolder) holder).mStatusTxtView.setTextColor(Utils.getColor(mActivity, R.color.tabcolor_dark));
                     break;
 
                 case "ON_GOING":
                 case "UP_GOING":
-                    ((ViewHolder) holder).mStatusTxtView.setTextColor(mActivity.getResources().getColor(R.color.colorPrimary));
+                    ((ViewHolder) holder).mStatusTxtView.setTextColor(Utils.getColor(mActivity, R.color.colorPrimary));
                     break;
 
                 case "CONFIRMED":
                 case "ACCEPTED":
                 case "ACTIVE":
-                    ((ViewHolder) holder).mStatusTxtView.setTextColor(mActivity.getResources().getColor(R.color.green));
+                    ((ViewHolder) holder).mStatusTxtView.setTextColor(Utils.getColor(mActivity, R.color.green));
                     break;
 
                 case "HALT":
                 case "COMPLETED":
                 case "PENDING":
-                    ((ViewHolder) holder).mStatusTxtView.setTextColor(mActivity.getResources().getColor(R.color.gray_text));
+                    ((ViewHolder) holder).mStatusTxtView.setTextColor(Utils.getColor(mActivity, R.color.gray_text));
                     break;
 
                 case "CANCELED":
-                    ((ViewHolder) holder).mStatusTxtView.setTextColor(mActivity.getResources().getColor(R.color.red));
+                    ((ViewHolder) holder).mStatusTxtView.setTextColor(Utils.getColor(mActivity, R.color.red));
                     break;
 
             }

@@ -84,7 +84,7 @@ public class DriverListAdapter extends RecyclerView.Adapter {
                     .getLayoutManager();
 
 
-            recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
@@ -141,9 +141,9 @@ public class DriverListAdapter extends RecyclerView.Adapter {
         if (holder instanceof ViewHolder) {
 
             if (selectedPos != -1 && selectedPos == position) {
-                ((ViewHolder) holder).mMainLayout.setBackgroundColor(mActivity.getResources().getColor(R.color.list_selected));
+                ((ViewHolder) holder).mMainLayout.setBackgroundColor(Utils.getColor(mActivity, R.color.list_selected));
             } else {
-                ((ViewHolder) holder).mMainLayout.setBackgroundColor(mActivity.getResources().getColor(R.color.windowBackground));
+                ((ViewHolder) holder).mMainLayout.setBackgroundColor(Utils.getColor(mActivity, R.color.windowBackground));
             }
 
             ((ViewHolder) holder).mNameTxtView.setText(Character.toUpperCase(myList.get(position).getDriverName().charAt(0)) + myList.get(position).getDriverName().substring(1));

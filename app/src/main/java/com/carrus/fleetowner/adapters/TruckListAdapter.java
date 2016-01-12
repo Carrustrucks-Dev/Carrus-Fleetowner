@@ -79,7 +79,7 @@ public class TruckListAdapter extends RecyclerView.Adapter {
                     .getLayoutManager();
 
 
-            recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);

@@ -1,6 +1,6 @@
 package com.carrus.fleetowner.fragments;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.carrus.fleetowner.R;
+import com.carrus.fleetowner.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -123,8 +124,8 @@ public class TruckReguestsFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
         adapterViewPager = new MyPagerAdapter(getChildFragmentManager()); //here used child fragment manager
     }
 
@@ -134,9 +135,9 @@ public class TruckReguestsFragment extends Fragment {
         mNewRequestTV.setBackgroundResource(R.drawable.tab_background);
         mPendingQuotesTV.setBackgroundResource(R.drawable.tab_square_background_white);
         mPendingAssignTV.setBackgroundResource(R.drawable.tab_past_background_white);
-        mNewRequestTV.setTextColor(getResources().getColor(R.color.windowBackground));
-        mPendingQuotesTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
-        mPendingAssignTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
+        mNewRequestTV.setTextColor(Utils.getColor(getActivity(), R.color.windowBackground));
+        mPendingQuotesTV.setTextColor(Utils.getColor(getActivity(), R.color.tabcolor_dark));
+        mPendingAssignTV.setTextColor(Utils.getColor(getActivity(), R.color.tabcolor_dark));
         vpPager.setCurrentItem(0);
 
     }
@@ -147,9 +148,9 @@ public class TruckReguestsFragment extends Fragment {
         mNewRequestTV.setBackgroundResource(R.drawable.tab_upcming_background_white);
         mPendingAssignTV.setBackgroundResource(R.drawable.tab_past_background_white);
         mPendingQuotesTV.setBackgroundResource(R.drawable.tab_background);
-        mNewRequestTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
-        mPendingAssignTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
-        mPendingQuotesTV.setTextColor(getResources().getColor(R.color.windowBackground));
+        mNewRequestTV.setTextColor(Utils.getColor(getActivity(), R.color.tabcolor_dark));
+        mPendingAssignTV.setTextColor(Utils.getColor(getActivity(), R.color.tabcolor_dark));
+        mPendingQuotesTV.setTextColor(Utils.getColor(getActivity(), R.color.windowBackground));
         vpPager.setCurrentItem(1);
 
     }
@@ -160,9 +161,9 @@ public class TruckReguestsFragment extends Fragment {
         mNewRequestTV.setBackgroundResource(R.drawable.tab_upcming_background_white);
         mPendingQuotesTV.setBackgroundResource(R.drawable.tab_square_background_white);
         mPendingAssignTV.setBackgroundResource(R.drawable.tab_background);
-        mNewRequestTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
-        mPendingQuotesTV.setTextColor(getResources().getColor(R.color.tabcolor_dark));
-        mPendingAssignTV.setTextColor(getResources().getColor(R.color.windowBackground));
+        mNewRequestTV.setTextColor(Utils.getColor(getActivity(), R.color.tabcolor_dark));
+        mPendingQuotesTV.setTextColor(Utils.getColor(getActivity(), R.color.tabcolor_dark));
+        mPendingAssignTV.setTextColor(Utils.getColor(getActivity(), R.color.windowBackground));
         vpPager.setCurrentItem(2);
 
     }

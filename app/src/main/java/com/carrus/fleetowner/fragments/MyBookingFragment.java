@@ -1,6 +1,6 @@
 package com.carrus.fleetowner.fragments;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.carrus.fleetowner.R;
+import com.carrus.fleetowner.utils.Utils;
 
 /**
  * Created by Sunny on 10/30/15 for Fleet Owner for Fleet Owner for Fleet Owner.
@@ -37,8 +38,8 @@ public class MyBookingFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
         adapterViewPager = new MyPagerAdapter(getChildFragmentManager()); //here used child fragment manager
     }
 
@@ -113,8 +114,8 @@ public class MyBookingFragment extends Fragment {
         selectedFlag = 0;
         mUpComingTextView.setBackgroundResource(R.drawable.tab_background);
         mPastTextView.setBackgroundResource(R.drawable.tab_past_background_white);
-        mUpComingTextView.setTextColor(getResources().getColor(R.color.windowBackground));
-        mPastTextView.setTextColor(getResources().getColor(R.color.tabcolor_dark));
+        mUpComingTextView.setTextColor(Utils.getColor(getActivity(), R.color.windowBackground));
+        mPastTextView.setTextColor(Utils.getColor(getActivity(), R.color.tabcolor_dark));
         vpPager.setCurrentItem(0);
     }
 
@@ -123,8 +124,8 @@ public class MyBookingFragment extends Fragment {
         selectedFlag = 1;
         mUpComingTextView.setBackgroundResource(R.drawable.tab_upcming_background_white);
         mPastTextView.setBackgroundResource(R.drawable.tab_background);
-        mUpComingTextView.setTextColor(getResources().getColor(R.color.tabcolor_dark));
-        mPastTextView.setTextColor(getResources().getColor(R.color.windowBackground));
+        mUpComingTextView.setTextColor(Utils.getColor(getActivity(), R.color.tabcolor_dark));
+        mPastTextView.setTextColor(Utils.getColor(getActivity(), R.color.windowBackground));
         vpPager.setCurrentItem(1);
     }
 
