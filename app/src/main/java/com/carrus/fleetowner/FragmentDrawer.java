@@ -94,10 +94,10 @@ public class FragmentDrawer extends Fragment {
         NavigationDrawerAdapter adapter = new NavigationDrawerAdapter(getActivity(), getData());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                drawerListener.onDrawerItemSelected(view, position);
+                drawerListener.onDrawerItemSelected(position);
                 mDrawerLayout.closeDrawer(containerView);
             }
 
@@ -138,7 +138,7 @@ public class FragmentDrawer extends Fragment {
         private final GestureDetector gestureDetector;
         private final ClickListener clickListener;
 
-        public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final ClickListener clickListener) {
+        public RecyclerTouchListener(Context context, final ClickListener clickListener) {
             this.clickListener = clickListener;
             gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
                 @Override
@@ -163,7 +163,7 @@ public class FragmentDrawer extends Fragment {
 
             View child = rv.findChildViewUnder(e.getX(), e.getY());
             if (child != null && clickListener != null && gestureDetector.onTouchEvent(e)) {
-                clickListener.onClick(child, rv.getChildPosition(child));
+                clickListener.onClick(child, rv.getChildLayoutPosition(child));
             }
             return false;
         }
@@ -176,7 +176,7 @@ public class FragmentDrawer extends Fragment {
     }
 
     public interface FragmentDrawerListener {
-        void onDrawerItemSelected(View view, int position);
+        void onDrawerItemSelected(int position);
 
         void onHeaderSelected();
     }

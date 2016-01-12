@@ -60,11 +60,6 @@ public class UpComingBookingAdapter extends RecyclerView.Adapter {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public UpComingBookingAdapter(Activity mActivity) {
-        this.mActivity = mActivity;
-    }
-
-    // Provide a suitable constructor (depends on the kind of dataset)
     public UpComingBookingAdapter(Activity mActivity, List<MyBookingDataModel> myList, RecyclerView recyclerView) {
         this.mActivity = mActivity;
         this.myList = myList;

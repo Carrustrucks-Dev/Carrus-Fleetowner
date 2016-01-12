@@ -37,31 +37,6 @@ public class Utils {
     private static ProgressDialog progressDialog = null;
     private static AlertDialog mAlertDialog = null;
 
-    /*
-measures height of recyclerview when placed inside scrollview
-*/
-    public static void getRecyclerViewSize(RecyclerView myListView) {
-        RecyclerView.Adapter myListAdapter = myListView.getAdapter();
-        if (myListAdapter == null) {
-
-            return;
-        }
-        int totalHeight = 0;
-        for (int size = 0; size < myListAdapter.getItemCount(); size++) {
-            View listItem = myListView.getAdapter().createViewHolder(myListView, 0).itemView;
-            listItem.measure(0, 0);
-            totalHeight += listItem.getMeasuredHeight();
-
-        }
-
-        ViewGroup.LayoutParams params = myListView.getLayoutParams();
-        params.height = totalHeight
-                + ((myListAdapter.getItemCount() - 1));
-        myListView.setLayoutParams(params);
-
-        //	Log.i("height of listItem:", String.valueOf(totalHeight));
-    }
-
     /**
      * Loading view
      *
@@ -100,11 +75,12 @@ measures height of recyclerview when placed inside scrollview
             }
     }
 
-    public static final int getColor(Context context, int id) {
+    public static int getColor(Context context, int id) {
         final int version = Build.VERSION.SDK_INT;
         if (version >= 23) {
             return ContextCompat.getColor(context, id);
         } else {
+            //noinspection deprecation
             return context.getResources().getColor(id);
         }
     }

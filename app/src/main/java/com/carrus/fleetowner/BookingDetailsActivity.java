@@ -299,56 +299,58 @@ public class BookingDetailsActivity extends BaseActivity {
 
     }
 
-    private void onShareClick() {
-        Resources resources = getResources();
-
-        Intent emailIntent = new Intent();
-        emailIntent.setAction(Intent.ACTION_SEND);
-        // Native email client doesn't currently support HTML, but it doesn't hurt to try in case they fix it
-        emailIntent.putExtra(Intent.EXTRA_TEXT, mMyBookingDataModel.crn);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, resources.getString(R.string.crnsubject));
-        emailIntent.setType("message/rfc822");
-
-        PackageManager pm = getPackageManager();
-        Intent sendIntent = new Intent(Intent.ACTION_SEND);
-        sendIntent.setType("text/plain");
-
-        Intent openInChooser = Intent.createChooser(emailIntent, resources.getString(R.string.share_chooser_text));
-
-        List<ResolveInfo> resInfo = pm.queryIntentActivities(sendIntent, 0);
-        List<LabeledIntent> intentList = new ArrayList<>();
-        for (int i = 0; i < resInfo.size(); i++) {
-            // Extract the label, append it, and repackage it in a LabeledIntent
-            ResolveInfo ri = resInfo.get(i);
-            String packageName = ri.activityInfo.packageName;
-//            if(packageName.contains("android.email")) {
-//                emailIntent.setPackage(packageName);
+// --Commented out by Inspection START (1/12/16, 5:30 PM):
+//    private void onShareClick() {
+//        Resources resources = getResources();
+//
+//        Intent emailIntent = new Intent();
+//        emailIntent.setAction(Intent.ACTION_SEND);
+//        // Native email client doesn't currently support HTML, but it doesn't hurt to try in case they fix it
+//        emailIntent.putExtra(Intent.EXTRA_TEXT, mMyBookingDataModel.crn);
+//        emailIntent.putExtra(Intent.EXTRA_SUBJECT, resources.getString(R.string.crnsubject));
+//        emailIntent.setType("message/rfc822");
+//
+//        PackageManager pm = getPackageManager();
+//        Intent sendIntent = new Intent(Intent.ACTION_SEND);
+//        sendIntent.setType("text/plain");
+//
+//        Intent openInChooser = Intent.createChooser(emailIntent, resources.getString(R.string.share_chooser_text));
+//
+//        List<ResolveInfo> resInfo = pm.queryIntentActivities(sendIntent, 0);
+//        List<LabeledIntent> intentList = new ArrayList<>();
+//        for (int i = 0; i < resInfo.size(); i++) {
+//            // Extract the label, append it, and repackage it in a LabeledIntent
+//            ResolveInfo ri = resInfo.get(i);
+//            String packageName = ri.activityInfo.packageName;
+////            if(packageName.contains("android.email")) {
+////                emailIntent.setPackage(packageName);
+////            }
+////            else
+//            if (packageName.contains("mms") || packageName.contains("android.email")) {
+//                Intent intent = new Intent();
+//                intent.setComponent(new ComponentName(packageName, ri.activityInfo.name));
+//                intent.setAction(Intent.ACTION_SEND);
+////                intent.setType("text/plain");
+//                intent.setType("message/rfc822");
+//
+//
+//                if (packageName.contains("android.email")) {
+//                    intent.putExtra(Intent.EXTRA_TEXT, mMyBookingDataModel.crn);
+//                    intent.putExtra(Intent.EXTRA_SUBJECT, resources.getString(R.string.crnsubject));
+//                }
+//
+//                if (packageName.contains("mms")) {
+//                    intent.putExtra(Intent.EXTRA_TEXT, mMyBookingDataModel.crn);
+//                }
+//                intentList.add(new LabeledIntent(intent, packageName, ri.loadLabel(pm), ri.icon));
 //            }
-//            else
-            if (packageName.contains("mms") || packageName.contains("android.email")) {
-                Intent intent = new Intent();
-                intent.setComponent(new ComponentName(packageName, ri.activityInfo.name));
-                intent.setAction(Intent.ACTION_SEND);
-//                intent.setType("text/plain");
-                intent.setType("message/rfc822");
-
-
-                if (packageName.contains("android.email")) {
-                    intent.putExtra(Intent.EXTRA_TEXT, mMyBookingDataModel.crn);
-                    intent.putExtra(Intent.EXTRA_SUBJECT, resources.getString(R.string.crnsubject));
-                }
-
-                if (packageName.contains("mms")) {
-                    intent.putExtra(Intent.EXTRA_TEXT, mMyBookingDataModel.crn);
-                }
-                intentList.add(new LabeledIntent(intent, packageName, ri.loadLabel(pm), ri.icon));
-            }
-        }
-
-        // convert intentList to array
-        LabeledIntent[] extraIntents = intentList.toArray(new LabeledIntent[intentList.size()]);
-
-        openInChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, extraIntents);
-        startActivity(openInChooser);
-    }
+//        }
+//
+//        // convert intentList to array
+//        LabeledIntent[] extraIntents = intentList.toArray(new LabeledIntent[intentList.size()]);
+//
+//        openInChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, extraIntents);
+//        startActivity(openInChooser);
+//    }
+// --Commented out by Inspection STOP (1/12/16, 5:30 PM)
 }

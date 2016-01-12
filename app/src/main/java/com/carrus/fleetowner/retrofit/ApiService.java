@@ -58,7 +58,7 @@ public interface ApiService {
      * @param sort The type of sorting
      */
     @GET("/api/v1/fleetOwner/getUpComing")
-    void getOnGoing(@Header(AUTHORIZATION) String authorization, @Query(LIMIT) String limit, @Query(SKIP) String skip, @Query(SORT) String sort, Callback<String> callback);
+    void getOnGoing(@Header(AUTHORIZATION) String authorization, @Query(LIMIT) String limit, @Query(SKIP) String skip,@SuppressWarnings("SameParameterValue") @Query(SORT) String sort, Callback<String> callback);
 
     /**
      * @param authorization The access token for authorization
@@ -69,7 +69,7 @@ public interface ApiService {
      * @param driverStatus The status fo the driver
      */
     @GET("/api/v1/fleetOwner/allTrucker")
-    void getallTrucker(@Header(AUTHORIZATION) String authorization, @Query("search") String search, @Query(LIMIT) String limit, @Query(SKIP) String skip, @Query(SORT) String sort, @Query("driverStatus") String driverStatus, Callback<String> callback);
+    void getallTrucker(@Header(AUTHORIZATION) String authorization, @Query("search") String search, @Query(LIMIT) String limit, @Query(SKIP) String skip, @SuppressWarnings("SameParameterValue") @Query(SORT) String sort, @Query("driverStatus") String driverStatus, Callback<String> callback);
 
     /**
      * @param authorization The access token for authorization
@@ -167,6 +167,6 @@ public interface ApiService {
      * @param truckStatus The status of the truck
      */
     @GET("/api/v1/fleetOwner/allTruck")
-    void getallTruck(@Header(AUTHORIZATION) String authorization, @SuppressWarnings("SameParameterValue") @Query(LIMIT) String limit, @SuppressWarnings("SameParameterValue") @Query(SKIP) String skip, @Query(SORT) String sort, @SuppressWarnings("SameParameterValue") @Query("truckStatus") String truckStatus, Callback<String> callback);
+    void getallTruck(@Header(AUTHORIZATION) String authorization, @SuppressWarnings("SameParameterValue") @Query(LIMIT) String limit, @SuppressWarnings("SameParameterValue") @Query(SKIP) String skip, @SuppressWarnings("SameParameterValue") @Query(SORT) String sort, @SuppressWarnings("SameParameterValue") @Query("truckStatus") String truckStatus, Callback<String> callback);
 
 }

@@ -97,7 +97,7 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
     }
 
     @Override
-    public void onDrawerItemSelected(View view, int position) {
+    public void onDrawerItemSelected(int position) {
         displayView(position);
     }
 

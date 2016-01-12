@@ -32,9 +32,6 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
 
     private void setOrientation() {
-        if (false) {
-            throw new IllegalArgumentException("invalid orientation");
-        }
         mOrientation = LinearLayoutManager.VERTICAL;
     }
 

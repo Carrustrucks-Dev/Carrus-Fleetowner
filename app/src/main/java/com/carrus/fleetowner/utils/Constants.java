@@ -11,7 +11,6 @@ public class Constants {
     public static final String GOOGLE_URL ="http://maps.googleapis.com";
     public static final String SENDER_ID="128119419847";
     public static final String DEVICE_TYPE="ANDROID";
-    public static final String selectedId="selectedTrackingId";
     public static final String REMEMBERME = "isRemember";
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";

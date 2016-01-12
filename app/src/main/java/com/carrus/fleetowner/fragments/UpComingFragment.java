@@ -171,7 +171,7 @@ public class UpComingFragment extends Fragment {
             @Override
             public void success(String s, Response response) {
                 if(BuildConfig.DEBUG)
-                Log.v("" + getClass().getSimpleName(), "Response> " + s);
+                Log.v(TAG, "Response> " + s);
 
                 try {
                     JSONObject mObject = new JSONObject(s);
@@ -229,7 +229,7 @@ public class UpComingFragment extends Fragment {
                 Utils.loading_box_stop();
                 try {
                     if(BuildConfig.DEBUG)
-                    Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
+                    Log.v(TAG, " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
 //                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
