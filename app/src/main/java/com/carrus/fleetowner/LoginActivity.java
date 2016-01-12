@@ -62,6 +62,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void initializeClickListeners() {
+
         findViewById(R.id.submitBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,9 +93,11 @@ public class LoginActivity extends BaseActivity {
                 startActivityForResult(new Intent(LoginActivity.this, ForgotPasswordActivity.class), 600);
             }
         });
+
     }
 
     private void getDeviceToken() {
+
         new DeviceTokenFetcher(this, new DeviceTokenFetcher.Listener() {
             @Override
             public void onDeviceTokenReceived(String deviceToken) {
@@ -102,6 +105,7 @@ public class LoginActivity extends BaseActivity {
                 mSessionManager.saveDeviceToken(deviceToken);
             }
         }).execute(SENDER_ID);
+
     }
 
     private void verifyLoggedIn() {
