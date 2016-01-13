@@ -113,7 +113,7 @@ public class BlackDriverFragment extends Fragment {
     }
 
     private void init(View view) {
-        mErrorLayout =(LinearLayout) view.findViewById(R.id.errorLayout);
+        mErrorLayout = (LinearLayout) view.findViewById(R.id.errorLayout);
         mErrorTxtView = (TextView) view.findViewById(R.id.errorTxtView);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
 //        swipeRefreshLayout.setColorSchemeColors(
@@ -224,8 +224,8 @@ public class BlackDriverFragment extends Fragment {
                 swipeRefreshLayout.setRefreshing(false);
                 Utils.loading_box_stop();
                 try {
-                    if(BuildConfig.DEBUG)
-                    Log.v(TAG, " MSg >> " + error.getResponse().getStatus());
+                    if (BuildConfig.DEBUG)
+                        Log.v(TAG, " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
 //                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
@@ -240,12 +240,10 @@ public class BlackDriverFragment extends Fragment {
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
-                        if(!val.isEmpty())
-                        Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
-                        else if (bookingList == null || bookingList.size() == 0) {
-                            mErrorTxtView.setText(getResources().getString(R.string.nodriverfound));
-                            mErrorLayout.setVisibility(View.VISIBLE);
-                        }
+                        mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
+                        mRecyclerView.setAdapter(mAdapter);
+                        mErrorTxtView.setText(getResources().getString(R.string.nodriverfound));
+                        mErrorLayout.setVisibility(View.VISIBLE);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
                         Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         try {

@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class Truck  implements Serializable {
 
     @SerializedName("truckNumber")
-    public Long truckNumber;
+    public String truckNumber;
 
     public TruckDetails truckType;
 

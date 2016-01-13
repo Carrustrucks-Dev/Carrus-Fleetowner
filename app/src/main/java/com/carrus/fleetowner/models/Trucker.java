@@ -10,7 +10,7 @@ public class Trucker {
 private String Id;
 @SerializedName("driverId")
 @Expose
-private Integer driverId;
+private String driverId;
 @SerializedName("driverName")
 @Expose
 private String driverName;
@@ -40,10 +40,10 @@ private String noOfPeopleRating;
 private String rating;
 @SerializedName("loginCount")
 @Expose
-private Integer loginCount;
+private String loginCount;
 @SerializedName("radius")
 @Expose
-private Integer radius;
+private String radius;
 @SerializedName("location")
 @Expose
 private Location location;
@@ -101,7 +101,7 @@ this.Id = Id;
 * @return
 * The driverId
 */
-public Integer getDriverId() {
+public String getDriverId() {
 return driverId;
 }
 
@@ -110,7 +110,7 @@ return driverId;
 * @param driverId
 * The driverId
 */
-public void setDriverId(Integer driverId) {
+public void setDriverId(String driverId) {
 this.driverId = driverId;
 }
 
@@ -281,7 +281,7 @@ this.rating = rating;
 * @return
 * The loginCount
 */
-public Integer getLoginCount() {
+public String getLoginCount() {
 return loginCount;
 }
 
@@ -290,7 +290,7 @@ return loginCount;
 * @param loginCount
 * The loginCount
 */
-public void setLoginCount(Integer loginCount) {
+public void setLoginCount(String loginCount) {
 this.loginCount = loginCount;
 }
 
@@ -299,7 +299,7 @@ this.loginCount = loginCount;
 * @return
 * The radius
 */
-public Integer getRadius() {
+public String getRadius() {
 return radius;
 }
 
@@ -308,7 +308,7 @@ return radius;
 * @param radius
 * The radius
 */
-public void setRadius(Integer radius) {
+public void setRadius(String radius) {
 this.radius = radius;
 }
 

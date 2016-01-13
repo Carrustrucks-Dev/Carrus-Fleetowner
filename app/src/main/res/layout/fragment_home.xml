@@ -57,6 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/empty"
+                android:visibility="gone"
                 android:padding="@dimen/ten"
                 android:src="@mipmap/icon_share" />
         </LinearLayout>
@@ -172,5 +173,27 @@
                 android:textColor="@color/windowBackground"
                 android:textSize="@dimen/mid_fond" />
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/errorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tracnsparent_gray"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/errorTxtView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:padding="@dimen/ten"
+            android:text=""
+            android:textColor="@color/windowBackground"
+            android:textSize="@dimen/big_font" />
+
     </LinearLayout>
 </RelativeLayout>

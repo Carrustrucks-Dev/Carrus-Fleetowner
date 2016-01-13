@@ -25,7 +25,7 @@ public class Shipper  implements Serializable {
     public String phoneNumber;
 
     @SerializedName("rating")
-    public double rating;
+    public String rating;
 
 
 

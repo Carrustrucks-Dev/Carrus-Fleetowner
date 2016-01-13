@@ -73,12 +73,13 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
     private LinearLayout mBottomView;
     private Trucks mTrucks;
     private boolean isMarkerMatch = false;
-    private TextView nameTxtView, typeTxtView, locationTxtView, statusTxtView, truckNumberTxtView, crnTxtView, nicknameTxtView;
+    private TextView nameTxtView, typeTxtView, locationTxtView, statusTxtView, truckNumberTxtView, crnTxtView, nicknameTxtView, errorTxtView;
     private String selectedNumber = null;
     private IntentFilter mIntentFilter;
     private Marker now;
     private EditText mSearchEdtTxt;
     private int selectedPos = 0;
+    private LinearLayout mErrorLayout;
 
 
     public TrucksFragment() {
@@ -126,6 +127,8 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
         truckNumberTxtView = (TextView) view.findViewById(R.id.crntopTxtView);
         crnTxtView = (TextView) view.findViewById(R.id.crnTxtView);
         nicknameTxtView = (TextView) view.findViewById(R.id.nicknameTxtView);
+        mErrorLayout = (LinearLayout) view.findViewById(R.id.errorLayout);
+        errorTxtView = (TextView) view.findViewById(R.id.errorTxtView);
 
         mSearchEdtTxt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -547,13 +550,14 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
 //    }
 
     private void getAllTrucks() {
+        mErrorLayout.setVisibility(View.GONE);
         Utils.loading_box(getActivity());
 
         RestClient.getApiService().getallTruck(mSessionManager.getAccessToken(), "0", "0", Constants.SORT, "ALL", new Callback<String>() {
             @Override
             public void success(String s, Response response) {
-                if(BuildConfig.DEBUG)
-                Log.v("" + getClass().getSimpleName(), "Response> " + s);
+                if (BuildConfig.DEBUG)
+                    Log.v("" + getClass().getSimpleName(), "Response> " + s);
                 try {
                     JSONObject mObject = new JSONObject(s);
 
@@ -576,8 +580,8 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
             public void failure(RetrofitError error) {
                 Utils.loading_box_stop();
                 try {
-                    if(BuildConfig.DEBUG)
-                    Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
+                    if (BuildConfig.DEBUG)
+                        Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
 //                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
@@ -595,7 +599,9 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
-                        Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
+                        mErrorLayout.setVisibility(View.VISIBLE);
+                        errorTxtView.setText("" + Utils.getErrorMsg(error));
                     }
                 } catch (Exception ex) {
                     Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);

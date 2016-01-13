@@ -92,9 +92,9 @@ public class WhiteDriverFragment extends Fragment {
         mSessionManager = new SessionManager(getActivity());
         mConnectionDetector = new ConnectionDetector(getActivity());
         if (mConnectionDetector.isConnectingToInternet())
-            getMyBooking(((DriverFragment)getParentFragment()).mSearchEdtTxt.getText().toString().trim());
+            getMyBooking(((DriverFragment) getParentFragment()).mSearchEdtTxt.getText().toString().trim());
         else {
-          noInternetDialog();
+            noInternetDialog();
         }
     }
 
@@ -104,16 +104,16 @@ public class WhiteDriverFragment extends Fragment {
             public void onClick(View v) {
                 mErrorLayout.setVisibility(View.GONE);
                 if (mConnectionDetector.isConnectingToInternet())
-                    getMyBooking(((DriverFragment)getParentFragment()).mSearchEdtTxt.getText().toString().trim());
+                    getMyBooking(((DriverFragment) getParentFragment()).mSearchEdtTxt.getText().toString().trim());
                 else {
-                   noInternetDialog();
+                    noInternetDialog();
                 }
             }
         });
     }
 
     private void init(View view) {
-        mErrorLayout =(LinearLayout) view.findViewById(R.id.errorLayout);
+        mErrorLayout = (LinearLayout) view.findViewById(R.id.errorLayout);
         mErrorTxtView = (TextView) view.findViewById(R.id.errorTxtView);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
 //        swipeRefreshLayout.setColorSchemeColors(
@@ -135,7 +135,7 @@ public class WhiteDriverFragment extends Fragment {
             @Override
             public void onRefresh() {
                 isRefreshView = true;
-                getMyBooking(((DriverFragment)getParentFragment()).mSearchEdtTxt.getText().toString().trim());
+                getMyBooking(((DriverFragment) getParentFragment()).mSearchEdtTxt.getText().toString().trim());
             }
         });
 
@@ -146,10 +146,10 @@ public class WhiteDriverFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(Constants.isUpComingUpdate){
-            Constants.isUpComingUpdate=false;
+        if (Constants.isUpComingUpdate) {
+            Constants.isUpComingUpdate = false;
             isRefreshView = true;
-            getMyBooking(((DriverFragment)getParentFragment()).mSearchEdtTxt.getText().toString().trim());
+            getMyBooking(((DriverFragment) getParentFragment()).mSearchEdtTxt.getText().toString().trim());
         }
     }
 
@@ -157,10 +157,10 @@ public class WhiteDriverFragment extends Fragment {
         mErrorLayout.setVisibility(View.GONE);
         if (isRefreshView) {
             swipeRefreshLayout.setRefreshing(true);
-            skip=0;
-            bookingList=null;
+            skip = 0;
+            bookingList = null;
         } else {
-            if(bookingList==null || bookingList.size()==0)
+            if (bookingList == null || bookingList.size() == 0)
                 Utils.loading_box(getActivity());
         }
 
@@ -168,8 +168,8 @@ public class WhiteDriverFragment extends Fragment {
 
             @Override
             public void success(String s, Response response) {
-                if(BuildConfig.DEBUG)
-                Log.v("" + getClass().getSimpleName(), "Response> " + s);
+                if (BuildConfig.DEBUG)
+                    Log.v("" + getClass().getSimpleName(), "Response> " + s);
 
                 try {
                     JSONObject mObject = new JSONObject(s);
@@ -183,8 +183,8 @@ public class WhiteDriverFragment extends Fragment {
                             bookingList.addAll(mDriverModel.getData());
                             mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
                             mRecyclerView.setAdapter(mAdapter);
-                            if(mDriverModel.getData().size()==LIMIT)
-                            setonScrollListener();
+                            if (mDriverModel.getData().size() == LIMIT)
+                                setonScrollListener();
                         } else {
                             bookingList.remove(bookingList.size() - 1);
                             mAdapter.notifyItemRemoved(bookingList.size());
@@ -217,7 +217,7 @@ public class WhiteDriverFragment extends Fragment {
                 }
 
                 Utils.loading_box_stop();
-                isRefreshView=false;
+                isRefreshView = false;
                 swipeRefreshLayout.setRefreshing(false);
             }
 
@@ -226,13 +226,13 @@ public class WhiteDriverFragment extends Fragment {
                 swipeRefreshLayout.setRefreshing(false);
                 Utils.loading_box_stop();
                 try {
-                    if(BuildConfig.DEBUG)
-                    Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
+                    if (BuildConfig.DEBUG)
+                        Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
 //                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
-                       noInternetDialog();
-                        if(bookingList==null || bookingList.size()==0) {
+                        noInternetDialog();
+                        if (bookingList == null || bookingList.size() == 0) {
                             mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
                             mRecyclerView.setAdapter(mAdapter);
 //                            mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
@@ -241,13 +241,11 @@ public class WhiteDriverFragment extends Fragment {
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
-                        if(!val.isEmpty())
-                        Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
-                        else if (bookingList==null || bookingList.size()==0) {
-                            mErrorTxtView.setText(getResources().getString(R.string.nodriverfound));
-                            mErrorLayout.setVisibility(View.VISIBLE);
-                        }
-                    }else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
+                        mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
+                        mRecyclerView.setAdapter(mAdapter);
+                        mErrorTxtView.setText(getResources().getString(R.string.nodriverfound));
+                        mErrorLayout.setVisibility(View.VISIBLE);
+                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
                         Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         try {
                             bookingList.remove(bookingList.size() - 1);
@@ -260,7 +258,7 @@ public class WhiteDriverFragment extends Fragment {
 
                 } catch (Exception ex) {
                     noInternetDialog();
-                    if(bookingList==null || bookingList.size()==0) {
+                    if (bookingList == null || bookingList.size() == 0) {
                         mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
                         mRecyclerView.setAdapter(mAdapter);
 //                        mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
@@ -290,12 +288,13 @@ public class WhiteDriverFragment extends Fragment {
             }
         });
     }
-    private void noInternetDialog(){
+
+    private void noInternetDialog() {
         CommonNoInternetDialog.WithActivity(getActivity()).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
             @Override
             public void OnOkButtonPressed() {
                 isRefreshView = true;
-                getMyBooking(((DriverFragment)getParentFragment()).mSearchEdtTxt.getText().toString().trim());
+                getMyBooking(((DriverFragment) getParentFragment()).mSearchEdtTxt.getText().toString().trim());
             }
 
             @Override
