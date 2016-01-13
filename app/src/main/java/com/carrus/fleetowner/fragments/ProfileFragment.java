@@ -48,7 +48,7 @@ import retrofit.mime.TypedFile;
  * A simple {@link Fragment} subclass.
  */
 public class ProfileFragment extends Fragment implements
-        ImageChooserListener {
+        ImageChooserListener, View.OnClickListener{
 
     private final String TAG = getClass().getSimpleName();
     private ImageView driverImage;
@@ -120,23 +120,25 @@ public class ProfileFragment extends Fragment implements
     }
 
     private void initlializeListener(View v) {
-        v.findViewById(R.id.changeProfileImageBtn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isStoragePermissionGranted())
-                    ImageChooserDialog.With(getActivity()).Show(getResources().getString(R.string.choose_image), new ImageChooserDialog.OnButtonClicked() {
-                        @Override
-                        public void onGaleryClicked() {
-                            chooseImage();
-                        }
+        v.findViewById(R.id.changeProfileImageBtn).setOnClickListener(this);
 
-                        @Override
-                        public void onCameraClicked() {
-                            takePicture();
-                        }
-                    });
-            }
-        });
+        v.findViewById(R.id.imgLayout).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (isStoragePermissionGranted())
+            ImageChooserDialog.With(getActivity()).Show(getResources().getString(R.string.choose_image), new ImageChooserDialog.OnButtonClicked() {
+                @Override
+                public void onGaleryClicked() {
+                    chooseImage();
+                }
+
+                @Override
+                public void onCameraClicked() {
+                    takePicture();
+                }
+            });
     }
 
     private boolean isStoragePermissionGranted() {

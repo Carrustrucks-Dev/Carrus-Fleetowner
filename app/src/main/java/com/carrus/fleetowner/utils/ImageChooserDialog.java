@@ -6,6 +6,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.carrus.fleetowner.R;
@@ -43,13 +44,12 @@ public class ImageChooserDialog {
             final Dialog dialog = new Dialog(activity,
                     R.style.Theme_AppCompat_Translucent);
             dialog.setContentView(R.layout.dialog_image_chooser);
+            dialog.setCancelable(true);
             WindowManager.LayoutParams layoutParams = dialog.getWindow()
                     .getAttributes();
             layoutParams.dimAmount = 0.6f;
             dialog.getWindow().addFlags(
                     WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-            dialog.setCancelable(true);
-            dialog.setCanceledOnTouchOutside(true);
             TextView textMessage = (TextView) dialog
                     .findViewById(R.id.textMessage);
             textMessage.setMovementMethod(new ScrollingMovementMethod());
@@ -78,6 +78,14 @@ public class ImageChooserDialog {
                     dialog.dismiss();
                 }
 
+            });
+
+            ImageView crossBtn=(ImageView) dialog.findViewById(R.id.crossBtn);
+            crossBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
             });
 
 

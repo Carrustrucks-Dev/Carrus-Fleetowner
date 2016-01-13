@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.carrus.fleetowner.adapters.NavigationDrawerAdapter;
+import com.carrus.fleetowner.interfaces.ClickListener;
 import com.carrus.fleetowner.models.NavDrawerItem;
 import com.carrus.fleetowner.utils.CircleTransform;
 import com.carrus.fleetowner.utils.SessionManager;
@@ -128,12 +129,9 @@ public class FragmentDrawer extends Fragment {
 
     }
 
-    public interface ClickListener {
-        void onClick(View view, int position);
 
-    }
 
-    static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
+    class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 
         private final GestureDetector gestureDetector;
         private final ClickListener clickListener;

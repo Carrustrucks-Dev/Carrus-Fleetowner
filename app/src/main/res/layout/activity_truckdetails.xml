@@ -48,6 +48,7 @@
                 android:id="@+id/recyclerview"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ten"
                 android:groupIndicator="@null" />
 
             <Button

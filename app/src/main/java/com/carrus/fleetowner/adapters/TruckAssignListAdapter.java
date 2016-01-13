@@ -158,7 +158,7 @@ public class TruckAssignListAdapter extends RecyclerView.Adapter {
             ((ViewHolder) holder).mBudgetTxtView.setText(mActivity.getResources().getString(R.string.rs) + myList.get(position).getAcceptPrice());
             ((ViewHolder) holder).mLabelTxtView.setText(mActivity.getResources().getString(R.string.finalbid));
 
-            ((ViewHolder) holder).mParentLayout.setOnClickListener(new View.OnClickListener() {
+            ((ViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
