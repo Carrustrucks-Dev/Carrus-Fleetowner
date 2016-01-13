@@ -18,6 +18,7 @@ import com.carrus.fleetowner.interfaces.OnLoadMoreListener;
 import com.carrus.fleetowner.models.TruckAssignDetails;
 import com.carrus.fleetowner.utils.Utils;
 
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.List;
 
@@ -155,7 +156,8 @@ public class TruckAssignListAdapter extends RecyclerView.Adapter {
             ((ViewHolder) holder).mAddressTxtView.setText(myList.get(position).getPickUp().city + mActivity.getResources().getString(R.string.towithspaces) + myList.get(position).getDropOff().city);
             ((ViewHolder) holder).mTypeCargoTxtView.setText(myList.get(position).getCargo().cargoType.typeCargoName);
             ((ViewHolder) holder).mWeightTxtView.setText(myList.get(position).getCargo().weight + mActivity.getResources().getString(R.string.ton));
-            ((ViewHolder) holder).mBudgetTxtView.setText(mActivity.getResources().getString(R.string.rs) + myList.get(position).getAcceptPrice());
+//            ((ViewHolder) holder).mBudgetTxtView.setText(mActivity.getResources().getString(R.string.rs) + myList.get(position).getAcceptPrice());
+            ((ViewHolder) holder).mBudgetTxtView.setText(mActivity.getResources().getString(R.string.rs) + NumberFormat.getInstance().format(Long.valueOf(myList.get(position).getAcceptPrice())));
             ((ViewHolder) holder).mLabelTxtView.setText(mActivity.getResources().getString(R.string.finalbid));
 
             ((ViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {

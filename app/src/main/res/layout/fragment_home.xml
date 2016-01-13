@@ -179,7 +179,7 @@
         android:id="@+id/errorLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/tracnsparent_gray"
+        android:background="@color/colorPrimary"
         android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">

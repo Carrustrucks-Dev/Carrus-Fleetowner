@@ -23,6 +23,7 @@ import com.carrus.fleetowner.models.Header;
 import com.carrus.fleetowner.models.MyBookingDataModel;
 import com.carrus.fleetowner.utils.Utils;
 
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -257,7 +258,7 @@ public class BookingDetailsActivity extends BaseActivity {
 
         timeDropTxtView.setText(mMyBookingDataModel.dropOff.time);
         paymentModeTxtView.setText(mMyBookingDataModel.paymentMode);
-        totalCostTxtView.setText(getResources().getString(R.string.rupee) + mMyBookingDataModel.acceptPrice);
+        totalCostTxtView.setText(getResources().getString(R.string.rupee) + NumberFormat.getInstance().format(Long.valueOf(mMyBookingDataModel.acceptPrice)));
         namePickUpTxtView.setText(mMyBookingDataModel.pickUp.companyName);
         phonePickUpTxtView.setText(mMyBookingDataModel.pickUp.contactNumber);
         codePickUpTxtView.setText(mMyBookingDataModel.pickUp.tin);
