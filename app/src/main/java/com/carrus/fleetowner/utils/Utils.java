@@ -144,6 +144,17 @@ public class Utils {
         return date.format(d);
     }
 
+    public static String getMonthYear(String time) throws ParseException {
+        Calendar cal = Calendar.getInstance();
+        TimeZone tz = cal.getTimeZone();
+        @SuppressLint("SimpleDateFormat") DateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+//        f.setTimeZone(TimeZone.getTimeZone("ISO"));
+        f.setTimeZone(tz);
+        Date d = f.parse(String.valueOf(time));
+        @SuppressLint("SimpleDateFormat") DateFormat date = new SimpleDateFormat("MMM yyyy");
+        return date.format(d);
+    }
+
     public static String getMonth(String time) throws ParseException {
         Calendar cal = Calendar.getInstance();
         TimeZone tz = cal.getTimeZone();

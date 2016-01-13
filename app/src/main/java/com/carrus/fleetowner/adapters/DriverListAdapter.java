@@ -151,7 +151,7 @@ public class DriverListAdapter extends RecyclerView.Adapter {
             ((ViewHolder) holder).vehiclenoTxtView.setText(myList.get(position).getTrucks().toString().replace("[", "")
                     .replace("]", ""));
             try {
-                ((ViewHolder) holder).licenseexpTxtView.setText(Utils.getDateMonth(myList.get(position).getDrivingLicense().getValidity()));
+                ((ViewHolder) holder).licenseexpTxtView.setText(Utils.getMonthYear(myList.get(position).getDrivingLicense().getValidity()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
