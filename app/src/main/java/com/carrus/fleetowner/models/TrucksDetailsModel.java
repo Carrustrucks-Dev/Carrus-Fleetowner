@@ -41,7 +41,7 @@ public class TrucksDetailsModel implements Serializable {
     private String requestedDateTime;
     @SerializedName("acceptPrice")
     @Expose
-    private Integer acceptPrice;
+    private String acceptPrice;
     @SerializedName("trucker")
     @Expose
     private List<Object> trucker = new ArrayList<>();
@@ -193,14 +193,14 @@ public class TrucksDetailsModel implements Serializable {
     /**
      * @return The acceptPrice
      */
-    public Integer getAcceptPrice() {
+    public String getAcceptPrice() {
         return acceptPrice;
     }
 
     /**
      * @param acceptPrice The acceptPrice
      */
-    public void setAcceptPrice(Integer acceptPrice) {
+    public void setAcceptPrice(String acceptPrice) {
         this.acceptPrice = acceptPrice;
     }
 

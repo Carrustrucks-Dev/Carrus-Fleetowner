@@ -46,7 +46,7 @@ public class TruckAssignDetails implements Serializable {
     private String bookingCreatedAt;
     @SerializedName("acceptPrice")
     @Expose
-    private Integer acceptPrice;
+    private String acceptPrice;
     @SerializedName("rating")
     @Expose
     private Rating rating;
@@ -281,7 +281,7 @@ public class TruckAssignDetails implements Serializable {
      * @return
      * The acceptPrice
      */
-    public Integer getAcceptPrice() {
+    public String getAcceptPrice() {
         return acceptPrice;
     }
 
@@ -290,7 +290,7 @@ public class TruckAssignDetails implements Serializable {
      * @param acceptPrice
      * The acceptPrice
      */
-    public void setAcceptPrice(Integer acceptPrice) {
+    public void setAcceptPrice(String acceptPrice) {
         this.acceptPrice = acceptPrice;
     }
 
