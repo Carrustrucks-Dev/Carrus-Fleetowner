@@ -85,29 +85,29 @@ public class DriverFragment extends Fragment {
         });
 
 
-        mSearchEdtTxt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                // TODO Auto-generated method stub
-
-                if (s.length() == 0) {
-                    performSearch();
-                }
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                // TODO Auto-generated method stub
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-                // TODO Auto-generated method stub
-            }
-        });
+//        mSearchEdtTxt.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//                // TODO Auto-generated method stub
+//
+//                if (s.length() == 0) {
+//                    performSearch();
+//                }
+//            }
+//
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//                // TODO Auto-generated method stub
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//                // TODO Auto-generated method stub
+//            }
+//        });
 
     }
 
@@ -118,11 +118,15 @@ public class DriverFragment extends Fragment {
 //                            Toast.makeText(getActivity(), "No booking found", Toast.LENGTH_SHORT).show();
 //                        }
         if (selectedFlag == 0) {
-            ((WhiteDriverFragment) getActiveFragment(vpPager, 0)).isRefreshView = true;
-            ((WhiteDriverFragment) getActiveFragment(vpPager, 0)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
+            if(getActiveFragment(vpPager, 0)!=null) {
+                ((WhiteDriverFragment) getActiveFragment(vpPager, 0)).isRefreshView = true;
+                ((WhiteDriverFragment) getActiveFragment(vpPager, 0)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
+            }
         } else {
-            ((BlackDriverFragment) getActiveFragment(vpPager, 1)).isRefreshView = true;
-            ((BlackDriverFragment) getActiveFragment(vpPager, 1)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
+            if(getActiveFragment(vpPager, 1)!=null) {
+                ((BlackDriverFragment) getActiveFragment(vpPager, 1)).isRefreshView = true;
+                ((BlackDriverFragment) getActiveFragment(vpPager, 1)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
+            }
         }
     }
 
@@ -179,6 +183,9 @@ public class DriverFragment extends Fragment {
     }
 
     private void setSelectionWhite() {
+
+        mSearchEdtTxt.setText("");
+        Utils.hideSoftKeyboard(getActivity());
         mSearchEdtTxt.setError(null);
         selectedFlag = 0;
         mWhiteTextView.setBackgroundResource(R.drawable.tab_background);
@@ -190,6 +197,8 @@ public class DriverFragment extends Fragment {
     }
 
     private void setSeclectionBlack() {
+        mSearchEdtTxt.setText("");
+        Utils.hideSoftKeyboard(getActivity());
         mSearchEdtTxt.setError(null);
         selectedFlag = 1;
         mWhiteTextView.setBackgroundResource(R.drawable.tab_upcming_background_white);

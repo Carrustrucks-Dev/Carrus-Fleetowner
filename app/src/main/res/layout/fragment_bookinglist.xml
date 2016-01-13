@@ -40,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/big_font"
+            android:layout_marginTop="@dimen/five"
             android:text=""
             android:textColor="@color/gray_text" />
     </LinearLayout>
