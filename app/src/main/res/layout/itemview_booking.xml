@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:paddingTop="@dimen/ten"
-    android:paddingBottom="@dimen/ten"
+    android:padding="@dimen/ten"
     android:orientation="horizontal"
     android:weightSum="1"
     android:baselineAligned="false">
