@@ -181,6 +181,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:visibility="gone"
+        android:gravity="center_horizontal"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
@@ -189,7 +190,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="left|center_vertical"
+            android:gravity="center"
             android:padding="@dimen/ten"
             android:text=""
             android:textColor="@color/windowBackground"
