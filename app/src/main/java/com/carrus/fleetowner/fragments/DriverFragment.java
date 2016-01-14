@@ -124,12 +124,14 @@ public class DriverFragment extends Fragment {
 //                        }
         if (selectedFlag == 0) {
             if (getActiveFragment(vpPager, 0) != null) {
+                if(!mSearchEdtTxt.getText().toString().trim().isEmpty())
                 isSearchWhite = true;
                 ((WhiteDriverFragment) getActiveFragment(vpPager, 0)).isRefreshView = true;
                 ((WhiteDriverFragment) getActiveFragment(vpPager, 0)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
             }
         } else {
             if (getActiveFragment(vpPager, 1) != null) {
+                if(!mSearchEdtTxt.getText().toString().trim().isEmpty())
                 isSearchBlack = true;
                 ((BlackDriverFragment) getActiveFragment(vpPager, 1)).isRefreshView = true;
                 ((BlackDriverFragment) getActiveFragment(vpPager, 1)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
