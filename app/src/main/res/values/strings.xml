@@ -28,6 +28,8 @@
     <string name="bookingdetails">Booking Details</string>
     <string name="crnsubject">CRN Number</string>
     <string name="share_chooser_text">Share using…</string>
+    <string name="update_message">Do you want to update the app?</string>
+    <string name="critical_update_message">Critical update found, you have to update the app</string>
 
 
     <!-- navigation drawer item labels  -->

@@ -1,10 +1,26 @@
 package com.carrus.fleetowner;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 
+import com.carrus.fleetowner.retrofit.RestClient;
+import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.SessionManager;
+
+import org.json.JSONObject;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
+import static com.carrus.fleetowner.utils.Constants.APPTYPE;
 
 /**
  * Created by Sunny on 12/3/15 for Fleet Owner for Fleet Owner for Fleet Owner.
@@ -17,6 +33,8 @@ public class SplashActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        mSessionManager = new SessionManager(this);
+        checkVersion();
         //Force Crash
 //        int i=1/0;
 
@@ -36,9 +54,72 @@ public class SplashActivity extends BaseActivity {
 //                Toast.makeText(this, "XHDPI", Toast.LENGTH_SHORT).show();
 //                break;
 //        }
+    }
 
+    private void checkVersion() {
+       final AlertDialog.Builder alertDialog = new AlertDialog.Builder(SplashActivity.this);
+        RestClient.getApiService().getAppVersion(APPTYPE, new Callback<String>() {
+            @Override
+            public void success(String s, Response response) {
+                if (BuildConfig.DEBUG)
+                    Log.v("SPLASH SCREEN", "Response > " + s);
+                try {
+                    JSONObject mObject = new JSONObject(s);
+                    int status = mObject.getInt("statusCode");
+                    if (ApiResponseFlags.OK.getOrdinal() == status) {
+                        final JSONObject data = mObject.getJSONObject("data");
+                        PackageManager manager = SplashActivity.this.getPackageManager();
+                        final PackageInfo info = manager.getPackageInfo(SplashActivity.this.getPackageName(), 0);
+                        JSONObject mAndroidVersion = data.getJSONObject("ANDROID");
 
-        mSessionManager = new SessionManager(this);
+                        if (mAndroidVersion.has("criticalVersion")) {
+                            if (Integer.parseInt(mAndroidVersion.getString("criticalVersion")) > info.versionCode) {
+                                alertDialog.setMessage(getString(R.string.critical_update_message));
+                                alertDialog.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        goToAppStore();
+                                        dialog.dismiss();
+                                    }
+                                });
+                                alertDialog.show();
+                            } else {
+                                goToNextActivity();
+                            }
+
+                        } else if (Integer.parseInt(mAndroidVersion.getString("version")) > info.versionCode) {
+                            alertDialog.setMessage(getString(R.string.update_message));
+                            alertDialog.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    goToAppStore();
+                                    dialog.dismiss();
+                                }
+                            });
+                            alertDialog.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                    goToNextActivity();
+                                }
+                            });
+                            alertDialog.show();
+                        } else {
+                            goToNextActivity();
+                        }
+                    }
+                }catch (Exception ex){
+                    goToNextActivity();
+                    ex.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                goToNextActivity();
+            }
+        });
+    }
+
+    private void goToNextActivity() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -50,5 +131,15 @@ public class SplashActivity extends BaseActivity {
                 finish();
             }
         }, 2000);
+    }
+
+    private void goToAppStore(){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("market://details?id=com.carrus.fleetowner"));
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.carrus.fleetowner"));
+        }
     }
 }

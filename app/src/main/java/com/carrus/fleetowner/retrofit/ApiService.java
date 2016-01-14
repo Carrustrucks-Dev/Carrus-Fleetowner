@@ -169,4 +169,8 @@ public interface ApiService {
     @GET("/api/v1/fleetOwner/allTruck")
     void getallTruck(@Header(AUTHORIZATION) String authorization, @SuppressWarnings("SameParameterValue") @Query(LIMIT) String limit, @SuppressWarnings("SameParameterValue") @Query(SKIP) String skip, @SuppressWarnings("SameParameterValue") @Query(SORT) String sort, @SuppressWarnings("SameParameterValue") @Query("truckStatus") String truckStatus, Callback<String> callback);
 
+
+    @GET("/api/v1/appVersion")
+    void getAppVersion(@Query("appType") String appType, Callback<String> callback);
+
 }
