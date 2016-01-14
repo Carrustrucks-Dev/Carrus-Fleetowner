@@ -114,6 +114,14 @@ public class FragmentDrawer extends Fragment {
             }
         });
 
+        layout.findViewById(R.id.termsTxtView).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerListener.onDrawerItemSelected(55);
+                mDrawerLayout.closeDrawer(containerView);
+            }
+        });
+
         return layout;
     }
 

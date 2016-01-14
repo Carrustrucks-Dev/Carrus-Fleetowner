@@ -136,9 +136,9 @@ public class UpComingBookingAdapter extends RecyclerView.Adapter {
                 e.printStackTrace();
             }
 
-            ((ViewHolder) holder).mNameTxtView.setText(myList.get(position).shipper.firstName + mActivity.getResources().getString(R.string.space) + Character.toUpperCase(myList.get(position).shipper.lastName.charAt(0)) + myList.get(position).shipper.lastName.substring(1));
-            ((ViewHolder) holder).mCodeTxtView.setText(myList.get(position).truck.truckType.typeTruckName + mActivity.getResources().getString(R.string.comma_spraction) + myList.get(position).truck.truckNumber);
-            ((ViewHolder) holder).mAddressTxtView.setText(myList.get(position).pickUp.city + mActivity.getResources().getString(R.string.towithspaces) + myList.get(position).dropOff.city);
+            ((ViewHolder) holder).mNameTxtView.setText(myList.get(position).shipper.firstName+" "+myList.get(position).shipper.lastName);
+            ((ViewHolder) holder).mCodeTxtView.setText(myList.get(position).assignTruck.truckName +", " +myList.get(position).assignTruck.truckNumber);
+            ((ViewHolder) holder).mAddressTxtView.setText(myList.get(position).pickUp.city + " to " + myList.get(position).dropOff.city);
             ((ViewHolder) holder).mStatusTxtView.setText(myList.get(position).bookingStatus.replace("_", " "));
 
             switch (myList.get(position).bookingStatus.toUpperCase()) {

@@ -231,9 +231,9 @@ public class BookingDetailsActivity extends BaseActivity {
 
     private void setValuesonViews() {
 
-        nameDetailTxtView.setText(mMyBookingDataModel.shipper.firstName + getResources().getString(R.string.space) + mMyBookingDataModel.shipper.lastName);
-        typeDetailTxtView.setText(mMyBookingDataModel.truck.truckType.typeTruckName + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.truck.truckNumber);
-        locationDetailsTxtView.setText(mMyBookingDataModel.pickUp.city + getResources().getString(R.string.towithspaces) + mMyBookingDataModel.dropOff.city);
+        nameDetailTxtView.setText(mMyBookingDataModel.shipper.firstName + " " + mMyBookingDataModel.shipper.lastName);
+        typeDetailTxtView.setText(mMyBookingDataModel.assignTruck.truckName+ ", " + mMyBookingDataModel.assignTruck.truckNumber);
+        locationDetailsTxtView.setText(mMyBookingDataModel.pickUp.city + " to  " + mMyBookingDataModel.dropOff.city);
         if (mMyBookingDataModel.crn != null && !mMyBookingDataModel.crn.equalsIgnoreCase(""))
             trackDetailsIdTxtView.setText(getResources().getString(R.string.crn) + mMyBookingDataModel.crn);
 

@@ -86,7 +86,7 @@
                         android:textSize="@dimen/big_font" />
 
 
-                    <TextView
+                    <com.carrus.fleetowner.utils.CapitalizedTextView
                         android:id="@+id/typeDetailTxtView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
                         android:textSize="@dimen/mid_fond" />
 
 
-                    <TextView
+                    <com.carrus.fleetowner.utils.CapitalizedTextView
                         android:id="@+id/locationDetailsTxtView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

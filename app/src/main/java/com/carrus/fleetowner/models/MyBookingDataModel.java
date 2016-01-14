@@ -68,4 +68,6 @@ public class MyBookingDataModel implements Serializable {
 
     @SerializedName("crruentTracking")
     public final List<TrackingDetails> crruentTracking = new ArrayList<>();
+
+    public AssignTruck assignTruck;
 }

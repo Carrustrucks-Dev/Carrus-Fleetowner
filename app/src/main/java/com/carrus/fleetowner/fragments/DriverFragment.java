@@ -31,6 +31,8 @@ public class DriverFragment extends Fragment {
     private ViewPager vpPager;
     private MyPagerAdapter adapterViewPager;
     public EditText mSearchEdtTxt;
+    private boolean isSearchWhite = false;
+    private boolean isSearchBlack = false;
 
     @Nullable
     @Override
@@ -62,7 +64,7 @@ public class DriverFragment extends Fragment {
         mBlackTextView.setText(getResources().getString(R.string.black));
         final LinearLayout mSearchLayout = (LinearLayout) view.findViewById(R.id.searchLayout);
         mSearchLayout.setVisibility(View.VISIBLE);
-        mSearchEdtTxt=(EditText) view.findViewById(R.id.searchEdtTxt);
+        mSearchEdtTxt = (EditText) view.findViewById(R.id.searchEdtTxt);
         vpPager = (ViewPager) view.findViewById(R.id.vpPager);
         vpPager.setAdapter(adapterViewPager);
         mSearchEdtTxt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -75,7 +77,6 @@ public class DriverFragment extends Fragment {
                         mSearchEdtTxt.requestFocus();
                     } else {
                         performSearch();
-
                     }
 
                     return true;
@@ -85,45 +86,51 @@ public class DriverFragment extends Fragment {
         });
 
 
-//        mSearchEdtTxt.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//                // TODO Auto-generated method stub
-//
-//                if (s.length() == 0) {
-//                    performSearch();
-//                }
-//            }
-//
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//                // TODO Auto-generated method stub
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//                // TODO Auto-generated method stub
-//            }
-//        });
+        mSearchEdtTxt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                // TODO Auto-generated method stub
+
+                if (s.length() == 0 && isSearchWhite) {
+                    isSearchWhite = false;
+                    performSearch();
+                } else if (s.length() == 0 && isSearchBlack) {
+                    isSearchBlack = false;
+                    performSearch();
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                // TODO Auto-generated method stub
+            }
+        });
 
     }
 
 
-    private void performSearch(){
+    private void performSearch() {
         Utils.hideSoftKeyboard(getActivity());
 //                        if (searchTrackingId()) {
 //                            Toast.makeText(getActivity(), "No booking found", Toast.LENGTH_SHORT).show();
 //                        }
         if (selectedFlag == 0) {
-            if(getActiveFragment(vpPager, 0)!=null) {
+            if (getActiveFragment(vpPager, 0) != null) {
+                isSearchWhite = true;
                 ((WhiteDriverFragment) getActiveFragment(vpPager, 0)).isRefreshView = true;
                 ((WhiteDriverFragment) getActiveFragment(vpPager, 0)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
             }
         } else {
-            if(getActiveFragment(vpPager, 1)!=null) {
+            if (getActiveFragment(vpPager, 1) != null) {
+                isSearchBlack = true;
                 ((BlackDriverFragment) getActiveFragment(vpPager, 1)).isRefreshView = true;
                 ((BlackDriverFragment) getActiveFragment(vpPager, 1)).getMyBooking(mSearchEdtTxt.getText().toString().trim());
             }

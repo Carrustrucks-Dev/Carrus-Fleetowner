@@ -22,6 +22,7 @@ import com.carrus.fleetowner.fragments.MyBookingFragment;
 import com.carrus.fleetowner.fragments.ProfileFragment;
 import com.carrus.fleetowner.fragments.TruckReguestsFragment;
 import com.carrus.fleetowner.fragments.TrucksFragment;
+import com.carrus.fleetowner.fragments.WebViewFragment;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.Constants;
@@ -153,7 +154,7 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
             case 4:
                 if (selectedPos != 4) {
                     selectedPos = 4;
-//                    fragment = new HomeFragment();
+                    fragment = new WebViewFragment();
                     title = getString(R.string.aboutus);
                 }
                 break;
@@ -197,6 +198,13 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
 
                 break;
 
+            case 55:
+                if (selectedPos != 55) {
+                    selectedPos = 55;
+                    fragment = new WebViewFragment();
+                    title = getString(R.string.term_privacy);
+                }
+                break;
 
             default:
                 selectedPos = 0;

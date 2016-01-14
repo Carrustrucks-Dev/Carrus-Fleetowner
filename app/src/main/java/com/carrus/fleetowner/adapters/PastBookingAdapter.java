@@ -124,7 +124,7 @@ public class PastBookingAdapter extends RecyclerView.Adapter {
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder,final int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 //        holder.mTextView.setText(mDataset[position
@@ -141,9 +141,9 @@ public class PastBookingAdapter extends RecyclerView.Adapter {
                 e.printStackTrace();
             }
 
-            ((ViewHolder) holder).mNameTxtView.setText(myList.get(position).shipper.firstName + mActivity.getResources().getString(R.string.space) + Character.toUpperCase(myList.get(position).shipper.lastName.charAt(0)) + myList.get(position).shipper.lastName.substring(1));
-            ((ViewHolder) holder).mCodeTxtView.setText(myList.get(position).truck.truckType.typeTruckName + mActivity.getResources().getString(R.string.comma_spraction) + myList.get(position).truck.truckNumber);
-            ((ViewHolder) holder).mAddressTxtView.setText(myList.get(position).pickUp.city + mActivity.getResources().getString(R.string.towithspaces) + myList.get(position).dropOff.city);
+            ((ViewHolder) holder).mNameTxtView.setText(myList.get(position).shipper.firstName + " " + myList.get(position).shipper.lastName);
+            ((ViewHolder) holder).mCodeTxtView.setText(myList.get(position).assignTruck.truckName + ", " + myList.get(position).assignTruck.truckNumber);
+            ((ViewHolder) holder).mAddressTxtView.setText(myList.get(position).pickUp.city + " to " + myList.get(position).dropOff.city);
 
             ((ViewHolder) holder).mStatusTxtView.setText(myList.get(position).bookingStatus.replace("_", " "));
 
@@ -178,13 +178,13 @@ public class PastBookingAdapter extends RecyclerView.Adapter {
 
             try {
 
-                if(myList.get(position).bookingStatus.equalsIgnoreCase("CANCELED")){
+                if (myList.get(position).bookingStatus.equalsIgnoreCase("CANCELED")) {
                     ((ViewHolder) holder).mTimeTxtView.setVisibility(View.GONE);
-                }else{
+                } else {
                     ((ViewHolder) holder).mTimeTxtView.setVisibility(View.VISIBLE);
-                    if(myList.get(position).bookingStatus.equalsIgnoreCase("COMPLETED")){
+                    if (myList.get(position).bookingStatus.equalsIgnoreCase("COMPLETED")) {
                         ((ViewHolder) holder).mTimeTxtView.setText(Utils.getDateMonth(myList.get(position).bookingUpdatedAt));
-                    }else{
+                    } else {
                         ((ViewHolder) holder).mTimeTxtView.setText(Utils.getDay(myList.get(position).pickUp.date) + ", " + myList.get(position).pickUp.time);
                     }
                 }
@@ -203,7 +203,7 @@ public class PastBookingAdapter extends RecyclerView.Adapter {
 
                 }
             });
-        }else{
+        } else {
             ((ProgressViewHolder) holder).progressBar.setIndeterminate(true);
         }
 

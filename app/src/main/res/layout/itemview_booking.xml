@@ -80,7 +80,7 @@
             android:textSize="@dimen/low_font"
             />
 
-        <TextView
+        <com.carrus.fleetowner.utils.CapitalizedTextView
             android:id="@+id/codeTxtView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
