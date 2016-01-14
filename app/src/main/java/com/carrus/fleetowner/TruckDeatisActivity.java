@@ -141,12 +141,12 @@ public class TruckDeatisActivity extends BaseActivity {
 
         // Adding child data
         listDataHeader.add(new Header(getResources().getString(R.string.cargodetails)));
-        listDataHeader.add(new Header(getResources().getString(R.string.notes_cap)));
-        listDataHeader.add(new Header(getResources().getString(R.string.shippernotes)));
+
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         if (intent.getStringExtra(TYPE).equalsIgnoreCase("new request")) {
+            listDataHeader.add(new Header(getResources().getString(R.string.shippernotes)));
             headerTxtView.setText(getResources().getString(R.string.newRequest));
             mQuoteBtn.setText(getResources().getString(R.string.quote));
             mIgnoreBtn.setVisibility(View.VISIBLE);
@@ -154,6 +154,8 @@ public class TruckDeatisActivity extends BaseActivity {
                     (TrucksDetailsModel) bundle.getSerializable(VALUE);
             setValuesonViews();
         } else if (intent.getStringExtra(TYPE).equalsIgnoreCase("quote")) {
+            listDataHeader.add(new Header(getResources().getString(R.string.notes_cap)));
+            listDataHeader.add(new Header(getResources().getString(R.string.shippernotes)));
             headerTxtView.setText(getResources().getString(R.string.pendingquotes_head));
             mQuoteBtn.setText(getResources().getString(R.string.modify));
             mIgnoreBtn.setVisibility(View.GONE);
@@ -161,6 +163,8 @@ public class TruckDeatisActivity extends BaseActivity {
                     (TruckQuotesDetails) bundle.getSerializable(VALUE);
             setQuoteValuesonViews();
         } else if (intent.getStringExtra(TYPE).equalsIgnoreCase("assigment")) {
+            listDataHeader.add(new Header(getResources().getString(R.string.notes_cap)));
+            listDataHeader.add(new Header(getResources().getString(R.string.shippernotes)));
             headerTxtView.setText(getResources().getString(R.string.pendingassign_head));
             mQuoteBtn.setText(getResources().getString(R.string.assign_driver));
             mIgnoreBtn.setVisibility(View.GONE);
@@ -249,11 +253,11 @@ public class TruckDeatisActivity extends BaseActivity {
 
         // Adding child data
         ArrayList<ExpandableChildItem> notes = new ArrayList<>();
-        notes.add(new ExpandableChildItem("", mTruckQuotesDetails.getNote(), 1));
+        notes.add(new ExpandableChildItem("", mTruckQuotesDetails.getQuoteNote(), 1));
 
         // Adding child data
         ArrayList<ExpandableChildItem> fleetowner = new ArrayList<>();
-        fleetowner.add(new ExpandableChildItem("", mTruckQuotesDetails.getShipper().firstName, 1));
+        fleetowner.add(new ExpandableChildItem("", mTruckQuotesDetails.getNote(), 1));
 
         listDataChild.put(listDataHeader.get(0), cargoDetails); // Header, Child data
         listDataChild.put(listDataHeader.get(1), notes);
@@ -303,13 +307,8 @@ public class TruckDeatisActivity extends BaseActivity {
         ArrayList<ExpandableChildItem> notes = new ArrayList<>();
         notes.add(new ExpandableChildItem("", mTrucksDetailsModel.getNote(), 1));
 
-        // Adding child data
-        ArrayList<ExpandableChildItem> fleetowner = new ArrayList<>();
-//        fleetowner.add(new ExpandableChildItem("", mTrucksDetailsModel.getShipper().firstName, 1));
-
         listDataChild.put(listDataHeader.get(0), cargoDetails); // Header, Child data
         listDataChild.put(listDataHeader.get(1), notes);
-        listDataChild.put(listDataHeader.get(2), fleetowner);
 
         ExpandableListAdapter listAdapter = new ExpandableListAdapter(TruckDeatisActivity.this, listDataHeader, listDataChild);
         mExpandableListView.setAdapter(listAdapter);
@@ -353,12 +352,13 @@ public class TruckDeatisActivity extends BaseActivity {
 
         // Adding child data
         ArrayList<ExpandableChildItem> notes = new ArrayList<>();
-        if (mTruckAssignDetails.getTruckerNote() != null)
-            notes.add(new ExpandableChildItem("", mTruckAssignDetails.getTruckerNote().toString(), 1));
+        if (mTruckAssignDetails.getBid().getNote() != null)
+            notes.add(new ExpandableChildItem("", mTruckAssignDetails.getBid().getNote().toString(), 1));
 
         // Adding child data
         ArrayList<ExpandableChildItem> fleetowner = new ArrayList<>();
-        fleetowner.add(new ExpandableChildItem("", mTruckAssignDetails.getShipper().firstName, 1));
+        if (mTruckAssignDetails.getJobNote() != null)
+            fleetowner.add(new ExpandableChildItem("", mTruckAssignDetails.getJobNote().toString(), 1));
 
         listDataChild.put(listDataHeader.get(0), cargoDetails); // Header, Child data
         listDataChild.put(listDataHeader.get(1), notes);

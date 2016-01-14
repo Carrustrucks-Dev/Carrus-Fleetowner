@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -172,6 +174,30 @@ public class DriverActivity extends BaseActivity {
             }
         });
 
+                mSearchEdtTxt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                // TODO Auto-generated method stub
+
+                if (s.length() == 0) {
+                    getDrivers(mSearchEdtTxt.getText().toString().trim());
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                // TODO Auto-generated method stub
+            }
+        });
+
     }
 
     private void getDrivers(String val) {
@@ -256,10 +282,10 @@ public class DriverActivity extends BaseActivity {
                         Utils.shopAlterDialog(mContext, Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
 //                        Toast.makeText(mContext, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
-                        if (bookingList == null || bookingList.size() == 0) {
-                            mErrorTxtView.setText(getResources().getString(R.string.nopendingassignfound));
+                        mAdapter = new DriverListAdapter((Activity) mContext, bookingList, mRecyclerView, true);
+                        mRecyclerView.setAdapter(mAdapter);
+                            mErrorTxtView.setText(getResources().getString(R.string.nodriverfound));
                             mErrorLayout.setVisibility(View.VISIBLE);
-                        }
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
                         Toast.makeText(mContext, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         try {

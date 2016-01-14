@@ -16,7 +16,7 @@ public class TruckAssignDetails implements Serializable {
     private String Id;
     @SerializedName("bid")
     @Expose
-    private String bid;
+    private Bid bid;
     @SerializedName("shipper")
     @Expose
     private Shipper shipper;
@@ -101,7 +101,7 @@ public class TruckAssignDetails implements Serializable {
      * @return
      * The bid
      */
-    public String getBid() {
+    public Bid getBid() {
         return bid;
     }
 
@@ -110,7 +110,7 @@ public class TruckAssignDetails implements Serializable {
      * @param bid
      * The bid
      */
-    public void setBid(String bid) {
+    public void setBid(Bid bid) {
         this.bid = bid;
     }
 

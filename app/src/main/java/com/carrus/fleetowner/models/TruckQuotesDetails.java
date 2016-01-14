@@ -77,9 +77,7 @@ public class TruckQuotesDetails implements Serializable{
     @SerializedName("fleetOwner")
     @Expose
     private String fleetOwner;
-    @SerializedName("acceptQuote")
-    @Expose
-    private String acceptQuote;
+
 
     /**
      *
@@ -476,24 +474,5 @@ public class TruckQuotesDetails implements Serializable{
     public void setFleetOwner(String fleetOwner) {
         this.fleetOwner = fleetOwner;
     }
-
-    /**
-     *
-     * @return
-     * The acceptQuote
-     */
-    public String getAcceptQuote() {
-        return acceptQuote;
-    }
-
-    /**
-     *
-     * @param acceptQuote
-     * The acceptQuote
-     */
-    public void setAcceptQuote(String acceptQuote) {
-        this.acceptQuote = acceptQuote;
-    }
-
 
 }
