@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/container_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="UnusedIds">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"
+            tools:ignore="UnusedIds" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:padding="@dimen/ten"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                style="@style/App_EditTextStyle"
+                android:inputType="text"
+                android:hint="@string/firstname" />
+
+            <EditText
+                style="@style/App_EditTextStyle"
+                android:inputType="text"
+                android:hint="@string/lastname" />
+
+            <EditText
+                style="@style/App_EditTextStyle"
+                android:inputType="textEmailAddress"
+                android:hint="@string/emailid" />
+
+            <EditText
+                style="@style/App_EditTextStyle"
+                android:inputType="text"
+                android:hint="@string/companyname" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/five">
+
+                </Spinner>
+
+                <TextView
+                    style="@style/App_EditTextStyle"
+                    android:text="@string/typecompany"
+                    android:textColor="@color/gray_text" />
+
+            </RelativeLayout>
+
+            <EditText
+                style="@style/App_EditTextStyle"
+                android:inputType="textPassword"
+                android:hint="@string/password" />
+
+            <EditText
+                style="@style/App_EditTextStyle"
+                android:inputType="textPassword"
+                android:hint="@string/cnfrmpassword" />
+
+            <EditText
+                style="@style/App_EditTextStyle"
+                android:inputType="number"
+                android:hint="@string/phonenumber" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/five">
+
+                </Spinner>
+
+                <TextView
+                    style="@style/App_EditTextStyle"
+                    android:text="@string/state"
+                    android:textColor="@color/gray_text" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/five">
+
+                </Spinner>
+
+                <TextView
+                    style="@style/App_EditTextStyle"
+                    android:text="@string/city"
+                    android:textColor="@color/gray_text" />
+
+            </RelativeLayout>
+
+            <EditText
+                style="@style/App_EditTextStyle"
+                android:inputType="number"
+                android:hint="@string/zipcode" />
+
+
+            <TextView
+                style="@style/App_EditTextStyle"
+                android:text="@string/country"
+                android:textColor="@color/gray_text" />
+
+
+            <Button
+                android:id="@+id/submitBtn"
+                style="@style/CustomTextAppearance.Bold"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:text="@string/submit"
+                android:textColor="@color/windowBackground" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

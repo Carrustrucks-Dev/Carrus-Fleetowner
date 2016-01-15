@@ -173,4 +173,7 @@ public interface ApiService {
     @GET("/api/v1/appVersion")
     void getAppVersion(@Query("appType") String appType, Callback<String> callback);
 
+    @GET("/api/v1/partnership")
+    void getPartnerShip(Callback<String> callback);
+
 }

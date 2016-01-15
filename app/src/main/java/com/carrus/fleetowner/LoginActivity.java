@@ -96,6 +96,15 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
+
+        findViewById(R.id.signUpTxtView).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(LoginActivity.this, SignUpActivity.class), 600);
+            }
+        });
+
+
     }
 
     private void getDeviceToken() {

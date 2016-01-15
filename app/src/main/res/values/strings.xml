@@ -23,6 +23,7 @@
     <string name="aboutus">About us</string>
     <string name="callcarrus">Call Carrus</string>
     <string name="signout">Sign Out</string>
+    <string name="signup_header">Sign Up</string>
     <string name="myprofile">My Profile</string>
     <string name="term_privacy">Terms | Privacy Policy</string>
     <string name="bookingdetails">Booking Details</string>
@@ -99,9 +100,10 @@
     <string name="password">Password</string>
     <string name="submit">SUBMIT</string>
     <string name="forgotpasswd">FORGOT PASSWORD ?</string>
+    <string name="signup">NOT A MEMBER YET? SIGN UP</string>
     <string name="send">SEND</string>
     <string name="forgotpasswdlable">Forgot Password</string>
-    <string name="rememberme">&#160;&#160;Remember me</string>
+    <string name="rememberme">&#160;&#160;REMEMBER ME</string>
 
     <!-- My booking screen text-->
     <string name="upcming">Upcoming</string>
@@ -160,4 +162,17 @@
     <!--Dialog Button Text-->
     <string name="tryagain">Try again</string>
     <string name="exit">Exit</string>
+
+    <!--Sign up screen text-->
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="emailid">Email ID</string>
+    <string name="cnfrmpassword">Confirm Password</string>
+    <string name="companyname">Company Name</string>
+    <string name="typecompany">Type of Company</string>
+    <string name="phonenumber">Mobile Number</string>
+    <string name="state">State</string>
+    <string name="city">City</string>
+    <string name="country">Country</string>
+    <string name="zipcode">Zip Code</string>
 </resources>
