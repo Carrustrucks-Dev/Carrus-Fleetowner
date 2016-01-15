@@ -40,5 +40,6 @@ public class Constants {
     public static final String[] name = {"Atawa", "Atawa Choa", "Bahlāna", "Bajwara", "Bhagwanpura", "Bijwari", "Burail"};
     public static final double[] latitude = {30.73, 30.74, 30.68, 30.73, 30.74, 30.74, 30.71};
     public static final double[] longitude = {76.75, 76.77, 76.80, 76.76, 76.83, 76.75, 76.76};
+    
 
 }

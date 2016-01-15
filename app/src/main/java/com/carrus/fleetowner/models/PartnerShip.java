@@ -74,4 +74,9 @@ public class PartnerShip implements Serializable  {
         this.status = status;
     }
 
+
+    @Override
+    public String toString() {
+        return getPartnershipName();
+    }
 }
