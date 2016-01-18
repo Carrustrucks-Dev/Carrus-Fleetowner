@@ -99,6 +99,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_gravity="center"
+            android:visibility="gone"
             android:padding="@dimen/ten"
             android:text="@string/signup"
             android:textColor="@color/windowBackground"/>

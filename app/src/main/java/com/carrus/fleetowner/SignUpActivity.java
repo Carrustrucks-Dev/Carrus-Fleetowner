@@ -48,7 +48,6 @@ public class SignUpActivity extends BaseActivity {
     private boolean isParntrClick = false;
     private StateCityModel mStateCityModel;
     private List<String> states=new ArrayList<>();
-    private List<String> cities=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
