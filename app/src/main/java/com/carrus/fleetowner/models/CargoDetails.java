@@ -14,4 +14,9 @@ public class CargoDetails implements Serializable {
 
     @SerializedName("typeCargoName")
     public String typeCargoName;
+
+    @Override
+    public String toString() {
+        return typeCargoName;
+    }
 }

@@ -11,8 +11,10 @@ import android.widget.Spinner;
 
 
 import com.carrus.fleetowner.R;
+import com.carrus.fleetowner.models.CargoDetails;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -103,6 +105,31 @@ public class MultiSpinner extends Spinner implements OnMultiChoiceClickListener,
         List<Boolean> values = new ArrayList<>(items.values());
         selected = new boolean[values.size()];
         for (int i = 0; i < items.size(); i++) {
+            selected[i] = values.get(i);
+        }
+
+        // all text on the spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+                R.layout.textview_for_spinner, new String[]{defaultText});
+        setAdapter(adapter);
+
+        // Set Spinner Text
+        onCancel(null);
+    }
+
+    public void setItems(List<CargoDetails> items,String text,
+                         MultiSpinnerListener listener) {
+        this.listener = listener;
+        this.defaultText=text;
+        this.items = new ArrayList<>();
+        List<Boolean> values = new ArrayList<>();
+        selected = new boolean[items.size()];
+        for (CargoDetails mCargoDetails: items){
+            this.items.add(mCargoDetails.typeCargoName);
+            values.add(false);
+        }
+
+        for (int i = 0; i < this.items.size(); i++) {
             selected[i] = values.get(i);
         }
 

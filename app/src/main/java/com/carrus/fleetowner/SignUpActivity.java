@@ -15,6 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.carrus.fleetowner.gcm.DeviceTokenFetcher;
+import com.carrus.fleetowner.models.CargoDetails;
+import com.carrus.fleetowner.models.CargoType;
+import com.carrus.fleetowner.models.DriverModel;
 import com.carrus.fleetowner.models.StateCityInfo;
 import com.carrus.fleetowner.models.StateCityModel;
 import com.carrus.fleetowner.multivaluesspinner.MultiSpinner;
@@ -35,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +68,7 @@ public class SignUpActivity extends BaseActivity {
     private String USERTYPE = "FLEET_OWNER";
     private EditText mFullNameET, mPasswordET, mCnfrmPasswordET, mPhoneNumberET, mCompanyNameET, mAddressET, mPinCodeET, mEmailET, mCityET;
     private SessionManager sessionManager;
+    private CargoType mCargoType;
 
 
     @Override
@@ -75,7 +80,7 @@ public class SignUpActivity extends BaseActivity {
         initView();
         initializeListener();
         parseStates();
-
+        getTypeCargo();
     }
 
     private void initView() {
@@ -379,9 +384,10 @@ public class SignUpActivity extends BaseActivity {
                     int status = mObject.getInt("statusCode");
 
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
-
-
-
+                        // mCargoType
+                        Gson gson = new Gson();
+                        mCargoType = gson.fromJson(s, CargoType.class);
+                        setTypeCargoSpinner();
 
                     } else {
                         Toast.makeText(SignUpActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
@@ -405,6 +411,23 @@ public class SignUpActivity extends BaseActivity {
                     }
                 } catch (Exception ex) {
                     noInternetDialog();
+                }
+            }
+        });
+    }
+
+    private void setTypeCargoSpinner(){
+
+        mTypeOfCargo.setItems(mCargoType.getData(), getResources().getString(R.string.typecargohandle),new MultiSpinner.MultiSpinnerListener() {
+
+            @Override
+            public void onItemsSelected(boolean[] selected) {
+
+                // your operation with code...
+                for (int i = 0; i < selected.length; i++) {
+                    if (selected[i]) {
+                        Log.i("TAG", i + " : " + mCargoType.getData().get(i).typeCargoName);
+                    }
                 }
             }
         });
