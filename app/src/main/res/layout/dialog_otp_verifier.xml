@@ -65,6 +65,7 @@
                 android:layout_gravity="right"
                 android:background="@color/colorPrimary"
                 android:layout_marginTop="@dimen/ten"
+                android:layout_marginBottom="@dimen/ten"
                 android:singleLine="true"
                 android:text="@string/submit"
                 android:textColor="@color/windowBackground"

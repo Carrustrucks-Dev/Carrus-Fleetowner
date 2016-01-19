@@ -178,7 +178,15 @@ public interface ApiService {
     void getTypeCargo(Callback<String> callback);
 
     @Multipart
-    @PUT("/api/v1/fleetOwner")
+    @POST("/api/v1/fleetOwner")
     void register(@Part("userType") TypedString userType,@Part("email") TypedString email,@Part("fullName") TypedString fullName,@Part("password") TypedString password,@Part("phoneNumber") TypedString phoneNumber,@Part("companyName") TypedString companyName,@Part("areaOfOperation") TypedString areaOfOperation,@Part("numberOfTrucks") TypedString numberOfTrucks,@Part("address") TypedString address,@Part("city") TypedString city,@Part("state") TypedString state,@Part("pinCode") TypedString pinCode,@Part("country") TypedString country,@Part("typeOfCargo") TypedString typeOfCargo,@Part("deviceType") TypedString deviceType,@Part("deviceName") TypedString deviceName,@Part("deviceToken") TypedString deviceToken, Callback<String> callback);
+
+    @FormUrlEncoded
+    @POST("/api/v1/phoneVerification/generate")
+    public void phoneVerificationGenerate(@Field("phoneNumber") String phoneNumber,@Field("email") String email,@Field("userType") String userType,@Field("duringRegister") String duringRegister,@Field("duringUpdate") String duringUpdate, Callback<String> callback);
+
+    @FormUrlEncoded
+    @POST("/api/v1/phoneVerification/verify")
+    public void phoneVerificationVerify(@Field("phoneNumber") String phoneNumber,@Field("OTP") String OTP,@Field("userType") String userType,@Field("duringRegister") String duringRegister, Callback<String> callback);
 
 }

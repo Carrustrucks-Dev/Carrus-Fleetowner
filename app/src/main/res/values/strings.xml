@@ -69,6 +69,7 @@
     <string name="consignmntnotfound">No consignment note found</string>
     <string name="quotesamountrequired">Bid amount required</string>
     <string name="selecetDriver">Please, select driver…</string>
+    <string name="phonelimit">Phone number must be 10 digits</string>
     <string name="choose_image">Choose image from…</string>
     <string name="trucknotfound">Truck Not found, Please choose another driver</string>
     <string name="fieldnotempty">Field can\'t be empty</string>

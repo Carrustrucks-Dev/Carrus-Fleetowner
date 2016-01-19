@@ -72,7 +72,7 @@
                 android:id="@+id/fullnameET"
                 style="@style/App_EditTextStyle"
                 android:hint="@string/fullname"
-                android:inputType="text" />
+                android:inputType="textCapWords" />
 
             <EditText
                 android:id="@+id/emailET"
@@ -104,7 +104,7 @@
                 android:id="@+id/companyET"
                 style="@style/App_EditTextStyle"
                 android:hint="@string/companyname"
-                android:inputType="text" />
+                android:inputType="textCapWords" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -134,7 +134,7 @@
                 android:id="@+id/addressET"
                 style="@style/App_EditTextStyle"
                 android:hint="@string/address"
-                android:inputType="text" />
+                android:inputType="textCapWords" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -163,25 +163,26 @@
                 android:id="@+id/cityET"
                 style="@style/App_EditTextStyle"
                 android:hint="@string/city"
-                android:inputType="text" />
+                android:inputType="textCapWords" />
 
 
             <EditText
                 android:id="@+id/zipCodeET"
                 style="@style/App_EditTextStyle"
                 android:hint="@string/zipcode"
+                android:maxLength="6"
                 android:inputType="number" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
 
-                <TextView
-                    style="@style/App_EditTextStyle"
-                    android:layout_alignParentLeft="true"
-                    android:textColor="@android:color/black"
-                    android:layout_centerVertical="true"
-                    android:text="@string/warehouse" />
+                <!--<TextView-->
+                    <!--style="@style/App_EditTextStyle"-->
+                    <!--android:layout_alignParentLeft="true"-->
+                    <!--android:textColor="@android:color/black"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:text="@string/warehouse" />-->
 
                 <!--<RadioGroup-->
                     <!--android:id="@+id/warehouseRadioGp"-->
@@ -212,7 +213,7 @@
                         <!--android:textColor="@android:color/black" />-->
                 <!--</RadioGroup>-->
 
-            </RelativeLayout>
+            <!--</RelativeLayout>-->
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:background="@color/list_selected"
