@@ -19,7 +19,6 @@ import com.carrus.fleetowner.interfaces.OnLoadMoreListener;
 import com.carrus.fleetowner.models.TruckQuotesDetails;
 import com.carrus.fleetowner.utils.Utils;
 
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.List;
 

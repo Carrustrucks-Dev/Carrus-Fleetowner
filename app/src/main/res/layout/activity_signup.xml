@@ -21,6 +21,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:scrollbars="none"
         android:padding="@dimen/ten">
 
         <LinearLayout
@@ -28,61 +29,112 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                    <RadioButton
+                        android:id="@+id/shipperRadioBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="@string/fleetowner"
+                        android:textColor="@android:color/black" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                    <RadioButton
+                        android:id="@+id/brokerRadioBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="@string/broker"
+                        android:textColor="@android:color/black" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
             <EditText
+                android:id="@+id/fullnameET"
                 style="@style/App_EditTextStyle"
-                android:hint="@string/firstname"
+                android:hint="@string/fullname"
                 android:inputType="text" />
 
             <EditText
-                style="@style/App_EditTextStyle"
-                android:hint="@string/lastname"
-                android:inputType="text" />
-
-            <EditText
+                android:id="@+id/emailET"
                 style="@style/App_EditTextStyle"
                 android:hint="@string/emailid"
                 android:inputType="textEmailAddress" />
 
             <EditText
+                android:id="@+id/passwordET"
+                style="@style/App_EditTextStyle"
+                android:hint="@string/password"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/cnfrmPasswordET"
+                style="@style/App_EditTextStyle"
+                android:hint="@string/cnfrmpassword"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/phoneNumberET"
+                style="@style/App_EditTextStyle"
+                android:hint="@string/phonenumber"
+                android:inputType="number"
+                android:maxLength="10" />
+
+
+            <EditText
+                android:id="@+id/companyET"
                 style="@style/App_EditTextStyle"
                 android:hint="@string/companyname"
                 android:inputType="text" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
+                android:background="@color/edittxt_bg"
+                android:layout_marginTop="@dimen/five"
                 android:layout_height="wrap_content">
 
-                <Spinner
-                    android:id="@+id/partnerSpinner"
+                <com.carrus.fleetowner.multivaluesspinner.MultiSpinner
+                    android:id="@+id/areaOfOperationSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_margin="@dimen/five">
 
-                </Spinner>
-
-                <TextView
-                    android:id="@+id/typeOfCompanyTV"
-                    style="@style/App_EditTextStyle"
-                    android:text="@string/typecompany"
-                    android:textColor="@color/gray_text" />
+                </com.carrus.fleetowner.multivaluesspinner.MultiSpinner>
 
             </RelativeLayout>
 
             <EditText
+                android:id="@+id/numberOfTruckET"
                 style="@style/App_EditTextStyle"
-                android:hint="@string/password"
-                android:inputType="textPassword" />
+                android:hint="@string/numbertruckowner"
+                android:inputType="number"
+                android:maxLength="5" />
 
             <EditText
+                android:id="@+id/addressET"
                 style="@style/App_EditTextStyle"
-                android:hint="@string/cnfrmpassword"
-                android:inputType="textPassword" />
-
-            <EditText
-                style="@style/App_EditTextStyle"
-                android:hint="@string/phonenumber"
-                android:inputType="number" />
+                android:hint="@string/address"
+                android:inputType="text" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -100,41 +152,83 @@
                 <TextView
                     android:id="@+id/stateTV"
                     style="@style/App_EditTextStyle"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:text="@string/state"
                     android:textColor="@color/gray_text" />
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/cityET"
+                style="@style/App_EditTextStyle"
+                android:hint="@string/city"
+                android:inputType="text" />
 
-                <Spinner
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/five">
-
-                </Spinner>
-
-                <TextView
-                    style="@style/App_EditTextStyle"
-                    android:text="@string/city"
-                    android:textColor="@color/gray_text" />
-
-            </RelativeLayout>
 
             <EditText
+                android:id="@+id/zipCodeET"
                 style="@style/App_EditTextStyle"
                 android:hint="@string/zipcode"
                 android:inputType="number" />
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                style="@style/App_EditTextStyle"
-                android:text="@string/country"
-                android:textColor="@color/gray_text" />
+                <TextView
+                    style="@style/App_EditTextStyle"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="@android:color/black"
+                    android:layout_centerVertical="true"
+                    android:text="@string/warehouse" />
 
+                <RadioGroup
+                    android:id="@+id/warehouseRadioGp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/yesRadioBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="@string/yes"
+                        android:textColor="@android:color/black" />
+
+                    <RadioButton
+                        android:id="@+id/noRadioBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="@string/no"
+                        android:textColor="@android:color/black" />
+                </RadioGroup>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:background="@color/edittxt_bg"
+                android:layout_marginTop="@dimen/five"
+                android:layout_height="wrap_content">
+
+                <com.carrus.fleetowner.multivaluesspinner.MultiSpinner
+                    android:id="@+id/typeOfCargoSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="@dimen/five">
+
+                </com.carrus.fleetowner.multivaluesspinner.MultiSpinner>
+
+            </RelativeLayout>
 
             <Button
                 android:id="@+id/submitBtn"
