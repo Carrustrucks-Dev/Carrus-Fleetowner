@@ -15,9 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.carrus.fleetowner.gcm.DeviceTokenFetcher;
-import com.carrus.fleetowner.models.CargoDetails;
 import com.carrus.fleetowner.models.CargoType;
-import com.carrus.fleetowner.models.DriverModel;
 import com.carrus.fleetowner.models.StateCityInfo;
 import com.carrus.fleetowner.models.StateCityModel;
 import com.carrus.fleetowner.multivaluesspinner.MultiSpinner;
@@ -28,6 +26,7 @@ import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,13 +34,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -49,7 +45,6 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-import static com.carrus.fleetowner.utils.Constants.COUNTRYNAME;
 import static com.carrus.fleetowner.utils.Constants.SENDER_ID;
 
 /**
@@ -66,9 +61,11 @@ public class SignUpActivity extends BaseActivity {
     private List<String> areaOprationList;
     private RadioButton mShipperRadioBtn, mBrokerRadioBtn;
     private String USERTYPE = "FLEET_OWNER";
-    private EditText mFullNameET, mPasswordET, mCnfrmPasswordET, mPhoneNumberET, mCompanyNameET, mAddressET, mPinCodeET, mEmailET, mCityET;
+    private EditText mFullNameET, mPasswordET, mCnfrmPasswordET, mPhoneNumberET, mCompanyNameET, mAddressET, mPinCodeET, mEmailET, mCityET, mNumberTruckET;
     private SessionManager sessionManager;
     private CargoType mCargoType;
+    private JSONArray mOperationArray, mCargoTypeArray;
+    private boolean isOperationSelected=false, isCargoTypeSelected=false;
 
 
     @Override
@@ -104,6 +101,7 @@ public class SignUpActivity extends BaseActivity {
         mCnfrmPasswordET = (EditText) findViewById(R.id.cnfrmPasswordET);
         mEmailET = (EditText) findViewById(R.id.emailET);
         mCityET = (EditText) findViewById(R.id.cityET);
+        mNumberTruckET = (EditText) findViewById(R.id.numberOfTruckET);
     }
 
     private void initializeListener() {
@@ -212,21 +210,26 @@ public class SignUpActivity extends BaseActivity {
             }
         });
 
-        areaOprationList=new ArrayList<>(states);
+        areaOprationList = new ArrayList<>(states);
         areaOprationList.remove(0);
-       final TreeMap<String, Boolean> items = new TreeMap<>();
-        for(String item : areaOprationList) {
+        final TreeMap<String, Boolean> items = new TreeMap<>();
+        for (String item : areaOprationList) {
             items.put(item, Boolean.FALSE);
         }
 
-        mAreaOprerationSpinner.setItems(items, getResources().getString(R.string.areaoprations),new MultiSpinner.MultiSpinnerListener() {
+        mAreaOprerationSpinner.setItems(items, getResources().getString(R.string.areaoprations), new MultiSpinner.MultiSpinnerListener() {
 
             @Override
             public void onItemsSelected(boolean[] selected) {
 
                 // your operation with code...
+                isOperationSelected=false;
+                    mOperationArray=new JSONArray();
+
                 for (int i = 0; i < selected.length; i++) {
                     if (selected[i]) {
+                        isOperationSelected=true;
+                        mOperationArray.put(areaOprationList.get(i));
                         Log.i("TAG", i + " : " + areaOprationList.get(i));
                     }
                 }
@@ -264,13 +267,18 @@ public class SignUpActivity extends BaseActivity {
 
         else if (checkETEmpty(mEmailET))
             return false;
-        else if (checkETEmpty(mCompanyNameET))
-            return false;
-         else if (checkETEmpty(mPasswordET))
+        else if (checkETEmpty(mPasswordET))
             return false;
         else if (checkETEmpty(mCnfrmPasswordET))
             return false;
         else if (checkETEmpty(mPhoneNumberET))
+            return false;
+        else if (checkETEmpty(mCompanyNameET))
+            return false;
+        else if (!isOperationSelected) {
+            Toast.makeText(SignUpActivity.this, "Select Area of Operation", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (checkETEmpty(mNumberTruckET))
             return false;
         else if (checkETEmpty(mAddressET))
             return false;
@@ -278,12 +286,15 @@ public class SignUpActivity extends BaseActivity {
             mStateTxtView.setError(getResources().getString(R.string.select_value));
             mStateTxtView.requestFocus();
             return false;
-        }else if (checkETEmpty(mCityET))
+        } else if (checkETEmpty(mCityET))
             return false;
 
         else if (checkETEmpty(mPinCodeET))
             return false;
-        else if (!mPasswordET.getText().toString().trim().equalsIgnoreCase(mCnfrmPasswordET.getText().toString().trim())) {
+        else if (!isCargoTypeSelected) {
+            Toast.makeText(SignUpActivity.this, "Select Type of Cargo Handled", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (!mPasswordET.getText().toString().trim().equalsIgnoreCase(mCnfrmPasswordET.getText().toString().trim())) {
             mCnfrmPasswordET.setError(getResources().getString(R.string.passwdnotmacth));
             mCnfrmPasswordET.requestFocus();
             return false;
@@ -372,7 +383,7 @@ public class SignUpActivity extends BaseActivity {
         }).execute(SENDER_ID);
     }
 
-    private void getTypeCargo(){
+    private void getTypeCargo() {
         Utils.loading_box(SignUpActivity.this);
         RestClient.getApiService().getTypeCargo(new Callback<String>() {
             @Override
@@ -416,16 +427,20 @@ public class SignUpActivity extends BaseActivity {
         });
     }
 
-    private void setTypeCargoSpinner(){
+    private void setTypeCargoSpinner() {
 
-        mTypeOfCargo.setItems(mCargoType.getData(), getResources().getString(R.string.typecargohandle),new MultiSpinner.MultiSpinnerListener() {
+        mTypeOfCargo.setItems(mCargoType.getData(), getResources().getString(R.string.typecargohandle), new MultiSpinner.MultiSpinnerListener() {
 
             @Override
             public void onItemsSelected(boolean[] selected) {
 
                 // your operation with code...
+                isOperationSelected=false;
+                    mCargoTypeArray=new JSONArray();
                 for (int i = 0; i < selected.length; i++) {
                     if (selected[i]) {
+                        isOperationSelected=true;
+                        mCargoTypeArray.put(mCargoType.getData().get(i).id);
                         Log.i("TAG", i + " : " + mCargoType.getData().get(i).typeCargoName);
                     }
                 }

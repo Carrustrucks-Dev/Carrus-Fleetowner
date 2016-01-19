@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_gravity="center"
-            android:padding="@dimen/ten"
+            android:padding="@dimen/five"
             android:text="@string/forgotpasswd"
             android:textColor="@color/windowBackground"/>
 
@@ -100,7 +100,9 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:visibility="visible"
-            android:padding="@dimen/ten"
+            android:paddingBottom="@dimen/five"
+            android:paddingLeft="@dimen/five"
+            android:paddingRight="@dimen/five"
             android:text="@string/signup"
             android:textColor="@color/windowBackground"/>
 

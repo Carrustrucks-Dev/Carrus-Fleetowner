@@ -12,6 +12,7 @@ import retrofit.http.Part;
 import retrofit.http.Path;
 import retrofit.http.Query;
 import retrofit.mime.TypedFile;
+import retrofit.mime.TypedString;
 
 /**
  * Created by Sunny on 11/3/15 for Fleet Owner for Fleet Owner for Fleet Owner.
@@ -175,5 +176,9 @@ public interface ApiService {
 
     @GET("/api/v1/typeCargo")
     void getTypeCargo(Callback<String> callback);
+
+    @Multipart
+    @PUT("/api/v1/fleetOwner")
+    void register(@Part("userType") TypedString userType,@Part("email") TypedString email,@Part("fullName") TypedString fullName,@Part("password") TypedString password,@Part("phoneNumber") TypedString phoneNumber,@Part("companyName") TypedString companyName,@Part("areaOfOperation") TypedString areaOfOperation,@Part("numberOfTrucks") TypedString numberOfTrucks,@Part("address") TypedString address,@Part("city") TypedString city,@Part("state") TypedString state,@Part("pinCode") TypedString pinCode,@Part("country") TypedString country,@Part("typeOfCargo") TypedString typeOfCargo,@Part("deviceType") TypedString deviceType,@Part("deviceName") TypedString deviceName,@Part("deviceToken") TypedString deviceToken, Callback<String> callback);
 
 }

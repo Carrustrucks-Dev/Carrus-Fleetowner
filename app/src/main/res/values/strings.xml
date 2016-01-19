@@ -71,7 +71,7 @@
     <string name="selecetDriver">Please, select driver…</string>
     <string name="choose_image">Choose image from…</string>
     <string name="trucknotfound">Truck Not found, Please choose another driver</string>
-    <string name="fieldnotempty">Field cann\'t be empty</string>
+    <string name="fieldnotempty">Field can\'t be empty</string>
     <string name="select_value">Please select one value</string>
     <string name="passwdnotmacth">Password not matched</string>
 
@@ -182,5 +182,7 @@
     <string name="zipcode">Zip Code</string>
     <string name="fleetowner">FLEET OWNER</string>
     <string name="broker">BROKER</string>
+    <string name="enterotp">Enter OTP here</string>
+    <string name="enterotphere">Enter your OTP</string>
     <string name="warehouse">Warehouse Across India</string>
 </resources>

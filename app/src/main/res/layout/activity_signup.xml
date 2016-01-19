@@ -108,7 +108,7 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:background="@color/edittxt_bg"
+                android:background="@color/list_selected"
                 android:layout_marginTop="@dimen/five"
                 android:layout_height="wrap_content">
 
@@ -183,39 +183,39 @@
                     android:layout_centerVertical="true"
                     android:text="@string/warehouse" />
 
-                <RadioGroup
-                    android:id="@+id/warehouseRadioGp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:orientation="horizontal">
+                <!--<RadioGroup-->
+                    <!--android:id="@+id/warehouseRadioGp"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:orientation="horizontal">-->
 
-                    <RadioButton
-                        android:id="@+id/yesRadioBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:checked="true"
-                        android:gravity="center"
-                        android:text="@string/yes"
-                        android:textColor="@android:color/black" />
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/yesRadioBtn"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerInParent="true"-->
+                        <!--android:checked="true"-->
+                        <!--android:gravity="center"-->
+                        <!--android:text="@string/yes"-->
+                        <!--android:textColor="@android:color/black" />-->
 
-                    <RadioButton
-                        android:id="@+id/noRadioBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:checked="true"
-                        android:gravity="center"
-                        android:text="@string/no"
-                        android:textColor="@android:color/black" />
-                </RadioGroup>
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/noRadioBtn"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerInParent="true"-->
+                        <!--android:checked="true"-->
+                        <!--android:gravity="center"-->
+                        <!--android:text="@string/no"-->
+                        <!--android:textColor="@android:color/black" />-->
+                <!--</RadioGroup>-->
 
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:background="@color/edittxt_bg"
+                android:background="@color/list_selected"
                 android:layout_marginTop="@dimen/five"
                 android:layout_height="wrap_content">
 
