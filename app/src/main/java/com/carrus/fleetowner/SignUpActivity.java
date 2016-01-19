@@ -1,7 +1,6 @@
 package com.carrus.fleetowner;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -51,8 +50,8 @@ import retrofit.client.Response;
 import retrofit.mime.TypedString;
 
 import static com.carrus.fleetowner.utils.Constants.COUNTRYNAME;
-import static com.carrus.fleetowner.utils.Constants.SENDER_ID;
 import static com.carrus.fleetowner.utils.Constants.DEVICE_TYPE;
+import static com.carrus.fleetowner.utils.Constants.SENDER_ID;
 
 /**
  * Created by Sunny on 1/15/16 for Fleet Owner.
@@ -310,7 +309,7 @@ public class SignUpActivity extends BaseActivity {
             mEmailET.setError(getResources().getString(R.string.validemail_required));
             mEmailET.requestFocus();
             return false;
-        }else if(mPhoneNumberET.getText().toString().trim().length()<10){
+        } else if (mPhoneNumberET.getText().toString().trim().length() < 10) {
             mPhoneNumberET.setError(getResources().getString(R.string.phonelimit));
             mPhoneNumberET.requestFocus();
             return false;
@@ -370,7 +369,7 @@ public class SignUpActivity extends BaseActivity {
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
                         Toast.makeText(SignUpActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
-                    } else  {
+                    } else {
                         Toast.makeText(SignUpActivity.this, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception ex) {
@@ -435,24 +434,24 @@ public class SignUpActivity extends BaseActivity {
     }
 
     private void setTypeCargoSpinner() {
+        if (mCargoType.getData() != null && mCargoType.getData().size()!=0)
+            mTypeOfCargo.setItems(mCargoType.getData(), getResources().getString(R.string.typecargohandle), new MultiSpinner.MultiSpinnerListener() {
 
-        mTypeOfCargo.setItems(mCargoType.getData(), getResources().getString(R.string.typecargohandle), new MultiSpinner.MultiSpinnerListener() {
+                @Override
+                public void onItemsSelected(boolean[] selected) {
 
-            @Override
-            public void onItemsSelected(boolean[] selected) {
-
-                // your operation with code...
-                isCargoTypeSelected = false;
-                mCargoTypeArray = new JSONArray();
-                for (int i = 0; i < selected.length; i++) {
-                    if (selected[i]) {
-                        isCargoTypeSelected = true;
-                        mCargoTypeArray.put(mCargoType.getData().get(i).id);
-                        Log.i("TAG", i + " : " + mCargoType.getData().get(i).typeCargoName);
+                    // your operation with code...
+                    isCargoTypeSelected = false;
+                    mCargoTypeArray = new JSONArray();
+                    for (int i = 0; i < selected.length; i++) {
+                        if (selected[i]) {
+                            isCargoTypeSelected = true;
+                            mCargoTypeArray.put(mCargoType.getData().get(i).id);
+                            Log.i("TAG", i + " : " + mCargoType.getData().get(i).typeCargoName);
+                        }
                     }
                 }
-            }
-        });
+            });
     }
 
     private void openOTPDialog() {
