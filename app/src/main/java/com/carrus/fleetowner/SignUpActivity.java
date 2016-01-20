@@ -13,6 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,6 +73,9 @@ public class SignUpActivity extends BaseActivity {
     private CargoType mCargoType;
     private JSONArray mOperationArray, mCargoTypeArray;
     private boolean isOperationSelected = false, isCargoTypeSelected = false;
+    private RadioButton mByCarrusRadioBtn, mByMeRadioBtn;
+    private String assignmentBy="1";
+
 
 
     @Override
@@ -108,6 +112,8 @@ public class SignUpActivity extends BaseActivity {
         mEmailET = (EditText) findViewById(R.id.emailET);
         mCityET = (EditText) findViewById(R.id.cityET);
         mNumberTruckET = (EditText) findViewById(R.id.numberOfTruckET);
+        mByCarrusRadioBtn=(RadioButton) findViewById(R.id.byCarrusRadioBtn);
+        mByMeRadioBtn=(RadioButton) findViewById(R.id.byMeRadioBtn);
     }
 
     private void initializeListener() {
@@ -168,6 +174,24 @@ public class SignUpActivity extends BaseActivity {
 //                    Toast.makeText(SignUpActivity.this, "Field Filled", Toast.LENGTH_SHORT).show();
 //                    register();
                     genrateOTP();
+                }
+            }
+        });
+
+        mByCarrusRadioBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    assignmentBy="0";
+                }
+            }
+        });
+
+        mByMeRadioBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    assignmentBy="1";
                 }
             }
         });
@@ -331,7 +355,7 @@ public class SignUpActivity extends BaseActivity {
     private void register() {
 
         Utils.loading_box(SignUpActivity.this);
-        RestClient.getApiService().register(new TypedString(USERTYPE), new TypedString(mEmailET.getText().toString().trim()), new TypedString(mFullNameET.getText().toString().trim()), new TypedString(mPasswordET.getText().toString().trim()), new TypedString(mPhoneNumberET.getText().toString().trim()), new TypedString(mCompanyNameET.getText().toString().trim()), new TypedString(mOperationArray.toString()), new TypedString(mNumberTruckET.getText().toString().trim()), new TypedString(mAddressET.getText().toString().trim()), new TypedString(mCityET.getText().toString().trim()), new TypedString(mStateTxtView.getText().toString().trim()), new TypedString(mPinCodeET.getText().toString().trim()), new TypedString(COUNTRYNAME), new TypedString(mCargoTypeArray.toString()), new TypedString(DEVICE_TYPE), new TypedString(Utils.getDeviceName()), new TypedString(sessionManager.getDeviceToken()), new Callback<String>() {
+        RestClient.getApiService().register(new TypedString(USERTYPE), new TypedString(mEmailET.getText().toString().trim()), new TypedString(mFullNameET.getText().toString().trim()), new TypedString(mPasswordET.getText().toString().trim()), new TypedString(mPhoneNumberET.getText().toString().trim()), new TypedString(mCompanyNameET.getText().toString().trim()), new TypedString(mOperationArray.toString()), new TypedString(mNumberTruckET.getText().toString().trim()), new TypedString(mAddressET.getText().toString().trim()), new TypedString(mCityET.getText().toString().trim()), new TypedString(mStateTxtView.getText().toString().trim()), new TypedString(mPinCodeET.getText().toString().trim()), new TypedString(COUNTRYNAME), new TypedString(mCargoTypeArray.toString()), new TypedString(DEVICE_TYPE), new TypedString(Utils.getDeviceName()), new TypedString(sessionManager.getDeviceToken()), new TypedString(assignmentBy), new Callback<String>() {
             @Override
             public void success(String s, Response response) {
                 Log.v("" + getClass().getSimpleName(), "Response> " + s);

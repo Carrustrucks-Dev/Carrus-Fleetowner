@@ -185,5 +185,7 @@
     <string name="broker">BROKER</string>
     <string name="enterotp">Enter OTP here</string>
     <string name="enterotphere">Enter your OTP</string>
-    <string name="warehouse">Warehouse Across India</string>
+    <string name="consignmntnote">Consignment Note</string>
+    <string name="bycarrus">BY CARRUS</string>
+    <string name="byme">BY ME</string>
 </resources>

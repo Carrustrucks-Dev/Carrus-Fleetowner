@@ -179,7 +179,7 @@ public interface ApiService {
 
     @Multipart
     @POST("/api/v1/fleetOwner")
-    void register(@Part("userType") TypedString userType,@Part("email") TypedString email,@Part("fullName") TypedString fullName,@Part("password") TypedString password,@Part("phoneNumber") TypedString phoneNumber,@Part("companyName") TypedString companyName,@Part("areaOfOperation") TypedString areaOfOperation,@Part("numberOfTrucks") TypedString numberOfTrucks,@Part("address") TypedString address,@Part("city") TypedString city,@Part("state") TypedString state,@Part("pinCode") TypedString pinCode,@Part("country") TypedString country,@Part("typeOfCargo") TypedString typeOfCargo,@Part("deviceType") TypedString deviceType,@Part("deviceName") TypedString deviceName,@Part("deviceToken") TypedString deviceToken, Callback<String> callback);
+    void register(@Part("userType") TypedString userType,@Part("email") TypedString email,@Part("fullName") TypedString fullName,@Part("password") TypedString password,@Part("phoneNumber") TypedString phoneNumber,@Part("companyName") TypedString companyName,@Part("areaOfOperation") TypedString areaOfOperation,@Part("numberOfTrucks") TypedString numberOfTrucks,@Part("address") TypedString address,@Part("city") TypedString city,@Part("state") TypedString state,@Part("pinCode") TypedString pinCode,@Part("country") TypedString country,@Part("typeOfCargo") TypedString typeOfCargo,@Part("deviceType") TypedString deviceType,@Part("deviceName") TypedString deviceName,@Part("deviceToken") TypedString deviceToken,@Part("consignmentNote") TypedString consignmentNote, Callback<String> callback);
 
     @FormUrlEncoded
     @POST("/api/v1/phoneVerification/generate")

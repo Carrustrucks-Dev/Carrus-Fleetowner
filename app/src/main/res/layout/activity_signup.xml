@@ -173,47 +173,46 @@
                 android:maxLength="6"
                 android:inputType="number" />
 
-            <!--<RelativeLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <!--<TextView-->
-                    <!--style="@style/App_EditTextStyle"-->
-                    <!--android:layout_alignParentLeft="true"-->
-                    <!--android:textColor="@android:color/black"-->
-                    <!--android:layout_centerVertical="true"-->
-                    <!--android:text="@string/warehouse" />-->
+                <TextView
+                    style="@style/App_EditTextStyle"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="@android:color/black"
+                    android:layout_centerVertical="true"
+                    android:text="@string/consignmntnote" />
 
-                <!--<RadioGroup-->
-                    <!--android:id="@+id/warehouseRadioGp"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_centerVertical="true"-->
-                    <!--android:layout_alignParentRight="true"-->
-                    <!--android:orientation="horizontal">-->
+                <RadioGroup
+                    android:id="@+id/consignmntRadioGp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
 
-                    <!--<RadioButton-->
-                        <!--android:id="@+id/yesRadioBtn"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_centerInParent="true"-->
-                        <!--android:checked="true"-->
-                        <!--android:gravity="center"-->
-                        <!--android:text="@string/yes"-->
-                        <!--android:textColor="@android:color/black" />-->
+                    <RadioButton
+                        android:id="@+id/byCarrusRadioBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="@string/bycarrus"
+                        android:textColor="@android:color/black" />
 
-                    <!--<RadioButton-->
-                        <!--android:id="@+id/noRadioBtn"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_centerInParent="true"-->
-                        <!--android:checked="true"-->
-                        <!--android:gravity="center"-->
-                        <!--android:text="@string/no"-->
-                        <!--android:textColor="@android:color/black" />-->
-                <!--</RadioGroup>-->
+                    <RadioButton
+                        android:id="@+id/byMeRadioBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:text="@string/byme"
+                        android:textColor="@android:color/black" />
+                </RadioGroup>
 
-            <!--</RelativeLayout>-->
+            </RelativeLayout>
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:background="@color/list_selected"
