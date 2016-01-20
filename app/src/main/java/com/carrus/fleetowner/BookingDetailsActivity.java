@@ -216,8 +216,10 @@ public class BookingDetailsActivity extends BaseActivity {
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         int height = totalHeight
                 + (listView.getDividerHeight() * (listAdapter.getGroupCount() - 1));
+
         if (height < 10)
             height = 200;
+
         params.height = height;
         listView.setLayoutParams(params);
         listView.requestLayout();

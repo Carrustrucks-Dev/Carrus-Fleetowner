@@ -86,7 +86,7 @@
                         android:textSize="@dimen/big_font" />
 
 
-                    <com.carrus.fleetowner.utils.CapitalizedTextView
+                    <TextView
                         android:id="@+id/typeDetailTxtView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
