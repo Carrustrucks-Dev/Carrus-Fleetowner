@@ -177,7 +177,6 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/five"
                 android:background="@color/list_selected"
-                android:paddingRight="@dimen/five"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -185,6 +184,7 @@
                     style="@style/App_EditTextStyle"
                     android:layout_alignParentLeft="true"
                     android:textColor="@android:color/black"
+                    android:layout_centerVertical="true"
                     android:text="@string/consignmntnote" />
 
                 <RadioGroup
