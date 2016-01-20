@@ -1,6 +1,7 @@
 package com.carrus.fleetowner;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +14,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,8 +74,7 @@ public class SignUpActivity extends BaseActivity {
     private JSONArray mOperationArray, mCargoTypeArray;
     private boolean isOperationSelected = false, isCargoTypeSelected = false;
     private RadioButton mByCarrusRadioBtn, mByMeRadioBtn;
-    private String assignmentBy="1";
-
+    private String assignmentBy = "1";
 
 
     @Override
@@ -112,8 +111,8 @@ public class SignUpActivity extends BaseActivity {
         mEmailET = (EditText) findViewById(R.id.emailET);
         mCityET = (EditText) findViewById(R.id.cityET);
         mNumberTruckET = (EditText) findViewById(R.id.numberOfTruckET);
-        mByCarrusRadioBtn=(RadioButton) findViewById(R.id.byCarrusRadioBtn);
-        mByMeRadioBtn=(RadioButton) findViewById(R.id.byMeRadioBtn);
+        mByCarrusRadioBtn = (RadioButton) findViewById(R.id.byCarrusRadioBtn);
+        mByMeRadioBtn = (RadioButton) findViewById(R.id.byMeRadioBtn);
     }
 
     private void initializeListener() {
@@ -182,7 +181,7 @@ public class SignUpActivity extends BaseActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    assignmentBy="0";
+                    assignmentBy = "0";
                 }
             }
         });
@@ -190,8 +189,8 @@ public class SignUpActivity extends BaseActivity {
         mByMeRadioBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    assignmentBy="1";
+                if (isChecked) {
+                    assignmentBy = "1";
                 }
             }
         });
@@ -367,11 +366,12 @@ public class SignUpActivity extends BaseActivity {
                     if (ApiResponseFlags.Created.getOrdinal() == status) {
 
 
-//                        JSONObject mDataobject = mObject.getJSONObject("data");
-//                        sessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getJSONObject("dataToSet").getString("userType"), mDataobject.getJSONObject("dataToSet").getString("email"), mDataobject.getJSONObject("dataToSet").getString("firstName") + " " + mDataobject.getJSONObject("dataToSet").getString("lastName"), mDataobject.getJSONObject("dataToSet").getString("companyName"), mDataobject.getJSONObject("dataToSet").getJSONObject("addressDetails").getString("address"), "", mDataobject.getJSONObject("dataToSet").getString("phoneNumber"), "0", null);
-//                        Toast.makeText(SignUpActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
-//                        startActivityForResult(new Intent(SignUpActivity.this, MainActivity.class), 500);
-//                        finish();
+                        JSONObject mDataobject = mObject.getJSONObject("data");
+//                        sessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getJSONObject("dataToSet").getString("userType"), mDataobject.getJSONObject("dataToSet").getString("email"), mDataobject.getJSONObject("dataToSet").getString("firstName"), mDataobject.getJSONObject("dataToSet").getString("companyName"), mDataobject.getJSONObject("dataToSet").getJSONObject("addressDe÷tails").getString("address"), "", mDataobject.getJSONObject("dataToSet").getString("phoneNumber"), "0", null);
+                        sessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getJSONObject("dataToSet").getString("userType"), mDataobject.getJSONObject("dataToSet").getString("email"), mDataobject.getJSONObject("dataToSet").getString("fullName"), mDataobject.getJSONObject("dataToSet").getString("companyName"), mDataobject.getJSONObject("dataToSet").getJSONObject("addressDetails").getString("address"), mDataobject.getJSONObject("dataToSet").getString("phoneNumber"), "");
+                        Toast.makeText(SignUpActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        startActivityForResult(new Intent(SignUpActivity.this, MainActivity.class), 500);
+                        finish();
 
                     } else {
                         Toast.makeText(SignUpActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
@@ -458,7 +458,7 @@ public class SignUpActivity extends BaseActivity {
     }
 
     private void setTypeCargoSpinner() {
-        if (mCargoType.getData() != null && mCargoType.getData().size()!=0)
+        if (mCargoType.getData() != null && mCargoType.getData().size() != 0)
             mTypeOfCargo.setItems(mCargoType.getData(), getResources().getString(R.string.typecargohandle), new MultiSpinner.MultiSpinnerListener() {
 
                 @Override

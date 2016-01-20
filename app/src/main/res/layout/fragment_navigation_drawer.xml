@@ -22,6 +22,7 @@
             android:contentDescription="@string/empty"
             android:layout_height="70dp"
             android:scaleType="fitCenter"
+            android:background="@mipmap/icon_placeholder"
              />
 
         <com.carrus.fleetowner.utils.CapitalizedTextView

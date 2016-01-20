@@ -126,8 +126,8 @@ public class FragmentDrawer extends Fragment {
     }
 
     public void loadImage() {
-        if (mSessionManager.getProfilePic() != null)
-            Picasso.with(getActivity()).load(mSessionManager.getProfilePic()).placeholder(R.mipmap.icon_placeholder).resize(300, 300).transform(new CircleTransform()).into(mProfileIV);
+        if (mSessionManager.getProfilePic() != null && !mSessionManager.getProfilePic().isEmpty())
+            Picasso.with(getActivity()).load(mSessionManager.getProfilePic()).placeholder(R.mipmap.icon_placeholder).error(R.mipmap.icon_placeholder).resize(300, 300).transform(new CircleTransform()).into(mProfileIV);
     }
 
     public void setUp(DrawerLayout drawerLayout) {

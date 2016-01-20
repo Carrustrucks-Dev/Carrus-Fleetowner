@@ -1,13 +1,19 @@
 package com.carrus.fleetowner.multivaluesspinner;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 
 import com.carrus.fleetowner.R;
@@ -134,8 +140,9 @@ public class MultiSpinner extends Spinner implements OnMultiChoiceClickListener,
         }
 
         // all text on the spinner
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
-                R.layout.textview_for_spinner, new String[]{defaultText});
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+//                R.layout.textview_for_spinner, new String[]{defaultText});
+        CustomStringArrayAdapter adapter=new CustomStringArrayAdapter(getContext(), R.layout.spinner_layout, R.id.spinner_textview, this.items);
         setAdapter(adapter);
 
         // Set Spinner Text
@@ -144,5 +151,43 @@ public class MultiSpinner extends Spinner implements OnMultiChoiceClickListener,
 
     public interface MultiSpinnerListener {
         void onItemsSelected(boolean[] selected);
+    }
+
+    public class CustomStringArrayAdapter extends ArrayAdapter<String>
+    {
+
+        public CustomStringArrayAdapter(Context context, int layoutResourceId, int textViewResourceId, List<String> objects)
+        {
+            super(context, layoutResourceId, textViewResourceId, objects);
+        }
+
+        @Override
+        public View getDropDownView(int position, View convertView, ViewGroup parent)
+        {
+            return getCustomView(position, convertView, parent);
+        }
+
+        public View getCustomView(int position, View convertView, ViewGroup parent)
+        {
+            LayoutInflater inflater = ((Activity)getContext()).getLayoutInflater();
+            View row = inflater.inflate(R.layout.spinner_layout, parent, false);
+            TextView label = (TextView) row.findViewById(R.id.spinner_textview);
+            label.setText(getItem(position));
+            LinearLayout layout = (LinearLayout) row.findViewById(R.id.spinner_linear_layout);
+
+            return row;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent)
+        {
+            LayoutInflater inflater = ((Activity)getContext()).getLayoutInflater();
+            View row = inflater.inflate(R.layout.spinner_layout, parent, false);
+            TextView label = (TextView) row.findViewById(R.id.spinner_textview);
+            label.setText(getItem(position));
+
+            return row;
+        }
+
     }
 }

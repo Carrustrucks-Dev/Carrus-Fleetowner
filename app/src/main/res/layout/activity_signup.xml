@@ -175,6 +175,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/five"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -234,6 +235,7 @@
                 android:id="@+id/submitBtn"
                 style="@style/CustomTextAppearance.Bold"
                 android:layout_width="fill_parent"
+                android:layout_marginTop="@dimen/ten"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 android:text="@string/submit"

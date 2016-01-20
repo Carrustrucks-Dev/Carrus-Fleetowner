@@ -340,8 +340,9 @@ public class DriverActivity extends BaseActivity {
 
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
                         Constants.isTruckAssignUpdate = true;
-                        Toast.makeText(DriverActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                         finish();
+                        Toast.makeText(DriverActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
+
 
                     } else {
                         Toast.makeText(DriverActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
