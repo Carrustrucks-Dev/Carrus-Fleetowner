@@ -176,20 +176,22 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/five"
+                android:background="@color/list_selected"
+                android:paddingRight="@dimen/five"
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/consignmntnoteTV"
                     style="@style/App_EditTextStyle"
                     android:layout_alignParentLeft="true"
                     android:textColor="@android:color/black"
-                    android:layout_centerVertical="true"
                     android:text="@string/consignmntnote" />
 
                 <RadioGroup
                     android:id="@+id/consignmntRadioGp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:layout_below="@+id/consignmntnoteTV"
                     android:layout_alignParentRight="true"
                     android:orientation="horizontal">
 
@@ -198,6 +200,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
+
+                        android:textSize="@dimen/mid_fond"
                         android:gravity="center"
                         android:text="@string/bycarrus"
                         android:textColor="@android:color/black" />
@@ -207,6 +211,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
+                        android:textSize="@dimen/mid_fond"
                         android:gravity="center"
                         android:checked="true"
                         android:text="@string/byme"

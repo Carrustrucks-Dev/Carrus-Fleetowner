@@ -338,11 +338,10 @@ public class DriverActivity extends BaseActivity {
 
                     int status = mObject.getInt("statusCode");
 
-                    if (ApiResponseFlags.OK.getOrdinal() == status) {
+                    if (ApiResponseFlags.Created.getOrdinal() == status) {
                         Constants.isTruckAssignUpdate = true;
-                        finish();
                         Toast.makeText(DriverActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
-
+                        finish();
 
                     } else {
                         Toast.makeText(DriverActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();

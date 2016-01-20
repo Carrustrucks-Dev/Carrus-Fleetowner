@@ -225,6 +225,13 @@ public class TruckDeatisActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(Constants.isTruckAssignUpdate)
+            finish();
+    }
+
     private void setQuoteValuesonViews() {
 
         mTruckNameTV.setText(mTruckQuotesDetails.getTruck().truckType.typeTruckName);
