@@ -133,7 +133,6 @@ public class DriverActivity extends BaseActivity {
                         Utils.shopAlterDialog(mContext, getResources().getString(R.string.selecetDriver), false);
                     } else {
                         assignDriver(mAdapter.getSelectedDriver());
-
                     }
                 else {
                     noInternetDialog();
@@ -153,7 +152,6 @@ public class DriverActivity extends BaseActivity {
                         Utils.hideSoftKeyboard(DriverActivity.this);
                         isRefreshView = true;
                         getDrivers(mSearchEdtTxt.getText().toString().trim());
-
                     }
 
                     return true;
@@ -294,7 +292,6 @@ public class DriverActivity extends BaseActivity {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-
                     }
 
                 } catch (Exception ex) {
@@ -312,7 +309,6 @@ public class DriverActivity extends BaseActivity {
             @Override
             public void onLoadMore() {
                 //add null , so the adapter will check view_type and show progress bar at bottom
-
                 try {
                     bookingList.add(null);
                     mAdapter.notifyItemInserted(bookingList.size() - 1);
@@ -320,8 +316,6 @@ public class DriverActivity extends BaseActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-
             }
         });
     }
