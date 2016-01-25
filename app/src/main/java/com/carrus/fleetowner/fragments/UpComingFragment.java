@@ -29,6 +29,7 @@ import com.carrus.fleetowner.utils.ConnectionDetector;
 import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
+import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -42,6 +43,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 import static com.carrus.fleetowner.utils.Constants.LIMIT;
+import static com.carrus.fleetowner.utils.Constants.MY_FLURRY_APIKEY;
 import static com.carrus.fleetowner.utils.Constants.SORT;
 
 /**
@@ -107,7 +109,7 @@ public class UpComingFragment extends Fragment {
                 if (mConnectionDetector.isConnectingToInternet())
                     getMyBooking();
                 else {
-                   noInternetDialog();
+                    noInternetDialog();
                 }
             }
         });
@@ -154,6 +156,19 @@ public class UpComingFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        FlurryAgent.onStartSession(getActivity(), MY_FLURRY_APIKEY);
+        FlurryAgent.onEvent("Upcoming Booking Mode");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        FlurryAgent.onEndSession(getActivity());
+    }
+
     private void getMyBooking() {
 
         mErrorLayout.setVisibility(View.GONE);
@@ -181,6 +196,7 @@ public class UpComingFragment extends Fragment {
                         mMyBookingModel = gson.fromJson(s, MyBookingModel.class);
                         // specify an adapter (see also next example)
                         if (bookingList == null) {
+                            FlurryAgent.onEvent("Upcoming Booking Mode");
                             bookingList = new ArrayList<>();
                             bookingList.addAll(mMyBookingModel.mData);
                             mAdapter = new UpComingBookingAdapter(getActivity(), bookingList, mRecyclerView);

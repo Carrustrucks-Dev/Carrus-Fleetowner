@@ -15,6 +15,7 @@ import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
+import com.flurry.android.FlurryAgent;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +27,7 @@ import retrofit.client.Response;
 
 import static com.carrus.fleetowner.utils.Constants.BIDVALUE;
 import static com.carrus.fleetowner.utils.Constants.ID;
+import static com.carrus.fleetowner.utils.Constants.MY_FLURRY_APIKEY;
 import static com.carrus.fleetowner.utils.Constants.NOTES;
 import static com.carrus.fleetowner.utils.Constants.QUOTEID;
 import static com.carrus.fleetowner.utils.Constants.TYPE;
@@ -121,13 +123,14 @@ public class QuoteDialogActivity extends BaseActivity {
         RestClient.getApiService().addQuotes(sessionManager.getAccessToken(), mBidArray.toString(), radioButton.getText().toString().toUpperCase(), offrbidEdtxt.getText().toString().trim(), notesEdtxt.getText().toString().trim(), new Callback<String>() {
             @Override
             public void success(String s, Response response) {
-                if(BuildConfig.DEBUG)
-                Log.v("" + getClass().getSimpleName(), "Response> " + s);
+                if (BuildConfig.DEBUG)
+                    Log.v("" + getClass().getSimpleName(), "Response> " + s);
 
                 try {
                     JSONObject mObject = new JSONObject(s);
                     int status = mObject.getInt("statusCode");
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
+                        FlurryAgent.onEvent("Quotes added Mode");
                         Constants.isTruckQuotesUpdated = true;
                         Constants.isTruckPendingUpdate = true;
 
@@ -150,8 +153,8 @@ public class QuoteDialogActivity extends BaseActivity {
             public void failure(RetrofitError error) {
                 Utils.loading_box_stop();
                 try {
-                    if(BuildConfig.DEBUG)
-                    Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
+                    if (BuildConfig.DEBUG)
+                        Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
                         Utils.shopAlterDialog(QuoteDialogActivity.this, getResources().getString(R.string.nointernetconnection), false);
@@ -173,6 +176,18 @@ public class QuoteDialogActivity extends BaseActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FlurryAgent.onStartSession(this, MY_FLURRY_APIKEY);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FlurryAgent.onEndSession(this);
+    }
+
     private void modifyQuotes() {
         Utils.loading_box(QuoteDialogActivity.this);
         JSONArray mBidArray = new JSONArray();
@@ -189,6 +204,7 @@ public class QuoteDialogActivity extends BaseActivity {
                             JSONObject mObject = new JSONObject(s);
                             int status = mObject.getInt("statusCode");
                             if (ApiResponseFlags.OK.getOrdinal() == status) {
+                                FlurryAgent.onEvent("Quotes modify Mode");
                                 Constants.isTruckQuotesUpdated = true;
                                 Toast.makeText(QuoteDialogActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                                 Intent output = new Intent();

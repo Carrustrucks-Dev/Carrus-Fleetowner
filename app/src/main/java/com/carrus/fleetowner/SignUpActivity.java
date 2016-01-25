@@ -28,6 +28,7 @@ import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.CommonNoInternetDialog;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
+import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -52,6 +53,7 @@ import retrofit.mime.TypedString;
 
 import static com.carrus.fleetowner.utils.Constants.COUNTRYNAME;
 import static com.carrus.fleetowner.utils.Constants.DEVICE_TYPE;
+import static com.carrus.fleetowner.utils.Constants.MY_FLURRY_APIKEY;
 import static com.carrus.fleetowner.utils.Constants.SENDER_ID;
 
 /**
@@ -365,7 +367,7 @@ public class SignUpActivity extends BaseActivity {
 
                     if (ApiResponseFlags.Created.getOrdinal() == status) {
 
-
+                        FlurryAgent.onEvent("Signup Mode");
                         JSONObject mDataobject = mObject.getJSONObject("data");
 //                        sessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getJSONObject("dataToSet").getString("userType"), mDataobject.getJSONObject("dataToSet").getString("email"), mDataobject.getJSONObject("dataToSet").getString("firstName"), mDataobject.getJSONObject("dataToSet").getString("companyName"), mDataobject.getJSONObject("dataToSet").getJSONObject("addressDe÷tails").getString("address"), "", mDataobject.getJSONObject("dataToSet").getString("phoneNumber"), "0", null);
                         sessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getJSONObject("dataToSet").getString("userType"), mDataobject.getJSONObject("dataToSet").getString("email"), mDataobject.getJSONObject("dataToSet").getString("fullName"), mDataobject.getJSONObject("dataToSet").getString("companyName"), mDataobject.getJSONObject("dataToSet").getJSONObject("addressDetails").getString("address"), mDataobject.getJSONObject("dataToSet").getString("phoneNumber"), "");
@@ -542,7 +544,7 @@ public class SignUpActivity extends BaseActivity {
                     int status = mObject.getInt("statusCode");
 
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
-
+                        FlurryAgent.onEvent("OTP Genrate Mode");
                         openOTPDialog();
                     } else {
                         Toast.makeText(SignUpActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
@@ -573,6 +575,18 @@ public class SignUpActivity extends BaseActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FlurryAgent.onStartSession(this, MY_FLURRY_APIKEY);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FlurryAgent.onEndSession(this);
+    }
+
     private void verifyOTP(String otp) {
         Utils.loading_box(SignUpActivity.this);
         RestClient.getApiService().phoneVerificationVerify(mPhoneNumberET.getText().toString().trim(), otp, USERTYPE, "true", new Callback<String>() {
@@ -585,6 +599,7 @@ public class SignUpActivity extends BaseActivity {
                     int status = mObject.getInt("statusCode");
 
                     if (ApiResponseFlags.Created.getOrdinal() == status) {
+                        FlurryAgent.onEvent("Verify OTP Mode");
                         Toast.makeText(SignUpActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                         register();
                     } else {

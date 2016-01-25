@@ -33,6 +33,7 @@ import com.carrus.fleetowner.utils.ConnectionDetector;
 import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
+import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -52,6 +53,8 @@ import java.util.ArrayList;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+
+import static com.carrus.fleetowner.utils.Constants.MY_FLURRY_APIKEY;
 
 /**
  * Created by Sunny on 10/29/15 for Fleet Owner for Fleet Owner for Fleet Owner.
@@ -549,6 +552,20 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
 //        });
 //    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        FlurryAgent.onStartSession(getActivity(), MY_FLURRY_APIKEY);
+        FlurryAgent.onEvent("Truck Mode");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        FlurryAgent.onEndSession(getActivity());
+    }
+
+
     private void getAllTrucks() {
         mErrorLayout.setVisibility(View.GONE);
         Utils.loading_box(getActivity());
@@ -564,6 +581,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                     int status = mObject.getInt("statusCode");
 
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
+                        FlurryAgent.onEvent("Truck Mode");
                         Gson gson = new Gson();
                         mTrucks = gson.fromJson(s, Trucks.class);
                         addmarkers();

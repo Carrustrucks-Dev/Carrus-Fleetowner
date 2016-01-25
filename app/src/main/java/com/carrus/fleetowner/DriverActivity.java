@@ -30,6 +30,7 @@ import com.carrus.fleetowner.utils.ConnectionDetector;
 import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
+import com.flurry.android.FlurryAgent;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -44,6 +45,7 @@ import retrofit.client.Response;
 
 import static com.carrus.fleetowner.utils.Constants.ID;
 import static com.carrus.fleetowner.utils.Constants.LIMIT;
+import static com.carrus.fleetowner.utils.Constants.MY_FLURRY_APIKEY;
 import static com.carrus.fleetowner.utils.Constants.SORT;
 
 /**
@@ -173,28 +175,28 @@ public class DriverActivity extends BaseActivity {
         });
 
                 mSearchEdtTxt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                // TODO Auto-generated method stub
+                        // TODO Auto-generated method stub
 
-                if (s.length() == 0) {
-                    getDrivers(mSearchEdtTxt.getText().toString().trim());
-                }
-            }
+                        if (s.length() == 0) {
+                            getDrivers(mSearchEdtTxt.getText().toString().trim());
+                        }
+                    }
 
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                // TODO Auto-generated method stub
-            }
+                        // TODO Auto-generated method stub
+                    }
 
-            @Override
-            public void afterTextChanged(Editable s) {
+                    @Override
+                    public void afterTextChanged(Editable s) {
 
-                // TODO Auto-generated method stub
-            }
-        });
+                        // TODO Auto-generated method stub
+                    }
+                });
 
     }
 
@@ -320,6 +322,19 @@ public class DriverActivity extends BaseActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FlurryAgent.onStartSession(this, MY_FLURRY_APIKEY);
+        FlurryAgent.onEvent("Driver Assign Mode");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FlurryAgent.onEndSession(this);
+    }
+
     private void assignDriver(String id) {
         Utils.loading_box(DriverActivity.this);
         RestClient.getApiService().assignTrucker(mSessionManager.getAccessToken(), id, getIntent().getStringExtra(ID), new Callback<String>() {
@@ -333,6 +348,7 @@ public class DriverActivity extends BaseActivity {
                     int status = mObject.getInt("statusCode");
 
                     if (ApiResponseFlags.Created.getOrdinal() == status) {
+                        FlurryAgent.onEvent("Driver Assign Mode");
                         Constants.isTruckAssignUpdate = true;
                         Toast.makeText(DriverActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                         finish();

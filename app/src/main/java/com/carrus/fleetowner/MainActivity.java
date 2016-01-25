@@ -28,6 +28,7 @@ import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
+import com.flurry.android.FlurryAgent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +36,8 @@ import org.json.JSONObject;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+
+import static com.carrus.fleetowner.utils.Constants.MY_FLURRY_APIKEY;
 
 public class MainActivity extends BaseActivity implements FragmentDrawer.FragmentDrawerListener, TrucksFragment.onSwiperListenerChange {
 
@@ -262,6 +265,7 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
                     int status = mObject.getInt("statusCode");
 
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
+                        FlurryAgent.onEvent("SignOut Mode");
                         new SessionManager(MainActivity.this).logoutUser();
                     } else {
                         Toast.makeText(MainActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();

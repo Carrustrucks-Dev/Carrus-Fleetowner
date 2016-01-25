@@ -25,6 +25,7 @@ import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
+import com.flurry.android.FlurryAgent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,6 +42,7 @@ import retrofit.client.Response;
 import static com.carrus.fleetowner.utils.Constants.BIDVALUE;
 import static com.carrus.fleetowner.utils.Constants.CHILDACTIVITY;
 import static com.carrus.fleetowner.utils.Constants.ID;
+import static com.carrus.fleetowner.utils.Constants.MY_FLURRY_APIKEY;
 import static com.carrus.fleetowner.utils.Constants.NOTES;
 import static com.carrus.fleetowner.utils.Constants.QUOTEID;
 import static com.carrus.fleetowner.utils.Constants.TRUCKTYPE;
@@ -172,7 +174,20 @@ public class TruckDeatisActivity extends BaseActivity {
                     (TruckAssignDetails) bundle.getSerializable(VALUE);
             setAssignValuesonViews();
         }
+        FlurryAgent.onEvent("Truck details Mode");
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FlurryAgent.onStartSession(this, MY_FLURRY_APIKEY);
+        FlurryAgent.onEvent("Truck details Mode");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FlurryAgent.onEndSession(this);
     }
 
     private void initializeClickListner() {

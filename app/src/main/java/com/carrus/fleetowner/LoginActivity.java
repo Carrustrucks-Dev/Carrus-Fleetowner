@@ -16,6 +16,7 @@ import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.ConnectionDetector;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
+import com.flurry.android.FlurryAgent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,6 +26,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 import static com.carrus.fleetowner.utils.Constants.DEVICE_TYPE;
+import static com.carrus.fleetowner.utils.Constants.MY_FLURRY_APIKEY;
 import static com.carrus.fleetowner.utils.Constants.PASSWORD;
 import static com.carrus.fleetowner.utils.Constants.REMEMBERME;
 import static com.carrus.fleetowner.utils.Constants.SENDER_ID;
@@ -119,6 +121,19 @@ public class LoginActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FlurryAgent.onStartSession(this, MY_FLURRY_APIKEY);
+        FlurryAgent.onEvent("Login Mode");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FlurryAgent.onEndSession(this);
+    }
+
     private void verifyLoggedIn() {
         Utils.loading_box(LoginActivity.this);
         RestClient.getApiService().login(mEmailEdtTxt.getText().toString().trim(), mPasswordEdtTxt.getText().toString().trim(), DEVICE_TYPE, Utils.getDeviceName(), mSessionManager.getDeviceToken(), new Callback<String>() {
@@ -135,6 +150,7 @@ public class LoginActivity extends BaseActivity {
                             setRememberMe();
                         else
                             clearRememberMe();
+
 
                         JSONObject mDataobject = mObject.getJSONObject("data");
                         mSessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getString("userType"), mDataobject.getString("email"), mDataobject.getString("fullName"), mDataobject.getString("companyName"), mDataobject.getJSONObject("addressDetails").getString("address"), mDataobject.getString("phoneNumber"), mDataobject.getJSONObject("profilePicture").getString("original"));

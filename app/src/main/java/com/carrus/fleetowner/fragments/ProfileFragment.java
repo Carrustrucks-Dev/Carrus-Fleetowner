@@ -28,6 +28,7 @@ import com.carrus.fleetowner.utils.CircleTransform;
 import com.carrus.fleetowner.utils.ImageChooserDialog;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
+import com.flurry.android.FlurryAgent;
 import com.kbeanie.imagechooser.api.ChooserType;
 import com.kbeanie.imagechooser.api.ChosenImage;
 import com.kbeanie.imagechooser.api.ImageChooserListener;
@@ -43,6 +44,8 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.mime.TypedFile;
+
+import static com.carrus.fleetowner.utils.Constants.MY_FLURRY_APIKEY;
 
 
 /**
@@ -66,6 +69,19 @@ public class ProfileFragment extends Fragment implements
     public ProfileFragment() {
         // Required empty public constructor
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        FlurryAgent.onStartSession(getActivity(), MY_FLURRY_APIKEY);
+        FlurryAgent.onEvent("Profile Mode");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        FlurryAgent.onEndSession(getActivity());
     }
 
     @Override

@@ -17,12 +17,15 @@ import com.carrus.fleetowner.models.ExpandableChildItem;
 import com.carrus.fleetowner.models.Header;
 import com.carrus.fleetowner.models.MyBookingDataModel;
 import com.carrus.fleetowner.utils.Utils;
+import com.flurry.android.FlurryAgent;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.carrus.fleetowner.utils.Constants.MY_FLURRY_APIKEY;
 
 /**
  * Created by Sunny on 11/6/15 for Fleet Owner for Fleet Owner for Fleet Owner.
@@ -224,6 +227,19 @@ public class BookingDetailsActivity extends BaseActivity {
         listView.setLayoutParams(params);
         listView.requestLayout();
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FlurryAgent.onStartSession(this, MY_FLURRY_APIKEY);
+        FlurryAgent.onEvent("Booking details Mode");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FlurryAgent.onEndSession(this);
     }
 
     private void setValuesonViews() {
