@@ -305,28 +305,29 @@ public class SignUpActivity extends BaseActivity {
             return false;
         else if (checkETEmpty(mPhoneNumberET))
             return false;
-        else if (checkETEmpty(mCompanyNameET))
-            return false;
-        else if (!isOperationSelected) {
-            Toast.makeText(SignUpActivity.this, "Select Area of Operation", Toast.LENGTH_SHORT).show();
-            return false;
-        } else if (checkETEmpty(mNumberTruckET))
-            return false;
-        else if (checkETEmpty(mAddressET))
-            return false;
-        else if (mStateTxtView.getText().toString().equalsIgnoreCase(getResources().getString(R.string.state))) {
-            mStateTxtView.setError(getResources().getString(R.string.select_value));
-            mStateTxtView.requestFocus();
-            return false;
-        } else if (checkETEmpty(mCityET))
-            return false;
-
-        else if (checkETEmpty(mPinCodeET))
-            return false;
-        else if (!isCargoTypeSelected) {
-            Toast.makeText(SignUpActivity.this, "Select Type of Cargo Handled", Toast.LENGTH_SHORT).show();
-            return false;
-        } else if (!mPasswordET.getText().toString().trim().equalsIgnoreCase(mCnfrmPasswordET.getText().toString().trim())) {
+//        else if (checkETEmpty(mCompanyNameET))
+//            return false;
+//        else if (!isOperationSelected) {
+//            Toast.makeText(SignUpActivity.this, "Select Area of Operation", Toast.LENGTH_SHORT).show();
+//            return false;
+//        } else if (checkETEmpty(mNumberTruckET))
+//            return false;
+//        else if (checkETEmpty(mAddressET))
+//            return false;
+//        else if (mStateTxtView.getText().toString().equalsIgnoreCase(getResources().getString(R.string.state))) {
+//            mStateTxtView.setError(getResources().getString(R.string.select_value));
+//            mStateTxtView.requestFocus();
+//            return false;
+//        } else if (checkETEmpty(mCityET))
+//            return false;
+//
+//        else if (checkETEmpty(mPinCodeET))
+//            return false;
+//        else if (!isCargoTypeSelected) {
+//            Toast.makeText(SignUpActivity.this, "Select Type of Cargo Handled", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
+        else if (!mPasswordET.getText().toString().trim().equalsIgnoreCase(mCnfrmPasswordET.getText().toString().trim())) {
             mCnfrmPasswordET.setError(getResources().getString(R.string.passwdnotmacth));
             mCnfrmPasswordET.requestFocus();
             return false;
@@ -370,7 +371,7 @@ public class SignUpActivity extends BaseActivity {
                         FlurryAgent.onEvent("Signup Mode");
                         JSONObject mDataobject = mObject.getJSONObject("data");
 //                        sessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getJSONObject("dataToSet").getString("userType"), mDataobject.getJSONObject("dataToSet").getString("email"), mDataobject.getJSONObject("dataToSet").getString("firstName"), mDataobject.getJSONObject("dataToSet").getString("companyName"), mDataobject.getJSONObject("dataToSet").getJSONObject("addressDe÷tails").getString("address"), "", mDataobject.getJSONObject("dataToSet").getString("phoneNumber"), "0", null);
-                        sessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getJSONObject("dataToSet").getString("userType"), mDataobject.getJSONObject("dataToSet").getString("email"), mDataobject.getJSONObject("dataToSet").getString("fullName"), mDataobject.getJSONObject("dataToSet").getString("companyName"), mDataobject.getJSONObject("dataToSet").getJSONObject("addressDetails").getString("address"), mDataobject.getJSONObject("dataToSet").getString("phoneNumber"), "");
+                        sessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getJSONObject("dataToSet").getString("userType"), mDataobject.getJSONObject("dataToSet").getString("email"), mDataobject.getJSONObject("dataToSet").getString("fullName"), (mDataobject.getJSONObject("dataToSet").has("companyName")?mDataobject.getJSONObject("dataToSet").getString("companyName"):""), (mDataobject.getJSONObject("dataToSet").getJSONObject("addressDetails").has("address")?mDataobject.getJSONObject("dataToSet").getJSONObject("addressDetails").getString("address"):""), mDataobject.getJSONObject("dataToSet").getString("phoneNumber"), "");
                         Toast.makeText(SignUpActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(SignUpActivity.this, MainActivity.class);
                         // Closing all the Activities
