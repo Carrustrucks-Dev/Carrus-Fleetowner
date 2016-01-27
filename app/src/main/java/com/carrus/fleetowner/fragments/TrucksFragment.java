@@ -264,6 +264,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
             }
 
             if (googleMap != null) {
+
                 googleMap.getUiSettings().setZoomControlsEnabled(true);
                 googleMap.getUiSettings().setCompassEnabled(true);
                 googleMap.getUiSettings().setMyLocationButtonEnabled(true);
