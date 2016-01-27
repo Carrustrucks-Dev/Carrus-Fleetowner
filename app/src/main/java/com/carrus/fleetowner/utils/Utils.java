@@ -65,11 +65,15 @@ public class Utils {
      * stop loading view
      */
     public static void loading_box_stop() {
-        if (progressDialog != null)
-            if (progressDialog.isShowing()) {
-                progressDialog.dismiss();
-                progressDialog = null;
-            }
+        try {
+            if (progressDialog != null)
+                if (progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                    progressDialog = null;
+                }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     public static int getColor(Context context, int id) {

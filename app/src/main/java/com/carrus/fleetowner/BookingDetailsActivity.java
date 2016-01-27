@@ -243,74 +243,78 @@ public class BookingDetailsActivity extends BaseActivity {
     }
 
     private void setValuesonViews() {
-
-        nameDetailTxtView.setText(mMyBookingDataModel.shipper.firstName + " " + mMyBookingDataModel.shipper.lastName);
-        typeDetailTxtView.setText(mMyBookingDataModel.assignTruck.truckName+ ", " + mMyBookingDataModel.assignTruck.truckNumber);
-        locationDetailsTxtView.setText(mMyBookingDataModel.pickUp.city + " to  " + mMyBookingDataModel.dropOff.city);
-        if (mMyBookingDataModel.crn != null && !mMyBookingDataModel.crn.equalsIgnoreCase(""))
-            trackDetailsIdTxtView.setText(getResources().getString(R.string.crn) + mMyBookingDataModel.crn);
-
-        statusTxtView.setText(mMyBookingDataModel.bookingStatus.replace("_", " "));
-
-        addresPickupTxtView.setText(mMyBookingDataModel.pickUp.address + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.pickUp.city + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.pickUp.state + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.pickUp.zipCode);
-
         try {
-            datePickupTxtView.setText(Utils.getFullDateTime(mMyBookingDataModel.pickUp.date));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+            nameDetailTxtView.setText(mMyBookingDataModel.shipper.firstName + " " + mMyBookingDataModel.shipper.lastName);
+            typeDetailTxtView.setText(mMyBookingDataModel.assignTruck.truckName + ", " + mMyBookingDataModel.assignTruck.truckNumber);
+            locationDetailsTxtView.setText(mMyBookingDataModel.pickUp.city + " to  " + mMyBookingDataModel.dropOff.city);
+            if (mMyBookingDataModel.crn != null && !mMyBookingDataModel.crn.equalsIgnoreCase(""))
+                trackDetailsIdTxtView.setText(getResources().getString(R.string.crn) + mMyBookingDataModel.crn);
 
-        timePickupTxtView.setText(mMyBookingDataModel.pickUp.time);
-        addressDropTxtView.setText(mMyBookingDataModel.dropOff.address + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.dropOff.city + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.dropOff.state + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.dropOff.zipCode);
+            statusTxtView.setText(mMyBookingDataModel.bookingStatus.replace("_", " "));
 
-        try {
-            dateDropTxtview.setText(Utils.getFullDateTime(mMyBookingDataModel.dropOff.date));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+            addresPickupTxtView.setText(mMyBookingDataModel.pickUp.address + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.pickUp.city + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.pickUp.state + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.pickUp.zipCode);
 
-        timeDropTxtView.setText(mMyBookingDataModel.dropOff.time);
-        paymentModeTxtView.setText(mMyBookingDataModel.paymentMode);
-        totalCostTxtView.setText(getResources().getString(R.string.rupee) + NumberFormat.getInstance().format(Long.valueOf(mMyBookingDataModel.acceptPrice)));
-        namePickUpTxtView.setText(mMyBookingDataModel.pickUp.companyName);
-        phonePickUpTxtView.setText(mMyBookingDataModel.pickUp.contactNumber);
-        codePickUpTxtView.setText(mMyBookingDataModel.pickUp.tin);
-        nameDropofTxtView.setText(mMyBookingDataModel.dropOff.companyName);
-        phoneDropofTxtView.setText(mMyBookingDataModel.dropOff.contactNumber);
-        codeDropofTxtView.setText(mMyBookingDataModel.dropOff.tin);
-
-        // Adding child data
-        ArrayList<ExpandableChildItem> cargoDetails = new ArrayList<>();
-        cargoDetails.add(new ExpandableChildItem(mMyBookingDataModel.cargo.cargoType.typeCargoName, mMyBookingDataModel.cargo.weight + "", 0));
-
-        // Adding child data
-        ArrayList<ExpandableChildItem> docDetails = new ArrayList<>();
-        docDetails.add(new ExpandableChildItem(mMyBookingDataModel.cargo.cargoType.typeCargoName, mMyBookingDataModel.cargo.weight + "", 2));
-
-        // Adding child data
-        ArrayList<ExpandableChildItem> notes = new ArrayList<>();
-        notes.add(new ExpandableChildItem("", mMyBookingDataModel.jobNote, 1));
-
-        // Adding child data
-        ArrayList<ExpandableChildItem> fleetowner = new ArrayList<>();
-        fleetowner.add(new ExpandableChildItem("", mMyBookingDataModel.truckerNote, 1));
-
-        listDataChild.put(listDataHeader.get(0), cargoDetails); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), docDetails);
-        listDataChild.put(listDataHeader.get(2), notes);
-        listDataChild.put(listDataHeader.get(3), fleetowner);
-
-        ExpandableListAdapter listAdapter = new ExpandableListAdapter(BookingDetailsActivity.this, listDataHeader, listDataChild, mMyBookingDataModel.doc);
-        mExpandableListView.setAdapter(listAdapter);
-        setListViewHeight(mExpandableListView);
-//        chnageHieghtListView();
-        final ScrollView scrollview = (ScrollView) findViewById(R.id.mainscrollview);
-        scrollview.post(new Runnable() {
-            public void run() {
-                scrollview.scrollTo(0, 0);
+            try {
+                datePickupTxtView.setText(Utils.getFullDateTime(mMyBookingDataModel.pickUp.date));
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
-        });
 
+            timePickupTxtView.setText(mMyBookingDataModel.pickUp.time);
+            addressDropTxtView.setText(mMyBookingDataModel.dropOff.address + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.dropOff.city + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.dropOff.state + getResources().getString(R.string.comma_spraction) + mMyBookingDataModel.dropOff.zipCode);
+
+            try {
+                dateDropTxtview.setText(Utils.getFullDateTime(mMyBookingDataModel.dropOff.date));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            timeDropTxtView.setText(mMyBookingDataModel.dropOff.time);
+            paymentModeTxtView.setText(mMyBookingDataModel.paymentMode);
+            totalCostTxtView.setText(getResources().getString(R.string.rupee) + NumberFormat.getInstance().format(Long.valueOf(mMyBookingDataModel.acceptPrice)));
+            namePickUpTxtView.setText(mMyBookingDataModel.pickUp.companyName);
+            phonePickUpTxtView.setText(mMyBookingDataModel.pickUp.contactNumber);
+            codePickUpTxtView.setText(mMyBookingDataModel.pickUp.tin);
+            nameDropofTxtView.setText(mMyBookingDataModel.dropOff.companyName);
+            phoneDropofTxtView.setText(mMyBookingDataModel.dropOff.contactNumber);
+            codeDropofTxtView.setText(mMyBookingDataModel.dropOff.tin);
+
+            // Adding child data
+            ArrayList<ExpandableChildItem> cargoDetails = new ArrayList<>();
+            cargoDetails.add(new ExpandableChildItem(mMyBookingDataModel.cargo.cargoType.typeCargoName, mMyBookingDataModel.cargo.weight + "", 0));
+
+            // Adding child data
+            ArrayList<ExpandableChildItem> docDetails = new ArrayList<>();
+            docDetails.add(new ExpandableChildItem(mMyBookingDataModel.cargo.cargoType.typeCargoName, mMyBookingDataModel.cargo.weight + "", 2));
+
+            // Adding child data
+            ArrayList<ExpandableChildItem> notes = new ArrayList<>();
+            notes.add(new ExpandableChildItem("", mMyBookingDataModel.jobNote, 1));
+
+            // Adding child data
+            ArrayList<ExpandableChildItem> fleetowner = new ArrayList<>();
+            fleetowner.add(new ExpandableChildItem("", mMyBookingDataModel.truckerNote, 1));
+
+            listDataChild.put(listDataHeader.get(0), cargoDetails); // Header, Child data
+            listDataChild.put(listDataHeader.get(1), docDetails);
+            listDataChild.put(listDataHeader.get(2), notes);
+            listDataChild.put(listDataHeader.get(3), fleetowner);
+
+            ExpandableListAdapter listAdapter = new ExpandableListAdapter(BookingDetailsActivity.this, listDataHeader, listDataChild, mMyBookingDataModel.doc);
+            mExpandableListView.setAdapter(listAdapter);
+            setListViewHeight(mExpandableListView);
+//        chnageHieghtListView();
+            final ScrollView scrollview = (ScrollView) findViewById(R.id.mainscrollview);
+            scrollview.post(new Runnable() {
+                public void run() {
+                    scrollview.scrollTo(0, 0);
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            finish();
+        }
     }
 
 // --Commented out by Inspection START (1/12/16, 5:30 PM):

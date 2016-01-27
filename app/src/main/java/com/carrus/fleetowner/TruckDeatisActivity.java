@@ -144,35 +144,39 @@ public class TruckDeatisActivity extends BaseActivity {
         // Adding child data
         listDataHeader.add(new Header(getResources().getString(R.string.cargodetails)));
 
-
-        Intent intent = this.getIntent();
-        Bundle bundle = intent.getExtras();
-        if (intent.getStringExtra(TYPE).equalsIgnoreCase("new request")) {
-            listDataHeader.add(new Header(getResources().getString(R.string.shippernotes)));
-            headerTxtView.setText(getResources().getString(R.string.newRequest));
-            mQuoteBtn.setText(getResources().getString(R.string.quote));
-            mIgnoreBtn.setVisibility(View.VISIBLE);
-            mTrucksDetailsModel =
-                    (TrucksDetailsModel) bundle.getSerializable(VALUE);
-            setValuesonViews();
-        } else if (intent.getStringExtra(TYPE).equalsIgnoreCase("quote")) {
-            listDataHeader.add(new Header(getResources().getString(R.string.notes_cap)));
-            listDataHeader.add(new Header(getResources().getString(R.string.shippernotes)));
-            headerTxtView.setText(getResources().getString(R.string.pendingquotes_head));
-            mQuoteBtn.setText(getResources().getString(R.string.modify));
-            mIgnoreBtn.setVisibility(View.GONE);
-            mTruckQuotesDetails =
-                    (TruckQuotesDetails) bundle.getSerializable(VALUE);
-            setQuoteValuesonViews();
-        } else if (intent.getStringExtra(TYPE).equalsIgnoreCase("assigment")) {
-            listDataHeader.add(new Header(getResources().getString(R.string.notes_cap)));
-            listDataHeader.add(new Header(getResources().getString(R.string.shippernotes)));
-            headerTxtView.setText(getResources().getString(R.string.pendingassign_head));
-            mQuoteBtn.setText(getResources().getString(R.string.assign_driver));
-            mIgnoreBtn.setVisibility(View.GONE);
-            mTruckAssignDetails =
-                    (TruckAssignDetails) bundle.getSerializable(VALUE);
-            setAssignValuesonViews();
+        try {
+            Intent intent = this.getIntent();
+            Bundle bundle = intent.getExtras();
+            if (intent.getStringExtra(TYPE).equalsIgnoreCase("new request")) {
+                listDataHeader.add(new Header(getResources().getString(R.string.shippernotes)));
+                headerTxtView.setText(getResources().getString(R.string.newRequest));
+                mQuoteBtn.setText(getResources().getString(R.string.quote));
+                mIgnoreBtn.setVisibility(View.VISIBLE);
+                mTrucksDetailsModel =
+                        (TrucksDetailsModel) bundle.getSerializable(VALUE);
+                setValuesonViews();
+            } else if (intent.getStringExtra(TYPE).equalsIgnoreCase("quote")) {
+                listDataHeader.add(new Header(getResources().getString(R.string.notes_cap)));
+                listDataHeader.add(new Header(getResources().getString(R.string.shippernotes)));
+                headerTxtView.setText(getResources().getString(R.string.pendingquotes_head));
+                mQuoteBtn.setText(getResources().getString(R.string.modify));
+                mIgnoreBtn.setVisibility(View.GONE);
+                mTruckQuotesDetails =
+                        (TruckQuotesDetails) bundle.getSerializable(VALUE);
+                setQuoteValuesonViews();
+            } else if (intent.getStringExtra(TYPE).equalsIgnoreCase("assigment")) {
+                listDataHeader.add(new Header(getResources().getString(R.string.notes_cap)));
+                listDataHeader.add(new Header(getResources().getString(R.string.shippernotes)));
+                headerTxtView.setText(getResources().getString(R.string.pendingassign_head));
+                mQuoteBtn.setText(getResources().getString(R.string.assign_driver));
+                mIgnoreBtn.setVisibility(View.GONE);
+                mTruckAssignDetails =
+                        (TruckAssignDetails) bundle.getSerializable(VALUE);
+                setAssignValuesonViews();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            finish();
         }
         FlurryAgent.onEvent("Truck details Mode");
     }
@@ -243,7 +247,7 @@ public class TruckDeatisActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(Constants.isTruckAssignUpdate)
+        if (Constants.isTruckAssignUpdate)
             finish();
     }
 
@@ -453,8 +457,8 @@ public class TruckDeatisActivity extends BaseActivity {
         RestClient.getApiService().ignoreBid(mSessionManager.getAccessToken(), mTrucksDetailsModel.getId(), new Callback<String>() {
             @Override
             public void success(String s, Response response) {
-                if(BuildConfig.DEBUG)
-                Log.v("" + getClass().getSimpleName(), "Response> " + s);
+                if (BuildConfig.DEBUG)
+                    Log.v("" + getClass().getSimpleName(), "Response> " + s);
                 try {
                     JSONObject mObject = new JSONObject(s);
 
@@ -481,8 +485,8 @@ public class TruckDeatisActivity extends BaseActivity {
                 Utils.loading_box_stop();
 
                 try {
-                    if(BuildConfig.DEBUG)
-                    Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
+                    if (BuildConfig.DEBUG)
+                        Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
                         Utils.shopAlterDialog(TruckDeatisActivity.this, getResources().getString(R.string.nointernetconnection), false);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
