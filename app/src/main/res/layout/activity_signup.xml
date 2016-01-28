@@ -242,9 +242,9 @@
                 android:layout_width="fill_parent"
                 android:layout_marginTop="@dimen/ten"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/button_effect_blue"
                 android:text="@string/submit"
-                android:textColor="@drawable/button_effect_blue" />
+                android:textColor="@color/windowBackground" />
 
         </LinearLayout>
     </ScrollView>

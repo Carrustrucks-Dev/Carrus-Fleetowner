@@ -110,16 +110,16 @@ public class FragmentDrawer extends Fragment {
         mHeaderLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                drawerListener.onHeaderSelected();
                 mDrawerLayout.closeDrawer(containerView);
+                drawerListener.onHeaderSelected();
             }
         });
 
         layout.findViewById(R.id.termsTxtView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                drawerListener.onDrawerItemSelected(55);
                 mDrawerLayout.closeDrawer(containerView);
+                drawerListener.onDrawerItemSelected(55);
             }
         });
 
@@ -128,7 +128,7 @@ public class FragmentDrawer extends Fragment {
 
     public void loadImage() {
         if (mSessionManager.getProfilePic() != null && !mSessionManager.getProfilePic().isEmpty())
-            Picasso.with(getActivity()).load(mSessionManager.getProfilePic()).placeholder(R.mipmap.icon_placeholder).error(R.mipmap.icon_placeholder).resize((int)Utils.convertDpToPixel(70, getActivity()), (int)Utils.convertDpToPixel(70, getActivity())).transform(new CircleTransform()).into(mProfileIV);
+            Picasso.with(getActivity()).load(mSessionManager.getProfilePic()).placeholder(R.mipmap.icon_placeholder).error(R.mipmap.icon_placeholder).resize((int) Utils.convertDpToPixel(70, getActivity()), (int) Utils.convertDpToPixel(70, getActivity())).transform(new CircleTransform()).into(mProfileIV);
     }
 
     public void setUp(DrawerLayout drawerLayout) {
