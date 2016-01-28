@@ -116,7 +116,7 @@ public class UpComingFragment extends Fragment {
     }
 
     private void init(View view) {
-        mErrorLayout =(LinearLayout) view.findViewById(R.id.errorLayout);
+        mErrorLayout = (LinearLayout) view.findViewById(R.id.errorLayout);
         mErrorTxtView = (TextView) view.findViewById(R.id.errorTxtView);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
 //        swipeRefreshLayout.setColorSchemeColors(
@@ -149,8 +149,8 @@ public class UpComingFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(Constants.isUpComingUpdate){
-            Constants.isUpComingUpdate=false;
+        if (Constants.isUpComingUpdate) {
+            Constants.isUpComingUpdate = false;
             isRefreshView = true;
             getMyBooking();
         }
@@ -174,19 +174,19 @@ public class UpComingFragment extends Fragment {
         mErrorLayout.setVisibility(View.GONE);
         if (isRefreshView) {
             swipeRefreshLayout.setRefreshing(true);
-            skip=0;
-            bookingList=null;
+            skip = 0;
+            bookingList = null;
         } else {
-         if(bookingList==null || bookingList.size()==0)
-            Utils.loading_box(getActivity());
+            if (bookingList == null || bookingList.size() == 0)
+                Utils.loading_box(getActivity());
         }
 
         RestClient.getApiService().getOnGoing(mSessionManager.getAccessToken(), LIMIT + "", skip + "", SORT, new Callback<String>() {
 
             @Override
             public void success(String s, Response response) {
-                if(BuildConfig.DEBUG)
-                Log.v(TAG, "Response> " + s);
+                if (BuildConfig.DEBUG)
+                    Log.v(TAG, "Response> " + s);
 
                 try {
                     JSONObject mObject = new JSONObject(s);
@@ -201,8 +201,8 @@ public class UpComingFragment extends Fragment {
                             bookingList.addAll(mMyBookingModel.mData);
                             mAdapter = new UpComingBookingAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);
-                            if(mMyBookingModel.mData.size()==LIMIT)
-                            setonScrollListener();
+                            if (mMyBookingModel.mData.size() == LIMIT)
+                                setonScrollListener();
                         } else {
                             bookingList.remove(bookingList.size() - 1);
                             mAdapter.notifyItemRemoved(bookingList.size());
@@ -235,7 +235,7 @@ public class UpComingFragment extends Fragment {
                 }
 
                 Utils.loading_box_stop();
-                isRefreshView=false;
+                isRefreshView = false;
                 swipeRefreshLayout.setRefreshing(false);
             }
 
@@ -244,13 +244,13 @@ public class UpComingFragment extends Fragment {
                 swipeRefreshLayout.setRefreshing(false);
                 Utils.loading_box_stop();
                 try {
-                    if(BuildConfig.DEBUG)
-                    Log.v(TAG, " MSg >> " + error.getResponse().getStatus());
+                    if (BuildConfig.DEBUG)
+                        Log.v(TAG, " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
 //                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
                         noInternetDialog();
-                        if(bookingList==null || bookingList.size()==0) {
+                        if (bookingList == null || bookingList.size() == 0) {
                             mAdapter = new UpComingBookingAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);
 //                            mErrorTxtView.setText(getResources().getString(R.string.nointernetconnection));
@@ -259,12 +259,12 @@ public class UpComingFragment extends Fragment {
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
-                       // Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
-                        if(bookingList==null || bookingList.size()==0) {
+                        // Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
+                        if (bookingList == null || bookingList.size() == 0) {
                             mErrorTxtView.setText(getResources().getString(R.string.noupcmingfound));
                             mErrorLayout.setVisibility(View.VISIBLE);
                         }
-                    }else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
+                    } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_MORE_RESULT.getOrdinal()) {
                         Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         try {
                             bookingList.remove(bookingList.size() - 1);
@@ -305,13 +305,11 @@ public class UpComingFragment extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-
             }
         });
     }
 
-    private void noInternetDialog(){
+    private void noInternetDialog() {
         CommonNoInternetDialog.WithActivity(getActivity()).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
             @Override
             public void OnOkButtonPressed() {
@@ -321,7 +319,9 @@ public class UpComingFragment extends Fragment {
 
             @Override
             public void OnCancelButtonPressed() {
-                getActivity().finish();
+                Activity mActivity = getActivity();
+                if (mActivity != null)
+                    mActivity.finish();
             }
         });
     }

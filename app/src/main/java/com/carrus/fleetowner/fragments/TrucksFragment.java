@@ -158,10 +158,14 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
         (view.findViewById(R.id.callBtnIV)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selectedNumber != null) {
-                    Intent callIntent = new Intent(Intent.ACTION_CALL);
-                    callIntent.setData(Uri.parse("tel:" + selectedNumber));
-                    startActivity(callIntent);
+                try {
+                    if (selectedNumber != null) {
+                        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                        callIntent.setData(Uri.parse("tel:" + selectedNumber));
+                        startActivity(callIntent);
+                    }
+                }catch (Exception ex){
+                    ex.printStackTrace();
                 }
             }
         });
@@ -170,8 +174,8 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
         mBottomView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("value", mTrackermodel.get(selectedPos));
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("value", mTrackermodel.get(selectedPos));
 //                Intent intent = new Intent(getActivity(), BookingDetailsActivity.class);
 //                intent.putExtras(bundle);
 //                startActivityForResult(intent, 600);
