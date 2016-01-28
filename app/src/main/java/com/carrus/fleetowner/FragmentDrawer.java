@@ -138,8 +138,6 @@ public class FragmentDrawer extends Fragment {
 
     }
 
-
-
     class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 
         private final GestureDetector gestureDetector;
@@ -178,7 +176,6 @@ public class FragmentDrawer extends Fragment {
         @Override
         public void onTouchEvent(RecyclerView rv, MotionEvent e) {
         }
-
 
     }
 
