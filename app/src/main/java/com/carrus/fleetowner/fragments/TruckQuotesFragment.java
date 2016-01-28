@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.carrus.fleetowner.BuildConfig;
 import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.adapters.DividerItemDecoration;
+import com.carrus.fleetowner.adapters.TruckListAdapter;
 import com.carrus.fleetowner.adapters.TruckQuotesListAdapter;
 import com.carrus.fleetowner.interfaces.OnLoadMoreListener;
 import com.carrus.fleetowner.models.TruckQuotesDetails;
@@ -257,6 +258,8 @@ public class TruckQuotesFragment extends Fragment {
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
                        // Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         if(bookingList==null || bookingList.size()==0) {
+                            mAdapter = new TruckQuotesListAdapter(getActivity(), bookingList, mRecyclerView);
+                            mRecyclerView.setAdapter(mAdapter);
                             mErrorTxtView.setText(getResources().getString(R.string.nopendingquotesfound));
                             mErrorLayout.setVisibility(View.VISIBLE);
                         }

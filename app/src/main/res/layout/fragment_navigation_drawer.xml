@@ -21,7 +21,7 @@
             android:layout_marginTop="@dimen/ten"
             android:contentDescription="@string/empty"
             android:layout_height="70dp"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:background="@mipmap/icon_placeholder"
              />
 

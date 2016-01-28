@@ -260,6 +260,8 @@ public class TruckAssignFragment extends Fragment {
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
                         // Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         if (bookingList == null || bookingList.size() == 0) {
+                            mAdapter = new TruckAssignListAdapter(getActivity(), bookingList, mRecyclerView);
+                            mRecyclerView.setAdapter(mAdapter);
                             mErrorTxtView.setText(getResources().getString(R.string.nopendingassignfound));
                             mErrorLayout.setVisibility(View.VISIBLE);
                         }

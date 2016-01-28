@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/quote"
                 android:textColor="@color/windowBackground"
-                android:background="@color/tabcolor_dark"
+                android:background="@drawable/button_effect"
                 style="@style/CustomTextAppearance.Bold"
                 android:padding="@dimen/ten"/>
 
@@ -68,7 +68,7 @@
                 android:visibility="gone"
                 android:text="@string/ignore"
                 android:textColor="@color/windowBackground"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/button_effect"
                 style="@style/CustomTextAppearance.Bold"
                 android:padding="@dimen/ten"/>
         </LinearLayout>

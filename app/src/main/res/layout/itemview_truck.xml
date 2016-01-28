@@ -10,7 +10,10 @@
     android:paddingLeft="@dimen/ten"
     android:paddingRight="@dimen/ten"
     android:paddingTop="@dimen/fifteen"
-    android:background="@color/windowBackground"
+    android:background="@drawable/selector_row"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:weightSum="1"
     android:baselineAligned="false">
 

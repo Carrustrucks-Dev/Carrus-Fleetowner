@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#2362C0</color>
+    <color name="colorPrimary_light">#AA2362C0</color>
     <color name="colorPrimaryDark">#2362C0</color>
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="windowBackground">#FFFFFF</color>
@@ -8,6 +9,7 @@
     <color name="drawer_primary">#1E2C45</color>
     <color name="drawer_Dark">#14233C</color>
     <color name="tabcolor_dark">#F78C16</color>
+    <color name="tabcolor">#AAF78C16</color>
     <color name="transparent">#00000000</color>
     <color name="gray">#F0F0F0</color>
     <color name="gray_text">#969696</color>
@@ -18,6 +20,7 @@
     <color name="blue_ongoing">#2058AB</color>
     <color name="list_selected">#E0E0E0</color>
     <color name="edittxt_bg">#F1F1F1</color>
+    <color name="lighter_gray">#ddd</color>
 
 
 </resources>

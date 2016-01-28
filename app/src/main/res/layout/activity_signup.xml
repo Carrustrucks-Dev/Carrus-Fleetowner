@@ -244,7 +244,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 android:text="@string/submit"
-                android:textColor="@color/windowBackground" />
+                android:textColor="@drawable/button_effect_blue" />
 
         </LinearLayout>
     </ScrollView>

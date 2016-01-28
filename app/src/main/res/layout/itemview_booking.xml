@@ -6,6 +6,10 @@
     android:gravity="center_vertical"
     android:padding="@dimen/ten"
     android:orientation="horizontal"
+    android:background="@drawable/selector_row"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:weightSum="1"
     android:baselineAligned="false">
 

@@ -404,7 +404,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/gray_text"
                     android:text="@android:string/cancel"
-                    android:textColor="@color/windowBackground"
+                    android:textColor="@drawable/button_effect"
                     android:visibility="gone"
                     tools:ignore="UnusedIds" />
 
@@ -412,7 +412,7 @@
                     android:id="@+id/viewPodBtn"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/tabcolor_dark"
+                    android:background="@drawable/button_effect"
                     android:text="@string/viewpod"
                     android:textColor="@color/windowBackground"
                     android:visibility="gone"

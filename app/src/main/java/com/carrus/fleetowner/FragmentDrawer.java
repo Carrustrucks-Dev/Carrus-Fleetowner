@@ -26,6 +26,7 @@ import com.carrus.fleetowner.interfaces.ClickListener;
 import com.carrus.fleetowner.models.NavDrawerItem;
 import com.carrus.fleetowner.utils.CircleTransform;
 import com.carrus.fleetowner.utils.SessionManager;
+import com.carrus.fleetowner.utils.Utils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -127,7 +128,7 @@ public class FragmentDrawer extends Fragment {
 
     public void loadImage() {
         if (mSessionManager.getProfilePic() != null && !mSessionManager.getProfilePic().isEmpty())
-            Picasso.with(getActivity()).load(mSessionManager.getProfilePic()).placeholder(R.mipmap.icon_placeholder).error(R.mipmap.icon_placeholder).resize(300, 300).transform(new CircleTransform()).into(mProfileIV);
+            Picasso.with(getActivity()).load(mSessionManager.getProfilePic()).placeholder(R.mipmap.icon_placeholder).error(R.mipmap.icon_placeholder).resize((int)Utils.convertDpToPixel(70, getActivity()), (int)Utils.convertDpToPixel(70, getActivity())).transform(new CircleTransform()).into(mProfileIV);
     }
 
     public void setUp(DrawerLayout drawerLayout) {

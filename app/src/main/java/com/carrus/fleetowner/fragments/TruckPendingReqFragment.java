@@ -259,6 +259,8 @@ public class TruckPendingReqFragment extends Fragment{
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
                        // Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                         if(bookingList==null || bookingList.size()==0) {
+                            mAdapter = new TruckListAdapter(getActivity(), bookingList, mRecyclerView);
+                            mRecyclerView.setAdapter(mAdapter);
                             mErrorTxtView.setText(getResources().getString(R.string.nonewreqfound));
                             mErrorLayout.setVisibility(View.VISIBLE);
                         }
