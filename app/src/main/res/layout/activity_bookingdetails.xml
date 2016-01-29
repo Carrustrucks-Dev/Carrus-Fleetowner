@@ -402,9 +402,9 @@
                     android:id="@+id/cancelBtn"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/gray_text"
+                    android:background="@drawable/button_effect_gray"
                     android:text="@android:string/cancel"
-                    android:textColor="@drawable/button_effect"
+                    android:textColor="@color/windowBackground"
                     android:visibility="gone"
                     tools:ignore="UnusedIds" />
 

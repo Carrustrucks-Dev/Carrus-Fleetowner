@@ -26,6 +26,7 @@ import com.carrus.fleetowner.fragments.WebViewFragment;
 import com.carrus.fleetowner.gcm.GcmMessageHandler;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
+import com.carrus.fleetowner.utils.CommonNoInternetDialog;
 import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
@@ -37,8 +38,6 @@ import org.json.JSONObject;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-
-import static com.carrus.fleetowner.utils.Constants.MY_FLURRY_APIKEY;
 
 public class MainActivity extends BaseActivity implements FragmentDrawer.FragmentDrawerListener, TrucksFragment.onSwiperListenerChange {
 
@@ -171,7 +170,7 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
                         Intent callIntent = new Intent(Intent.ACTION_DIAL);
                         callIntent.setData(Uri.parse("tel:" + Constants.CONTACT_CARRUS));
                         startActivity(callIntent);
-                    }catch (Exception ex){
+                    } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 }
@@ -220,7 +219,7 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_body, fragment,title);
+            fragmentTransaction.replace(R.id.container_body, fragment, title);
             fragmentTransaction.commit();
 
             // set the toolbar title
@@ -229,7 +228,7 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
         }
     }
 
-    public void onRefreshImageView(){
+    public void onRefreshImageView() {
         drawerFragment.loadImage();
     }
 
@@ -257,8 +256,8 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
         RestClient.getApiService().logout(mSessionManager.getAccessToken(), new Callback<String>() {
             @Override
             public void success(String s, Response response) {
-                if(BuildConfig.DEBUG)
-                Log.v("" + getClass().getSimpleName(), "Response> " + s);
+                if (BuildConfig.DEBUG)
+                    Log.v("" + getClass().getSimpleName(), "Response> " + s);
 
                 try {
                     JSONObject mObject = new JSONObject(s);
@@ -284,13 +283,29 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
                 try {
                     Utils.loading_box_stop();
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Toast.makeText(MainActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                        noInternetDialog();
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(MainActivity.this, Utils.getErrorMsg(error), true);
                     }
                 } catch (Exception ex) {
-                    Toast.makeText(MainActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                    noInternetDialog();
+//                    Toast.makeText(MainActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+    }
+
+    private void noInternetDialog() {
+        CommonNoInternetDialog.WithActivity(MainActivity.this).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
+            @Override
+            public void OnOkButtonPressed() {
+                logout();
+            }
+
+            @Override
+            public void OnCancelButtonPressed() {
+                finish();
             }
         });
     }

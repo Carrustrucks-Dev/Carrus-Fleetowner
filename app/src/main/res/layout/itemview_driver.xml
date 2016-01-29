@@ -25,7 +25,6 @@
             android:layout_height="@dimen/mediumhieght"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:background="@mipmap/ic_launcher"
             android:contentDescription="@string/empty" />
     </RelativeLayout>
 
