@@ -23,6 +23,7 @@ import com.carrus.fleetowner.fragments.ProfileFragment;
 import com.carrus.fleetowner.fragments.TruckReguestsFragment;
 import com.carrus.fleetowner.fragments.TrucksFragment;
 import com.carrus.fleetowner.fragments.WebViewFragment;
+import com.carrus.fleetowner.gcm.GcmMessageHandler;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.Constants;
@@ -267,6 +268,7 @@ public class MainActivity extends BaseActivity implements FragmentDrawer.Fragmen
                     if (ApiResponseFlags.OK.getOrdinal() == status) {
                         FlurryAgent.onEvent("SignOut Mode");
                         new SessionManager(MainActivity.this).logoutUser();
+                        GcmMessageHandler.ClearNotification(MainActivity.this);
                     } else {
                         Toast.makeText(MainActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                     }
