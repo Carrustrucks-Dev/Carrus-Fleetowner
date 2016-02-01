@@ -6,8 +6,6 @@ import android.os.AsyncTask;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-import java.io.IOException;
-
 /**
  * Developer: Rishabh
  * Dated: 03/08/15.
@@ -64,9 +62,9 @@ public class DeviceTokenFetcher extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
 
         try {
-            if (activity != null && GoogleCloudMessaging.getInstance(activity)!=null)
+            if (activity != null && GoogleCloudMessaging.getInstance(activity) != null)
                 return GoogleCloudMessaging.getInstance(activity).register(params[0]);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -76,7 +74,8 @@ public class DeviceTokenFetcher extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String deviceToken) {
 
-        listener.onDeviceTokenReceived(deviceToken);
+        if (deviceToken != null)
+            listener.onDeviceTokenReceived(deviceToken);
     }
 
     /**
