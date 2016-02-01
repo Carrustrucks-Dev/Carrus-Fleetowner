@@ -307,10 +307,11 @@ public class SignUpActivity extends BaseActivity {
             return false;
 //        else if (checkETEmpty(mCompanyNameET))
 //            return false;
-//        else if (!isOperationSelected) {
-//            Toast.makeText(SignUpActivity.this, "Select Area of Operation", Toast.LENGTH_SHORT).show();
-//            return false;
-//        } else if (checkETEmpty(mNumberTruckET))
+        else if (!isOperationSelected) {
+            Toast.makeText(SignUpActivity.this, "Select Area of Operation", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+//          else if (checkETEmpty(mNumberTruckET))
 //            return false;
 //        else if (checkETEmpty(mAddressET))
 //            return false;
@@ -357,7 +358,7 @@ public class SignUpActivity extends BaseActivity {
     private void register() {
 
         Utils.loading_box(SignUpActivity.this);
-        RestClient.getApiService().register(new TypedString(USERTYPE), new TypedString(mEmailET.getText().toString().trim()), new TypedString(mFullNameET.getText().toString().trim()), new TypedString(mPasswordET.getText().toString().trim()), new TypedString(mPhoneNumberET.getText().toString().trim()), new TypedString(mCompanyNameET.getText().toString().trim()), new TypedString(mOperationArray.toString()), new TypedString((mNumberTruckET.getText().toString().trim().isEmpty())?"0":mNumberTruckET.getText().toString().trim()), new TypedString(mAddressET.getText().toString().trim()), new TypedString(mCityET.getText().toString().trim()), new TypedString(((mStateTxtView.getText().toString().equalsIgnoreCase(getResources().getString(R.string.state)))?"":mStateTxtView.getText().toString().trim())), new TypedString(mPinCodeET.getText().toString().trim()), new TypedString(COUNTRYNAME), new TypedString(mCargoTypeArray.toString()), new TypedString(DEVICE_TYPE), new TypedString(Utils.getDeviceName()), new TypedString(sessionManager.getDeviceToken()), new TypedString(assignmentBy), new Callback<String>() {
+        RestClient.getApiService().register(new TypedString(USERTYPE), new TypedString(mEmailET.getText().toString().trim()), new TypedString(mFullNameET.getText().toString().trim()), new TypedString(mPasswordET.getText().toString().trim()), new TypedString(mPhoneNumberET.getText().toString().trim()), new TypedString(mCompanyNameET.getText().toString().trim()), new TypedString(mOperationArray.toString()), new TypedString((mNumberTruckET.getText().toString().trim().isEmpty()) ? "0" : mNumberTruckET.getText().toString().trim()), new TypedString(mAddressET.getText().toString().trim()), new TypedString(mCityET.getText().toString().trim()), new TypedString(((mStateTxtView.getText().toString().equalsIgnoreCase(getResources().getString(R.string.state))) ? "" : mStateTxtView.getText().toString().trim())), new TypedString(mPinCodeET.getText().toString().trim()), new TypedString(COUNTRYNAME), new TypedString(mCargoTypeArray.toString()), new TypedString(DEVICE_TYPE), new TypedString(Utils.getDeviceName()), new TypedString(sessionManager.getDeviceToken()), new TypedString(assignmentBy), new Callback<String>() {
             @Override
             public void success(String s, Response response) {
                 Log.v("" + getClass().getSimpleName(), "Response> " + s);
@@ -371,7 +372,7 @@ public class SignUpActivity extends BaseActivity {
                         FlurryAgent.onEvent("Signup Mode");
                         JSONObject mDataobject = mObject.getJSONObject("data");
 //                        sessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getJSONObject("dataToSet").getString("userType"), mDataobject.getJSONObject("dataToSet").getString("email"), mDataobject.getJSONObject("dataToSet").getString("firstName"), mDataobject.getJSONObject("dataToSet").getString("companyName"), mDataobject.getJSONObject("dataToSet").getJSONObject("addressDe÷tails").getString("address"), "", mDataobject.getJSONObject("dataToSet").getString("phoneNumber"), "0", null);
-                        sessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getJSONObject("dataToSet").getString("userType"), mDataobject.getJSONObject("dataToSet").getString("email"), mDataobject.getJSONObject("dataToSet").getString("fullName"), (mDataobject.getJSONObject("dataToSet").has("companyName")?mDataobject.getJSONObject("dataToSet").getString("companyName"):""), (mDataobject.getJSONObject("dataToSet").getJSONObject("addressDetails").has("address")?mDataobject.getJSONObject("dataToSet").getJSONObject("addressDetails").getString("address"):""), mDataobject.getJSONObject("dataToSet").getString("phoneNumber"), "");
+                        sessionManager.saveUserInfo(mDataobject.getString("accessToken"), mDataobject.getJSONObject("dataToSet").getString("userType"), mDataobject.getJSONObject("dataToSet").getString("email"), mDataobject.getJSONObject("dataToSet").getString("fullName"), (mDataobject.getJSONObject("dataToSet").has("companyName") ? mDataobject.getJSONObject("dataToSet").getString("companyName") : ""), (mDataobject.getJSONObject("dataToSet").getJSONObject("addressDetails").has("address") ? mDataobject.getJSONObject("dataToSet").getJSONObject("addressDetails").getString("address") : ""), mDataobject.getJSONObject("dataToSet").getString("phoneNumber"), "");
                         Toast.makeText(SignUpActivity.this, mObject.getString("message"), Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(SignUpActivity.this, MainActivity.class);
                         // Closing all the Activities
