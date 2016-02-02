@@ -2,6 +2,8 @@ package com.carrus.fleetowner;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -390,7 +392,7 @@ public class DriverActivity extends BaseActivity {
     }
 
     private void noInternetDialog(){
-        CommonNoInternetDialog.WithActivity((Activity)mContext).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
+        CommonNoInternetDialog.WithActivity((Activity)mContext).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit),getResources().getString(R.string.callcarrus), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
             @Override
             public void OnOkButtonPressed() {
                 isRefreshView = true;
@@ -400,6 +402,17 @@ public class DriverActivity extends BaseActivity {
             @Override
             public void OnCancelButtonPressed() {
                 finish();
+            }
+
+            @Override
+            public void OnNutralButtonPressed() {
+                try {
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:" + Constants.CONTACT_CARRUS));
+                    startActivity(callIntent);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }

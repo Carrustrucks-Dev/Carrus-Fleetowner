@@ -3,6 +3,7 @@ package com.carrus.fleetowner;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.carrus.fleetowner.multivaluesspinner.MultiSpinner;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.CommonNoInternetDialog;
+import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
 import com.flurry.android.FlurryAgent;
@@ -65,7 +67,6 @@ public class SignUpActivity extends BaseActivity {
     private MultiSpinner mAreaOprerationSpinner, mTypeOfCargo;
     private Spinner stateSpinner;
     private TextView mStateTxtView;
-    private StateCityModel mStateCityModel;
     private List<String> states;
     private List<String> areaOprationList;
     private RadioButton mShipperRadioBtn, mBrokerRadioBtn;
@@ -130,12 +131,12 @@ public class SignUpActivity extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position != 0) {
                     mStateTxtView.setText(states.get(position));
-                    mStateTxtView.setTextColor(getResources().getColor(android.R.color.black));
+                    mStateTxtView.setTextColor(Utils.getColor(SignUpActivity.this, android.R.color.black));
                     mStateTxtView.setError(null);
 
                 } else {
                     mStateTxtView.setText(getResources().getString(R.string.state));
-                    mStateTxtView.setTextColor(getResources().getColor(R.color.gray_text));
+                    mStateTxtView.setTextColor(Utils.getColor(SignUpActivity.this, R.color.gray_text));
 
                 }
             }
@@ -226,7 +227,7 @@ public class SignUpActivity extends BaseActivity {
         states = new ArrayList<>();
         Gson gson = new Gson();
         //states.add("");
-        mStateCityModel = gson.fromJson(loadJSONFromAsset(), StateCityModel.class);
+        StateCityModel mStateCityModel = gson.fromJson(loadJSONFromAsset(), StateCityModel.class);
         for (StateCityInfo mStateCityInfo : mStateCityModel.data) {
             states.add(mStateCityInfo.state);
         }
@@ -275,7 +276,7 @@ public class SignUpActivity extends BaseActivity {
 
 
     private void noInternetDialog() {
-        CommonNoInternetDialog.WithActivity(SignUpActivity.this).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
+        CommonNoInternetDialog.WithActivity(SignUpActivity.this).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), getResources().getString(R.string.callcarrus), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
             @Override
             public void OnOkButtonPressed() {
                 getTypeCargo();
@@ -284,6 +285,17 @@ public class SignUpActivity extends BaseActivity {
             @Override
             public void OnCancelButtonPressed() {
                 finish();
+            }
+
+            @Override
+            public void OnNutralButtonPressed() {
+                try {
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:" + Constants.CONTACT_CARRUS));
+                    startActivity(callIntent);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }
@@ -361,7 +373,8 @@ public class SignUpActivity extends BaseActivity {
         RestClient.getApiService().register(new TypedString(USERTYPE), new TypedString(mEmailET.getText().toString().trim()), new TypedString(mFullNameET.getText().toString().trim()), new TypedString(mPasswordET.getText().toString().trim()), new TypedString(mPhoneNumberET.getText().toString().trim()), new TypedString(mCompanyNameET.getText().toString().trim()), new TypedString(mOperationArray.toString()), new TypedString((mNumberTruckET.getText().toString().trim().isEmpty()) ? "0" : mNumberTruckET.getText().toString().trim()), new TypedString(mAddressET.getText().toString().trim()), new TypedString(mCityET.getText().toString().trim()), new TypedString(((mStateTxtView.getText().toString().equalsIgnoreCase(getResources().getString(R.string.state))) ? "" : mStateTxtView.getText().toString().trim())), new TypedString(mPinCodeET.getText().toString().trim()), new TypedString(COUNTRYNAME), new TypedString(mCargoTypeArray.toString()), new TypedString(DEVICE_TYPE), new TypedString(Utils.getDeviceName()), new TypedString(sessionManager.getDeviceToken()), new TypedString(assignmentBy), new Callback<String>() {
             @Override
             public void success(String s, Response response) {
-                Log.v("" + getClass().getSimpleName(), "Response> " + s);
+                if (BuildConfig.DEBUG)
+                    Log.v("" + getClass().getSimpleName(), "Response> " + s);
                 try {
                     JSONObject mObject = new JSONObject(s);
 
@@ -399,7 +412,8 @@ public class SignUpActivity extends BaseActivity {
             public void failure(RetrofitError error) {
                 Utils.loading_box_stop();
                 try {
-                    Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getReason());
+                    if (BuildConfig.DEBUG)
+                        Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getReason());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
                         Toast.makeText(SignUpActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
@@ -428,7 +442,8 @@ public class SignUpActivity extends BaseActivity {
         RestClient.getApiService().getTypeCargo(new Callback<String>() {
             @Override
             public void success(String s, Response response) {
-                Log.v("" + getClass().getSimpleName(), "Response> " + s);
+                if (BuildConfig.DEBUG)
+                    Log.v("" + getClass().getSimpleName(), "Response> " + s);
                 try {
                     JSONObject mObject = new JSONObject(s);
 
@@ -455,7 +470,8 @@ public class SignUpActivity extends BaseActivity {
             public void failure(RetrofitError error) {
                 Utils.loading_box_stop();
                 try {
-                    Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getReason());
+                    if (BuildConfig.DEBUG)
+                        Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getReason());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
                         noInternetDialog();
@@ -539,7 +555,8 @@ public class SignUpActivity extends BaseActivity {
         RestClient.getApiService().phoneVerificationGenerate(mPhoneNumberET.getText().toString().trim(), mEmailET.getText().toString().trim(), USERTYPE, "true", "false", new Callback<String>() {
             @Override
             public void success(String s, Response response) {
-                Log.v("" + getClass().getSimpleName(), "Response> " + s);
+                if (BuildConfig.DEBUG)
+                    Log.v("" + getClass().getSimpleName(), "Response> " + s);
                 try {
                     JSONObject mObject = new JSONObject(s);
 
@@ -563,7 +580,8 @@ public class SignUpActivity extends BaseActivity {
             public void failure(RetrofitError error) {
                 Utils.loading_box_stop();
                 try {
-                    Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getReason());
+                    if (BuildConfig.DEBUG)
+                        Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getReason());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
                         Toast.makeText(SignUpActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
@@ -594,7 +612,8 @@ public class SignUpActivity extends BaseActivity {
         RestClient.getApiService().phoneVerificationVerify(mPhoneNumberET.getText().toString().trim(), otp, USERTYPE, "true", new Callback<String>() {
             @Override
             public void success(String s, Response response) {
-                Log.v("" + getClass().getSimpleName(), "Response> " + s);
+                if (BuildConfig.DEBUG)
+                    Log.v("" + getClass().getSimpleName(), "Response> " + s);
                 try {
                     JSONObject mObject = new JSONObject(s);
 
@@ -619,7 +638,8 @@ public class SignUpActivity extends BaseActivity {
             public void failure(RetrofitError error) {
                 Utils.loading_box_stop();
                 try {
-                    Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getReason());
+                    if (BuildConfig.DEBUG)
+                        Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getReason());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
                         Toast.makeText(SignUpActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();

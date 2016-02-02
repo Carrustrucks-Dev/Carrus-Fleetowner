@@ -5,16 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import com.flurry.android.FlurryAgent;
-
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
-import static com.carrus.fleetowner.utils.Constants.MY_FLURRY_APIKEY;
 
 
 /**

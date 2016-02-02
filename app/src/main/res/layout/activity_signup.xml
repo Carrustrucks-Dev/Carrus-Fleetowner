@@ -32,7 +32,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:baselineAligned="false">
 
                 <RelativeLayout
                     android:layout_width="0dp"
@@ -96,7 +97,7 @@
                 android:id="@+id/phoneNumberET"
                 style="@style/App_EditTextStyle"
                 android:hint="@string/phonenumber"
-                android:inputType="number"
+                android:inputType="phone"
                 android:maxLength="10" />
 
 
@@ -199,7 +200,6 @@
                         android:id="@+id/byCarrusRadioBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
 
                         android:textSize="@dimen/mid_fond"
                         android:gravity="center"
@@ -210,7 +210,6 @@
                         android:id="@+id/byMeRadioBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
                         android:textSize="@dimen/mid_fond"
                         android:gravity="center"
                         android:checked="true"

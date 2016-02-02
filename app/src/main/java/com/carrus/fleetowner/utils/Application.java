@@ -7,6 +7,7 @@ import com.flurry.android.FlurryAgent;
 
 import io.fabric.sdk.android.Fabric;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
 import static com.carrus.fleetowner.utils.Constants.MY_FLURRY_APIKEY;
 
 

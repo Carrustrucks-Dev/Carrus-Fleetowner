@@ -28,6 +28,8 @@ public class CommonNoInternetDialog {
 
         void OnCancelButtonPressed();
 
+        void OnNutralButtonPressed();
+
     }
 
     /**
@@ -53,7 +55,7 @@ public class CommonNoInternetDialog {
          * @param cancelButtonText The text of the cancel Button
          * @param confirmationDialogEvents1 The object of dialog listener
          */
-        public void Show(String message, String okButtonText, String cancelButtonText, ConfirmationDialogEventsListener confirmationDialogEvents1) {
+        public void Show(String message, String okButtonText, String cancelButtonText, String nutralButtonText,ConfirmationDialogEventsListener confirmationDialogEvents1) {
             try {
                 this.confirmationDialogEvents = confirmationDialogEvents1;
                 if (mAlertDialog == null)
@@ -73,6 +75,15 @@ public class CommonNoInternetDialog {
                                     dialog.dismiss();
                                     mAlertDialog=null;
                                     confirmationDialogEvents.OnOkButtonPressed();
+                                }
+                            })
+
+                            .setNeutralButton(nutralButtonText, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                    mAlertDialog=null;
+                                    confirmationDialogEvents.OnNutralButtonPressed();
                                 }
                             })
                             .setNegativeButton(cancelButtonText, new DialogInterface.OnClickListener() {

@@ -21,7 +21,6 @@ public class WebViewFragment extends Fragment {
 
     private WebView webView;
     private ProgressBar pBar;
-    private String url="http://52.25.204.93/carrus_dev/carrus-web/index.html#/welcomeScreen";
 
     @Nullable
     @Override
@@ -62,6 +61,7 @@ public class WebViewFragment extends Fragment {
             }
         });
 
+        String url = "http://52.25.204.93/carrus_dev/carrus-web/index.html#/welcomeScreen";
         webView.loadUrl(url);
 
     }

@@ -37,6 +37,7 @@ import com.flurry.android.FlurryAgent;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -59,7 +60,7 @@ import static com.carrus.fleetowner.utils.Constants.MY_FLURRY_APIKEY;
 /**
  * Created by Sunny on 10/29/15 for Fleet Owner for Fleet Owner for Fleet Owner.
  */
-public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickListener {
+public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickListener, OnMapReadyCallback {
 
     private static final String mBroadcastUiAction = "com.carrus.carrusshipper.broadcast.UI";
     private static final String mBroadcastAction = "com.carrus.carrusshipper.broadcast.AccessDenied";
@@ -81,7 +82,6 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
     private IntentFilter mIntentFilter;
     private Marker now;
     private EditText mSearchEdtTxt;
-    private int selectedPos = 0;
     private LinearLayout mErrorLayout;
 
 
@@ -257,30 +257,33 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
 
             SupportMapFragment fragmentManager = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
 
-            googleMap = fragmentManager.getMap();
+//            googleMap = fragmentManager.getMap();
+            fragmentManager.getMapAsync(this);
+        }
+    }
 
-            // check if map is created successfully or not
-            if (googleMap == null) {
-                Toast.makeText(getActivity(),
-                        "Sorry! unable to create maps", Toast.LENGTH_SHORT)
-                        .show();
-                return;
-            }
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        // check if map is created successfully or not
+        this.googleMap=googleMap;
+        if (googleMap == null) {
+            Toast.makeText(getActivity(),
+                    "Sorry! unable to create maps", Toast.LENGTH_SHORT)
+                    .show();
+            return;
+        }
 
-            if (googleMap != null) {
+        if (googleMap != null) {
 
-                googleMap.getUiSettings().setZoomControlsEnabled(true);
-                googleMap.getUiSettings().setCompassEnabled(true);
-                googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+            googleMap.getUiSettings().setZoomControlsEnabled(true);
+            googleMap.getUiSettings().setCompassEnabled(true);
+            googleMap.getUiSettings().setMyLocationButtonEnabled(true);
 //                googleMap.getUiSettings().setAllGesturesEnabled(true);
-                googleMap.setTrafficEnabled(true);
+            googleMap.setTrafficEnabled(true);
 //                googleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
-                googleMap.setOnMarkerClickListener(this);
+            googleMap.setOnMarkerClickListener(this);
 
-                getAllTrucks();
-            }
-
-
+            getAllTrucks();
         }
     }
 
@@ -366,7 +369,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
             if (marker.equals(mMarkerArray.get(i))) {
                 if (mTrackermodel.get(i).getBooking().size() != 0) {
                     isMarkerMatch = true;
-                    selectedPos = i;
+                    int selectedPos = i;
                     selectedNumber = mTrackermodel.get(i).getTrucker().get(0).getPhoneNumber();
                     nameTxtView.setText(mTrackermodel.get(i).getTrucker().get(0).getDriverName());
                     typeTxtView.setText(mTrackermodel.get(i).getTypeTruck().get(0).typeTruckName);
@@ -608,7 +611,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
 //                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
-                        CommonNoInternetDialog.WithActivity(getActivity()).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
+                        CommonNoInternetDialog.WithActivity(getActivity()).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit),getResources().getString(R.string.callcarrus), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
                             @Override
                             public void OnOkButtonPressed() {
                                 getAllTrucks();
@@ -617,6 +620,17 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                             @Override
                             public void OnCancelButtonPressed() {
                                 getActivity().finish();
+                            }
+
+                            @Override
+                            public void OnNutralButtonPressed() {
+                                try {
+                                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                                    callIntent.setData(Uri.parse("tel:" + Constants.CONTACT_CARRUS));
+                                    startActivity(callIntent);
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
                             }
                         });
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {

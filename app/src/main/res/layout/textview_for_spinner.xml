@@ -10,4 +10,5 @@
     android:layout_height="wrap_content"
     android:textSize="@dimen/mid_fond"
     android:gravity="center_vertical"
-    android:textColor="#FF000000" />
+    android:textColor="#FF000000"
+    android:textIsSelectable="false" />
