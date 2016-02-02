@@ -1,6 +1,7 @@
 package com.carrus.fleetowner;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
+import com.carrus.fleetowner.utils.CommonNoInternetDialog;
 import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
@@ -157,7 +159,8 @@ public class QuoteDialogActivity extends BaseActivity {
                         Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Utils.shopAlterDialog(QuoteDialogActivity.this, getResources().getString(R.string.nointernetconnection), false);
+                        noInternetDialog();
+//                        Utils.shopAlterDialog(QuoteDialogActivity.this, getResources().getString(R.string.nointernetconnection), false);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(QuoteDialogActivity.this, Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Bad_Request.getOrdinal()) {
@@ -170,7 +173,8 @@ public class QuoteDialogActivity extends BaseActivity {
                     }
 
                 } catch (Exception ex) {
-                    Utils.shopAlterDialog(QuoteDialogActivity.this, getResources().getString(R.string.nointernetconnection), false);
+                    noInternetDialog();
+//                    Utils.shopAlterDialog(QuoteDialogActivity.this, getResources().getString(R.string.nointernetconnection), false);
                 }
             }
         });
@@ -197,8 +201,8 @@ public class QuoteDialogActivity extends BaseActivity {
                 new Callback<String>() {
                     @Override
                     public void success(String s, Response response) {
-                        if(BuildConfig.DEBUG)
-                        Log.v("" + getClass().getSimpleName(), "Response> " + s);
+                        if (BuildConfig.DEBUG)
+                            Log.v("" + getClass().getSimpleName(), "Response> " + s);
 
                         try {
                             JSONObject mObject = new JSONObject(s);
@@ -225,11 +229,12 @@ public class QuoteDialogActivity extends BaseActivity {
                     public void failure(RetrofitError error) {
                         Utils.loading_box_stop();
                         try {
-                            if(BuildConfig.DEBUG)
-                            Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
+                            if (BuildConfig.DEBUG)
+                                Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                             if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                                Utils.shopAlterDialog(QuoteDialogActivity.this, getResources().getString(R.string.nointernetconnection), false);
+                                noInternetDialog();
+//                                Utils.shopAlterDialog(QuoteDialogActivity.this, getResources().getString(R.string.nointernetconnection), false);
                             } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                                 Utils.shopAlterDialog(QuoteDialogActivity.this, Utils.getErrorMsg(error), true);
                             } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
@@ -240,9 +245,34 @@ public class QuoteDialogActivity extends BaseActivity {
                             }
 
                         } catch (Exception ex) {
-                            Utils.shopAlterDialog(QuoteDialogActivity.this, getResources().getString(R.string.nointernetconnection), false);
+                            noInternetDialog();
+//                            Utils.shopAlterDialog(QuoteDialogActivity.this, getResources().getString(R.string.nointernetconnection), false);
                         }
                     }
                 });
+    }
+
+    private void noInternetDialog() {
+        CommonNoInternetDialog.WithActivity(QuoteDialogActivity.this).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), getResources().getString(R.string.callcarrus), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
+            @Override
+            public void OnOkButtonPressed() {
+            }
+
+            @Override
+            public void OnCancelButtonPressed() {
+                finish();
+            }
+
+            @Override
+            public void OnNutralButtonPressed() {
+                try {
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:" + Constants.CONTACT_CARRUS));
+                    startActivity(callIntent);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 }
