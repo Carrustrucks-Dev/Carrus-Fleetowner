@@ -611,28 +611,7 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
 //                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
-                        CommonNoInternetDialog.WithActivity(getActivity()).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit),getResources().getString(R.string.callcarrus), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
-                            @Override
-                            public void OnOkButtonPressed() {
-                                getAllTrucks();
-                            }
-
-                            @Override
-                            public void OnCancelButtonPressed() {
-                                getActivity().finish();
-                            }
-
-                            @Override
-                            public void OnNutralButtonPressed() {
-                                try {
-                                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                                    callIntent.setData(Uri.parse("tel:" + Constants.CONTACT_CARRUS));
-                                    startActivity(callIntent);
-                                } catch (Exception ex) {
-                                    ex.printStackTrace();
-                                }
-                            }
-                        });
+                        noInternetDialog();
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
@@ -641,7 +620,8 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
                         errorTxtView.setText("" + Utils.getErrorMsg(error));
                     }
                 } catch (Exception ex) {
-                    Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+                    noInternetDialog();
+//                    Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
                 }
             }
         });
@@ -664,5 +644,28 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
         mBottomView.setAnimation(animationFadeOut);
         mBottomView.setVisibility(View.GONE);
     }
+    private void noInternetDialog() {
+        CommonNoInternetDialog.WithActivity(getActivity()).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), getResources().getString(R.string.callcarrus), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
+            @Override
+            public void OnOkButtonPressed() {
+                getAllTrucks();
+            }
 
+            @Override
+            public void OnCancelButtonPressed() {
+                getActivity().finish();
+            }
+
+            @Override
+            public void OnNutralButtonPressed() {
+                try {
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:" + Constants.CONTACT_CARRUS));
+                    startActivity(callIntent);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+    }
 }

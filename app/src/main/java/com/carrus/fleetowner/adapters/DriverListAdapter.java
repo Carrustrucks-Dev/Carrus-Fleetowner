@@ -196,7 +196,6 @@ public class DriverListAdapter extends RecyclerView.Adapter {
         return myList != null ? myList.size() : 0;
     }
 
-
     @Override
     public int getItemViewType(int position) {
         int VIEW_PROG = 0;
