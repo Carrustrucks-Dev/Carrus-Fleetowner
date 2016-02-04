@@ -1,6 +1,8 @@
 package com.carrus.fleetowner.fragments;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +14,9 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.carrus.fleetowner.R;
+import com.carrus.fleetowner.utils.CommonNoInternetDialog;
+import com.carrus.fleetowner.utils.ConnectionDetector;
+import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.Utils;
 
 /**
@@ -27,7 +32,11 @@ public class WebViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_webview, container, false);
         initView(rootView);
-        loadUrl();
+        if (new ConnectionDetector(getActivity()).isConnectingToInternet())
+            loadUrl();
+        else
+            noInternetDialog();
+
         return rootView;
     }
 
@@ -64,5 +73,34 @@ public class WebViewFragment extends Fragment {
         String url = "http://52.25.204.93/carrus_dev/carrus-web/index.html#/welcomeScreen";
         webView.loadUrl(url);
 
+    }
+
+    private void noInternetDialog() {
+        if(getActivity()!=null && isAdded())
+            CommonNoInternetDialog.WithActivity(getActivity()).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), getResources().getString(R.string.callcarrus), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
+                @Override
+                public void OnOkButtonPressed() {
+                    if (new ConnectionDetector(getActivity()).isConnectingToInternet())
+                        loadUrl();
+                    else
+                        noInternetDialog();
+                }
+
+                @Override
+                public void OnCancelButtonPressed() {
+                    getActivity().finish();
+                }
+
+                @Override
+                public void OnNutralButtonPressed() {
+                    try {
+                        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                        callIntent.setData(Uri.parse("tel:" + Constants.CONTACT_CARRUS));
+                        startActivity(callIntent);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
     }
 }

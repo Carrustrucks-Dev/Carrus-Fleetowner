@@ -2,11 +2,15 @@ package com.carrus.fleetowner;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
 
+import com.carrus.fleetowner.utils.CommonNoInternetDialog;
+import com.carrus.fleetowner.utils.ConnectionDetector;
+import com.carrus.fleetowner.utils.Constants;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -18,8 +22,10 @@ public class ShowPODActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_pod);
-
-        init();
+        if (new ConnectionDetector(this).isConnectingToInternet())
+            init();
+        else
+            noInternetDialog();
         initializeClickListner();
 
     }
@@ -73,5 +79,34 @@ public class ShowPODActivity extends BaseActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(0, 0);
+    }
+
+    private void noInternetDialog(){
+        if(ShowPODActivity.this!=null)
+            CommonNoInternetDialog.WithActivity(ShowPODActivity.this).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit),getResources().getString(R.string.callcarrus), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
+                @Override
+                public void OnOkButtonPressed() {
+                    if (new ConnectionDetector(ShowPODActivity.this).isConnectingToInternet())
+                        init();
+                    else
+                        noInternetDialog();
+                }
+
+                @Override
+                public void OnCancelButtonPressed() {
+                    finish();
+                }
+
+                @Override
+                public void OnNutralButtonPressed() {
+                    try {
+                        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                        callIntent.setData(Uri.parse("tel:" + Constants.CONTACT_CARRUS));
+                        startActivity(callIntent);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
     }
 }
