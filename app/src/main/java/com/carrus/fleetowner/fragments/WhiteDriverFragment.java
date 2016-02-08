@@ -258,6 +258,7 @@ public class WhiteDriverFragment extends Fragment {
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
+                        bookingList = null;
                         mAdapter = new DriverListAdapter(getActivity(), bookingList, mRecyclerView, false);
                         mRecyclerView.setAdapter(mAdapter);
                         mErrorTxtView.setText(getResources().getString(R.string.nodriverfound));

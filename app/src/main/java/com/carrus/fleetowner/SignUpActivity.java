@@ -78,6 +78,7 @@ public class SignUpActivity extends BaseActivity {
     private boolean isOperationSelected = false, isCargoTypeSelected = false;
     private RadioButton mByCarrusRadioBtn, mByMeRadioBtn;
     private String assignmentBy = "1";
+    private boolean isCargoCalled=false;
 
 
     @Override
@@ -279,7 +280,11 @@ public class SignUpActivity extends BaseActivity {
         CommonNoInternetDialog.WithActivity(SignUpActivity.this).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), getResources().getString(R.string.callcarrus), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
             @Override
             public void OnOkButtonPressed() {
-                getTypeCargo();
+                if (isCargoCalled)
+                    getTypeCargo();
+                else
+                    genrateOTP();
+
             }
 
             @Override
@@ -416,12 +421,12 @@ public class SignUpActivity extends BaseActivity {
                         Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getReason());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Toast.makeText(SignUpActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                        noInternetDialog();
                     } else {
                         Toast.makeText(SignUpActivity.this, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception ex) {
-                    Toast.makeText(SignUpActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                    noInternetDialog();
                 }
             }
         });
@@ -438,10 +443,12 @@ public class SignUpActivity extends BaseActivity {
     }
 
     private void getTypeCargo() {
+        isCargoCalled=true;
         Utils.loading_box(SignUpActivity.this);
         RestClient.getApiService().getTypeCargo(new Callback<String>() {
             @Override
             public void success(String s, Response response) {
+                isCargoCalled=false;
                 if (BuildConfig.DEBUG)
                     Log.v("" + getClass().getSimpleName(), "Response> " + s);
                 try {
@@ -584,12 +591,12 @@ public class SignUpActivity extends BaseActivity {
                         Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getReason());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Toast.makeText(SignUpActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                        noInternetDialog();
                     } else {
                         Toast.makeText(SignUpActivity.this, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception ex) {
-                    Toast.makeText(SignUpActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                    noInternetDialog();
                 }
             }
         });
@@ -642,12 +649,12 @@ public class SignUpActivity extends BaseActivity {
                         Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getReason());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Toast.makeText(SignUpActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                        noInternetDialog();
                     } else {
                         Toast.makeText(SignUpActivity.this, Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception ex) {
-                    Toast.makeText(SignUpActivity.this, getResources().getString(R.string.nointernetconnection), Toast.LENGTH_SHORT).show();
+                    noInternetDialog();
                 }
             }
         });

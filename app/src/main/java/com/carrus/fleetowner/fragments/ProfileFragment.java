@@ -5,6 +5,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -25,6 +26,8 @@ import com.carrus.fleetowner.R;
 import com.carrus.fleetowner.retrofit.RestClient;
 import com.carrus.fleetowner.utils.ApiResponseFlags;
 import com.carrus.fleetowner.utils.CircleTransform;
+import com.carrus.fleetowner.utils.CommonNoInternetDialog;
+import com.carrus.fleetowner.utils.Constants;
 import com.carrus.fleetowner.utils.ImageChooserDialog;
 import com.carrus.fleetowner.utils.SessionManager;
 import com.carrus.fleetowner.utils.Utils;
@@ -323,7 +326,7 @@ public class ProfileFragment extends Fragment implements
                     Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
-                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+                        noInternetDialog();
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
@@ -332,10 +335,37 @@ public class ProfileFragment extends Fragment implements
                         Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception ex) {
-                    Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
+                    noInternetDialog();
                 }
             }
         });
+    }
+
+    private void noInternetDialog() {
+        if(getActivity()!=null && isAdded())
+            CommonNoInternetDialog.WithActivity(getActivity()).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit),getResources().getString(R.string.callcarrus), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
+                @Override
+                public void OnOkButtonPressed() {
+                }
+
+                @Override
+                public void OnCancelButtonPressed() {
+                    Activity mActivity = getActivity();
+                    if (mActivity != null)
+                        mActivity.finish();
+                }
+
+                @Override
+                public void OnNutralButtonPressed() {
+                    try {
+                        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                        callIntent.setData(Uri.parse("tel:" + Constants.CONTACT_CARRUS));
+                        startActivity(callIntent);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
     }
 
 }

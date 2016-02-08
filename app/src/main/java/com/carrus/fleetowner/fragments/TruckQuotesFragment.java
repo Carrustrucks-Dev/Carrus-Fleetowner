@@ -98,7 +98,7 @@ public class TruckQuotesFragment extends Fragment {
         if (mConnectionDetector.isConnectingToInternet())
             getMyBooking();
         else {
-           noInternetDialog();
+            noInternetDialog();
         }
     }
 
@@ -117,8 +117,8 @@ public class TruckQuotesFragment extends Fragment {
     }
 
     private void init(View view) {
-        mErrorLayout =(LinearLayout) view.findViewById(R.id.errorLayout);
-        mErrorTxtView=(TextView) view.findViewById(R.id.errorTxtView);
+        mErrorLayout = (LinearLayout) view.findViewById(R.id.errorLayout);
+        mErrorTxtView = (TextView) view.findViewById(R.id.errorTxtView);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
 //        swipeRefreshLayout.setColorSchemeColors(
 //                Color.RED, Color.GREEN, Color.BLUE, Color.CYAN);
@@ -148,8 +148,8 @@ public class TruckQuotesFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(Constants.isTruckQuotesUpdated){
-            Constants.isTruckQuotesUpdated=false;
+        if (Constants.isTruckQuotesUpdated) {
+            Constants.isTruckQuotesUpdated = false;
             isRefreshView = true;
             getMyBooking();
         }
@@ -173,10 +173,10 @@ public class TruckQuotesFragment extends Fragment {
         mErrorLayout.setVisibility(View.GONE);
         if (isRefreshView) {
             swipeRefreshLayout.setRefreshing(true);
-            skip=0;
-            bookingList=null;
+            skip = 0;
+            bookingList = null;
         } else {
-            if(bookingList==null || bookingList.size()==0)
+            if (bookingList == null || bookingList.size() == 0)
                 Utils.loading_box(getActivity());
         }
 
@@ -184,8 +184,8 @@ public class TruckQuotesFragment extends Fragment {
 
             @Override
             public void success(String s, Response response) {
-                if(BuildConfig.DEBUG)
-                Log.v("" + getClass().getSimpleName(), "Response> " + s);
+                if (BuildConfig.DEBUG)
+                    Log.v("" + getClass().getSimpleName(), "Response> " + s);
 
                 try {
                     JSONObject mObject = new JSONObject(s);
@@ -200,8 +200,8 @@ public class TruckQuotesFragment extends Fragment {
                             bookingList.addAll(mTruckQuotesModel.getData());
                             mAdapter = new TruckQuotesListAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);
-                            if(mTruckQuotesModel.getData().size()==LIMIT)
-                            setonScrollListener();
+                            if (mTruckQuotesModel.getData().size() == LIMIT)
+                                setonScrollListener();
                         } else {
                             bookingList.remove(bookingList.size() - 1);
                             mAdapter.notifyItemRemoved(bookingList.size());
@@ -242,12 +242,12 @@ public class TruckQuotesFragment extends Fragment {
                 swipeRefreshLayout.setRefreshing(false);
                 Utils.loading_box_stop();
                 try {
-                    if(BuildConfig.DEBUG)
-                    Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
+                    if (BuildConfig.DEBUG)
+                        Log.v("error.getKind() >> " + error.getKind(), " MSg >> " + error.getResponse().getStatus());
 
                     if (error.getKind().equals(RetrofitError.Kind.NETWORK)) {
 //                        Utils.shopAlterDialog(getActivity(), getResources().getString(R.string.nointernetconnection), false);
-                       noInternetDialog();
+                        noInternetDialog();
                         if (bookingList == null || bookingList.size() == 0) {
                             mAdapter = new TruckQuotesListAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);
@@ -257,8 +257,8 @@ public class TruckQuotesFragment extends Fragment {
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Unauthorized.getOrdinal()) {
                         Utils.shopAlterDialog(getActivity(), Utils.getErrorMsg(error), true);
                     } else if (error.getResponse().getStatus() == ApiResponseFlags.Not_Found.getOrdinal()) {
-                       // Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
-                        if(bookingList==null || bookingList.size()==0) {
+                        // Toast.makeText(getActivity(), Utils.getErrorMsg(error), Toast.LENGTH_SHORT).show();
+                        if (bookingList == null || bookingList.size() == 0) {
                             mAdapter = new TruckQuotesListAdapter(getActivity(), bookingList, mRecyclerView);
                             mRecyclerView.setAdapter(mAdapter);
                             mErrorTxtView.setText(getResources().getString(R.string.nopendingquotesfound));
@@ -305,30 +305,34 @@ public class TruckQuotesFragment extends Fragment {
         });
     }
 
-    private void noInternetDialog(){
-        if(getActivity()!=null && isAdded())
-            CommonNoInternetDialog.WithActivity(getActivity()).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit),getResources().getString(R.string.callcarrus), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
-            @Override
-            public void OnOkButtonPressed() {
-                isRefreshView = true;
-                getMyBooking();
-            }
+    private void noInternetDialog() {
+        try {
+            if (isAdded() && getActivity() != null)
+                CommonNoInternetDialog.WithActivity(getActivity()).Show(getResources().getString(R.string.nointernetconnection), getResources().getString(R.string.tryagain), getResources().getString(R.string.exit), getResources().getString(R.string.callcarrus), new CommonNoInternetDialog.ConfirmationDialogEventsListener() {
+                    @Override
+                    public void OnOkButtonPressed() {
+                        isRefreshView = true;
+                        getMyBooking();
+                    }
 
-            @Override
-            public void OnCancelButtonPressed() {
-                getActivity().finish();
-            }
+                    @Override
+                    public void OnCancelButtonPressed() {
+                        getActivity().finish();
+                    }
 
-            @Override
-            public void OnNutralButtonPressed() {
-                try {
-                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                    callIntent.setData(Uri.parse("tel:" + Constants.CONTACT_CARRUS));
-                    startActivity(callIntent);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
+                    @Override
+                    public void OnNutralButtonPressed() {
+                        try {
+                            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                            callIntent.setData(Uri.parse("tel:" + Constants.CONTACT_CARRUS));
+                            startActivity(callIntent);
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

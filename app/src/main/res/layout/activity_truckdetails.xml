@@ -61,6 +61,11 @@
                 style="@style/CustomTextAppearance.Bold"
                 android:padding="@dimen/ten"/>
 
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/one"
+                android:background="@color/windowBackground" />
+
             <Button
                 android:id="@+id/ignoreBtn"
                 android:layout_width="match_parent"

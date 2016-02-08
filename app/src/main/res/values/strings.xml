@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Fleet Owner</string>
     <!--Debug Google api key-->
-    <!--<string name="google_app_id">AIzaSyCQQaDHh7sz-35CvROWKngxGPzzbEJdfUk</string>-->
+    <string name="google_app_id">AIzaSyCQQaDHh7sz-35CvROWKngxGPzzbEJdfUk</string>
 
     <!--Released Google api key-->
-    <string name="google_app_id">AIzaSyCHLcN4FVT29tkXZcOSfNRL9C9CKar6d_g</string>
+    <!--<string name="google_app_id">AIzaSyCHLcN4FVT29tkXZcOSfNRL9C9CKar6d_g</string>-->
 
     <string name="action_settings">Settings</string>
 
@@ -167,7 +167,7 @@
     <string name="condignmntnotes">Consignment Notes</string>
 
     <!--Dialog Button Text-->
-    <string name="tryagain">Try again</string>
+    <string name="tryagain">Retry</string>
     <string name="exit">Exit</string>
 
     <!--Sign up screen text-->

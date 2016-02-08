@@ -73,7 +73,7 @@ public class ForgotPasswordActivity extends BaseActivity{
                     if(mConnectionDetector.isConnectingToInternet())
                     forgotPassword();
                     else
-                        Utils.shopAlterDialog(ForgotPasswordActivity.this, getResources().getString(R.string.nointernetconnection), false);
+                        noInternetDialog();
                 }
             }
         });
