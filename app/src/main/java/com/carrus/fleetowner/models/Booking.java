@@ -3,7 +3,9 @@ package com.carrus.fleetowner.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Booking {
+import java.io.Serializable;
+
+public class Booking implements Serializable {
 
     @SerializedName("_id")
     @Expose
