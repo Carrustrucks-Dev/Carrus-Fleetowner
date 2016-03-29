@@ -64,6 +64,7 @@ public class QuoteDialogActivity extends BaseActivity {
         id = mIntent.getStringExtra(ID);
         if (mIntent.getBooleanExtra(TYPE, false)) {
             offrbidEdtxt.setText("" + mIntent.getLongExtra(BIDVALUE, 0));
+            offrbidEdtxt.setEnabled(false);
             notesEdtxt.setText(mIntent.getStringExtra(NOTES));
             quoteId = mIntent.getStringExtra(QUOTEID);
             mSubmitBtn.setText(getResources().getString(R.string.modify));
