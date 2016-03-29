@@ -297,41 +297,42 @@ public class TrucksFragment extends Fragment implements GoogleMap.OnMarkerClickL
         isMarkerMatch = false;
         for (int i = 0; i < mTrucks.getData().size(); i++) {
 
-            LatLng location = new LatLng(Double.valueOf(mTrucks.getData().get(i).getCurrentCoordinates().getLat()), Double.valueOf(mTrucks.getData().get(i).getCurrentCoordinates().getLong()));
-            Marker marker = null;
-            if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("WHITE")) {
-                marker = googleMap.addMarker(new MarkerOptions().position(location)
+            if(mTrucks.getData().get(i).getCurrentCoordinates().getLat()!=null && mTrucks.getData().get(i).getCurrentCoordinates().getLong()!=null) {
+                LatLng location = new LatLng(Double.valueOf(mTrucks.getData().get(i).getCurrentCoordinates().getLat()), Double.valueOf(mTrucks.getData().get(i).getCurrentCoordinates().getLong()));
+                Marker marker = null;
+                if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("WHITE")) {
+                    marker = googleMap.addMarker(new MarkerOptions().position(location)
 //                                    .title(mOnGoingShipper.mData.get(i).shipper.firstName)
 //                                    .snippet(mOnGoingShipper.mData.get(i).shipper.firstName)
-                                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_truck_white))
-                );
+                                    .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_truck_white))
+                    );
 
-            } else if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("RED")) {
-                marker = googleMap.addMarker(new MarkerOptions().position(location)
+                } else if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("RED")) {
+                    marker = googleMap.addMarker(new MarkerOptions().position(location)
 //                                    .title(mOnGoingShipper.mData.get(i).shipper.firstName)
 //                                    .snippet(mOnGoingShipper.mData.get(i).shipper.firstName)
-                                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_truck_red))
-                );
+                                    .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_truck_red))
+                    );
 
-            } else if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("BLACK")) {
-                marker = googleMap.addMarker(new MarkerOptions().position(location)
+                } else if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("BLACK")) {
+                    marker = googleMap.addMarker(new MarkerOptions().position(location)
 //                                    .title(mOnGoingShipper.mData.get(i).shipper.firstName)
 //                                    .snippet(mOnGoingShipper.mData.get(i).shipper.firstName)
-                                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_truck_black))
-                );
+                                    .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_truck_black))
+                    );
 
-            } else if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("BLUE")) {
-                marker = googleMap.addMarker(new MarkerOptions().position(location)
+                } else if (mTrucks.getData().get(i).getTruckerColor().equalsIgnoreCase("BLUE")) {
+                    marker = googleMap.addMarker(new MarkerOptions().position(location)
 //                                    .title(mOnGoingShipper.mData.get(i).shipper.firstName)
 //                                    .snippet(mOnGoingShipper.mData.get(i).shipper.firstName)
-                                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_truck_blue))
-                );
+                                    .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_truck_blue))
+                    );
 
+                }
+
+                mMarkerArray.add(marker);
+                mTrackermodel.add(mTrucks.getData().get(i));
             }
-
-            mMarkerArray.add(marker);
-            mTrackermodel.add(mTrucks.getData().get(i));
-
         }
 
 
