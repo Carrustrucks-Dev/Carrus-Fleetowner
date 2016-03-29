@@ -75,7 +75,7 @@
             android:background="@drawable/square_edit_text"
             android:gravity="left|top"
             android:hint="@string/offrdbid"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:padding="@dimen/ten" />
 
     </RelativeLayout>
