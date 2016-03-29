@@ -142,6 +142,7 @@ public class PastBookingAdapter extends RecyclerView.Adapter {
             }
 
             ((ViewHolder) holder).mNameTxtView.setText(myList.get(position).shipper.firstName + " " + myList.get(position).shipper.lastName);
+            if(myList.get(position).assignTruck!=null)
             ((ViewHolder) holder).mCodeTxtView.setText(myList.get(position).assignTruck.truckName + ", " + myList.get(position).assignTruck.truckNumber);
             ((ViewHolder) holder).mAddressTxtView.setText(myList.get(position).pickUp.city + " to " + myList.get(position).dropOff.city);
 
