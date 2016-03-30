@@ -171,14 +171,15 @@
     <string name="exit">Exit</string>
 
     <!--Sign up screen text-->
-    <string name="fullname">Full Name</string>
-    <string name="emailid">Email ID</string>
-    <string name="cnfrmpassword">Confirm Password</string>
-    <string name="companyname">Company Name</string>
+    <string name="fullname">Full Name*</string>
+    <string name="emailid">Email ID*</string>
+    <string name="password_">Password*</string>
+    <string name="cnfrmpassword">Confirm Password*</string>
+    <string name="companyname">Company Name*</string>
     <string name="areaoprations">Area of Operations</string>
     <string name="typecargohandle">Type of Cargo Handled</string>
     <string name="numbertruckowner">Number of Trucks Owned</string>
-    <string name="phonenumber">Mobile Number</string>
+    <string name="phonenumber">Mobile Number*</string>
     <string name="address">Address</string>
     <string name="state">State</string>
     <string name="zipcode">Zip Code</string>
